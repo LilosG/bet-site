@@ -113,56 +113,7 @@ const schemas = [
       </div>
 
       <!-- Hero card -->
-      <div class="hero-card-wrap animate-fade-up delay-200" aria-label="Featured listing preview">
-        <div class="hero-card">
-          <div class="hero-card-header">
-            <span class="tag tag-teal">Featured Listing</span>
-            <span class="hero-card-sku">SKU: BHT-PR-300-1114</span>
-          </div>
-          <div class="hero-card-img-wrap">
-            <img
-              src="/images/brewhouse-30bbl-marks.webp"
-              alt="30 BBL 4-Vessel Marks Brewhouse"
-              class="hero-card-img"
-              loading="eager"
-              decoding="async"
-              width="540"
-              height="360"
-            />
-          </div>
-          <div class="hero-card-body">
-            <div class="hero-card-rows">
-              {[
-                ['Model',    'Premier Stainless'],
-                ['Capacity', '30 BBL · 4-Vessel'],
-                ['Location', 'San Marcos, CA'],
-                ['Lead Time','16 Days'],
-              ].map(([k, v]) => (
-                <div class="hero-card-row">
-                  <span class="hero-card-key">{k}</span>
-                  <span class="hero-card-val-text">{v}</span>
-                </div>
-              ))}
-            </div>
-            <div class="hero-card-price-row">
-              <span class="hero-card-price">$78,500</span>
-              <a
-                href="https://beverageequipmenttraders.com/collections/brewhouses"
-                class="btn btn-primary btn-sm"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Inspect
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-            <div class="hero-card-footnote">
-              <span>81 photos · 5 videos</span>
-              <span>+11 Watching</span>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
     </div>
   </section>
@@ -244,7 +195,7 @@ const schemas = [
       <div class="why-media">
         <div class="why-img-wrap">
           <img
-            src="/images/brewhouse-with-grist-case.webp"
+            src="/images/hero-brewhouse.webp"
             alt="BET brewhouse with grist case"
             class="why-img"
             loading="lazy"
@@ -371,22 +322,31 @@ const schemas = [
   .hero-bg {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 70% 55% at 75% 45%, rgba(201,150,58,0.055) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 70% at 85% 85%, rgba(13,148,136,0.03) 0%, transparent 55%);
+    background-image: url('/images/hero-brewhouse.webp');
+    background-size: cover;
+    background-position: center center;
     pointer-events: none;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.95) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.4) 75%, rgba(11,12,15,0.15) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 20%, rgba(11,12,15,0.5) 100%);
   }
 
   .hero-inner {
     display: grid;
-    grid-template-columns: 1fr 288px;
-    gap: 3.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
     align-items: center;
     position: relative;
     z-index: 1;
   }
 
-  .hero-content { max-width: 640px; }
+  .hero-content { max-width: 600px; grid-column: 1; }
 
   /* Badge */
   .hero-badge {
@@ -489,107 +449,7 @@ const schemas = [
     margin-right: 1.5rem;
   }
 
-  /* Hero card */
-  .hero-card-wrap { flex-shrink: 0; }
 
-  .hero-card {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border-gold);
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,150,58,0.1);
-  }
-
-  .hero-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.625rem 0.875rem;
-    border-bottom: 1px solid var(--color-border);
-    background: rgba(255,255,255,0.02);
-  }
-
-  .hero-card-sku {
-    font-family: var(--font-ui);
-    font-size: 0.5625rem;
-    color: var(--color-text-subtle);
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-  }
-
-  .hero-card-img-wrap {
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    background: var(--color-bg-2);
-  }
-
-  .hero-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 500ms ease;
-  }
-
-  .hero-card:hover .hero-card-img { transform: scale(1.04); }
-
-  .hero-card-body { padding: 0.875rem; }
-
-  .hero-card-rows {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    margin-bottom: 0.875rem;
-    padding-bottom: 0.875rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .hero-card-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
-  .hero-card-key {
-    font-family: var(--font-ui);
-    font-size: 0.5625rem;
-    color: var(--color-text-subtle);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-  }
-
-  .hero-card-val-text {
-    font-family: var(--font-ui);
-    font-size: 0.5625rem;
-    font-weight: 600;
-    color: var(--color-text-muted);
-    text-align: right;
-  }
-
-  .hero-card-price-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.625rem;
-  }
-
-  .hero-card-price {
-    font-family: var(--font-display);
-    font-size: 1.625rem;
-    font-weight: 800;
-    color: var(--color-gold);
-    letter-spacing: -0.02em;
-  }
-
-  .hero-card-footnote {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--color-border);
-    font-family: var(--font-ui);
-    font-size: 0.5rem;
-    color: var(--color-text-subtle);
-    letter-spacing: 0.04em;
-  }
 
   /* ═══ SHARED SECTION ELEMENTS ═══════════════ */
   .section-header {
@@ -869,7 +729,6 @@ const schemas = [
   /* ═══ RESPONSIVE ═════════════════════════════ */
   @media (max-width: 1100px) {
     .hero-inner { grid-template-columns: 1fr; }
-    .hero-card-wrap { display: none; }
     .why-inner { grid-template-columns: 1fr; gap: 3rem; }
     .why-img-wrap { aspect-ratio: 16/9; max-height: 320px; }
     .services-grid { grid-template-columns: repeat(3, 1fr); }
