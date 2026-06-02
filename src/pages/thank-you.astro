@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaStrip from '../components/ui/CtaStrip.astro';
+import { breadcrumbSchema } from '../lib/schema';
+
+const crumbs = [
+  { name: 'Home',       url: '/' },
+  { name: 'Thank You',  url: '/thank-you' },
+];
+---
+
+<Layout
+  title="Inquiry Received — Beverage Equipment Traders"
+  description="Your inquiry has been received. Our trade desk will respond within one business day."
+  noindex={true}
+  schemas={[breadcrumbSchema(crumbs)]}
+>
+  <section class="ty-section">
+    <div class="container ty-inner">
+      <div class="ty-icon" aria-hidden="true">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+      </div>
+      <h1>Inquiry Received.</h1>
+      <p>
+        Your message has been sent to our trade desk. We respond within one business day. If you have
+        an urgent need, call us directly at <a href="tel:+19498882739">(949) 888-2739</a>.
+      </p>
+      <div class="ty-actions">
+        <a href="/equipment" class="btn btn-primary">Browse Equipment</a>
+        <a href="/" class="btn btn-outline">Back to Home</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .ty-section {
+    padding: clamp(5rem, 12vw, 9rem) 0;
+    text-align: center;
+  }
+
+  .ty-inner {
+    max-width: 520px;
+  }
+
+  .ty-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(13,148,136,0.1);
+    border: 1px solid rgba(13,148,136,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    color: var(--color-teal);
+  }
+
+  .ty-inner h1 {
+    margin: 0 0 1rem;
+  }
+
+  .ty-inner p {
+    max-width: 44ch;
+    margin: 0 auto 2.5rem;
+    font-size: 1.0625rem;
+  }
+
+  .ty-inner a:not(.btn) {
+    color: var(--color-teal);
+    text-decoration: underline;
+  }
+
+  .ty-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

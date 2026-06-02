@@ -1,0 +1,358 @@
+---
+/**
+ * Equipment Category Page — /equipment/[slug]
+ * Money page for each equipment category.
+ * Pulls all content from central data layer.
+ * Links to Shopify for live inventory.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import EquipmentCard from '../../components/ui/EquipmentCard.astro';
+import FAQ from '../../components/ui/FAQ.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import { EQUIPMENT_CATEGORIES, getCategoryBySlug } from '../../data/equipment';
+import { breadcrumbSchema, faqSchema, productCategorySchema } from '../../lib/schema';
+import { SITE } from '../../data/site';
+
+export async function getStaticPaths() {
+  return EQUIPMENT_CATEGORIES.map((cat) => ({
+    params: { slug: cat.slug },
+    props: { cat },
+  }));
+}
+
+const { cat } = Astro.props;
+
+const crumbs = [
+  { name: 'Home',      url: '/' },
+  { name: 'Equipment', url: '/equipment' },
+  { name: cat.title,   url: `/equipment/${cat.slug}` },
+];
+
+const schemas = [
+  breadcrumbSchema(crumbs),
+  faqSchema(cat.faqs),
+  productCategorySchema({
+    name: cat.h1,
+    description: cat.description,
+    url: `/equipment/${cat.slug}`,
+    keywords: cat.keywords,
+  }),
+];
+---
+
+<Layout
+  title={cat.metaTitle}
+  description={cat.metaDescription}
+  canonical={`/equipment/${cat.slug}`}
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- Page Hero -->
+  <section class="eq-hero">
+    <div class="container">
+      <span class="eyebrow">Equipment Category</span>
+      <h1>{cat.h1}</h1>
+      <p class="eq-hero-intro">{cat.description}</p>
+      <div class="eq-hero-ctas">
+        <a
+          href={cat.shopifyCollectionUrl}
+          class="btn btn-primary btn-lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Browse Full {cat.title} Catalog
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/contact?type=rigging" class="btn btn-outline btn-lg">
+          Get a Rigging Quote
+        </a>
+      </div>
+      <!-- Trust chips -->
+      <div class="eq-trust-chips" aria-label="Service highlights">
+        {['Ships Nationwide', 'Rigging Available', 'Prior Brewery Owners', 'San Marcos, CA'].map((chip) => (
+          <span class="trust-chip">{chip}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Body Content -->
+  <section class="bg-light section-y" aria-labelledby="eq-content-heading">
+    <div class="container eq-content-inner">
+      <div class="eq-prose prose">
+        <h2 id="eq-content-heading">{cat.h1.replace('For Sale', '').trim()} — Operator Perspective</h2>
+        {cat.bodyContent.split('\n\n').filter(Boolean).map((para) => (
+          <p>{para}</p>
+        ))}
+      </div>
+      <aside class="eq-sidebar">
+        <div class="eq-sidebar-card">
+          <h3>Quick Contact</h3>
+          <p>Our trade desk responds within one business day.</p>
+          <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Contact Trade Desk
+          </a>
+          <a href="tel:+19498882739" class="eq-phone-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (949) 888-2739
+          </a>
+        </div>
+        <div class="eq-sidebar-links">
+          <p class="eq-sidebar-label">Related Categories</p>
+          <ul>
+            {EQUIPMENT_CATEGORIES.filter((c) => c.slug !== cat.slug).slice(0, 4).map((c) => (
+              <li><a href={`/equipment/${c.slug}`}>{c.title}</a></li>
+            ))}
+            <li><a href="/equipment">All Equipment</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Featured Inventory -->
+  {cat.featuredItems && cat.featuredItems.length > 0 && (
+    <section class="section-y" aria-labelledby="featured-eq-heading">
+      <div class="container">
+        <div class="eq-section-header">
+          <div>
+            <span class="eyebrow">Currently In Stock</span>
+            <h2 id="featured-eq-heading">Featured {cat.title}</h2>
+          </div>
+          <a
+            href={cat.shopifyCollectionUrl}
+            class="section-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View All {cat.title}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="eq-cards-grid">
+          {cat.featuredItems.map((item) => (
+            <EquipmentCard
+              name={item.name}
+              price={item.price}
+              condition={item.condition}
+              category={item.category}
+              href={cat.shopifyCollectionUrl}
+            />
+          ))}
+        </div>
+        <div class="eq-catalog-cta">
+          <a
+            href={cat.shopifyCollectionUrl}
+            class="btn btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Complete {cat.title} Catalog
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Rigging CTA Strip -->
+  <CtaStrip
+    heading="Need it moved, installed, and commissioned?"
+    subtext="We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational."
+    primaryLabel="Get a Rigging Quote"
+    primaryHref="/contact?type=rigging"
+    secondaryLabel="Learn About Rigging"
+    secondaryHref="/services/rigging"
+  />
+
+  <!-- FAQ -->
+  <FAQ
+    items={cat.faqs}
+    heading={`${cat.title} — Frequently Asked Questions`}
+  />
+</Layout>
+
+<style>
+  /* Hero */
+  .eq-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .eq-hero h1 {
+    max-width: 22ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .eq-hero-intro {
+    max-width: 62ch;
+    margin-bottom: 2rem;
+    font-size: 1.0625rem;
+  }
+
+  .eq-hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .eq-trust-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-chip {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* Body content + sidebar */
+  .eq-content-inner {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .eq-prose h2 {
+    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    color: #0B0C0F;
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+  }
+
+  .eq-sidebar-card {
+    background: #0B0C0F;
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .eq-sidebar-card h3 {
+    font-size: 1.125rem;
+    color: var(--color-white);
+    margin: 0 0 0.5rem;
+  }
+
+  .eq-sidebar-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .eq-phone-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: color var(--transition-base);
+  }
+
+  .eq-phone-link:hover { color: var(--color-gold-light); }
+
+  .eq-sidebar-links {
+    background: #f0ede8;
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .eq-sidebar-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6B7280;
+    margin: 0 0 0.75rem;
+  }
+
+  .eq-sidebar-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .eq-sidebar-links a {
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .eq-sidebar-links a:hover { color: var(--color-teal); }
+
+  /* Featured cards */
+  .eq-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .eq-section-header h2 { margin: 0.375rem 0 0; }
+
+  .section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color var(--transition-base), gap var(--transition-base);
+  }
+
+  .section-link:hover { color: var(--color-gold); gap: 0.55rem; }
+
+  .eq-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .eq-catalog-cta {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 1024px) {
+    .eq-content-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .eq-sidebar { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .eq-sidebar-card, .eq-sidebar-links { flex: 1; min-width: 240px; }
+    .eq-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .eq-cards-grid { grid-template-columns: 1fr; }
+    .eq-hero-ctas { flex-direction: column; }
+  }
+</style>

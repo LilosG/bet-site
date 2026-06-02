@@ -1,0 +1,81 @@
+---
+/**
+ * Breadcrumb — accepts { name, url } OR { label, href }
+ */
+export interface Props {
+  crumbs: ({ name: string; url?: string } | { label: string; href?: string })[];
+}
+
+const { crumbs } = Astro.props;
+
+// Normalize to { label, href } and strip any Home entry (component adds it)
+const items = crumbs
+  .map((c: any) => ({ label: c.label ?? c.name, href: c.href ?? c.url }))
+  .filter((c) => c.label.toLowerCase() !== 'home');
+---
+
+<div class="breadcrumb-wrap">
+  <div class="container">
+    <nav aria-label="Breadcrumb">
+      <ol class="breadcrumb-list" role="list">
+        <li class="breadcrumb-item">
+          <a href="/" class="breadcrumb-link">Home</a>
+        </li>
+        {items.map((item, i) => (
+          <li class="breadcrumb-item">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="breadcrumb-chevron"><path d="M9 18l6-6-6-6"/></svg>
+            {item.href && i < items.length - 1 ? (
+              <a href={item.href} class="breadcrumb-link">{item.label}</a>
+            ) : (
+              <span class="breadcrumb-current" aria-current="page">{item.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .breadcrumb-wrap {
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255,255,255,0.015);
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.6rem 0;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+  }
+
+  .breadcrumb-chevron {
+    color: var(--color-text-subtle);
+    opacity: 0.5;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-base);
+    padding: 0.125rem 0;
+  }
+
+  .breadcrumb-link:hover { color: var(--color-white); }
+
+  .breadcrumb-current {
+    color: var(--color-text-subtle);
+    padding: 0.125rem 0;
+  }
+</style>

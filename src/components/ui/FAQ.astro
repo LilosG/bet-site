@@ -1,0 +1,151 @@
+---
+/**
+ * FAQ Accordion — Accessible, CSS-only accordion.
+ * Injects FAQPage schema via slot. All FAQ pages use this.
+ */
+export interface Props {
+  items: { q: string; a: string }[];
+  heading?: string;
+  light?: boolean;
+}
+
+const { items, heading = 'Frequently Asked Questions', light = false } = Astro.props;
+---
+
+<section class={`faq-section section-y ${light ? 'bg-light' : ''}`} aria-labelledby="faq-heading">
+  <div class="container faq-inner">
+    <div class="faq-header">
+      <span class="eyebrow">FAQ</span>
+      <h2 id="faq-heading">{heading}</h2>
+    </div>
+
+    <div class="faq-list" role="list">
+      {items.map((item, i) => (
+        <details class="faq-item" role="listitem">
+          <summary class="faq-question" aria-expanded="false">
+            <span>{item.q}</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-answer">
+            <p>{item.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 90px;
+  }
+
+  .faq-header h2 {
+    margin-top: 0;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-white);
+    transition: color var(--transition-base);
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question:hover {
+    color: var(--color-gold);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--color-text-subtle);
+    transition: transform var(--transition-smooth);
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  details[open] .faq-question {
+    color: var(--color-gold);
+  }
+
+  .faq-answer {
+    padding: 0 0 1.25rem;
+    max-width: 68ch;
+  }
+
+  .faq-answer p {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  /* Light variant */
+  .bg-light .faq-question {
+    color: #0B0C0F;
+  }
+
+  .bg-light .faq-question:hover,
+  .bg-light details[open] .faq-question {
+    color: var(--color-teal);
+  }
+
+  .bg-light .faq-item {
+    border-color: rgba(0,0,0,0.08);
+  }
+
+  .bg-light .faq-answer p {
+    color: #374151;
+  }
+
+  @media (max-width: 768px) {
+    .faq-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .faq-header {
+      position: static;
+    }
+  }
+</style>

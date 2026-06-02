@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
+import { SITE, NAP } from '../data/site';
+import { breadcrumbSchema } from '../lib/schema';
+
+const crumbs = [
+  { name: 'Home',  url: '/' },
+  { name: 'Terms', url: '/terms' },
+];
+---
+
+<Layout
+  title="Terms of Service | Beverage Equipment Traders"
+  description="Terms of service for beverageequipmenttraders.com and Beverage Equipment Traders."
+  noindex={true}
+  schemas={[breadcrumbSchema(crumbs)]}
+>
+  <Breadcrumb crumbs={crumbs} />
+  <section class="legal-section">
+    <div class="container legal-inner">
+      <h1>Terms of Service</h1>
+      <p class="legal-updated">Last updated: May 2026</p>
+
+      <p>By accessing or using <strong>{SITE.url}</strong> you agree to be bound by these terms. If you do not agree, please do not use the site.</p>
+
+      <h2>Use of Site</h2>
+      <p>This website is provided for informational and inquiry purposes. The site links to an external Shopify store for product transactions. All sales and transactions on the Shopify store are subject to those platform's separate terms and conditions.</p>
+
+      <h2>Accuracy of Information</h2>
+      <p>We make reasonable efforts to ensure that equipment listings and pricing information on this site are accurate. Equipment availability, pricing, and condition may change. All information should be confirmed with our trade desk prior to any purchase decision.</p>
+
+      <h2>Intellectual Property</h2>
+      <p>All content on this site, including text, photographs, and design, is the property of Beverage Equipment Traders. You may not reproduce or use any content from this site without written permission.</p>
+
+      <h2>Limitation of Liability</h2>
+      <p>Beverage Equipment Traders is not liable for any indirect, incidental, or consequential damages arising from the use of, or inability to use, this website or the information it contains.</p>
+
+      <h2>Contact</h2>
+      <p>Questions regarding these terms: <a href={`mailto:${NAP.email}`}>{NAP.email}</a></p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+  .legal-inner {
+    max-width: 720px;
+  }
+  .legal-updated {
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+    margin-bottom: 2rem;
+  }
+  .legal-inner h2 {
+    font-size: 1.25rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-inner a {
+    color: var(--color-teal);
+    text-decoration: underline;
+  }
+</style>

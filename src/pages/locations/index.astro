@@ -1,0 +1,217 @@
+---
+/**
+ * Locations Hub — /locations
+ * Lists all local and national service area pages.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const crumbs = [
+  { name: 'Home',           url: '/' },
+  { name: 'Service Areas',  url: '/locations' },
+];
+
+const schemas = [breadcrumbSchema(crumbs)];
+---
+
+<Layout
+  title="Brewery Equipment Service Areas — Local & National | Beverage Equipment Traders"
+  description="Beverage Equipment Traders serves craft breweries, distilleries, and beverage producers across all 50 states. Local service in Southern California. National shipping from San Marcos, CA."
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- Hero -->
+  <section class="loc-hub-hero">
+    <div class="container">
+      <span class="eyebrow">Service Areas</span>
+      <h1>San Marcos, CA to All 50 States.</h1>
+      <p class="loc-hub-intro">
+        Your buyer in Chicago is as real as the one in San Diego. We ship, rig, and install nationwide.
+        Local buyers benefit from in-person inspection at our 40,000 sq ft facility.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Local Areas -->
+  <section class="section-y" aria-labelledby="local-areas-heading">
+    <div class="container">
+      <span class="eyebrow">Southern California</span>
+      <h2 id="local-areas-heading">Local Service Areas</h2>
+      <p class="loc-section-desc">
+        In-person inspection available. Local rigging typically turns around in 1–2 weeks.
+        Our facility is 30 minutes from downtown San Diego.
+      </p>
+      <div class="loc-grid">
+        {LOCAL_LOCATIONS.map((loc) => (
+          <a href={`/locations/local/${loc.slug}`} class="loc-card">
+            <div class="loc-card-inner">
+              <span class="loc-card-badge">Local</span>
+              <h3 class="loc-card-city">{loc.city}, {loc.stateAbbr}</h3>
+              <p class="loc-card-intro">{loc.intro}</p>
+              <span class="loc-card-cta">
+                View Service Area
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- National -->
+  <section class="section-y" aria-labelledby="national-areas-heading">
+    <div class="container">
+      <span class="eyebrow">Nationwide</span>
+      <h2 id="national-areas-heading">National Service Areas</h2>
+      <p class="loc-section-desc">
+        Bonded freight to all 50 states. Rigging and installation at destination available.
+        Equipment ships from San Marcos, CA. Lead times confirmed at purchase.
+      </p>
+      <div class="loc-grid">
+        {NATIONAL_LOCATIONS.map((loc) => (
+          <a href={`/locations/national/${loc.slug}`} class="loc-card">
+            <div class="loc-card-inner">
+              <span class="loc-card-badge loc-card-badge-national">Nationwide Shipping</span>
+              <h3 class="loc-card-city">{loc.city}, {loc.stateAbbr}</h3>
+              <p class="loc-card-intro">{loc.intro}</p>
+              <span class="loc-card-cta">
+                View Shipping Area
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    heading="Not seeing your city?"
+    subtext="We ship to every state. Contact our trade desk with your location and equipment needs."
+    primaryLabel="Contact Trade Desk"
+    primaryHref="/contact"
+    secondaryLabel="Browse Equipment"
+    secondaryHref="/equipment"
+  />
+</Layout>
+
+<style>
+  .loc-hub-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .loc-hub-hero h1 {
+    max-width: 22ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .loc-hub-intro {
+    max-width: 60ch;
+    font-size: 1.0625rem;
+  }
+
+  .loc-section-desc {
+    max-width: 60ch;
+    margin: 0.5rem 0 1.75rem;
+  }
+
+  .loc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .loc-card {
+    text-decoration: none;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+  }
+
+  .loc-card:hover {
+    border-color: var(--color-border-gold);
+    transform: translateY(-2px);
+  }
+
+  .loc-card-inner {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .loc-card-badge {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.175rem 0.5rem;
+    border-radius: 2px;
+    background: var(--color-gold-dim);
+    color: var(--color-gold);
+    width: fit-content;
+  }
+
+  .loc-card-badge-national {
+    background: var(--color-teal-dim);
+    color: var(--color-teal);
+  }
+
+  .loc-card-city {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    margin: 0;
+    color: var(--color-white);
+    transition: color var(--transition-base);
+  }
+
+  .loc-card:hover .loc-card-city {
+    color: var(--color-gold);
+  }
+
+  .loc-card-intro {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .loc-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    margin-top: 0.5rem;
+    transition: gap var(--transition-base);
+  }
+
+  .loc-card:hover .loc-card-cta {
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .loc-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .loc-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,894 @@
+---
+/**
+ * Homepage — beverageequipmenttraders.com
+ */
+import Layout from '../layouts/Layout.astro';
+import TrustBar from '../components/ui/TrustBar.astro';
+import StatBar from '../components/ui/StatBar.astro';
+import EquipmentCard from '../components/ui/EquipmentCard.astro';
+import ServiceCard from '../components/ui/ServiceCard.astro';
+import CtaStrip from '../components/ui/CtaStrip.astro';
+import { SITE, NAP } from '../data/site';
+import { EQUIPMENT_CATEGORIES } from '../data/equipment';
+import { SERVICES } from '../data/services';
+import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
+
+const featuredItems = [
+  {
+    name: '30 BBL 4-Vessel Marks Brewhouse',
+    price: '$78,500',
+    condition: 'Used' as const,
+    category: 'BREWHOUSE',
+    image: '/images/brewhouse-30bbl-marks.webp',
+    href: 'https://beverageequipmenttraders.com/collections/brewhouses',
+  },
+  {
+    name: '60 BBL Jacketed Unitank',
+    price: '$24,900',
+    condition: 'Used' as const,
+    category: 'FERMENTER',
+    image: '/images/fermenters-60bbl-pano.webp',
+    href: 'https://beverageequipmenttraders.com/collections/fermenters-manual',
+  },
+  {
+    name: '15 BBL Brewhouse with HLT',
+    price: '$52,000',
+    condition: 'Used' as const,
+    category: 'BREWHOUSE',
+    image: '/images/brewhouse-15bbl-hlt.webp',
+    href: 'https://beverageequipmenttraders.com/collections/brewhouses',
+  },
+];
+
+const schemas = [
+  localBusinessSchema(),
+  breadcrumbSchema([{ name: 'Home', url: '/' }]),
+];
+---
+
+<Layout
+  title="New and Used Brewery Equipment For Sale | Beverage Equipment Traders"
+  description={SITE.description}
+  schemas={schemas}
+>
+
+  <!-- ═══ HERO ═══════════════════════════════ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+
+      <div class="hero-content">
+        <!-- Live badge -->
+        <div class="hero-badge animate-fade-up">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          <span>Live Inventory</span>
+          <span class="hero-sep" aria-hidden="true">·</span>
+          <span>San Marcos, CA</span>
+          <span class="hero-sep" aria-hidden="true">·</span>
+          <span>Updated Daily</span>
+        </div>
+
+        <h1 class="hero-h1 animate-fade-up delay-100">
+          New and Used Brewery<br />Equipment For Sale.
+        </h1>
+
+        <p class="hero-sub animate-fade-up delay-200">
+          Operating from a 40,000 sq ft consolidation facility in San Marcos, California.
+          Every asset is mechanically inspected, photographed, and certified before listing.
+          Nationwide rigging, freight, and white-glove install on every transaction.
+        </p>
+
+        <div class="hero-ctas animate-fade-up delay-300">
+          <a
+            href="https://beverageequipmenttraders.com/collections/all"
+            class="btn btn-primary btn-lg"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Browse Live Inventory
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact?type=rigging" class="btn btn-outline btn-lg">
+            Schedule a Technical Call
+          </a>
+        </div>
+
+        <!-- Hero stats -->
+        <div class="hero-stats animate-fade-up delay-400" aria-label="Key statistics">
+          <div class="hero-stat">
+            <span class="hero-stat-val">40K</span>
+            <span class="hero-stat-label">Sq Ft Facility</span>
+          </div>
+          <span class="hero-stat-div" aria-hidden="true"></span>
+          <div class="hero-stat">
+            <span class="hero-stat-val">50</span>
+            <span class="hero-stat-label">States Served</span>
+          </div>
+          <span class="hero-stat-div" aria-hidden="true"></span>
+          <div class="hero-stat">
+            <span class="hero-stat-val">600+</span>
+            <span class="hero-stat-label">Placements</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero card -->
+      <div class="hero-card-wrap animate-fade-up delay-200" aria-label="Featured listing preview">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <span class="tag tag-teal">Featured Listing</span>
+            <span class="hero-card-sku">SKU: BHT-PR-300-1114</span>
+          </div>
+          <div class="hero-card-img-wrap">
+            <img
+              src="/images/brewhouse-30bbl-marks.webp"
+              alt="30 BBL 4-Vessel Marks Brewhouse"
+              class="hero-card-img"
+              loading="eager"
+              decoding="async"
+              width="540"
+              height="360"
+            />
+          </div>
+          <div class="hero-card-body">
+            <div class="hero-card-rows">
+              {[
+                ['Model',    'Premier Stainless'],
+                ['Capacity', '30 BBL · 4-Vessel'],
+                ['Location', 'San Marcos, CA'],
+                ['Lead Time','16 Days'],
+              ].map(([k, v]) => (
+                <div class="hero-card-row">
+                  <span class="hero-card-key">{k}</span>
+                  <span class="hero-card-val-text">{v}</span>
+                </div>
+              ))}
+            </div>
+            <div class="hero-card-price-row">
+              <span class="hero-card-price">$78,500</span>
+              <a
+                href="https://beverageequipmenttraders.com/collections/brewhouses"
+                class="btn btn-primary btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Inspect
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="hero-card-footnote">
+              <span>81 photos · 5 videos</span>
+              <span>+11 Watching</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Trust bar -->
+  <TrustBar />
+
+  <!-- ═══ FEATURED INVENTORY ══════════════════ -->
+  <section class="section-y" aria-labelledby="featured-heading">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">01 · Featured Inventory</span>
+          <h2 id="featured-heading">High-ticket procurement,<br />mechanically certified.</h2>
+        </div>
+        <a
+          href="https://beverageequipmenttraders.com/collections/all"
+          class="section-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View Full Catalog
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="cards-grid-3">
+        {featuredItems.map((item) => (
+          <EquipmentCard
+            name={item.name}
+            price={item.price}
+            condition={item.condition}
+            category={item.category}
+            image={item.image}
+            href={item.href}
+          />
+        ))}
+      </div>
+
+      <!-- Category pills -->
+      <div class="category-pills" aria-label="Browse by equipment category">
+        {EQUIPMENT_CATEGORIES.map((cat) => (
+          <a href={`/equipment/${cat.slug}`} class="category-pill">
+            {cat.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═════════════════════════════ -->
+  <section class="section-y services-band" aria-labelledby="services-heading">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">02 · One Partner</span>
+          <h2 id="services-heading">From sourcing to start-up.</h2>
+        </div>
+      </div>
+      <div class="services-grid">
+        {SERVICES.map((service, i) => (
+          <ServiceCard
+            title={service.shortTitle}
+            description={service.intro}
+            href={`/services/${service.slug}`}
+            icon={service.icon}
+            index={i}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Strip -->
+  <CtaStrip
+    heading="Need the equipment moved, installed, and commissioned?"
+    subtext="We handle rigging and installation nationwide — one crew, one quote."
+    primaryLabel="Get a Rigging Quote"
+    primaryHref="/contact?type=rigging"
+    secondaryLabel="Learn About Rigging"
+    secondaryHref="/services/rigging"
+  />
+
+  <!-- ═══ WHY BET ════════════════════════════ -->
+  <section class="section-y" aria-labelledby="why-heading">
+    <div class="container why-inner">
+      <div class="why-media">
+        <div class="why-img-wrap">
+          <img
+            src="/images/brewhouse-with-grist-case.webp"
+            alt="BET brewhouse with grist case"
+            class="why-img"
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="750"
+          />
+          <div class="why-img-badge">
+            <span class="why-est">EST. 2009</span>
+            <span class="why-loc">San Marcos, California</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-content">
+        <span class="eyebrow">03 · The Operator</span>
+        <h2 id="why-heading">
+          Built by Operators,<br />
+          <em class="text-gradient-gold">For Operators.</em>
+        </h2>
+        <p>
+          Beverage Equipment Traders was founded by former brewery owners who spent fifteen years on
+          the production floor. We know the difference a half percent of efficiency makes on your
+          line — and we know what failure on install day costs.
+        </p>
+        <p>
+          Before we brokered a single tank, we ran our own brewhouse — troubleshooting glycol loops
+          at 2 a.m., welding back together packaging lines that vendors said were dead. Every piece in
+          our yard has been pressure-tested by people who've actually used it in production.
+        </p>
+
+        <StatBar standalone={false} />
+
+        <div class="why-ctas">
+          <a href="/about" class="btn btn-outline">Our Story</a>
+          <a href="/contact" class="btn btn-gold">Start a Conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RIGGING PROOF ════════════════════════ -->
+  <section class="section-y rigging-band" aria-labelledby="rigging-heading">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">04 · Nationwide Rigging</span>
+          <h2 id="rigging-heading">One crew, coast to coast.</h2>
+        </div>
+        <a href="/services/rigging" class="section-link">
+          Learn About Rigging
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="rigging-grid">
+        <div class="rigging-img-wrap">
+          <img src="/images/rigging-loaded-truck.webp" alt="Brewery tanks loaded on flatbed truck" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
+        </div>
+        <div class="rigging-img-wrap">
+          <img src="/images/rigging-fermenters-transport.webp" alt="Fermentation vessels being transported" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
+        </div>
+        <div class="rigging-img-wrap">
+          <img src="/images/rigging-forklift-install.webp" alt="Forklift rigging a 20 BBL fermenter through a storefront" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NATIONAL REACH ═══════════════════════ -->
+  <section class="national-band" aria-labelledby="national-heading">
+    <div class="container national-inner">
+      <div class="national-content">
+        <span class="eyebrow">Shipping Nationwide</span>
+        <h2 id="national-heading" class="national-h2">
+          Your buyer in Chicago is as real as<br class="hide-mobile" /> the one in San Diego.
+        </h2>
+        <p>
+          BET ships to all 50 states. The majority of high-intent equipment searches carry no
+          geographic modifier. Our content, pricing, and logistics infrastructure serve the national
+          buyer as directly as the local one.
+        </p>
+        <div class="national-cities">
+          {['Denver', 'Portland', 'Chicago', 'Austin', 'Seattle', 'Nashville'].map((city) => (
+            <span class="national-city">{city}</span>
+          ))}
+        </div>
+      </div>
+      <div class="national-stat-col" aria-hidden="true">
+        <div class="national-circle">
+          <span class="national-circle-num">50</span>
+          <span class="national-circle-label">States</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ════════════════════════════ -->
+  <section class="section-y" aria-labelledby="final-cta-heading">
+    <div class="container final-cta">
+      <span class="eyebrow eyebrow-center">Ready to Move Fast</span>
+      <h2 id="final-cta-heading">Get a verified quote in 24 hours.</h2>
+      <p>Operator inspection, rigging, and freight quoted in a single thread.<br />Our trade desk responds within one business day.</p>
+      <div class="final-cta-actions">
+        <a href="/contact?type=rigging" class="btn btn-primary btn-lg">
+          Request Asset Quote
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href={`tel:${NAP.phonePlain}`} class="btn btn-outline btn-lg">{NAP.phone}</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ═══ HERO ══════════════════════════════════ */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5.5rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 75% 45%, rgba(201,150,58,0.055) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 70% at 85% 85%, rgba(13,148,136,0.03) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 288px;
+    gap: 3.5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content { max-width: 640px; }
+
+  /* Badge */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 0.3125rem 0.875rem;
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+    margin-bottom: 1.375rem;
+  }
+
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-teal);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+    flex-shrink: 0;
+  }
+
+  .hero-sep { color: var(--color-text-subtle); }
+
+  /* H1 */
+  .hero-h1 {
+    font-size: clamp(2.75rem, 7vw, 5.25rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin: 0 0 1.125rem;
+    color: var(--color-white);
+  }
+
+  .hero-sub {
+    font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+    max-width: 54ch;
+    margin: 0 0 2rem;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.25rem;
+  }
+
+  /* Stats */
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 1.5rem 0 0;
+    margin-right: 1.5rem;
+    position: relative;
+  }
+
+  .hero-stat + .hero-stat-div + .hero-stat {
+    padding-left: 0;
+  }
+
+  .hero-stat-val {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-stat-label {
+    font-family: var(--font-ui);
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin-top: 0.2rem;
+    white-space: nowrap;
+  }
+
+  .hero-stat-div {
+    width: 1px;
+    height: 2.25rem;
+    background: var(--color-border);
+    flex-shrink: 0;
+    margin-right: 1.5rem;
+  }
+
+  /* Hero card */
+  .hero-card-wrap { flex-shrink: 0; }
+
+  .hero-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-gold);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,150,58,0.1);
+  }
+
+  .hero-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .hero-card-sku {
+    font-family: var(--font-ui);
+    font-size: 0.5625rem;
+    color: var(--color-text-subtle);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .hero-card-img-wrap {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--color-bg-2);
+  }
+
+  .hero-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  .hero-card:hover .hero-card-img { transform: scale(1.04); }
+
+  .hero-card-body { padding: 0.875rem; }
+
+  .hero-card-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0.875rem;
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-card-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .hero-card-key {
+    font-family: var(--font-ui);
+    font-size: 0.5625rem;
+    color: var(--color-text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  .hero-card-val-text {
+    font-family: var(--font-ui);
+    font-size: 0.5625rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-align: right;
+  }
+
+  .hero-card-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+  }
+
+  .hero-card-price {
+    font-family: var(--font-display);
+    font-size: 1.625rem;
+    font-weight: 800;
+    color: var(--color-gold);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-card-footnote {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border);
+    font-family: var(--font-ui);
+    font-size: 0.5rem;
+    color: var(--color-text-subtle);
+    letter-spacing: 0.04em;
+  }
+
+  /* ═══ SHARED SECTION ELEMENTS ═══════════════ */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .section-header h2 { margin: 0.3rem 0 0; }
+
+  .section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color var(--transition-base), gap var(--transition-base);
+  }
+
+  .section-link:hover { color: var(--color-gold); gap: 0.55rem; }
+
+  /* ═══ CARDS GRIDS ════════════════════════════ */
+  .cards-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.125rem;
+    margin-bottom: 1.75rem;
+  }
+
+  /* ═══ CATEGORY PILLS ════════════════════════ */
+  .category-pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding-top: 1.125rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .category-pill {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    background: var(--color-bg-2);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    padding: 0.3rem 0.875rem;
+    transition: all var(--transition-base);
+  }
+
+  .category-pill:hover {
+    color: var(--color-gold);
+    border-color: var(--color-border-gold);
+    background: var(--color-gold-dim);
+  }
+
+  /* ═══ SERVICES ═══════════════════════════════ */
+  .services-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.125rem;
+  }
+
+  /* ═══ WHY BET ════════════════════════════════ */
+  .why-inner {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .why-img-wrap {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    max-height: 580px;
+  }
+
+  .why-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .why-img-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, rgba(11,12,15,0.85) 0%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .why-est {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .why-loc {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .why-content h2 { margin: 0 0 1.375rem; }
+  .why-content h2 em { font-style: normal; }
+
+  .why-ctas {
+    display: flex;
+    gap: 0.875rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* ═══ RIGGING GRID ═══════════════════════════ */
+  .rigging-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.125rem;
+  }
+
+  .rigging-img-wrap {
+    border-radius: 5px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: var(--color-bg-card);
+  }
+
+  .rigging-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms ease;
+  }
+
+  .rigging-img-wrap:hover .rigging-img { transform: scale(1.04); }
+
+  /* ═══ NATIONAL ═══════════════════════════════ */
+  .national-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+
+  .national-inner {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .national-h2 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    margin: 0.4rem 0 1rem;
+  }
+
+  .national-cities {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
+  }
+
+  .national-city {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.25rem 0.625rem;
+    letter-spacing: 0.04em;
+  }
+
+  .national-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-card);
+    margin: 0 auto;
+  }
+
+  .national-circle-num {
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--color-gold);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .national-circle-label {
+    font-family: var(--font-ui);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin-top: 0.25rem;
+  }
+
+  /* ═══ FINAL CTA ══════════════════════════════ */
+  .final-cta {
+    text-align: center;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .final-cta h2 { margin: 0.3rem 0 0.875rem; }
+
+  .final-cta p {
+    max-width: 46ch;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+  }
+
+  .final-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .eyebrow-center { justify-content: center; }
+  .eyebrow-center::before { display: none; }
+
+  /* ═══ RIGGING BAND ══════════════════════════ */
+  .rigging-band {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* ═══ RESPONSIVE ═════════════════════════════ */
+  @media (max-width: 1100px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-card-wrap { display: none; }
+    .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .why-img-wrap { aspect-ratio: 16/9; max-height: 320px; }
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .rigging-grid  { grid-template-columns: 1fr 1fr; }
+    .national-inner { grid-template-columns: 1fr; }
+    .national-circle { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .cards-grid-3 { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .rigging-grid  { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1rem; }
+    .hero-stat-div { display: none; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; }
+    .final-cta-actions { flex-direction: column; }
+  }
+
+  .hide-mobile { display: block; }
+  @media (max-width: 640px) { .hide-mobile { display: none; } }
+</style>

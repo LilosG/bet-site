@@ -1,0 +1,230 @@
+---
+/**
+ * Services Hub — /services
+ * Overview of all 5 service offerings.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import ServiceCard from '../../components/ui/ServiceCard.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import StatBar from '../../components/ui/StatBar.astro';
+import { SERVICES } from '../../data/services';
+import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
+
+const crumbs = [
+  { name: 'Home',     url: '/' },
+  { name: 'Services', url: '/services' },
+];
+
+const schemas = [
+  breadcrumbSchema(crumbs),
+  ...SERVICES.map((s) =>
+    serviceSchema({
+      name: s.title,
+      description: s.intro,
+      url: `/services/${s.slug}`,
+      keywords: s.keywords,
+    })
+  ),
+];
+---
+
+<Layout
+  title="Brewery Equipment Services — Rigging, Consignment, Auctions & More | Beverage Equipment Traders"
+  description="Full-service brewery equipment solutions: rigging and installation, consignment, auctions, technical consulting, and new equipment sourcing. One partner from sourcing to start-up."
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- Hero -->
+  <section class="services-hero">
+    <div class="container">
+      <span class="eyebrow">Services</span>
+      <h1>One Partner, Every Step of the Lifecycle.</h1>
+      <p class="services-hero-intro">
+        Beverage Equipment Traders handles the full capital equipment lifecycle — sourcing, moving, selling,
+        and commissioning. Whether you are building out, scaling up, or winding down, we have handled it before.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Service Cards Grid -->
+  <section class="section-y" aria-labelledby="services-list-heading">
+    <div class="container">
+      <h2 id="services-list-heading" class="sr-only">Our Services</h2>
+      <div class="services-grid">
+        {SERVICES.map((service, i) => (
+          <ServiceCard
+            title={service.title}
+            description={service.intro}
+            href={`/services/${service.slug}`}
+            icon={service.icon}
+            index={i}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-band">
+    <div class="container">
+      <StatBar />
+    </div>
+  </div>
+
+  <!-- Why One Partner -->
+  <section class="section-y" aria-labelledby="why-one-heading">
+    <div class="container why-one-inner">
+      <div>
+        <span class="eyebrow">Why It Matters</span>
+        <h2 id="why-one-heading">The advantage of one accountable partner.</h2>
+        <p>
+          Most equipment transactions involve three separate vendors: a broker who finds it, a rigger who moves it,
+          and a contractor who installs it. Each one hands off liability to the next. When something goes wrong at
+          installation, no one owns it.
+        </p>
+        <p>
+          At Beverage Equipment Traders, every step is in-house. We source the equipment, rig and transport it,
+          and install and commission it. One quote covers the full scope. One phone number answers for all of it.
+          That is what 600+ equipment placements looks like in practice.
+        </p>
+        <a href="/contact" class="btn btn-primary">
+          Talk to the Trade Desk
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="why-one-list">
+        {[
+          { label: 'Rigging & Installation', detail: 'All 50 states. Crane-in capable. Single quote.' },
+          { label: 'Consignment',            detail: 'Managed listing, valuation, and payout.' },
+          { label: 'Auctions',               detail: 'Full-facility liquidations and competitive events.' },
+          { label: 'Consulting',             detail: 'Pre-purchase audits and capacity planning.' },
+          { label: 'New Equipment',          detail: 'Manufacturer relationships for new builds.' },
+        ].map((item, i) => (
+          <div class="why-one-item">
+            <span class="why-one-num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <p class="why-one-label">{item.label}</p>
+              <p class="why-one-detail">{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    heading="Not sure which service fits your situation?"
+    subtext="Describe what you have or what you need. We will tell you what makes sense and what it costs."
+    primaryLabel="Get in Touch"
+    primaryHref="/contact"
+    secondaryLabel="Browse Equipment"
+    secondaryHref="/equipment"
+  />
+</Layout>
+
+<style>
+  .services-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .services-hero h1 {
+    max-width: 20ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .services-hero-intro {
+    max-width: 62ch;
+    font-size: 1.0625rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .stats-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 3rem 0;
+  }
+
+  .why-one-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .why-one-inner h2 {
+    max-width: 18ch;
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  .why-one-inner p {
+    margin-bottom: 1.25rem;
+  }
+
+  .why-one-inner .btn {
+    margin-top: 0.75rem;
+  }
+
+  .why-one-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 0.5rem;
+  }
+
+  .why-one-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .why-one-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .why-one-num {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    padding-top: 0.125rem;
+  }
+
+  .why-one-label {
+    font-family: var(--font-ui);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0 0 0.2rem;
+  }
+
+  .why-one-detail {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-one-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+</style>

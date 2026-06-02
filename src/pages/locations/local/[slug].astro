@@ -1,0 +1,326 @@
+---
+/**
+ * Local Service Area Pages — /locations/local/[slug]
+ * Captures Southern California geographic searches.
+ */
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import CtaStrip from '../../../components/ui/CtaStrip.astro';
+import TrustBar from '../../../components/ui/TrustBar.astro';
+import { LOCAL_LOCATIONS } from '../../../data/locations';
+import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
+import { SERVICES } from '../../../data/services';
+import { breadcrumbSchema, localBusinessSchema } from '../../../lib/schema';
+
+export async function getStaticPaths() {
+  return LOCAL_LOCATIONS.map((loc) => ({
+    params: { slug: loc.slug },
+    props: { loc },
+  }));
+}
+
+const { loc } = Astro.props;
+
+const crumbs = [
+  { name: 'Home',          url: '/' },
+  { name: 'Service Areas', url: '/locations' },
+  { name: loc.city,        url: `/locations/local/${loc.slug}` },
+];
+
+const schemas = [
+  localBusinessSchema(),
+  breadcrumbSchema(crumbs),
+];
+---
+
+<Layout
+  title={loc.metaTitle}
+  description={loc.metaDescription}
+  canonical={`/locations/local/${loc.slug}`}
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- Hero -->
+  <section class="loc-hero">
+    <div class="container">
+      <span class="eyebrow">{loc.city}, {loc.stateAbbr} · Local Service Area</span>
+      <h1>{loc.h1}</h1>
+      <p class="loc-intro">{loc.intro}</p>
+      <div class="loc-hero-ctas">
+        <a href="/contact" class="btn btn-primary btn-lg">
+          Contact the Trade Desk
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/equipment" class="btn btn-outline btn-lg">Browse Equipment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <TrustBar />
+
+  <!-- Body Content -->
+  <section class="section-y" aria-labelledby="loc-content-heading">
+    <div class="container loc-content-inner">
+      <div class="prose">
+        <h2 id="loc-content-heading">Brewery Equipment Near {loc.city}</h2>
+        {loc.bodyContent.split('\n\n').filter(Boolean).map((para) => (
+          <p>{para}</p>
+        ))}
+      </div>
+      <aside class="loc-sidebar">
+        <div class="loc-sidebar-card">
+          <h3>Visit Our Facility</h3>
+          <address class="loc-address" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="streetAddress">1520 E Barham Dr</span><br />
+            <span itemprop="addressLocality">San Marcos</span>,
+            <span itemprop="addressRegion">CA</span>
+            <span itemprop="postalCode">92078</span>
+          </address>
+          <p class="loc-hours-note">Mon–Thu: 10AM–4PM · Fri: 10AM–3PM<br />Sat: By Appointment</p>
+          <a href="tel:+19498882739" class="loc-phone">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (949) 888-2739
+          </a>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=1520+E+Barham+Dr,+San+Marcos,+CA+92078"
+            class="btn btn-outline"
+            style="width:100%;justify-content:center;margin-top:1rem;"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get Directions
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Equipment Categories -->
+  <section class="bg-light section-y" aria-labelledby="loc-eq-heading">
+    <div class="container">
+      <span class="eyebrow">Equipment Available Near {loc.city}</span>
+      <h2 id="loc-eq-heading">Browse by Category</h2>
+      <div class="loc-cat-grid">
+        {EQUIPMENT_CATEGORIES.map((cat) => (
+          <a href={`/equipment/${cat.slug}`} class="loc-cat-item">
+            <span class="loc-cat-title">{cat.title}</span>
+            <span class="loc-cat-link">Browse
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services in this area -->
+  <section class="section-y" aria-labelledby="loc-svc-heading">
+    <div class="container">
+      <span class="eyebrow">Services in {loc.city}</span>
+      <h2 id="loc-svc-heading">What We Handle in {loc.state}</h2>
+      <div class="loc-svc-grid">
+        {SERVICES.map((svc) => (
+          <div class="loc-svc-item">
+            <p class="loc-svc-title">{svc.title}</p>
+            <p class="loc-svc-desc">{svc.intro}</p>
+            <a href={`/services/${svc.slug}`} class="loc-svc-link">
+              Learn More
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    heading={`Ready to source or move equipment in ${loc.city}?`}
+    subtext="One call, one quote. Available for in-person inspection at our San Marcos facility."
+    primaryLabel="Contact Trade Desk"
+    primaryHref="/contact"
+    secondaryLabel="Get a Rigging Quote"
+    secondaryHref="/contact?type=rigging"
+  />
+</Layout>
+
+<style>
+  .loc-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .loc-hero h1 {
+    max-width: 26ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .loc-intro {
+    max-width: 60ch;
+    font-size: 1.0625rem;
+    margin-bottom: 2rem;
+  }
+
+  .loc-hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .loc-content-inner {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .loc-sidebar-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .loc-sidebar-card h3 {
+    font-size: 1.0625rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .loc-address {
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .loc-hours-note {
+    font-size: 0.8125rem;
+    color: var(--color-text-subtle);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .loc-phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .loc-phone:hover { color: var(--color-gold-light); }
+
+  /* Category grid */
+  .loc-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--color-border-gold);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+
+  .loc-cat-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem;
+    border-right: 1px solid var(--color-border-gold);
+    border-bottom: 1px solid var(--color-border-gold);
+    text-decoration: none;
+    background: transparent;
+    transition: background var(--transition-base);
+  }
+
+  .loc-cat-item:nth-child(4n) { border-right: none; }
+  .loc-cat-item:nth-last-child(-n+4) { border-bottom: none; }
+
+  .loc-cat-item:hover {
+    background: rgba(201,150,58,0.05);
+  }
+
+  .loc-cat-title {
+    font-family: var(--font-ui);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #0B0C0F;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .loc-cat-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-teal);
+  }
+
+  /* Services grid */
+  .loc-svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .loc-svc-item {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .loc-svc-title {
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0 0 0.5rem;
+  }
+
+  .loc-svc-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem;
+    line-height: 1.6;
+  }
+
+  .loc-svc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    text-decoration: none;
+    transition: gap var(--transition-base);
+  }
+
+  .loc-svc-link:hover { gap: 0.5rem; }
+
+  @media (max-width: 1024px) {
+    .loc-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .loc-cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .loc-cat-item:nth-child(4n) { border-right: 1px solid var(--color-border-gold); }
+    .loc-cat-item:nth-child(2n) { border-right: none; }
+    .loc-cat-item:nth-last-child(-n+2) { border-bottom: none; }
+    .loc-svc-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .loc-hero-ctas { flex-direction: column; }
+    .loc-cat-grid { grid-template-columns: 1fr 1fr; }
+    .loc-svc-grid { grid-template-columns: 1fr; }
+  }
+</style>

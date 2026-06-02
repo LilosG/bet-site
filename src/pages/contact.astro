@@ -1,0 +1,420 @@
+---
+/**
+ * Contact Page — /contact
+ * Supports ?type= param to pre-select inquiry type.
+ * Types: rigging, consignment, auction, consulting, new-equipment, general
+ */
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/ui/Breadcrumb.astro';
+import { NAP, HOURS } from '../data/site';
+import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
+
+const crumbs = [
+  { name: 'Home',    url: '/' },
+  { name: 'Contact', url: '/contact' },
+];
+
+const schemas = [
+  localBusinessSchema(),
+  breadcrumbSchema(crumbs),
+];
+
+const inquiryTypes = [
+  { value: 'buying',       label: 'Buying Equipment' },
+  { value: 'rigging',      label: 'Rigging & Installation' },
+  { value: 'consignment',  label: 'Consigning Equipment' },
+  { value: 'auction',      label: 'Auction Inquiry' },
+  { value: 'consulting',   label: 'Technical Consulting' },
+  { value: 'new-equipment', label: 'New Equipment' },
+  { value: 'general',      label: 'General Question' },
+];
+---
+
+<Layout
+  title="Contact Beverage Equipment Traders | Trade Desk — San Marcos, CA"
+  description="Contact our trade desk for equipment sourcing, rigging quotes, consignment, auctions, or consulting. Responds within one business day. Call (949) 888-2739."
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- Hero -->
+  <section class="contact-hero">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h1>Talk to the Trade Desk.</h1>
+      <p class="contact-hero-intro">
+        Our team responds within one business day. Provide the equipment you need, your inquiry type,
+        and what you are trying to accomplish — we will return a clear answer and next steps.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Contact Grid -->
+  <section class="section-y" aria-labelledby="contact-form-heading">
+    <div class="container contact-inner">
+
+      <!-- Form -->
+      <div class="contact-form-wrap">
+        <h2 id="contact-form-heading">Send an Inquiry</h2>
+        <p class="form-subhead">All fields marked with * are required.</p>
+
+        <!--
+          Production: wire to Netlify Forms, StaticForms, or Resend.
+          For now the form renders with correct attributes.
+          data-netlify="true" or action="https://api.staticforms.xyz/submit" etc.
+        -->
+        <form
+          class="contact-form"
+          name="contact"
+          method="POST"
+          action="/thank-you"
+          data-netlify="true"
+          novalidate
+        >
+          <!-- Honeypot -->
+          <input type="hidden" name="form-name" value="contact" />
+          <div style="display:none;" aria-hidden="true">
+            <label>Skip this field <input name="bot-field" /></label>
+          </div>
+
+          <div class="form-row form-row-2">
+            <div class="form-field">
+              <label class="label" for="first-name">First Name *</label>
+              <input class="input" type="text" id="first-name" name="first_name" required autocomplete="given-name" />
+            </div>
+            <div class="form-field">
+              <label class="label" for="last-name">Last Name *</label>
+              <input class="input" type="text" id="last-name" name="last_name" required autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-row form-row-2">
+            <div class="form-field">
+              <label class="label" for="email">Email *</label>
+              <input class="input" type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-field">
+              <label class="label" for="phone">Phone</label>
+              <input class="input" type="tel" id="phone" name="phone" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="label" for="company">Company / Brewery Name</label>
+              <input class="input" type="text" id="company" name="company" autocomplete="organization" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="label" for="inquiry-type">Inquiry Type *</label>
+              <select class="input" id="inquiry-type" name="inquiry_type" required>
+                <option value="" disabled selected>Select inquiry type</option>
+                {inquiryTypes.map((t) => (
+                  <option value={t.value}>{t.label}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="label" for="message">Tell us what you need *</label>
+              <textarea
+                class="input"
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Describe the equipment, service, or question. Include quantities, size ranges, or location if relevant."
+              ></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg submit-btn">
+            Send Inquiry
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info Sidebar -->
+      <aside class="contact-info">
+
+        <!-- Direct Contact -->
+        <div class="contact-info-card">
+          <h3>Direct Contact</h3>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Phone</span>
+            <a href="tel:+19498882739" class="contact-detail-value contact-phone">
+              {NAP.phone}
+            </a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Email</span>
+            <a href={`mailto:${NAP.email}`} class="contact-detail-value">
+              {NAP.email}
+            </a>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-label">Response time</span>
+            <span class="contact-detail-value">Within 1 business day</span>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="contact-info-card">
+          <h3>Facility</h3>
+          <address itemscope itemtype="https://schema.org/PostalAddress" style="font-style:normal;">
+            <span class="contact-detail-value">
+              <span itemprop="streetAddress">{NAP.street}</span><br />
+              <span itemprop="addressLocality">{NAP.city}</span>,
+              <span itemprop="addressRegion">{NAP.state}</span>
+              <span itemprop="postalCode">{NAP.zip}</span>
+            </span>
+          </address>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=1520+E+Barham+Dr,+San+Marcos,+CA+92078"
+            class="contact-map-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get Directions
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- Hours -->
+        <div class="contact-info-card">
+          <h3>Hours</h3>
+          <table class="hours-table" aria-label="Business hours">
+            <tbody>
+              {HOURS.map((h) => (
+                <tr>
+                  <td class="hours-day">{h.day.slice(0, 3)}</td>
+                  <td class="hours-time">{h.label}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Pre-select inquiry type from URL ?type= param
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type');
+  if (type) {
+    const select = document.getElementById('inquiry-type') as HTMLSelectElement | null;
+    if (select) {
+      const option = select.querySelector(`option[value="${CSS.escape(type)}"]`) as HTMLOptionElement | null;
+      if (option) {
+        option.selected = true;
+      }
+    }
+  }
+</script>
+
+<style>
+  .contact-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact-hero h1 {
+    max-width: 18ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .contact-hero-intro {
+    max-width: 58ch;
+    font-size: 1.0625rem;
+  }
+
+  /* Main layout */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-form-wrap h2 {
+    margin: 0 0 0.4rem;
+  }
+
+  .form-subhead {
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+    margin-bottom: 2rem;
+  }
+
+  /* Form layout */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row-2 {
+    flex-direction: row;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  textarea.input {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  select.input {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  select.input option { background: #111318; }
+
+  .submit-btn {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  /* Sidebar info cards */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-info-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .contact-info-card h3 {
+    font-size: 1rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .contact-detail:last-child { margin-bottom: 0; }
+
+  .contact-detail-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+  }
+
+  .contact-detail-value {
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-base);
+    line-height: 1.5;
+  }
+
+  .contact-phone {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-gold);
+  }
+
+  .contact-phone:hover { color: var(--color-gold-light); }
+
+  .contact-detail-value:hover { color: var(--color-teal); }
+
+  .contact-map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    text-decoration: none;
+    margin-top: 0.75rem;
+    transition: gap var(--transition-base);
+  }
+
+  .contact-map-link:hover { gap: 0.5rem; }
+
+  /* Hours table */
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .hours-table tr {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hours-table tr:last-child { border-bottom: none; }
+
+  .hours-day {
+    padding: 0.4rem 0;
+    color: var(--color-text-muted);
+    width: 40%;
+  }
+
+  .hours-time {
+    padding: 0.4rem 0;
+    color: var(--color-white);
+    text-align: right;
+  }
+
+  @media (max-width: 1024px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .contact-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .contact-info-card {
+      flex: 1;
+      min-width: 220px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form-row-2 { flex-direction: column; }
+    .submit-btn { width: 100%; justify-content: center; }
+  }
+</style>

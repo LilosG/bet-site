@@ -1,0 +1,264 @@
+---
+/**
+ * Service Page — /services/[slug]
+ * Full money page for each service.
+ * Pulls content from central services data.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import FAQ from '../../components/ui/FAQ.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import { SERVICES } from '../../data/services';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  return SERVICES.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+// Related services (exclude current)
+const related = SERVICES.filter((s) => s.slug !== service.slug);
+
+const crumbs = [
+  { name: 'Home',       url: '/' },
+  { name: 'Services',   url: '/services' },
+  { name: service.title, url: `/services/${service.slug}` },
+];
+
+const schemas = [
+  breadcrumbSchema(crumbs),
+  faqSchema(service.faqs),
+  serviceSchema({
+    name: service.title,
+    description: service.intro,
+    url: `/services/${service.slug}`,
+    keywords: service.keywords,
+  }),
+];
+---
+
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  canonical={`/services/${service.slug}`}
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- Hero -->
+  <section class="svc-hero">
+    <div class="container">
+      <span class="eyebrow">Service</span>
+      <h1>{service.h1}</h1>
+      <p class="svc-hero-intro">{service.intro}</p>
+      <div class="svc-hero-ctas">
+        <a href={service.cta.href} class="btn btn-primary btn-lg">
+          {service.cta.label}
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:+19498882739" class="btn btn-outline btn-lg">
+          Call (949) 888-2739
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Body Content + Sidebar -->
+  <section class="bg-light section-y" aria-labelledby="svc-content-heading">
+    <div class="container svc-content-inner">
+      <div class="svc-prose prose">
+        <h2 id="svc-content-heading">{service.title} — What to Know</h2>
+        {service.bodyContent.split('\n\n').filter(Boolean).map((para) => (
+          <p>{para}</p>
+        ))}
+
+      </div>
+      <aside class="svc-sidebar">
+        <!-- CTA Card -->
+        <div class="svc-sidebar-card">
+          <h3>{service.cta.label}</h3>
+          <p>Our trade desk responds within one business day. Provide details and we will return a complete scope and price.</p>
+          <a href={service.cta.href} class="btn btn-primary" style="width:100%;justify-content:center;">
+            {service.cta.label}
+          </a>
+          <a href="tel:+19498882739" class="svc-phone-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (949) 888-2739
+          </a>
+        </div>
+
+        <!-- Related Services -->
+        <div class="svc-related">
+          <p class="svc-related-label">Other Services</p>
+          <ul>
+            {related.map((s) => (
+              <li>
+                <a href={`/services/${s.slug}`}>
+                  {s.title}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ
+    items={service.faqs}
+    heading={`${service.title} — Frequently Asked Questions`}
+  />
+
+  <!-- CTA Strip -->
+  <CtaStrip
+    heading="Ready to get started?"
+    subtext="One call, one quote. Our trade desk handles everything from scope to scheduling."
+    primaryLabel={service.cta.label}
+    primaryHref={service.cta.href}
+    secondaryLabel="Browse Equipment"
+    secondaryHref="/equipment"
+  />
+</Layout>
+
+<style>
+  .svc-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .svc-hero h1 {
+    max-width: 24ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .svc-hero-intro {
+    max-width: 60ch;
+    font-size: 1.0625rem;
+    margin-bottom: 2rem;
+  }
+
+  .svc-hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .svc-content-inner {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .svc-prose h2 {
+    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    color: #0B0C0F;
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+  }
+
+  .svc-prose h3 {
+    color: #0B0C0F;
+    font-size: 1.125rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .svc-sidebar-card {
+    background: #0B0C0F;
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .svc-sidebar-card h3 {
+    font-size: 1.0625rem;
+    color: var(--color-white);
+    margin: 0 0 0.5rem;
+  }
+
+  .svc-sidebar-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .svc-phone-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: color var(--transition-base);
+  }
+
+  .svc-phone-link:hover { color: var(--color-gold-light); }
+
+  .svc-related {
+    background: #f0ede8;
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .svc-related-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6B7280;
+    margin: 0 0 0.75rem;
+  }
+
+  .svc-related ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .svc-related a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+    padding: 0.3rem 0;
+    transition: color var(--transition-base);
+  }
+
+  .svc-related a:hover { color: var(--color-teal); }
+
+  @media (max-width: 1024px) {
+    .svc-content-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .svc-sidebar {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .svc-sidebar-card, .svc-related {
+      flex: 1;
+      min-width: 240px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .svc-hero-ctas { flex-direction: column; }
+  }
+</style>

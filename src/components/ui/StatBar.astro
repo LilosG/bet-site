@@ -1,0 +1,123 @@
+---
+/**
+ * StatBar — Key metrics strip.
+ * Use standalone prop to control whether it wraps its own container.
+ * When standalone=false (default inside other layouts), no container wrapping.
+ */
+import { STATS } from '../../data/site';
+
+export interface Props {
+  stats?: readonly { value: string; label: string }[];
+  light?: boolean;
+  standalone?: boolean;
+}
+
+const { stats = STATS, light = false, standalone = true } = Astro.props;
+---
+
+{standalone ? (
+  <div class={`stat-bar ${light ? 'stat-bar--light' : ''}`} aria-label="Key statistics">
+    <div class="container stat-bar-inner">
+      {stats.map((stat, i) => (
+        <div class="stat-item">
+          <span class="stat-value">{stat.value}</span>
+          <span class="stat-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+) : (
+  <div class={`stat-bar-inline ${light ? 'stat-bar--light' : ''}`} aria-label="Key statistics">
+    {stats.map((stat, i) => (
+      <div class="stat-item">
+        <span class="stat-value">{stat.value}</span>
+        <span class="stat-label">{stat.label}</span>
+      </div>
+    ))}
+  </div>
+)}
+
+<style>
+  /* Standalone — full-width band */
+  .stat-bar {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem 0;
+  }
+
+  .stat-bar-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Inline — fits inside a column */
+  .stat-bar-inline {
+    display: flex;
+    gap: 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin: 1.75rem 0;
+  }
+
+  .stat-bar-inline .stat-item {
+    flex: 1;
+    padding: 0 1.25rem 0 0;
+    border-right: 1px solid var(--color-border);
+    margin-right: 1.25rem;
+  }
+
+  .stat-bar-inline .stat-item:last-child {
+    border-right: none;
+    margin-right: 0;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 1rem;
+    position: relative;
+  }
+
+  .stat-bar-inner .stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--color-gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-bar--light .stat-value { color: #0B0C0F; }
+
+  .stat-label {
+    font-family: var(--font-ui);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin-top: 0.3rem;
+  }
+
+  .stat-bar--light .stat-label { color: #6B7280; }
+
+  @media (max-width: 640px) {
+    .stat-bar-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 0;
+    }
+  }
+</style>

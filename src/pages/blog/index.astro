@@ -1,0 +1,159 @@
+---
+/**
+ * Blog Index — /blog
+ * Lists all published blog posts.
+ * Posts will be added as .md or .mdx files in /blog/.
+ * For now renders the hub with placeholder structure.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import { breadcrumbSchema } from '../../lib/schema';
+
+// When blog posts are added as .mdx files under /blog/posts/,
+// use getCollection('blog') from astro:content. Stub until content is added.
+
+const crumbs = [
+  { name: 'Home',  url: '/' },
+  { name: 'Blog',  url: '/blog' },
+];
+
+const schemas = [breadcrumbSchema(crumbs)];
+
+// Placeholder topics showing editorial direction (real posts populated later)
+const topics = [
+  { label: 'Buyer Guides',     desc: 'How to evaluate, size, and purchase used brewing equipment.' },
+  { label: 'Equipment Types',  desc: 'What each piece of equipment does and how it fits your operation.' },
+  { label: 'Industry News',    desc: 'Auction announcements, market trends, and inventory updates.' },
+  { label: 'Rigging & Install', desc: 'What rigging and installation actually involves and what to budget.' },
+  { label: 'Consignment',      desc: 'How to liquidate equipment intelligently.' },
+  { label: 'Brewery Start-Up', desc: 'Capacity planning, equipment sourcing strategy, and timeline.' },
+];
+---
+
+<Layout
+  title="Brewery Equipment Blog — Buyer Guides, News & Resources | Beverage Equipment Traders"
+  description="Expert guides on buying used brewery equipment, rigging and installation, consignment, and more. Written by former brewery operators. Beverage Equipment Traders, San Marcos, CA."
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <section class="blog-hero">
+    <div class="container">
+      <span class="eyebrow">Resources</span>
+      <h1>Brewery Equipment: The Operator's Perspective.</h1>
+      <p class="blog-intro">
+        Practical guides on buying, moving, and selling brewery and beverage equipment.
+        Written by people who have actually run production facilities.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Topics -->
+  <section class="section-y" aria-labelledby="topics-heading">
+    <div class="container">
+      <span class="eyebrow">Content Categories</span>
+      <h2 id="topics-heading">What We Write About</h2>
+      <div class="topics-grid">
+        {topics.map((topic) => (
+          <div class="topic-card">
+            <h3 class="topic-label">{topic.label}</h3>
+            <p class="topic-desc">{topic.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts will appear here once /blog/posts/*.mdx are added -->
+  <section class="section-y blog-posts-section" aria-labelledby="posts-heading">
+    <div class="container">
+      <h2 id="posts-heading">Latest Articles</h2>
+      <div class="posts-coming-soon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--color-gold);opacity:0.4;"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <p>Articles are being added. Check back soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    heading="Questions our articles don't answer?"
+    subtext="Our trade desk is available by phone or email. We respond within one business day."
+    primaryLabel="Contact the Trade Desk"
+    primaryHref="/contact"
+    secondaryLabel="Browse Equipment"
+    secondaryHref="/equipment"
+  />
+</Layout>
+
+<style>
+  .blog-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .blog-hero h1 {
+    max-width: 24ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .blog-intro {
+    max-width: 58ch;
+    font-size: 1.0625rem;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .topic-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: border-color var(--transition-smooth);
+  }
+
+  .topic-card:hover {
+    border-color: var(--color-border-gold);
+  }
+
+  .topic-label {
+    font-size: 1.0625rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .topic-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .blog-posts-section {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .posts-coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .posts-coming-soon p {
+    font-size: 0.9375rem;
+    color: var(--color-text-subtle);
+  }
+
+  @media (max-width: 768px) {
+    .topics-grid { grid-template-columns: 1fr; }
+  }
+</style>
