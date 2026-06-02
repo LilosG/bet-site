@@ -1,0 +1,506 @@
+---
+/**
+ * Industry Page — /industries/[slug]
+ * Niche expansion silo — answers "do you serve my type of operation?"
+ * Routes buyers to relevant equipment categories and services.
+ * All content from industries.ts — zero hardcoding.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import FAQ from '../../components/ui/FAQ.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import { INDUSTRIES } from '../../data/industries';
+import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
+import { SERVICES } from '../../data/services';
+import { breadcrumbSchema, faqSchema } from '../../lib/schema';
+import { NAP } from '../../data/site';
+
+export async function getStaticPaths() {
+  return INDUSTRIES.map((industry) => ({
+    params: { slug: industry.slug },
+    props: { industry },
+  }));
+}
+
+const { industry } = Astro.props;
+
+// Relevant equipment categories from data
+const equipmentCategories = industry.relevantEquipment
+  .map((slug) => EQUIPMENT_CATEGORIES.find((c) => c.slug === slug))
+  .filter(Boolean);
+
+// Relevant services from data
+const services = industry.relevantServices
+  .map((slug) => SERVICES.find((s) => s.slug === slug))
+  .filter(Boolean);
+
+const crumbs = [
+  { name: 'Home',        url: '/' },
+  { name: 'Industries',  url: '/industries' },
+  { name: industry.name, url: `/industries/${industry.slug}` },
+];
+
+const schemas = [
+  breadcrumbSchema(crumbs),
+  faqSchema(industry.faqs),
+];
+---
+
+<Layout
+  title={industry.metaTitle}
+  description={industry.metaDescription}
+  canonical={`/industries/${industry.slug}`}
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- ═══ HERO ══════════════════════════════ -->
+  <section class="ind-hero">
+    <div class="container">
+      <span class="eyebrow">Industry</span>
+      <h1>{industry.h1}</h1>
+      <p class="ind-hero-intro">{industry.intro}</p>
+      <div class="ind-hero-ctas">
+        <a href="/contact" class="btn btn-primary btn-lg">
+          Talk to Our Team
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="/equipment" class="btn btn-outline btn-lg">
+          Browse Equipment
+        </a>
+      </div>
+      <!-- Equipment type chips -->
+      <div class="ind-chips">
+        {industry.featuredEquipmentTypes.map((type) => (
+          <span class="trust-chip">{type}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BODY CONTENT ══════════════════════ -->
+  <section class="bg-light section-y" aria-labelledby="ind-content-heading">
+    <div class="container ind-content-inner">
+      <div class="ind-prose prose">
+        <h2 id="ind-content-heading">How We Serve {industry.name}</h2>
+        {industry.bodyContent.split('\n\n').filter(Boolean).map((para) => (
+          <p>{para}</p>
+        ))}
+      </div>
+      <aside class="ind-sidebar">
+        <div class="ind-sidebar-card">
+          <h3>Talk to Our Team</h3>
+          <p>We have operated production equipment in this industry. Our trade desk responds within one business day.</p>
+          <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Contact Us
+          </a>
+          <a href={`tel:${NAP.phonePlain}`} class="ind-phone-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            {NAP.phone}
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══ BUYER NEEDS ════════════════════════ -->
+  <section class="section-y" aria-labelledby="needs-heading">
+    <div class="container">
+      <span class="eyebrow">What We Help With</span>
+      <h2 id="needs-heading">Common {industry.shortName} Needs</h2>
+      <div class="needs-grid">
+        {industry.buyerNeeds.map((need, i) => (
+          <div class="need-card">
+            <div class="need-number" aria-hidden="true">0{i + 1}</div>
+            <h3>{need.title}</h3>
+            <p>{need.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RELEVANT EQUIPMENT ════════════════ -->
+  {equipmentCategories.length > 0 && (
+    <section class="section-y bg-light" aria-labelledby="ind-eq-heading">
+      <div class="container">
+        <div class="ind-section-header">
+          <span class="eyebrow">Equipment</span>
+          <h2 id="ind-eq-heading">Equipment for {industry.name}</h2>
+          <a href="/equipment" class="section-link">
+            View All Equipment
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="ind-eq-grid">
+          {equipmentCategories.map((cat) => (
+            <a href={`/equipment/${cat.slug}`} class="ind-eq-card">
+              <h3>{cat.title}</h3>
+              <p>{cat.description}</p>
+              <span class="ind-eq-link">
+                Browse {cat.title}
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ RELEVANT SERVICES ═════════════════ -->
+  {services.length > 0 && (
+    <section class="section-y services-band" aria-labelledby="ind-svc-heading">
+      <div class="container">
+        <div class="ind-section-header">
+          <span class="eyebrow">Services</span>
+          <h2 id="ind-svc-heading">Services for {industry.name}</h2>
+        </div>
+        <div class="ind-svc-grid">
+          {services.map((s) => (
+            <a href={`/services/${s.slug}`} class="ind-svc-card card">
+              <div class="ind-svc-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={s.icon} />
+                </svg>
+              </div>
+              <h3>{s.title}</h3>
+              <p>{s.intro}</p>
+              <span class="ind-svc-learn">
+                Learn More
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ FAQ ════════════════════════════════ -->
+  {industry.faqs.length > 0 && (
+    <FAQ
+      items={industry.faqs}
+      heading={`${industry.name} — Frequently Asked Questions`}
+    />
+  )}
+
+  <!-- ═══ CTA ════════════════════════════════ -->
+  <CtaStrip
+    heading={`Ready to talk about your ${industry.shortName.toLowerCase()} equipment?`}
+    subtext="Our trade desk responds within one business day. One call, one quote."
+    primaryLabel="Contact Our Team"
+    primaryHref="/contact"
+    secondaryLabel="Browse Equipment"
+    secondaryHref="/equipment"
+  />
+
+</Layout>
+
+<style>
+  /* ─── Hero ───────────────────────────────── */
+  .ind-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-hero h1 {
+    max-width: 26ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .ind-hero-intro {
+    max-width: 60ch;
+    font-size: 1.0625rem;
+    margin-bottom: 2rem;
+  }
+
+  .ind-hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.75rem;
+  }
+
+  .ind-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-chip {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* ─── Body + Sidebar ─────────────────────── */
+  .ind-content-inner {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .ind-prose h2 {
+    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+    color: #0B0C0F;
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+  }
+
+  .ind-sidebar-card {
+    background: #0B0C0F;
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .ind-sidebar-card h3 {
+    font-size: 1.0625rem;
+    color: var(--color-white);
+    margin: 0 0 0.5rem;
+  }
+
+  .ind-sidebar-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .ind-phone-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: color var(--transition-base);
+  }
+
+  .ind-phone-link:hover { color: var(--color-gold-light); }
+
+  /* ─── Buyer Needs ────────────────────────── */
+  .needs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .need-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    position: relative;
+    transition: border-color var(--transition-smooth);
+  }
+
+  .need-card:hover {
+    border-color: var(--color-border-gold);
+  }
+
+  .need-number {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--color-text-subtle);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.875rem;
+  }
+
+  .need-card h3 {
+    font-size: 1.0625rem;
+    color: var(--color-white);
+    margin: 0 0 0.625rem;
+    line-height: 1.3;
+  }
+
+  .need-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ─── Section Headers ────────────────────── */
+  .ind-section-header {
+    margin-bottom: 2rem;
+  }
+
+  .ind-section-header h2 {
+    margin: 0.3rem 0 0.5rem;
+    color: #0B0C0F;
+  }
+
+  .section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-teal);
+    transition: color var(--transition-base), gap var(--transition-base);
+  }
+
+  .section-link:hover { color: var(--color-teal-hover); gap: 0.55rem; }
+
+  /* ─── Equipment Grid ─────────────────────── */
+  .ind-eq-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .ind-eq-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-md);
+    padding: 1.375rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+  }
+
+  .ind-eq-card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-1px);
+  }
+
+  .ind-eq-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #0B0C0F;
+    margin: 0 0 0.5rem;
+  }
+
+  .ind-eq-card p {
+    font-size: 0.8125rem;
+    color: #6B7280;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ind-eq-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    margin-top: auto;
+    transition: color var(--transition-base), gap var(--transition-base);
+  }
+
+  .ind-eq-card:hover .ind-eq-link {
+    color: var(--color-teal-hover);
+    gap: 0.45rem;
+  }
+
+  /* ─── Services Band ──────────────────────── */
+  .services-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .services-band .ind-section-header h2 {
+    color: var(--color-white);
+  }
+
+  .ind-svc-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.125rem;
+    margin-top: 2rem;
+  }
+
+  .ind-svc-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    text-decoration: none;
+  }
+
+  .ind-svc-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 3px;
+    background: var(--color-gold-dim);
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+
+  .ind-svc-card h3 {
+    font-size: 1.0625rem;
+    color: var(--color-white);
+    margin: 0 0 0.5rem;
+  }
+
+  .ind-svc-card p {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem;
+    flex: 1;
+    line-height: 1.65;
+  }
+
+  .ind-svc-learn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    margin-top: auto;
+    transition: color var(--transition-base);
+  }
+
+  /* ─── Responsive ─────────────────────────── */
+  @media (max-width: 1024px) {
+    .ind-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .needs-grid { grid-template-columns: repeat(2, 1fr); }
+    .ind-eq-grid { grid-template-columns: repeat(2, 1fr); }
+    .ind-svc-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .ind-hero-ctas { flex-direction: column; }
+    .needs-grid { grid-template-columns: 1fr; }
+    .ind-eq-grid { grid-template-columns: 1fr; }
+    .ind-svc-grid { grid-template-columns: 1fr; }
+  }
+</style>

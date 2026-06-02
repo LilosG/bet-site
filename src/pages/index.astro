@@ -171,7 +171,7 @@ const schemas = [
   <TrustBar />
 
   <!-- ═══ FEATURED INVENTORY ══════════════════ -->
-  <section class="section-y" aria-labelledby="featured-heading">
+  <section class="section-y featured-inventory-section" aria-labelledby="featured-heading">
     <div class="container">
       <div class="section-header">
         <div>
@@ -236,15 +236,7 @@ const schemas = [
     </div>
   </section>
 
-  <!-- CTA Strip -->
-  <CtaStrip
-    heading="Need the equipment moved, installed, and commissioned?"
-    subtext="We handle rigging and installation nationwide — one crew, one quote."
-    primaryLabel="Get a Rigging Quote"
-    primaryHref="/contact?type=rigging"
-    secondaryLabel="Learn About Rigging"
-    secondaryHref="/services/rigging"
-  />
+
 
   <!-- ═══ WHY BET ════════════════════════════ -->
   <section class="section-y" aria-labelledby="why-heading">
@@ -725,6 +717,18 @@ const schemas = [
 
   .why-content h2 { margin: 0 0 1.375rem; }
   .why-content h2 em { font-style: normal; }
+
+  .why-content :global(.stat-bar-inline) {
+    border-top: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.25rem 0;
+    margin: 1.5rem 0;
+  }
+
+  .featured-inventory-section {
+    background: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
+  }
 
   .why-ctas {
     display: flex;

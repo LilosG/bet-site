@@ -1,15 +1,20 @@
 ---
 /**
  * Service Page — /services/[slug]
- * Full money page for each service.
- * Pulls content from central services data.
+ * Full money page template for each service.
+ * All content from central data layer — zero hardcoding.
+ * Sections: Hero → Body+Sidebar → Process → Best Fit → Related Equipment → FAQ → CTA
  */
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
+import ProcessSteps from '../../components/ui/ProcessSteps.astro';
+import BestFitScenarios from '../../components/ui/BestFitScenarios.astro';
 import { SERVICES } from '../../data/services';
+import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '../../lib/schema';
+import { NAP } from '../../data/site';
 
 export async function getStaticPaths() {
   return SERVICES.map((service) => ({
@@ -20,8 +25,16 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 
-// Related services (exclude current)
-const related = SERVICES.filter((s) => s.slug !== service.slug);
+// Related services (exclude current, show listed slugs only)
+const related = service.relatedServices
+  .map((slug) => SERVICES.find((s) => s.slug === slug))
+  .filter(Boolean);
+
+// Related equipment categories from data
+const relatedEquipment = service.relatedEquipment
+  .map((slug) => EQUIPMENT_CATEGORIES.find((c) => c.slug === slug))
+  .filter(Boolean)
+  .slice(0, 4);
 
 const crumbs = [
   { name: 'Home',       url: '/' },
@@ -49,7 +62,7 @@ const schemas = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Hero -->
+  <!-- ═══ HERO ══════════════════════════════ -->
   <section class="svc-hero">
     <div class="container">
       <span class="eyebrow">Service</span>
@@ -58,64 +71,130 @@ const schemas = [
       <div class="svc-hero-ctas">
         <a href={service.cta.href} class="btn btn-primary btn-lg">
           {service.cta.label}
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
-        <a href="tel:+19498882739" class="btn btn-outline btn-lg">
-          Call (949) 888-2739
+        <a href={`tel:${NAP.phonePlain}`} class="btn btn-outline btn-lg">
+          Call {NAP.phone}
         </a>
+      </div>
+      <!-- Trust chips -->
+      <div class="svc-trust-chips">
+        {['All 50 States', 'One Quote — Full Scope', 'Prior Brewery Operators', 'San Marcos, CA'].map((chip) => (
+          <span class="trust-chip">{chip}</span>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Body Content + Sidebar -->
+  <!-- ═══ BODY CONTENT + SIDEBAR ════════════ -->
   <section class="bg-light section-y" aria-labelledby="svc-content-heading">
     <div class="container svc-content-inner">
+
       <div class="svc-prose prose">
         <h2 id="svc-content-heading">{service.title} — What to Know</h2>
         {service.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
-
       </div>
+
       <aside class="svc-sidebar">
-        <!-- CTA Card -->
+        <!-- Primary CTA Card -->
         <div class="svc-sidebar-card">
           <h3>{service.cta.label}</h3>
           <p>Our trade desk responds within one business day. Provide details and we will return a complete scope and price.</p>
           <a href={service.cta.href} class="btn btn-primary" style="width:100%;justify-content:center;">
             {service.cta.label}
           </a>
-          <a href="tel:+19498882739" class="svc-phone-link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            (949) 888-2739
+          <a href={`tel:${NAP.phonePlain}`} class="svc-phone-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            {NAP.phone}
           </a>
         </div>
 
         <!-- Related Services -->
-        <div class="svc-related">
-          <p class="svc-related-label">Other Services</p>
-          <ul>
-            {related.map((s) => (
-              <li>
-                <a href={`/services/${s.slug}`}>
-                  {s.title}
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {related.length > 0 && (
+          <div class="svc-related">
+            <p class="svc-related-label">Other Services</p>
+            <ul>
+              {related.map((s) => (
+                <li>
+                  <a href={`/services/${s.slug}`}>
+                    {s.title}
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </aside>
+
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- ═══ PROCESS STEPS ══════════════════════ -->
+  {service.processSteps.length > 0 && (
+    <ProcessSteps
+      steps={service.processSteps}
+      heading={`How ${service.shortTitle} Works`}
+      eyebrow="The Process"
+    />
+  )}
+
+  <!-- ═══ BEST FIT SCENARIOS ═════════════════ -->
+  {service.bestFitScenarios.length > 0 && (
+    <BestFitScenarios
+      scenarios={service.bestFitScenarios}
+      heading={`When ${service.shortTitle} Is the Right Choice`}
+      eyebrow="Best Fit"
+      cta={service.cta}
+    />
+  )}
+
+  <!-- ═══ RELATED EQUIPMENT ══════════════════ -->
+  {relatedEquipment.length > 0 && (
+    <section class="section-y bg-light" aria-labelledby="related-eq-heading">
+      <div class="container">
+        <div class="related-eq-header">
+          <span class="eyebrow">Related Equipment</span>
+          <h2 id="related-eq-heading">Equipment We Work With</h2>
+        </div>
+        <div class="related-eq-grid">
+          {relatedEquipment.map((cat) => (
+            <a href={`/equipment/${cat.slug}`} class="related-eq-card">
+              <div class="related-eq-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <path d="M8 21h8M12 17v4"/>
+                </svg>
+              </div>
+              <div class="related-eq-content">
+                <h3>{cat.title}</h3>
+                <p>{cat.description}</p>
+              </div>
+              <svg class="related-eq-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ FAQ ════════════════════════════════ -->
   <FAQ
     items={service.faqs}
     heading={`${service.title} — Frequently Asked Questions`}
   />
 
-  <!-- CTA Strip -->
+  <!-- ═══ FINAL CTA ══════════════════════════ -->
   <CtaStrip
     heading="Ready to get started?"
     subtext="One call, one quote. Our trade desk handles everything from scope to scheduling."
@@ -124,16 +203,18 @@ const schemas = [
     secondaryLabel="Browse Equipment"
     secondaryHref="/equipment"
   />
+
 </Layout>
 
 <style>
+  /* ─── Hero ───────────────────────────────── */
   .svc-hero {
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
   .svc-hero h1 {
-    max-width: 24ch;
+    max-width: 26ch;
     margin: 0.5rem 0 1rem;
   }
 
@@ -147,8 +228,28 @@ const schemas = [
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 1.75rem;
   }
 
+  .svc-trust-chips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-chip {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* ─── Body + Sidebar ─────────────────────── */
   .svc-content-inner {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -161,13 +262,6 @@ const schemas = [
     color: #0B0C0F;
     margin-bottom: 1.25rem;
     margin-top: 0;
-  }
-
-  .svc-prose h3 {
-    color: #0B0C0F;
-    font-size: 1.125rem;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
   }
 
   .svc-sidebar-card {
@@ -242,6 +336,89 @@ const schemas = [
 
   .svc-related a:hover { color: var(--color-teal); }
 
+  /* ─── Related Equipment ──────────────────── */
+  .related-eq-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .related-eq-header h2 {
+    margin: 0.3rem 0 0;
+    color: #0B0C0F;
+  }
+
+  .related-eq-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .related-eq-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+  }
+
+  .related-eq-card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-1px);
+  }
+
+  .related-eq-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 3px;
+    background: rgba(13,148,136,0.1);
+    color: var(--color-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .related-eq-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .related-eq-content h3 {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #0B0C0F;
+    margin: 0 0 0.25rem;
+    line-height: 1.3;
+  }
+
+  .related-eq-content p {
+    font-size: 0.8125rem;
+    color: #6B7280;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .related-eq-arrow {
+    color: #9CA3AF;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    transition: color var(--transition-base), transform var(--transition-base);
+  }
+
+  .related-eq-card:hover .related-eq-arrow {
+    color: var(--color-teal);
+    transform: translateX(2px);
+  }
+
+  /* ─── Responsive ─────────────────────────── */
   @media (max-width: 1024px) {
     .svc-content-inner {
       grid-template-columns: 1fr;
@@ -256,9 +433,13 @@ const schemas = [
       flex: 1;
       min-width: 240px;
     }
+    .related-eq-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 640px) {
     .svc-hero-ctas { flex-direction: column; }
+    .related-eq-grid { grid-template-columns: 1fr; }
   }
 </style>

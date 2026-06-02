@@ -84,6 +84,17 @@ export const NAV = {
         { label: 'New Equipment',          href: '/services/new-equipment' },
       ],
     },
+    {
+      label: 'Industries',
+      href: '/industries',
+      children: [
+        { label: 'Craft Breweries',       href: '/industries/craft-brewery' },
+        { label: 'Craft Distilleries',    href: '/industries/distillery' },
+        { label: 'Cideries & Meaderies',  href: '/industries/cidery' },
+        { label: 'Beverage Producers',    href: '/industries/beverage-production' },
+        { label: 'Hard Seltzer',          href: '/industries/hard-seltzer' },
+      ],
+    },
     { label: 'Auctions', href: '/services/auctions' },
     { label: 'About',    href: '/about' },
     { label: 'Contact',  href: '/contact' },
