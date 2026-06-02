@@ -1,0 +1,361 @@
+---
+/**
+ * Industries Hub — /industries
+ * Answers: "Do you serve my type of operation?"
+ * Routes buyers into industry-specific pages.
+ * All content from industries.ts — zero hardcoding.
+ */
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import { INDUSTRIES } from '../../data/industries';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const crumbs = [
+  { name: 'Home',       url: '/' },
+  { name: 'Industries', url: '/industries' },
+];
+
+const schemas = [breadcrumbSchema(crumbs)];
+
+// Group industries for display
+const beverageIndustries = INDUSTRIES.filter(i =>
+  ['craft-brewery','distillery','cidery','beverage-production','hard-seltzer'].includes(i.slug)
+);
+const industrialIndustries = INDUSTRIES.filter(i =>
+  ['food-processing','dairy-processing','pharmaceutical'].includes(i.slug)
+);
+---
+
+<Layout
+  title="Industries We Serve | Beverage Equipment Traders"
+  description="Brewery, distillery, cidery, food processing, dairy, and pharmaceutical equipment. BET serves production operations across industries with the same food-grade stainless inventory."
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- Hero -->
+  <section class="ind-hub-hero">
+    <div class="container">
+      <span class="eyebrow">Industries</span>
+      <h1>Equipment Built for Production.<br />Industries Beyond Brewing.</h1>
+      <p class="ind-hub-intro">
+        Beverage Equipment Traders started in craft brewing. The food-grade stainless equipment,
+        processing systems, and industrial infrastructure we carry serves production operations
+        well beyond the brewery floor — distilleries, cideries, food processors, dairy operations,
+        and pharmaceutical facilities all source from the same equipment pool.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Beverage Industries -->
+  <section class="section-y" aria-labelledby="bev-heading">
+    <div class="container">
+      <span class="eyebrow">Beverage Production</span>
+      <h2 id="bev-heading">Craft Beverage Operations</h2>
+      <p class="ind-group-intro">
+        Our core market. Brewhouses, fermenters, canning lines, glycol systems, and full
+        equipment lifecycle services for craft beverage producers at every scale.
+      </p>
+      <div class="ind-grid">
+        {beverageIndustries.map((industry) => (
+          <a href={`/industries/${industry.slug}`} class="ind-card">
+            <div class="ind-card-inner">
+              <h3 class="ind-card-title">{industry.name}</h3>
+              <p class="ind-card-intro">{industry.intro}</p>
+              <div class="ind-card-chips">
+                {industry.featuredEquipmentTypes.slice(0, 3).map((type) => (
+                  <span class="ind-chip">{type}</span>
+                ))}
+              </div>
+              <span class="ind-card-cta">
+                View Equipment & Services
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule" />
+
+  <!-- Industrial / Crossover Industries -->
+  <section class="section-y" aria-labelledby="ind-heading">
+    <div class="container">
+      <span class="eyebrow">Industrial & Processing</span>
+      <h2 id="ind-heading">Beyond the Brewery Floor</h2>
+      <p class="ind-group-intro">
+        Food-grade stainless tanks, CIP systems, heat exchangers, pumps, and processing
+        infrastructure have applications across food manufacturing, dairy, and pharmaceutical
+        operations. The same equipment pool, different production contexts.
+      </p>
+      <div class="ind-grid ind-grid-3">
+        {industrialIndustries.map((industry) => (
+          <a href={`/industries/${industry.slug}`} class="ind-card">
+            <div class="ind-card-inner">
+              <h3 class="ind-card-title">{industry.name}</h3>
+              <p class="ind-card-intro">{industry.intro}</p>
+              <div class="ind-card-chips">
+                {industry.featuredEquipmentTypes.slice(0, 3).map((type) => (
+                  <span class="ind-chip">{type}</span>
+                ))}
+              </div>
+              <span class="ind-card-cta">
+                View Equipment & Services
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why BET across industries -->
+  <section class="section-y ind-why" aria-labelledby="why-heading">
+    <div class="container ind-why-inner">
+      <div>
+        <span class="eyebrow">Why BET</span>
+        <h2 id="why-heading">One inventory. Every production context.</h2>
+        <p>
+          Food-grade 304 and 316L stainless steel does not know what industry it is in.
+          A jacketed fermenter from a brewery liquidation serves a craft brewery, a kombucha
+          producer, a dairy processor, and a pharmaceutical operation equally well — the
+          specifications are what matter, not the prior use.
+        </p>
+        <p>
+          Beverage Equipment Traders provides honest specification data, condition documentation,
+          and operator context across every piece in our inventory. Whatever your production
+          application, we advise on what equipment actually meets your requirements.
+        </p>
+        <a href="/contact" class="btn btn-primary">
+          Talk to Our Team
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      <div class="ind-why-list">
+        {[
+          { label: 'Food-Grade Stainless',   detail: '304 and 316L specified on all listings.' },
+          { label: 'Nationwide Shipping',    detail: 'All 50 states from our San Marcos facility.' },
+          { label: 'Operator Documentation', detail: 'Condition notes, specs, and photos on every piece.' },
+          { label: 'Rigging & Installation', detail: 'Full-service moves for any production application.' },
+          { label: 'Honest Guidance',        detail: 'We tell you if something fits your application.' },
+        ].map((item, i) => (
+          <div class="ind-why-item">
+            <span class="ind-why-num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <p class="ind-why-label">{item.label}</p>
+              <p class="ind-why-detail">{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    heading="Not sure if we serve your industry?"
+    subtext="Describe your application and equipment requirements. We will tell you what we have and whether it fits."
+    primaryLabel="Contact Our Team"
+    primaryHref="/contact"
+    secondaryLabel="Browse All Equipment"
+    secondaryHref="/equipment"
+  />
+
+</Layout>
+
+<style>
+  .ind-hub-hero {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-hub-hero h1 {
+    max-width: 22ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .ind-hub-intro {
+    max-width: 64ch;
+    font-size: 1.0625rem;
+  }
+
+  .ind-group-intro {
+    max-width: 60ch;
+    margin: 0.5rem 0 2rem;
+  }
+
+  /* Industry card grid */
+  .ind-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .ind-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ind-card {
+    display: block;
+    text-decoration: none;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+  }
+
+  .ind-card:hover {
+    border-color: var(--color-border-gold);
+    transform: translateY(-2px);
+  }
+
+  .ind-card-inner {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+  }
+
+  .ind-card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0;
+    line-height: 1.2;
+    transition: color var(--transition-base);
+  }
+
+  .ind-card:hover .ind-card-title {
+    color: var(--color-gold);
+  }
+
+  .ind-card-intro {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  .ind-card-chips {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+
+  .ind-chip {
+    font-family: var(--font-ui);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    background: var(--color-teal-dim);
+    border-radius: 2px;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .ind-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+    transition: color var(--transition-base), gap var(--transition-base);
+  }
+
+  .ind-card:hover .ind-card-cta {
+    color: var(--color-gold);
+    gap: 0.5rem;
+  }
+
+  /* Why section */
+  .ind-why {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-why-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .ind-why-inner h2 {
+    max-width: 18ch;
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  .ind-why-inner p { margin-bottom: 1.25rem; }
+  .ind-why-inner .btn { margin-top: 0.75rem; }
+
+  .ind-why-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+  }
+
+  .ind-why-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.125rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-why-item:first-child { border-top: 1px solid var(--color-border); }
+
+  .ind-why-num {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    padding-top: 0.125rem;
+  }
+
+  .ind-why-label {
+    font-family: var(--font-ui);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0 0 0.2rem;
+  }
+
+  .ind-why-detail {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 1024px) {
+    .ind-grid { grid-template-columns: repeat(2, 1fr); }
+    .ind-why-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  @media (max-width: 640px) {
+    .ind-grid { grid-template-columns: 1fr; }
+    .ind-grid-3 { grid-template-columns: 1fr; }
+  }
+</style>

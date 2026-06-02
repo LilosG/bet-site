@@ -319,6 +319,83 @@ Our inventory is updated regularly and reflects current secondary market availab
       'hard seltzer fermenters', 'RTD beverage equipment', 'seltzer production tanks',
     ],
   },
+  {
+    slug: 'food-processing',
+    name: 'Food Processing Facilities',
+    shortName: 'Food Processing',
+    h1: 'Processing Equipment for Food Manufacturers',
+    metaTitle: 'Food Processing Equipment | Beverage Equipment Traders',
+    metaDescription: 'Stainless tanks, CIP systems, pumps, compressors, and processing equipment for food manufacturing facilities. New and used from San Marcos, CA. Ships nationwide.',
+    intro: 'Stainless processing tanks, CIP systems, pumps, and industrial equipment for food manufacturing operations.',
+    bodyContent: `Food processing facilities share significant equipment overlap with craft beverage production. The stainless steel tanks, CIP cleaning systems, pumps, heat exchangers, compressors, and material handling equipment used in brewery and beverage production have direct applications across food manufacturing, dairy processing, sauce and condiment production, and specialty food operations.
+
+Beverage Equipment Traders maintains inventory of food-grade stainless equipment that serves food processing buyers alongside our beverage industry clients. All equipment ships nationwide from our San Marcos, CA facility.`,
+    relevantEquipment: ['fermenters', 'chillers', 'boilers', 'cold-rooms'],
+    relevantServices: ['rigging', 'consignment', 'consulting'],
+    buyerNeeds: [
+      { title: 'Processing Tanks', description: 'Jacketed stainless tanks for mixing, blending, heating, and storage in food manufacturing.' },
+      { title: 'CIP Systems', description: 'Clean-in-place systems for sanitary processing operations.' },
+      { title: 'Pumps and Transfer Equipment', description: 'Centrifugal and positive displacement pumps for product transfer in food-grade applications.' },
+      { title: 'Cold Storage', description: 'Walk-in coolers and refrigeration for temperature-controlled food storage.' },
+    ],
+    featuredEquipmentTypes: ['Processing Tanks', 'CIP Systems', 'Pumps', 'Cold Storage'],
+    faqs: [
+      { q: 'Is brewery equipment food-grade for food processing applications?', a: 'Production brewery equipment is typically food-grade 304 or 316L stainless steel, appropriate for many food processing applications.' },
+      { q: 'Do you carry CIP systems and sanitary pumps?', a: 'Yes. CIP systems and sanitary pumps from brewery and beverage production appear in our inventory regularly. Contact us for current availability.' },
+    ],
+    keywords: ['food processing equipment', 'food grade stainless tanks', 'CIP equipment for sale', 'food manufacturing equipment', 'sanitary pumps for sale'],
+  },
+  {
+    slug: 'dairy-processing',
+    name: 'Dairy Processors',
+    shortName: 'Dairy',
+    h1: 'Processing Equipment for Dairy Operations',
+    metaTitle: 'Dairy Processing Equipment | Beverage Equipment Traders',
+    metaDescription: 'Jacketed tanks, heat exchangers, pumps, CIP systems, and cold storage for dairy processing operations. New and used from San Marcos, CA.',
+    intro: 'Jacketed tanks, heat exchangers, CIP systems, and cold storage for dairy processing and specialty dairy production.',
+    bodyContent: `Dairy processing operations use equipment that overlaps significantly with craft beverage production. Jacketed stainless tanks, plate heat exchangers, CIP cleaning systems, and cold storage are core to both industries.
+
+Beverage Equipment Traders serves dairy processors with the same food-grade stainless inventory we maintain for beverage clients. All equipment ships nationwide.`,
+    relevantEquipment: ['fermenters', 'chillers', 'cold-rooms', 'boilers'],
+    relevantServices: ['rigging', 'consignment', 'consulting'],
+    buyerNeeds: [
+      { title: 'Jacketed Processing Tanks', description: 'Temperature-controlled stainless tanks for pasteurization, culturing, and storage.' },
+      { title: 'Heat Exchangers', description: 'Plate heat exchangers for pasteurization and temperature management.' },
+      { title: 'Cold Storage', description: 'Walk-in coolers and refrigeration for dairy product storage and aging.' },
+      { title: 'CIP and Sanitation', description: 'Clean-in-place systems for sanitary dairy processing operations.' },
+    ],
+    featuredEquipmentTypes: ['Jacketed Tanks', 'Heat Exchangers', 'Cold Storage', 'CIP Systems'],
+    faqs: [
+      { q: 'Can brewery fermenters be used for dairy processing?', a: 'Many brewery fermenters are food-grade stainless appropriate for dairy applications. We can advise on specifications based on your requirements.' },
+    ],
+    keywords: ['dairy processing equipment', 'dairy tanks for sale', 'cheese making equipment', 'yogurt processing equipment', 'food grade tanks dairy'],
+  },
+  {
+    slug: 'pharmaceutical',
+    name: 'Pharmaceutical & Biotech',
+    shortName: 'Pharma & Biotech',
+    h1: 'Stainless Processing Equipment for Pharmaceutical and Biotech Operations',
+    metaTitle: 'Pharmaceutical Processing Equipment | Beverage Equipment Traders',
+    metaDescription: 'Stainless steel tanks, fermenters, CIP systems, and processing equipment for pharmaceutical and biotech operations. New and used from San Marcos, CA.',
+    intro: 'Stainless fermentation vessels, processing tanks, and clean-room compatible equipment for pharma and biotech applications.',
+    bodyContent: `Pharmaceutical and biotech operations increasingly source stainless processing equipment from the food and beverage secondary market. Jacketed stainless tanks, fermentation vessels, and CIP systems from brewery production are often appropriate for pharmaceutical applications at significantly below-new cost.
+
+We provide complete specification documentation and can source equipment to specific material and finish requirements. Contact us to discuss your application.`,
+    relevantEquipment: ['fermenters', 'chillers', 'cold-rooms'],
+    relevantServices: ['consulting', 'rigging'],
+    buyerNeeds: [
+      { title: '316L Stainless Vessels', description: 'High-spec jacketed tanks with 316L construction for pharmaceutical applications.' },
+      { title: 'Documented Equipment', description: 'Equipment with manufacturer data, material certificates, and specification documentation.' },
+      { title: 'CIP Compatible Systems', description: 'Sanitary processing equipment compatible with CIP and SIP requirements.' },
+      { title: 'Below-New Cost Sourcing', description: 'Production-grade stainless at significant discount to new — appropriate for R&D through production scale.' },
+    ],
+    featuredEquipmentTypes: ['316L Stainless Tanks', 'Fermentation Vessels', 'CIP Systems'],
+    faqs: [
+      { q: 'Do you carry 316L stainless equipment?', a: 'Yes. We specify stainless grade in our listings. Contact us for current inventory on specific configurations.' },
+      { q: 'Can you provide material documentation?', a: 'Where available we provide manufacturer documentation and material certificates. High-spec equipment is listed with available documentation noted.' },
+    ],
+    keywords: ['pharmaceutical processing equipment', 'biotech stainless tanks', '316L stainless tanks for sale', 'pharma grade fermenters', 'stainless vessels pharmaceutical'],
+  },
 ];
 
 export function getIndustryBySlug(slug: string): IndustryPage | undefined {
