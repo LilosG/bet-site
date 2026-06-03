@@ -10,16 +10,18 @@ export interface EquipmentCategory {
   shopifyCollectionUrl: string;
   metaTitle: string;
   metaDescription: string;
-  description: string;           // intro paragraph
-  bodyContent: string;           // 300-400 word SEO copy
+  description: string;
+  bodyContent: string;
   keywords: string[];
   faqs: { q: string; a: string }[];
   priority: 'P0' | 'P1' | 'P2';
+  heroImage?: string;            // optional hero background image path
   featuredItems?: {
     name: string;
     price: string;
     condition: 'Used' | 'New' | 'Refurbished';
     category: string;
+    image?: string;              // optional card image path
   }[];
 }
 
@@ -61,10 +63,29 @@ Whether you are scaling a production facility, outfitting a new build, or sourci
       },
     ],
     priority: 'P0',
+    heroImage: '/images/brewhouse-hero.webp',
     featuredItems: [
-      { name: '20 BBL 2-Vessel Steam Brewhouse', price: '$78,500', condition: 'Used', category: 'BREWHOUSE' },
-      { name: '15 BBL 3-Vessel Direct Fire System', price: '$52,000', condition: 'Used', category: 'BREWHOUSE' },
-      { name: '7 BBL Electric 2-Vessel Pilot System', price: '$24,500', condition: 'Used', category: 'BREWHOUSE' },
+      {
+        name: '20 BBL 2-Vessel Steam Brewhouse',
+        price: '$78,500',
+        condition: 'Used',
+        category: 'BREWHOUSE',
+        image: '/images/brewhouse-20bbl-steam.webp',
+      },
+      {
+        name: '15 BBL 3-Vessel Direct Fire System',
+        price: '$52,000',
+        condition: 'Used',
+        category: 'BREWHOUSE',
+        image: '/images/brewhouse-15bbl-direct.webp',
+      },
+      {
+        name: '7 BBL Electric 2-Vessel Pilot System',
+        price: '$24,500',
+        condition: 'Used',
+        category: 'BREWHOUSE',
+        image: '/images/brewhouse-7bbl-electric.webp',
+      },
     ],
   },
   {
@@ -101,9 +122,9 @@ All fermentation vessels can be shipped nationwide. Rigging and installation ser
     ],
     priority: 'P0',
     featuredItems: [
-      { name: '60 BBL Jacketed Unitank', price: '$24,900', condition: 'Used', category: 'FERMENTER' },
-      { name: '30 BBL Conical Fermenter', price: '$18,500', condition: 'Used', category: 'FERMENTER' },
-      { name: '15 BBL Brite Tank', price: '$9,800', condition: 'Used', category: 'BRITE TANK' },
+      { name: '60 BBL Jacketed Unitank',    price: '$24,900', condition: 'Used', category: 'FERMENTER' },
+      { name: '30 BBL Conical Fermenter',   price: '$18,500', condition: 'Used', category: 'FERMENTER' },
+      { name: '15 BBL Brite Tank',          price: '$9,800',  condition: 'Used', category: 'BRITE TANK' },
     ],
   },
   {
@@ -140,9 +161,9 @@ All equipment ships nationwide. Rigging, installation, and commissioning service
     ],
     priority: 'P1',
     featuredItems: [
-      { name: 'Wild Goose WGC-250 Canning Line', price: '$112,000', condition: 'New', category: 'CANNING LINE' },
-      { name: 'Semi-Auto Crowler Machine', price: '$4,200', condition: 'Used', category: 'CROWLER' },
-      { name: 'TriPack LSA 160 Shrink Sleeve Applicator', price: '$14,000', condition: 'Used', category: 'PACKAGING' },
+      { name: 'Wild Goose WGC-250 Canning Line',           price: '$112,000', condition: 'New',  category: 'CANNING LINE' },
+      { name: 'Semi-Auto Crowler Machine',                  price: '$4,200',   condition: 'Used', category: 'CROWLER' },
+      { name: 'TriPack LSA 160 Shrink Sleeve Applicator',  price: '$14,000',  condition: 'Used', category: 'PACKAGING' },
     ],
   },
   {
