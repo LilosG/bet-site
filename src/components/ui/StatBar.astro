@@ -1,8 +1,9 @@
 ---
 /**
  * StatBar — Key metrics strip.
- * Use standalone prop to control whether it wraps its own container.
- * When standalone=false (default inside other layouts), no container wrapping.
+ * standalone=true (default): full-width section with container.
+ * standalone=false: inline variant for use inside other layouts.
+ * All content from data layer — zero hardcoding.
  */
 import { STATS } from '../../data/site';
 
@@ -16,9 +17,9 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
 ---
 
 {standalone ? (
-  <div class={`stat-bar ${light ? 'stat-bar--light' : ''}`} aria-label="Key statistics">
+  <div class={`stat-bar${light ? ' stat-bar-light' : ''}`} aria-label="Key statistics">
     <div class="container stat-bar-inner">
-      {stats.map((stat, i) => (
+      {stats.map((stat) => (
         <div class="stat-item">
           <span class="stat-value">{stat.value}</span>
           <span class="stat-label">{stat.label}</span>
@@ -27,8 +28,8 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
     </div>
   </div>
 ) : (
-  <div class={`stat-bar-inline ${light ? 'stat-bar--light' : ''}`} aria-label="Key statistics">
-    {stats.map((stat, i) => (
+  <div class={`stat-bar-inline${light ? ' stat-bar-light' : ''}`} aria-label="Key statistics">
+    {stats.map((stat) => (
       <div class="stat-item">
         <span class="stat-value">{stat.value}</span>
         <span class="stat-label">{stat.label}</span>
@@ -38,7 +39,7 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
 )}
 
 <style>
-  /* Standalone — full-width band */
+  /* ─── Standalone — full-width band ──────────── */
   .stat-bar {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -46,12 +47,17 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
     padding: 2rem 0;
   }
 
+  .stat-bar-light {
+    background: var(--color-bg-light-2);
+    border-color: rgba(0,0,0,0.07);
+  }
+
   .stat-bar-inner {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
 
-  /* Inline — fits inside a column */
+  /* ─── Inline — fits inside a column ─────────── */
   .stat-bar-inline {
     display: flex;
     gap: 0;
@@ -73,6 +79,7 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
     margin-right: 0;
   }
 
+  /* ─── Stat item ──────────────────────────────── */
   .stat-item {
     display: flex;
     flex-direction: column;
@@ -91,6 +98,7 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
     background: var(--color-border);
   }
 
+  /* ─── Values ─────────────────────────────────── */
   .stat-value {
     font-family: var(--font-display);
     font-size: clamp(1.75rem, 3vw, 2.5rem);
@@ -100,7 +108,9 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
     letter-spacing: -0.02em;
   }
 
-  .stat-bar--light .stat-value { color: #0B0C0F; }
+  .stat-bar-light .stat-value {
+    color: var(--color-bg);
+  }
 
   .stat-label {
     font-family: var(--font-ui);
@@ -112,8 +122,11 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
     margin-top: 0.3rem;
   }
 
-  .stat-bar--light .stat-label { color: #6B7280; }
+  .stat-bar-light .stat-label {
+    color: var(--color-text-muted);
+  }
 
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 640px) {
     .stat-bar-inner {
       grid-template-columns: 1fr 1fr;

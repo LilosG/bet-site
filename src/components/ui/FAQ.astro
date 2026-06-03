@@ -1,7 +1,8 @@
 ---
 /**
- * FAQ Accordion — Accessible, CSS-only accordion.
- * Injects FAQPage schema via slot. All FAQ pages use this.
+ * FAQ Accordion — Accessible details/summary accordion.
+ * Default: dark context. Pass light={true} for light sections.
+ * All content passed via props — zero hardcoding.
  */
 export interface Props {
   items: { q: string; a: string }[];
@@ -12,7 +13,10 @@ export interface Props {
 const { items, heading = 'Frequently Asked Questions', light = false } = Astro.props;
 ---
 
-<section class={`faq-section section-y ${light ? 'bg-light' : ''}`} aria-labelledby="faq-heading">
+<section
+  class={`faq-section section-y${light ? ' faq-light' : ' faq-dark'}`}
+  aria-labelledby="faq-heading"
+>
   <div class="container faq-inner">
     <div class="faq-header">
       <span class="eyebrow">FAQ</span>
@@ -20,9 +24,9 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
     </div>
 
     <div class="faq-list" role="list">
-      {items.map((item, i) => (
+      {items.map((item) => (
         <details class="faq-item" role="listitem">
-          <summary class="faq-question" aria-expanded="false">
+          <summary class="faq-question">
             <span>{item.q}</span>
             <span class="faq-icon" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -40,6 +44,18 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
 </section>
 
 <style>
+  /* ─── Section backgrounds ────────────────────── */
+  .faq-dark {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-light {
+    background: var(--color-bg-light);
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* ─── Layout ─────────────────────────────────── */
   .faq-inner {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -56,6 +72,19 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
     margin-top: 0;
   }
 
+  .faq-light .faq-header h2 {
+    color: var(--color-bg);
+  }
+
+  .faq-light .eyebrow {
+    color: var(--color-teal);
+  }
+
+  .faq-light .eyebrow::before {
+    background: var(--color-teal);
+  }
+
+  /* ─── List ───────────────────────────────────── */
   .faq-list {
     display: flex;
     flex-direction: column;
@@ -70,6 +99,15 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
     border-top: 1px solid var(--color-border);
   }
 
+  .faq-light .faq-item {
+    border-color: rgba(0,0,0,0.08);
+  }
+
+  .faq-light .faq-item:first-child {
+    border-color: rgba(0,0,0,0.08);
+  }
+
+  /* ─── Question ───────────────────────────────── */
   .faq-question {
     display: flex;
     align-items: center;
@@ -86,14 +124,26 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
     user-select: none;
   }
 
-  .faq-question::-webkit-details-marker {
-    display: none;
-  }
+  .faq-question::-webkit-details-marker { display: none; }
 
   .faq-question:hover {
     color: var(--color-gold);
   }
 
+  details[open] .faq-question {
+    color: var(--color-gold);
+  }
+
+  .faq-light .faq-question {
+    color: var(--color-bg);
+  }
+
+  .faq-light .faq-question:hover,
+  .faq-light details[open] .faq-question {
+    color: var(--color-teal);
+  }
+
+  /* ─── Icon ───────────────────────────────────── */
   .faq-icon {
     flex-shrink: 0;
     color: var(--color-text-subtle);
@@ -104,10 +154,7 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
     transform: rotate(180deg);
   }
 
-  details[open] .faq-question {
-    color: var(--color-gold);
-  }
-
+  /* ─── Answer ─────────────────────────────────── */
   .faq-answer {
     padding: 0 0 1.25rem;
     max-width: 68ch;
@@ -120,24 +167,11 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
     line-height: 1.75;
   }
 
-  /* Light variant */
-  .bg-light .faq-question {
-    color: #0B0C0F;
-  }
-
-  .bg-light .faq-question:hover,
-  .bg-light details[open] .faq-question {
-    color: var(--color-teal);
-  }
-
-  .bg-light .faq-item {
-    border-color: rgba(0,0,0,0.08);
-  }
-
-  .bg-light .faq-answer p {
+  .faq-light .faq-answer p {
     color: #374151;
   }
 
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 768px) {
     .faq-inner {
       grid-template-columns: 1fr;

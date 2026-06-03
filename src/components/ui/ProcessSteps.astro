@@ -1,9 +1,9 @@
 ---
 /**
  * ProcessSteps.astro
- * Renders a numbered process timeline from data.
- * Used on all service detail pages.
- * All content passed in — zero hardcoding.
+ * Numbered process timeline. Used on all service detail pages.
+ * All content passed via props — zero hardcoding.
+ * Default: dark context. Pass light={true} for light sections.
  */
 export interface Step {
   step: number;
@@ -26,7 +26,10 @@ const {
 } = Astro.props;
 ---
 
-<section class={`process-section section-y ${light ? 'bg-light' : 'bg-dark-2'}`} aria-labelledby="process-heading">
+<section
+  class={`process-section section-y${light ? ' process-light' : ' process-dark'}`}
+  aria-labelledby="process-heading"
+>
   <div class="container">
     <div class="process-header">
       <span class="eyebrow">{eyebrow}</span>
@@ -51,6 +54,20 @@ const {
 </section>
 
 <style>
+  /* ─── Section backgrounds ────────────────────── */
+  .process-dark {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .process-light {
+    background: var(--color-bg-light);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* ─── Header ─────────────────────────────────── */
   .process-header {
     margin-bottom: 3rem;
   }
@@ -59,11 +76,19 @@ const {
     margin: 0.3rem 0 0;
   }
 
-  /* Dark variant */
-  .bg-dark-2 .process-header h2 {
-    color: var(--color-white);
+  .process-light .process-header h2 {
+    color: var(--color-bg);
   }
 
+  .process-light .eyebrow {
+    color: var(--color-teal);
+  }
+
+  .process-light .eyebrow::before {
+    background: var(--color-teal);
+  }
+
+  /* ─── Steps grid ─────────────────────────────── */
   .process-steps {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -82,7 +107,7 @@ const {
     padding-right: 1.5rem;
   }
 
-  /* Connector line between steps */
+  /* ─── Connector line ─────────────────────────── */
   .step-connector {
     position: absolute;
     top: 1.375rem;
@@ -92,11 +117,15 @@ const {
     background: var(--color-border);
   }
 
+  .process-light .step-connector {
+    background: rgba(0,0,0,0.1);
+  }
+
   .process-step:last-child .step-connector {
     display: none;
   }
 
-  /* Number circle */
+  /* ─── Number circle ──────────────────────────── */
   .step-number {
     width: 2.75rem;
     height: 2.75rem;
@@ -120,20 +149,16 @@ const {
     letter-spacing: 0.04em;
   }
 
-  /* Light variant number */
-  .bg-light .step-number {
-    background: #fff;
+  .process-light .step-number {
+    background: var(--color-white);
     border-color: var(--color-teal);
   }
 
-  .bg-light .step-number span {
+  .process-light .step-number span {
     color: var(--color-teal);
   }
 
-  .bg-light .step-connector {
-    background: rgba(0,0,0,0.1);
-  }
-
+  /* ─── Step content ───────────────────────────── */
   .step-content {
     padding-right: 0.5rem;
   }
@@ -147,8 +172,8 @@ const {
     line-height: 1.3;
   }
 
-  .bg-light .step-title {
-    color: #0B0C0F;
+  .process-light .step-title {
+    color: var(--color-bg);
   }
 
   .step-desc {
@@ -158,18 +183,17 @@ const {
     margin: 0;
   }
 
-  .bg-light .step-desc {
+  .process-light .step-desc {
     color: #374151;
   }
 
-  /* ─── Responsive ─────────────────────────── */
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1100px) {
     .process-steps {
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem 0;
     }
 
-    /* Hide connector on row-end items */
     .process-step:nth-child(3n) .step-connector {
       display: none;
     }
@@ -189,10 +213,7 @@ const {
       align-items: flex-start;
     }
 
-    /* Vertical connector for mobile */
-    .step-connector {
-      display: none;
-    }
+    .step-connector { display: none; }
 
     .process-step::after {
       content: '';
@@ -204,9 +225,11 @@ const {
       background: var(--color-border);
     }
 
-    .process-step:last-child::after {
-      display: none;
+    .process-light .process-step::after {
+      background: rgba(0,0,0,0.1);
     }
+
+    .process-step:last-child::after { display: none; }
 
     .step-number {
       flex-shrink: 0;

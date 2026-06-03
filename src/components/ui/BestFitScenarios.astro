@@ -1,14 +1,14 @@
 ---
 /**
  * BestFitScenarios.astro
- * Renders "Is this right for me?" use case cards from data.
- * Used on all service detail pages.
- * All content passed in — zero hardcoding.
+ * Use case cards for service pages.
+ * All content passed via props — zero hardcoding.
+ * Default: dark context. Pass light={true} for light sections.
  */
 export interface Scenario {
   title: string;
   description: string;
-  icon: string; // SVG path data
+  icon: string;
 }
 
 export interface Props {
@@ -28,7 +28,10 @@ const {
 } = Astro.props;
 ---
 
-<section class={`scenarios-section section-y ${light ? 'bg-light' : ''}`} aria-labelledby="scenarios-heading">
+<section
+  class={`scenarios-section section-y${light ? ' scenarios-light' : ' scenarios-dark'}`}
+  aria-labelledby="scenarios-heading"
+>
   <div class="container">
     <div class="scenarios-header">
       <div>
@@ -62,6 +65,20 @@ const {
 </section>
 
 <style>
+  /* ─── Section backgrounds ────────────────────── */
+  .scenarios-dark {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .scenarios-light {
+    background: var(--color-bg-light);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  /* ─── Header ─────────────────────────────────── */
   .scenarios-header {
     display: flex;
     align-items: flex-end;
@@ -74,15 +91,23 @@ const {
     margin: 0.3rem 0 0;
   }
 
+  .scenarios-light .scenarios-header h2 {
+    color: var(--color-bg);
+  }
+
+  .scenarios-light .eyebrow {
+    color: var(--color-teal);
+  }
+
+  .scenarios-light .eyebrow::before {
+    background: var(--color-teal);
+  }
+
   .scenarios-header-cta {
     flex-shrink: 0;
   }
 
-  /* Dark variant */
-  :not(.bg-light) .scenarios-header h2 {
-    color: var(--color-white);
-  }
-
+  /* ─── Cards ──────────────────────────────────── */
   .scenarios-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -102,16 +127,16 @@ const {
     transform: translateY(-2px);
   }
 
-  /* Light variant */
-  .bg-light .scenario-card {
-    background: #fff;
+  .scenarios-light .scenario-card {
+    background: var(--color-white);
     border-color: rgba(0,0,0,0.08);
   }
 
-  .bg-light .scenario-card:hover {
+  .scenarios-light .scenario-card:hover {
     border-color: var(--color-teal);
   }
 
+  /* ─── Icon ───────────────────────────────────── */
   .scenario-icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -123,13 +148,20 @@ const {
     justify-content: center;
     margin-bottom: 1rem;
     flex-shrink: 0;
+    transition: background var(--transition-smooth);
   }
 
-  .bg-light .scenario-icon {
-    background: rgba(13,148,136,0.1);
+  .scenario-card:hover .scenario-icon {
+    background: var(--color-teal-dim);
     color: var(--color-teal);
   }
 
+  .scenarios-light .scenario-icon {
+    background: var(--color-teal-dim);
+    color: var(--color-teal);
+  }
+
+  /* ─── Text ───────────────────────────────────── */
   .scenario-title {
     font-family: var(--font-display);
     font-size: 1.125rem;
@@ -137,10 +169,19 @@ const {
     color: var(--color-white);
     margin: 0 0 0.625rem;
     line-height: 1.25;
+    transition: color var(--transition-base);
   }
 
-  .bg-light .scenario-title {
-    color: #0B0C0F;
+  .scenario-card:hover .scenario-title {
+    color: var(--color-gold);
+  }
+
+  .scenarios-light .scenario-title {
+    color: var(--color-bg);
+  }
+
+  .scenarios-light .scenario-card:hover .scenario-title {
+    color: var(--color-teal);
   }
 
   .scenario-desc {
@@ -150,22 +191,17 @@ const {
     margin: 0;
   }
 
-  .bg-light .scenario-desc {
+  .scenarios-light .scenario-desc {
     color: #374151;
   }
 
-  /* ─── Responsive ─────────────────────────── */
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
-    .scenarios-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .scenarios-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 640px) {
-    .scenarios-grid {
-      grid-template-columns: 1fr;
-    }
-
+    .scenarios-grid { grid-template-columns: 1fr; }
     .scenarios-header {
       flex-direction: column;
       align-items: flex-start;

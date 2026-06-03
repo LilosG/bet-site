@@ -1,8 +1,7 @@
 ---
 /**
  * Equipment Category Page — /equipment/[slug]
- * Money page for each equipment category.
- * Pulls all content from central data layer.
+ * Category landing page. All content from central data layer.
  * Links to Shopify for live inventory.
  */
 import Layout from '../../layouts/Layout.astro';
@@ -10,9 +9,8 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import EquipmentCard from '../../components/ui/EquipmentCard.astro';
 import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
-import { EQUIPMENT_CATEGORIES, getCategoryBySlug } from '../../data/equipment';
+import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema, faqSchema, productCategorySchema } from '../../lib/schema';
-import { SITE } from '../../data/site';
 
 export async function getStaticPaths() {
   return EQUIPMENT_CATEGORIES.map((cat) => ({
@@ -49,7 +47,7 @@ const schemas = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Page Hero -->
+  <!-- ═══ HERO ══════════════════════════════════ -->
   <section class="eq-hero">
     <div class="container">
       <span class="eyebrow">Equipment Category</span>
@@ -69,7 +67,6 @@ const schemas = [
           Get a Rigging Quote
         </a>
       </div>
-      <!-- Trust chips -->
       <div class="eq-trust-chips" aria-label="Service highlights">
         {['Ships Nationwide', 'Rigging Available', 'Prior Brewery Owners', 'San Marcos, CA'].map((chip) => (
           <span class="trust-chip">{chip}</span>
@@ -78,15 +75,17 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Body Content -->
-  <section class="bg-light section-y" aria-labelledby="eq-content-heading">
+  <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
+  <section class="eq-body-band section-y" aria-labelledby="eq-content-heading">
     <div class="container eq-content-inner">
-      <div class="eq-prose prose">
+
+      <div class="prose eq-prose">
         <h2 id="eq-content-heading">{cat.h1.replace('For Sale', '').trim()} — Operator Perspective</h2>
         {cat.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
       </div>
+
       <aside class="eq-sidebar">
         <div class="eq-sidebar-card">
           <h3>Quick Contact</h3>
@@ -109,10 +108,11 @@ const schemas = [
           </ul>
         </div>
       </aside>
+
     </div>
   </section>
 
-  <!-- Featured Inventory -->
+  <!-- ═══ FEATURED INVENTORY ═════════════════════ -->
   {cat.featuredItems && cat.featuredItems.length > 0 && (
     <section class="section-y" aria-labelledby="featured-eq-heading">
       <div class="container">
@@ -157,7 +157,7 @@ const schemas = [
     </section>
   )}
 
-  <!-- Rigging CTA Strip -->
+  <!-- ═══ RIGGING CTA ════════════════════════════ -->
   <CtaStrip
     heading="Need it moved, installed, and commissioned?"
     subtext="We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational."
@@ -167,15 +167,16 @@ const schemas = [
     secondaryHref="/services/rigging"
   />
 
-  <!-- FAQ -->
+  <!-- ═══ FAQ ════════════════════════════════════ -->
   <FAQ
     items={cat.faqs}
     heading={`${cat.title} — Frequently Asked Questions`}
   />
+
 </Layout>
 
 <style>
-  /* Hero */
+  /* ─── Hero ───────────────────────────────────── */
   .eq-hero {
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
@@ -217,7 +218,12 @@ const schemas = [
     padding: 0.2rem 0.6rem;
   }
 
-  /* Body content + sidebar */
+  /* ─── Body + Sidebar ─────────────────────────── */
+  .eq-body-band {
+    background: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .eq-content-inner {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -225,18 +231,12 @@ const schemas = [
     align-items: start;
   }
 
-  .eq-prose h2 {
-    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
-    color: #0B0C0F;
-    margin-bottom: 1.25rem;
-    margin-top: 0;
-  }
-
   .eq-sidebar-card {
-    background: #0B0C0F;
-    border-radius: 4px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-md);
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .eq-sidebar-card h3 {
@@ -267,8 +267,9 @@ const schemas = [
   .eq-phone-link:hover { color: var(--color-gold-light); }
 
   .eq-sidebar-links {
-    background: #f0ede8;
-    border-radius: 4px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     padding: 1.25rem 1.5rem;
   }
 
@@ -278,7 +279,7 @@ const schemas = [
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6B7280;
+    color: var(--color-gold);
     margin: 0 0 0.75rem;
   }
 
@@ -293,14 +294,14 @@ const schemas = [
 
   .eq-sidebar-links a {
     font-size: 0.875rem;
-    color: #374151;
+    color: var(--color-text-muted);
     text-decoration: none;
     transition: color var(--transition-base);
   }
 
   .eq-sidebar-links a:hover { color: var(--color-teal); }
 
-  /* Featured cards */
+  /* ─── Featured Cards ─────────────────────────── */
   .eq-section-header {
     display: flex;
     align-items: flex-end;
@@ -341,13 +342,22 @@ const schemas = [
     border-top: 1px solid var(--color-border);
   }
 
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
     .eq-content-inner {
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
-    .eq-sidebar { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-    .eq-sidebar-card, .eq-sidebar-links { flex: 1; min-width: 240px; }
+    .eq-sidebar {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .eq-sidebar-card,
+    .eq-sidebar-links {
+      flex: 1;
+      min-width: 240px;
+    }
     .eq-cards-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
