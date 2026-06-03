@@ -55,6 +55,9 @@ export const GEO = {
 } as const;
 
 // ─── Navigation ───────────────────────────────
+// NavChild supports an optional `group` label.
+// When consecutive children share a group, the Header renders
+// a section label before the first child in that group.
 export const NAV = {
   primary: [
     {
@@ -87,31 +90,31 @@ export const NAV = {
       label: 'Industries',
       href: '/industries',
       children: [
-        { label: 'Craft Breweries',      href: '/industries/craft-brewery' },
-        { label: 'Craft Distilleries',   href: '/industries/distillery' },
-        { label: 'Cideries & Meaderies', href: '/industries/cidery' },
-        { label: 'Beverage Producers',   href: '/industries/beverage-production' },
-        { label: 'Hard Seltzer',         href: '/industries/hard-seltzer' },
-        { label: 'Food Processing',      href: '/industries/food-processing' },
-        { label: 'Dairy Processing',     href: '/industries/dairy-processing' },
-        { label: 'Pharma & Biotech',     href: '/industries/pharmaceutical' },
+        { label: 'Craft Breweries',      href: '/industries/craft-brewery',        group: 'Beverage & Spirits' },
+        { label: 'Craft Distilleries',   href: '/industries/distillery',           group: 'Beverage & Spirits' },
+        { label: 'Cideries & Meaderies', href: '/industries/cidery',               group: 'Beverage & Spirits' },
+        { label: 'Hard Seltzer',         href: '/industries/hard-seltzer',         group: 'Beverage & Spirits' },
+        { label: 'Beverage Producers',   href: '/industries/beverage-production',  group: 'Beverage & Spirits' },
+        { label: 'Food Processing',      href: '/industries/food-processing',      group: 'Industrial & Processing' },
+        { label: 'Dairy Processing',     href: '/industries/dairy-processing',     group: 'Industrial & Processing' },
+        { label: 'Pharma & Biotech',     href: '/industries/pharmaceutical',       group: 'Industrial & Processing' },
       ],
     },
     {
       label: 'Service Areas',
       href: '/locations',
       children: [
-        { label: 'San Diego, CA',    href: '/locations/local/san-diego' },
-        { label: 'San Marcos, CA',   href: '/locations/local/san-marcos' },
-        { label: 'Los Angeles, CA',  href: '/locations/local/los-angeles' },
-        { label: 'Orange County, CA',href: '/locations/local/orange-county' },
-        { label: 'Riverside, CA',    href: '/locations/local/riverside' },
-        { label: 'Denver, CO',       href: '/locations/national/denver' },
-        { label: 'Portland, OR',     href: '/locations/national/portland' },
-        { label: 'Chicago, IL',      href: '/locations/national/chicago' },
-        { label: 'Austin, TX',       href: '/locations/national/austin' },
-        { label: 'Seattle, WA',      href: '/locations/national/seattle' },
-        { label: 'Nashville, TN',    href: '/locations/national/nashville' },
+        { label: 'San Diego, CA',     href: '/locations/local/san-diego' },
+        { label: 'San Marcos, CA',    href: '/locations/local/san-marcos' },
+        { label: 'Los Angeles, CA',   href: '/locations/local/los-angeles' },
+        { label: 'Orange County, CA', href: '/locations/local/orange-county' },
+        { label: 'Riverside, CA',     href: '/locations/local/riverside' },
+        { label: 'Denver, CO',        href: '/locations/national/denver' },
+        { label: 'Portland, OR',      href: '/locations/national/portland' },
+        { label: 'Chicago, IL',       href: '/locations/national/chicago' },
+        { label: 'Austin, TX',        href: '/locations/national/austin' },
+        { label: 'Seattle, WA',       href: '/locations/national/seattle' },
+        { label: 'Nashville, TN',     href: '/locations/national/nashville' },
       ],
     },
     { label: 'Auctions', href: '/services/auctions' },
