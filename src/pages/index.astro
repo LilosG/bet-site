@@ -1,6 +1,8 @@
 ---
 /**
  * Homepage — beverageequipmenttraders.com
+ * All data from centralized data layer.
+ * All components centralized — zero inline duplication.
  */
 import Layout from '../layouts/Layout.astro';
 import TrustBar from '../components/ui/TrustBar.astro';
@@ -52,13 +54,11 @@ const schemas = [
   schemas={schemas}
 >
 
-  <!-- ═══ HERO ═══════════════════════════════ -->
+  <!-- ═══ HERO ═══════════════════════════════════ -->
   <section class="hero" aria-label="Hero">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-inner">
-
       <div class="hero-content">
-        <!-- Live badge -->
         <div class="hero-badge animate-fade-up">
           <span class="hero-badge-dot" aria-hidden="true"></span>
           <span>Live Inventory</span>
@@ -93,7 +93,6 @@ const schemas = [
           </a>
         </div>
 
-        <!-- Hero stats -->
         <div class="hero-stats animate-fade-up delay-400" aria-label="Key statistics">
           <div class="hero-stat">
             <span class="hero-stat-val">40K</span>
@@ -111,18 +110,14 @@ const schemas = [
           </div>
         </div>
       </div>
-
-      <!-- Hero card -->
-
-
     </div>
   </section>
 
   <!-- Trust bar -->
   <TrustBar />
 
-  <!-- ═══ FEATURED INVENTORY ══════════════════ -->
-  <section class="section-y featured-inventory-section" aria-labelledby="featured-heading">
+  <!-- ═══ FEATURED INVENTORY ══════════════════════ -->
+  <section class="section-y featured-band" aria-labelledby="featured-heading">
     <div class="container">
       <div class="section-header">
         <div>
@@ -153,7 +148,6 @@ const schemas = [
         ))}
       </div>
 
-      <!-- Category pills -->
       <div class="category-pills" aria-label="Browse by equipment category">
         {EQUIPMENT_CATEGORIES.map((cat) => (
           <a href={`/equipment/${cat.slug}`} class="category-pill">
@@ -164,7 +158,7 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ═══ SERVICES ═════════════════════════════ -->
+  <!-- ═══ SERVICES ════════════════════════════════ -->
   <section class="section-y services-band" aria-labelledby="services-heading">
     <div class="container">
       <div class="section-header">
@@ -172,6 +166,10 @@ const schemas = [
           <span class="eyebrow">02 · One Partner</span>
           <h2 id="services-heading">From sourcing to start-up.</h2>
         </div>
+        <a href="/services" class="section-link">
+          All Services
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
       <div class="services-grid">
         {SERVICES.map((service, i) => (
@@ -187,16 +185,14 @@ const schemas = [
     </div>
   </section>
 
-
-
-  <!-- ═══ WHY BET ════════════════════════════ -->
+  <!-- ═══ WHY BET ══════════════════════════════════ -->
   <section class="section-y" aria-labelledby="why-heading">
     <div class="container why-inner">
       <div class="why-media">
         <div class="why-img-wrap">
           <img
             src="/images/hero-brewhouse.webp"
-            alt="BET brewhouse with grist case"
+            alt="BET brewhouse facility — San Marcos, CA"
             class="why-img"
             loading="lazy"
             decoding="async"
@@ -237,7 +233,7 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ═══ RIGGING PROOF ════════════════════════ -->
+  <!-- ═══ RIGGING PROOF ════════════════════════════ -->
   <section class="section-y rigging-band" aria-labelledby="rigging-heading">
     <div class="container">
       <div class="section-header">
@@ -252,19 +248,32 @@ const schemas = [
       </div>
       <div class="rigging-grid">
         <div class="rigging-img-wrap">
-          <img src="/images/rigging-loaded-truck.webp" alt="Brewery tanks loaded on flatbed truck" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
+          <img src="/images/rigging-loaded-truck.webp" alt="Brewery tanks loaded on flatbed truck for transport" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
         </div>
         <div class="rigging-img-wrap">
           <img src="/images/rigging-fermenters-transport.webp" alt="Fermentation vessels being transported" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
         </div>
         <div class="rigging-img-wrap">
-          <img src="/images/rigging-forklift-install.webp" alt="Forklift rigging a 20 BBL fermenter through a storefront" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
+          <img src="/images/rigging-forklift-install.webp" alt="Forklift rigging a fermenter during installation" loading="lazy" decoding="async" width="800" height="500" class="rigging-img" />
         </div>
+      </div>
+      <div class="rigging-proof-strip">
+        {[
+          { val: 'All 50 States',        detail: 'Bonded freight nationwide' },
+          { val: 'One Quote',            detail: 'Equipment + freight + install' },
+          { val: '1–2 Week',             detail: 'Local SoCal turnaround' },
+          { val: 'Operator Crews',       detail: 'Prior brewery experience' },
+        ].map((item) => (
+          <div class="rigging-proof-item">
+            <span class="rigging-proof-val">{item.val}</span>
+            <span class="rigging-proof-detail">{item.detail}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- ═══ NATIONAL REACH ═══════════════════════ -->
+  <!-- ═══ NATIONAL REACH ═══════════════════════════ -->
   <section class="national-band" aria-labelledby="national-heading">
     <div class="container national-inner">
       <div class="national-content">
@@ -279,7 +288,7 @@ const schemas = [
         </p>
         <div class="national-cities">
           {['Denver', 'Portland', 'Chicago', 'Austin', 'Seattle', 'Nashville'].map((city) => (
-            <span class="national-city">{city}</span>
+            <a href={`/locations/national/${city.toLowerCase()}`} class="national-city">{city}</a>
           ))}
         </div>
       </div>
@@ -292,8 +301,8 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ═══ FINAL CTA ════════════════════════════ -->
-  <section class="section-y" aria-labelledby="final-cta-heading">
+  <!-- ═══ FINAL CTA ════════════════════════════════ -->
+  <section class="section-y final-cta-section" aria-labelledby="final-cta-heading">
     <div class="container final-cta">
       <span class="eyebrow eyebrow-center">Ready to Move Fast</span>
       <h2 id="final-cta-heading">Get a verified quote in 24 hours.</h2>
@@ -311,7 +320,7 @@ const schemas = [
 </Layout>
 
 <style>
-  /* ═══ HERO ══════════════════════════════════ */
+  /* ═══ HERO ══════════════════════════════════════ */
   .hero {
     position: relative;
     overflow: hidden;
@@ -348,7 +357,6 @@ const schemas = [
 
   .hero-content { max-width: 600px; grid-column: 1; }
 
-  /* Badge */
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -376,7 +384,6 @@ const schemas = [
 
   .hero-sep { color: var(--color-text-subtle); }
 
-  /* H1 */
   .hero-h1 {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 700;
@@ -402,7 +409,6 @@ const schemas = [
     margin-bottom: 2.25rem;
   }
 
-  /* Stats */
   .hero-stats {
     display: flex;
     align-items: center;
@@ -416,10 +422,6 @@ const schemas = [
     padding: 0 1.5rem 0 0;
     margin-right: 1.5rem;
     position: relative;
-  }
-
-  .hero-stat + .hero-stat-div + .hero-stat {
-    padding-left: 0;
   }
 
   .hero-stat-val {
@@ -450,9 +452,7 @@ const schemas = [
     margin-right: 1.5rem;
   }
 
-
-
-  /* ═══ SHARED SECTION ELEMENTS ═══════════════ */
+  /* ═══ SHARED SECTION ELEMENTS ═══════════════════ */
   .section-header {
     display: flex;
     align-items: flex-end;
@@ -478,7 +478,12 @@ const schemas = [
 
   .section-link:hover { color: var(--color-gold); gap: 0.55rem; }
 
-  /* ═══ CARDS GRIDS ════════════════════════════ */
+  /* ═══ FEATURED INVENTORY ════════════════════════ */
+  .featured-band {
+    background: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .cards-grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -486,7 +491,6 @@ const schemas = [
     margin-bottom: 1.75rem;
   }
 
-  /* ═══ CATEGORY PILLS ════════════════════════ */
   .category-pills {
     display: flex;
     gap: 0.5rem;
@@ -500,11 +504,11 @@ const schemas = [
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--color-text-muted);
-    background: var(--color-bg-2);
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: 100px;
     padding: 0.3rem 0.875rem;
-    transition: all var(--transition-base);
+    transition: color var(--transition-base), border-color var(--transition-base), background var(--transition-base);
   }
 
   .category-pill:hover {
@@ -513,7 +517,7 @@ const schemas = [
     background: var(--color-gold-dim);
   }
 
-  /* ═══ SERVICES ═══════════════════════════════ */
+  /* ═══ SERVICES ══════════════════════════════════ */
   .services-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -526,7 +530,7 @@ const schemas = [
     gap: 1.125rem;
   }
 
-  /* ═══ WHY BET ════════════════════════════════ */
+  /* ═══ WHY BET ════════════════════════════════════ */
   .why-inner {
     display: grid;
     grid-template-columns: 400px 1fr;
@@ -536,10 +540,11 @@ const schemas = [
 
   .why-img-wrap {
     position: relative;
-    border-radius: 6px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     aspect-ratio: 3/4;
     max-height: 580px;
+    border: 1px solid var(--color-border);
   }
 
   .why-img {
@@ -586,11 +591,6 @@ const schemas = [
     margin: 1.5rem 0;
   }
 
-  .featured-inventory-section {
-    background: var(--color-bg-2);
-    border-bottom: 1px solid var(--color-border);
-  }
-
   .why-ctas {
     display: flex;
     gap: 0.875rem;
@@ -598,18 +598,26 @@ const schemas = [
     flex-wrap: wrap;
   }
 
-  /* ═══ RIGGING GRID ═══════════════════════════ */
+  /* ═══ RIGGING ════════════════════════════════════ */
+  .rigging-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .rigging-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.125rem;
+    margin-bottom: 1.75rem;
   }
 
   .rigging-img-wrap {
-    border-radius: 5px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     aspect-ratio: 16/10;
     background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
   }
 
   .rigging-img {
@@ -617,13 +625,52 @@ const schemas = [
     height: 100%;
     object-fit: cover;
     transition: transform 400ms ease;
+    display: block;
   }
 
   .rigging-img-wrap:hover .rigging-img { transform: scale(1.04); }
 
-  /* ═══ NATIONAL ═══════════════════════════════ */
+  .rigging-proof-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .rigging-proof-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem 1.5rem;
+    border-right: 1px solid var(--color-border-gold);
+    background: var(--color-bg-card);
+    transition: background var(--transition-base);
+  }
+
+  .rigging-proof-item:last-child { border-right: none; }
+  .rigging-proof-item:hover { background: var(--color-gold-dim); }
+
+  .rigging-proof-val {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .rigging-proof-detail {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  /* ═══ NATIONAL ═══════════════════════════════════ */
   .national-band {
-    background: var(--color-bg-2);
+    background: var(--color-bg);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
     padding: clamp(3rem, 6vw, 5rem) 0;
@@ -631,7 +678,7 @@ const schemas = [
 
   .national-inner {
     display: grid;
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr 220px;
     gap: 4rem;
     align-items: center;
   }
@@ -653,16 +700,24 @@ const schemas = [
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--color-text-muted);
-    background: rgba(255,255,255,0.04);
+    background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: 2px;
     padding: 0.25rem 0.625rem;
     letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color var(--transition-base), border-color var(--transition-base), background var(--transition-base);
+  }
+
+  .national-city:hover {
+    color: var(--color-gold);
+    border-color: var(--color-border-gold);
+    background: var(--color-gold-dim);
   }
 
   .national-circle {
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     border: 1px solid var(--color-border-gold);
     display: flex;
@@ -675,7 +730,7 @@ const schemas = [
 
   .national-circle-num {
     font-family: var(--font-display);
-    font-size: 2.75rem;
+    font-size: 3.5rem;
     font-weight: 800;
     color: var(--color-gold);
     line-height: 1;
@@ -692,7 +747,11 @@ const schemas = [
     margin-top: 0.25rem;
   }
 
-  /* ═══ FINAL CTA ══════════════════════════════ */
+  /* ═══ FINAL CTA ══════════════════════════════════ */
+  .final-cta-section {
+    border-top: 1px solid var(--color-border);
+  }
+
   .final-cta {
     text-align: center;
     max-width: 560px;
@@ -720,36 +779,34 @@ const schemas = [
   .eyebrow-center { justify-content: center; }
   .eyebrow-center::before { display: none; }
 
-  /* ═══ RIGGING BAND ══════════════════════════ */
-  .rigging-band {
-    background: var(--color-bg);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  /* ═══ RESPONSIVE ═════════════════════════════ */
+  /* ═══ RESPONSIVE ═════════════════════════════════ */
   @media (max-width: 1100px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .why-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .why-img-wrap { aspect-ratio: 16/9; max-height: 320px; }
-    .services-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero-inner      { grid-template-columns: 1fr; }
+    .why-inner       { grid-template-columns: 1fr; gap: 3rem; }
+    .why-img-wrap    { aspect-ratio: 16/9; max-height: 320px; }
+    .services-grid   { grid-template-columns: repeat(3, 1fr); }
+    .rigging-proof-strip { grid-template-columns: repeat(2, 1fr); }
+    .rigging-proof-item:nth-child(2) { border-right: none; }
+    .rigging-proof-item:nth-child(1),
+    .rigging-proof-item:nth-child(2) { border-bottom: 1px solid var(--color-border-gold); }
   }
 
   @media (max-width: 900px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .rigging-grid  { grid-template-columns: 1fr 1fr; }
+    .services-grid  { grid-template-columns: repeat(2, 1fr); }
+    .rigging-grid   { grid-template-columns: 1fr 1fr; }
     .national-inner { grid-template-columns: 1fr; }
     .national-circle { display: none; }
   }
 
   @media (max-width: 640px) {
-    .cards-grid-3 { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .rigging-grid  { grid-template-columns: 1fr; }
-    .section-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-    .hero-stats { flex-wrap: wrap; gap: 1rem; }
-    .hero-stat-div { display: none; }
-    .hero-ctas { flex-direction: column; align-items: flex-start; }
+    .cards-grid-3    { grid-template-columns: 1fr; }
+    .services-grid   { grid-template-columns: 1fr; }
+    .rigging-grid    { grid-template-columns: 1fr; }
+    .rigging-proof-strip { grid-template-columns: 1fr 1fr; }
+    .section-header  { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .hero-stats      { flex-wrap: wrap; gap: 1rem; }
+    .hero-stat-div   { display: none; }
+    .hero-ctas       { flex-direction: column; align-items: flex-start; }
     .final-cta-actions { flex-direction: column; }
   }
 
