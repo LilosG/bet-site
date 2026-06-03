@@ -98,7 +98,7 @@ const schemas = [
   </section>
 
   <!-- Equipment Categories -->
-  <section class="bg-light section-y" aria-labelledby="loc-eq-heading">
+  <section class="section-y loc-eq-band" aria-labelledby="loc-eq-heading">
     <div class="container">
       <span class="eyebrow">Equipment Available Near {loc.city}</span>
       <h2 id="loc-eq-heading">Browse by Category</h2>
@@ -106,7 +106,8 @@ const schemas = [
         {EQUIPMENT_CATEGORIES.map((cat) => (
           <a href={`/equipment/${cat.slug}`} class="loc-cat-item">
             <span class="loc-cat-title">{cat.title}</span>
-            <span class="loc-cat-link">Browse
+            <span class="loc-cat-link">
+              Browse
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
@@ -178,12 +179,13 @@ const schemas = [
   .loc-sidebar-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     padding: 1.5rem;
   }
 
   .loc-sidebar-card h3 {
     font-size: 1.0625rem;
+    color: var(--color-white);
     margin: 0 0 0.75rem;
   }
 
@@ -216,13 +218,19 @@ const schemas = [
 
   .loc-phone:hover { color: var(--color-gold-light); }
 
-  /* Category grid */
+  /* Equipment category grid — dark theme using tokens */
+  .loc-eq-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .loc-cat-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
     border: 1px solid var(--color-border-gold);
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
     margin-top: 1.5rem;
   }
@@ -239,20 +247,25 @@ const schemas = [
     transition: background var(--transition-base);
   }
 
-  .loc-cat-item:nth-child(4n) { border-right: none; }
+  .loc-cat-item:nth-child(4n)        { border-right: none; }
   .loc-cat-item:nth-last-child(-n+4) { border-bottom: none; }
 
   .loc-cat-item:hover {
-    background: rgba(201,150,58,0.05);
+    background: var(--color-gold-dim);
   }
 
   .loc-cat-title {
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 600;
-    color: #0B0C0F;
+    color: var(--color-white);
     display: block;
     margin-bottom: 0.75rem;
+    transition: color var(--transition-base);
+  }
+
+  .loc-cat-item:hover .loc-cat-title {
+    color: var(--color-gold);
   }
 
   .loc-cat-link {
@@ -263,6 +276,11 @@ const schemas = [
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--color-teal);
+    transition: gap var(--transition-base);
+  }
+
+  .loc-cat-item:hover .loc-cat-link {
+    gap: 0.45rem;
   }
 
   /* Services grid */
@@ -276,8 +294,13 @@ const schemas = [
   .loc-svc-item {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     padding: 1.5rem;
+    transition: border-color var(--transition-smooth);
+  }
+
+  .loc-svc-item:hover {
+    border-color: var(--color-border-gold);
   }
 
   .loc-svc-title {
@@ -304,23 +327,26 @@ const schemas = [
     font-weight: 600;
     color: var(--color-teal);
     text-decoration: none;
-    transition: gap var(--transition-base);
+    transition: gap var(--transition-base), color var(--transition-base);
   }
 
-  .loc-svc-link:hover { gap: 0.5rem; }
+  .loc-svc-link:hover {
+    gap: 0.5rem;
+    color: var(--color-gold);
+  }
 
   @media (max-width: 1024px) {
     .loc-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .loc-cat-grid { grid-template-columns: repeat(2, 1fr); }
-    .loc-cat-item:nth-child(4n) { border-right: 1px solid var(--color-border-gold); }
-    .loc-cat-item:nth-child(2n) { border-right: none; }
+    .loc-cat-item:nth-child(4n)        { border-right: 1px solid var(--color-border-gold); }
+    .loc-cat-item:nth-child(2n)        { border-right: none; }
     .loc-cat-item:nth-last-child(-n+2) { border-bottom: none; }
     .loc-svc-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 640px) {
     .loc-hero-ctas { flex-direction: column; }
-    .loc-cat-grid { grid-template-columns: 1fr 1fr; }
-    .loc-svc-grid { grid-template-columns: 1fr; }
+    .loc-cat-grid  { grid-template-columns: 1fr 1fr; }
+    .loc-svc-grid  { grid-template-columns: 1fr; }
   }
 </style>

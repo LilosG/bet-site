@@ -61,12 +61,12 @@ const schemas = [
             loading="lazy"
             decoding="async"
           />
-          <span class="story-est" style="position:relative;z-index:2;padding:1.5rem 1.5rem 0.25rem;">EST. 2009</span>
-          <span class="story-city" style="position:relative;z-index:2;padding:0 1.5rem 1.5rem;">San Marcos, California</span>
+          <span class="story-est">EST. 2009</span>
+          <span class="story-city">San Marcos, California</span>
         </div>
         <div class="story-address-card">
           <p class="story-address-label">Headquarters</p>
-          <address itemscope itemtype="https://schema.org/PostalAddress" style="font-style:normal;">
+          <address itemscope itemtype="https://schema.org/PostalAddress">
             <span itemprop="streetAddress">{NAP.street}</span><br />
             <span itemprop="addressLocality">{NAP.city}</span>,
             <span itemprop="addressRegion">{NAP.state}</span>
@@ -109,7 +109,7 @@ const schemas = [
   </section>
 
   <!-- What We Do -->
-  <section class="bg-light section-y" aria-labelledby="what-we-do-heading">
+  <section class="section-y what-we-do-band" aria-labelledby="what-we-do-heading">
     <div class="container">
       <span class="eyebrow">What We Do</span>
       <h2 id="what-we-do-heading">The Full Capital Equipment Lifecycle</h2>
@@ -194,7 +194,7 @@ const schemas = [
       </div>
       <div class="visit-map-placeholder" aria-hidden="true">
         <div class="visit-map-inner">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--color-gold);opacity:0.4;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="visit-map-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span>San Marcos, CA</span>
         </div>
       </div>
@@ -245,12 +245,13 @@ const schemas = [
   .story-image-placeholder {
     aspect-ratio: 3/4;
     max-height: 420px;
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     position: relative;
     overflow: hidden;
+    border: 1px solid var(--color-border-gold);
   }
 
   .story-image-placeholder img {
@@ -266,7 +267,7 @@ const schemas = [
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(11,12,15,0.7) 0%, transparent 55%);
+    background: linear-gradient(to top, rgba(11,12,15,0.85) 0%, transparent 55%);
     z-index: 1;
   }
 
@@ -278,7 +279,8 @@ const schemas = [
     letter-spacing: 0.1em;
     text-transform: uppercase;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    padding: 1.5rem 1.5rem 0.25rem;
   }
 
   .story-city {
@@ -287,13 +289,14 @@ const schemas = [
     color: var(--color-text-muted);
     margin-top: 0.2rem;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    padding: 0 1.5rem 1.5rem;
   }
 
   .story-address-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     padding: 1.25rem;
     margin-top: 1rem;
   }
@@ -309,6 +312,7 @@ const schemas = [
   }
 
   .story-address-card address {
+    font-style: normal;
     font-size: 0.875rem;
     color: var(--color-text-muted);
     line-height: 1.7;
@@ -322,7 +326,10 @@ const schemas = [
     color: var(--color-gold);
     text-decoration: none;
     margin-top: 0.75rem;
+    transition: color var(--transition-base);
   }
+
+  .story-phone:hover { color: var(--color-gold-light); }
 
   .story-content h2 {
     max-width: 24ch;
@@ -338,32 +345,53 @@ const schemas = [
     flex-wrap: wrap;
   }
 
-  /* What We Do grid */
+  /* What We Do — dark theme cards using design tokens */
+  .what-we-do-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .what-we-do-band h2 {
+    margin: 0.5rem 0 0;
+  }
+
   .what-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-top: 2rem;
   }
 
   .what-item {
-    padding: 1.5rem;
-    border: 1px solid rgba(201,150,58,0.2);
-    border-radius: 4px;
-    background: white;
+    padding: 1.75rem;
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-card);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+  }
+
+  .what-item:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
   }
 
   .what-label {
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 700;
-    color: #0B0C0F;
-    margin: 0 0 0.5rem;
+    color: var(--color-white);
+    margin: 0 0 0.625rem;
+    transition: color var(--transition-base);
+  }
+
+  .what-item:hover .what-label {
+    color: var(--color-gold);
   }
 
   .what-detail {
     font-size: 0.875rem;
-    color: #374151;
+    color: var(--color-text-muted);
     margin: 0;
     line-height: 1.65;
   }
@@ -392,7 +420,10 @@ const schemas = [
     color: var(--color-gold);
     text-decoration: none;
     margin-bottom: 1.5rem;
+    transition: color var(--transition-base);
   }
+
+  .visit-phone:hover { color: var(--color-gold-light); }
 
   .visit-hours {
     border-top: 1px solid var(--color-border);
@@ -408,13 +439,13 @@ const schemas = [
     font-size: 0.875rem;
   }
 
-  .visit-day { color: var(--color-text-muted); }
+  .visit-day  { color: var(--color-text-muted); }
   .visit-time { color: var(--color-white); font-weight: 500; }
 
   .visit-map-placeholder {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     aspect-ratio: 1;
     max-height: 400px;
     display: flex;
@@ -431,6 +462,11 @@ const schemas = [
     font-family: var(--font-ui);
     font-size: 0.8125rem;
     letter-spacing: 0.04em;
+  }
+
+  .visit-map-icon {
+    color: var(--color-gold);
+    opacity: 0.4;
   }
 
   @media (max-width: 1024px) {

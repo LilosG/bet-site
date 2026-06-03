@@ -96,7 +96,7 @@ const schemas = [breadcrumbSchema(crumbs)];
   </section>
 
   <!-- Equipment grid for this market -->
-  <section class="bg-light section-y" aria-labelledby="nat-eq-heading">
+  <section class="section-y nat-eq-band" aria-labelledby="nat-eq-heading">
     <div class="container">
       <span class="eyebrow">Inventory Available for Shipping to {loc.city}</span>
       <h2 id="nat-eq-heading">Browse Equipment by Category</h2>
@@ -168,7 +168,7 @@ const schemas = [breadcrumbSchema(crumbs)];
   .nat-sidebar-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     padding: 1.5rem;
     margin-bottom: 1.25rem;
   }
@@ -203,7 +203,7 @@ const schemas = [breadcrumbSchema(crumbs)];
   .nat-fact-box {
     background: var(--color-bg-2);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     padding: 1.25rem 1.5rem;
   }
 
@@ -241,7 +241,13 @@ const schemas = [breadcrumbSchema(crumbs)];
     font-size: 0.75rem;
   }
 
-  /* Category grid */
+  /* Equipment category grid — dark theme using tokens throughout */
+  .nat-eq-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .nat-cat-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -253,29 +259,34 @@ const schemas = [breadcrumbSchema(crumbs)];
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    background: white;
-    border: 1px solid #e5e0d8;
-    border-radius: 4px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     padding: 1.25rem;
     text-decoration: none;
-    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
   .nat-cat-item:hover {
-    border-color: var(--color-teal);
-    box-shadow: 0 2px 12px rgba(13,148,136,0.1);
+    border-color: var(--color-border-gold);
+    transform: translateY(-2px);
   }
 
   .nat-cat-name {
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 700;
-    color: #0B0C0F;
+    color: var(--color-white);
+    transition: color var(--transition-base);
+  }
+
+  .nat-cat-item:hover .nat-cat-name {
+    color: var(--color-gold);
   }
 
   .nat-cat-desc {
     font-size: 0.8125rem;
-    color: #6B7280;
+    color: var(--color-text-muted);
     line-height: 1.5;
     flex: 1;
   }
@@ -289,6 +300,12 @@ const schemas = [breadcrumbSchema(crumbs)];
     font-weight: 600;
     color: var(--color-teal);
     margin-top: 0.25rem;
+    transition: gap var(--transition-base), color var(--transition-base);
+  }
+
+  .nat-cat-item:hover .nat-cat-cta {
+    gap: 0.45rem;
+    color: var(--color-gold);
   }
 
   @media (max-width: 1024px) {
@@ -298,6 +315,6 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   @media (max-width: 640px) {
     .nat-hero-ctas { flex-direction: column; }
-    .nat-cat-grid { grid-template-columns: 1fr 1fr; }
+    .nat-cat-grid  { grid-template-columns: 1fr 1fr; }
   }
 </style>
