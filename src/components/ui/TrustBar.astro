@@ -1,7 +1,9 @@
 ---
 /**
  * TrustBar — Horizontal client logo strip.
- * Used on homepage and key landing pages.
+ * Default: dark context using design tokens.
+ * Pass light={true} for light section context.
+ * All content from site.ts — zero hardcoding.
  */
 import { CLIENTS } from '../../data/site';
 
@@ -13,7 +15,7 @@ export interface Props {
 const { heading = 'Trusted by leading craft producers', light = false } = Astro.props;
 ---
 
-<div class={`trust-bar ${light ? 'trust-bar--light' : ''}`} aria-label={heading}>
+<div class={`trust-bar${light ? ' trust-bar-light' : ''}`} aria-label={heading}>
   <div class="container trust-bar-inner">
     <p class="trust-bar-label">{heading}</p>
     <ul class="trust-bar-logos" role="list" aria-label="Client roster">
@@ -34,7 +36,7 @@ const { heading = 'Trusted by leading craft producers', light = false } = Astro.
     padding: 1.25rem 0;
   }
 
-  .trust-bar--light {
+  .trust-bar-light {
     background: var(--color-bg-light-2);
     border-color: rgba(0,0,0,0.08);
   }
@@ -58,8 +60,8 @@ const { heading = 'Trusted by leading craft producers', light = false } = Astro.
     flex-shrink: 0;
   }
 
-  .trust-bar--light .trust-bar-label {
-    color: #6B7280;
+  .trust-bar-light .trust-bar-label {
+    color: var(--color-text-muted);
   }
 
   .trust-bar-logos {
@@ -72,9 +74,7 @@ const { heading = 'Trusted by leading craft producers', light = false } = Astro.
     flex-wrap: wrap;
   }
 
-  .trust-logo-item {
-    flex-shrink: 0;
-  }
+  .trust-logo-item { flex-shrink: 0; }
 
   .trust-logo-name {
     font-family: var(--font-display);
@@ -86,8 +86,8 @@ const { heading = 'Trusted by leading craft producers', light = false } = Astro.
     transition: color var(--transition-base);
   }
 
-  .trust-bar--light .trust-logo-name {
-    color: #9CA3AF;
+  .trust-bar-light .trust-logo-name {
+    color: var(--color-text-muted);
   }
 
   .trust-logo-item:hover .trust-logo-name {
@@ -100,9 +100,6 @@ const { heading = 'Trusted by leading craft producers', light = false } = Astro.
       align-items: flex-start;
       gap: 1rem;
     }
-
-    .trust-bar-logos {
-      gap: 1.5rem;
-    }
+    .trust-bar-logos { gap: 1.5rem; }
   }
 </style>

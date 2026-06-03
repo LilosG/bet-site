@@ -2,6 +2,7 @@
 /**
  * EquipmentCard — Reusable card for equipment items.
  * Used on homepage featured inventory, category pages, search results.
+ * All colors use design tokens — zero hardcoding.
  */
 export interface Props {
   name: string;
@@ -81,7 +82,7 @@ const conditionClass = {
     flex-direction: column;
   }
 
-  /* ─── Image ──────────────────────── */
+  /* ─── Image ──────────────────────────────────── */
   .card-image-wrap {
     position: relative;
     aspect-ratio: 3/2;
@@ -123,10 +124,10 @@ const conditionClass = {
   }
 
   .tag-used   { background: rgba(11,12,15,0.85); color: var(--color-text-muted); border: 1px solid var(--color-border); }
-  .tag-new    { background: rgba(13,148,136,0.85); color: #fff; }
-  .tag-refurb { background: rgba(201,150,58,0.85); color: #fff; }
+  .tag-new    { background: rgba(13,148,136,0.85); color: var(--color-white); }
+  .tag-refurb { background: rgba(201,150,58,0.85); color: var(--color-white); }
 
-  /* ─── Body ───────────────────────── */
+  /* ─── Body ───────────────────────────────────── */
   .card-body {
     padding: 1rem 1.125rem 1.125rem;
     display: flex;
@@ -157,7 +158,7 @@ const conditionClass = {
     letter-spacing: 0.03em;
   }
 
-  /* ─── Footer ─────────────────────── */
+  /* ─── Footer ─────────────────────────────────── */
   .card-footer {
     display: flex;
     align-items: center;

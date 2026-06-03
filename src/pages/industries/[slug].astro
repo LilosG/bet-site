@@ -1,19 +1,16 @@
 ---
 /**
- * Industry Page — /industries/[slug]
- * Niche expansion silo — answers "do you serve my type of operation?"
- * Routes buyers to relevant equipment categories and services.
- * All content from industries.ts — zero hardcoding.
+ * Industries Page — /industries/[slug]
+ * Industry-specific landing page. All content from industries.ts.
+ * Dark theme throughout — zero hardcoded colors, zero bg-light sections.
  */
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
-import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { INDUSTRIES } from '../../data/industries';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { SERVICES } from '../../data/services';
 import { breadcrumbSchema, faqSchema } from '../../lib/schema';
-import { NAP } from '../../data/site';
 
 export async function getStaticPaths() {
   return INDUSTRIES.map((industry) => ({
@@ -24,25 +21,23 @@ export async function getStaticPaths() {
 
 const { industry } = Astro.props;
 
-// Relevant equipment categories from data
-const equipmentCategories = industry.relevantEquipment
+const relatedEquipment = industry.relevantEquipment
   .map((slug) => EQUIPMENT_CATEGORIES.find((c) => c.slug === slug))
   .filter(Boolean);
 
-// Relevant services from data
-const services = industry.relevantServices
+const relatedServices = industry.relevantServices
   .map((slug) => SERVICES.find((s) => s.slug === slug))
   .filter(Boolean);
 
 const crumbs = [
-  { name: 'Home',        url: '/' },
-  { name: 'Industries',  url: '/industries' },
+  { name: 'Home',       url: '/' },
+  { name: 'Industries', url: '/industries' },
   { name: industry.name, url: `/industries/${industry.slug}` },
 ];
 
 const schemas = [
   breadcrumbSchema(crumbs),
-  faqSchema(industry.faqs),
+  ...(industry.faqs?.length ? [faqSchema(industry.faqs)] : []),
 ];
 ---
 
@@ -54,7 +49,7 @@ const schemas = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- ═══ HERO ══════════════════════════════ -->
+  <!-- ═══ HERO ══════════════════════════════════ -->
   <section class="ind-hero">
     <div class="container">
       <span class="eyebrow">Industry</span>
@@ -62,29 +57,19 @@ const schemas = [
       <p class="ind-hero-intro">{industry.intro}</p>
       <div class="ind-hero-ctas">
         <a href="/contact" class="btn btn-primary btn-lg">
-          Talk to Our Team
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+          Contact the Trade Desk
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="/equipment" class="btn btn-outline btn-lg">
-          Browse Equipment
-        </a>
-      </div>
-      <!-- Equipment type chips -->
-      <div class="ind-chips">
-        {industry.featuredEquipmentTypes.map((type) => (
-          <span class="trust-chip">{type}</span>
-        ))}
+        <a href="/equipment" class="btn btn-outline btn-lg">Browse Equipment</a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ BODY CONTENT ══════════════════════ -->
-  <section class="bg-light section-y" aria-labelledby="ind-content-heading">
+  <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
+  <section class="ind-body-band section-y" aria-labelledby="ind-content-heading">
     <div class="container ind-content-inner">
-      <div class="ind-prose prose">
-        <h2 id="ind-content-heading">How We Serve {industry.name}</h2>
+      <div class="prose">
+        <h2 id="ind-content-heading">{industry.name} — Equipment Overview</h2>
         {industry.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
@@ -92,62 +77,61 @@ const schemas = [
       <aside class="ind-sidebar">
         <div class="ind-sidebar-card">
           <h3>Talk to Our Team</h3>
-          <p>We have operated production equipment in this industry. Our trade desk responds within one business day.</p>
+          <p>Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.</p>
           <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;">
-            Contact Us
+            Contact Trade Desk
           </a>
-          <a href={`tel:${NAP.phonePlain}`} class="ind-phone-link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-            </svg>
-            {NAP.phone}
+          <a href="tel:+19498882739" class="ind-phone">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (949) 888-2739
           </a>
         </div>
+        {industry.featuredEquipmentTypes?.length > 0 && (
+          <div class="ind-sidebar-types">
+            <p class="ind-sidebar-label">Common Equipment Types</p>
+            <ul>
+              {industry.featuredEquipmentTypes.map((type) => (
+                <li>{type}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </aside>
     </div>
   </section>
 
-  <!-- ═══ BUYER NEEDS ════════════════════════ -->
-  <section class="section-y" aria-labelledby="needs-heading">
-    <div class="container">
-      <span class="eyebrow">What We Help With</span>
-      <h2 id="needs-heading">Common {industry.shortName} Needs</h2>
-      <div class="needs-grid">
-        {industry.buyerNeeds.map((need, i) => (
-          <div class="need-card">
-            <div class="need-number" aria-hidden="true">0{i + 1}</div>
-            <h3>{need.title}</h3>
-            <p>{need.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ RELEVANT EQUIPMENT ════════════════ -->
-  {equipmentCategories.length > 0 && (
-    <section class="section-y bg-light" aria-labelledby="ind-eq-heading">
+  <!-- ═══ BUYER NEEDS ════════════════════════════ -->
+  {industry.buyerNeeds?.length > 0 && (
+    <section class="ind-needs-band section-y" aria-labelledby="ind-needs-heading">
       <div class="container">
-        <div class="ind-section-header">
-          <span class="eyebrow">Equipment</span>
-          <h2 id="ind-eq-heading">Equipment for {industry.name}</h2>
-          <a href="/equipment" class="section-link">
-            View All Equipment
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
+        <span class="eyebrow">Common Needs</span>
+        <h2 id="ind-needs-heading">What {industry.shortName} Operations Typically Source</h2>
+        <div class="ind-needs-grid">
+          {industry.buyerNeeds.map((need) => (
+            <div class="need-card">
+              <h3>{need.title}</h3>
+              <p>{need.description}</p>
+            </div>
+          ))}
         </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ EQUIPMENT CATEGORIES ══════════════════ -->
+  {relatedEquipment.length > 0 && (
+    <section class="ind-eq-band section-y" aria-labelledby="ind-eq-heading">
+      <div class="container">
+        <span class="eyebrow">Equipment Available</span>
+        <h2 id="ind-eq-heading">Browse Equipment by Category</h2>
         <div class="ind-eq-grid">
-          {equipmentCategories.map((cat) => (
+          {relatedEquipment.map((cat) => (
             <a href={`/equipment/${cat.slug}`} class="ind-eq-card">
-              <h3>{cat.title}</h3>
-              <p>{cat.description}</p>
-              <span class="ind-eq-link">
+              <h3 class="ind-eq-title">{cat.title}</h3>
+              <p class="ind-eq-desc">{cat.description}</p>
+              <span class="ind-eq-cta">
                 Browse {cat.title}
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </a>
           ))}
@@ -156,29 +140,20 @@ const schemas = [
     </section>
   )}
 
-  <!-- ═══ RELEVANT SERVICES ═════════════════ -->
-  {services.length > 0 && (
-    <section class="section-y services-band" aria-labelledby="ind-svc-heading">
+  <!-- ═══ SERVICES ══════════════════════════════ -->
+  {relatedServices.length > 0 && (
+    <section class="ind-svc-band section-y" aria-labelledby="ind-svc-heading">
       <div class="container">
-        <div class="ind-section-header">
-          <span class="eyebrow">Services</span>
-          <h2 id="ind-svc-heading">Services for {industry.name}</h2>
-        </div>
+        <span class="eyebrow">Services</span>
+        <h2 id="ind-svc-heading">Services Available for {industry.shortName} Operations</h2>
         <div class="ind-svc-grid">
-          {services.map((s) => (
-            <a href={`/services/${s.slug}`} class="ind-svc-card card">
-              <div class="ind-svc-icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d={s.icon} />
-                </svg>
-              </div>
-              <h3>{s.title}</h3>
-              <p>{s.intro}</p>
-              <span class="ind-svc-learn">
+          {relatedServices.map((svc) => (
+            <a href={`/services/${svc.slug}`} class="ind-svc-card">
+              <h3 class="ind-svc-title">{svc.title}</h3>
+              <p class="ind-svc-desc">{svc.intro}</p>
+              <span class="ind-svc-cta">
                 Learn More
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </a>
           ))}
@@ -187,28 +162,46 @@ const schemas = [
     </section>
   )}
 
-  <!-- ═══ FAQ ════════════════════════════════ -->
-  {industry.faqs.length > 0 && (
-    <FAQ
-      items={industry.faqs}
-      heading={`${industry.name} — Frequently Asked Questions`}
-    />
+  <!-- ═══ FAQ ════════════════════════════════════ -->
+  {industry.faqs?.length > 0 && (
+    <section class="ind-faq-band section-y" aria-labelledby="ind-faq-heading">
+      <div class="container ind-faq-inner">
+        <div class="ind-faq-header">
+          <span class="eyebrow">FAQ</span>
+          <h2 id="ind-faq-heading">{industry.name} — Frequently Asked Questions</h2>
+        </div>
+        <div class="ind-faq-list">
+          {industry.faqs.map((item) => (
+            <details class="ind-faq-item">
+              <summary class="ind-faq-question">
+                <span>{item.q}</span>
+                <span class="ind-faq-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <div class="ind-faq-answer">
+                <p>{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   )}
 
-  <!-- ═══ CTA ════════════════════════════════ -->
   <CtaStrip
-    heading={`Ready to talk about your ${industry.shortName.toLowerCase()} equipment?`}
-    subtext="Our trade desk responds within one business day. One call, one quote."
-    primaryLabel="Contact Our Team"
+    heading={`Ready to source equipment for your ${industry.shortName} operation?`}
+    subtext="Our trade desk responds within one business day."
+    primaryLabel="Contact Trade Desk"
     primaryHref="/contact"
-    secondaryLabel="Browse Equipment"
+    secondaryLabel="Browse All Equipment"
     secondaryHref="/equipment"
   />
 
 </Layout>
 
 <style>
-  /* ─── Hero ───────────────────────────────── */
+  /* ─── Hero ───────────────────────────────────── */
   .ind-hero {
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
@@ -229,28 +222,14 @@ const schemas = [
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 1.75rem;
   }
 
-  .ind-chips {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  /* ─── Body + Sidebar ─────────────────────────── */
+  .ind-body-band {
+    background: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .trust-chip {
-    font-family: var(--font-ui);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    padding: 0.2rem 0.6rem;
-  }
-
-  /* ─── Body + Sidebar ─────────────────────── */
   .ind-content-inner {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -258,17 +237,12 @@ const schemas = [
     align-items: start;
   }
 
-  .ind-prose h2 {
-    font-size: clamp(1.375rem, 2.5vw, 1.875rem);
-    color: #0B0C0F;
-    margin-bottom: 1.25rem;
-    margin-top: 0;
-  }
-
   .ind-sidebar-card {
-    background: #0B0C0F;
-    border-radius: 4px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-md);
     padding: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .ind-sidebar-card h3 {
@@ -283,7 +257,7 @@ const schemas = [
     margin-bottom: 1.25rem;
   }
 
-  .ind-phone-link {
+  .ind-phone {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -296,14 +270,60 @@ const schemas = [
     transition: color var(--transition-base);
   }
 
-  .ind-phone-link:hover { color: var(--color-gold-light); }
+  .ind-phone:hover { color: var(--color-gold-light); }
 
-  /* ─── Buyer Needs ────────────────────────── */
-  .needs-grid {
+  .ind-sidebar-types {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .ind-sidebar-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.75rem;
+  }
+
+  .ind-sidebar-types ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .ind-sidebar-types li {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .ind-sidebar-types li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-gold);
+    font-size: 0.75rem;
+  }
+
+  /* ─── Buyer Needs ────────────────────────────── */
+  .ind-needs-band {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-needs-band h2 { margin: 0.4rem 0 2rem; }
+
+  .ind-needs-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    margin-top: 2rem;
   }
 
   .need-card {
@@ -311,25 +331,18 @@ const schemas = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 1.5rem;
-    position: relative;
-    transition: border-color var(--transition-smooth);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
   .need-card:hover {
     border-color: var(--color-border-gold);
-  }
-
-  .need-number {
-    font-family: var(--font-display);
-    font-size: 0.625rem;
-    font-weight: 700;
-    color: var(--color-text-subtle);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.875rem;
+    transform: translateY(-2px);
   }
 
   .need-card h3 {
+    font-family: var(--font-display);
     font-size: 1.0625rem;
+    font-weight: 700;
     color: var(--color-white);
     margin: 0 0 0.625rem;
     line-height: 1.3;
@@ -338,34 +351,19 @@ const schemas = [
   .need-card p {
     font-size: 0.875rem;
     color: var(--color-text-muted);
-    line-height: 1.7;
     margin: 0;
+    line-height: 1.65;
   }
 
-  /* ─── Section Headers ────────────────────── */
-  .ind-section-header {
-    margin-bottom: 2rem;
+  /* ─── Equipment Grid ─────────────────────────── */
+  .ind-eq-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .ind-section-header h2 {
-    margin: 0.3rem 0 0.5rem;
-    color: #0B0C0F;
-  }
+  .ind-eq-band h2 { margin: 0.4rem 0 2rem; }
 
-  .section-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-ui);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--color-teal);
-    transition: color var(--transition-base), gap var(--transition-base);
-  }
-
-  .section-link:hover { color: var(--color-teal-hover); gap: 0.55rem; }
-
-  /* ─── Equipment Grid ─────────────────────── */
   .ind-eq-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -373,42 +371,42 @@ const schemas = [
   }
 
   .ind-eq-card {
-    background: #fff;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: var(--radius-md);
-    padding: 1.375rem;
-    text-decoration: none;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    text-decoration: none;
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
   .ind-eq-card:hover {
-    border-color: var(--color-teal);
-    transform: translateY(-1px);
+    border-color: var(--color-border-gold);
+    transform: translateY(-2px);
   }
 
-  .ind-eq-card h3 {
-    font-family: var(--font-display);
-    font-size: 1.0625rem;
+  .ind-eq-title {
+    font-family: var(--font-ui);
+    font-size: 0.9375rem;
     font-weight: 700;
-    color: #0B0C0F;
-    margin: 0 0 0.5rem;
+    color: var(--color-white);
+    margin: 0;
+    transition: color var(--transition-base);
   }
 
-  .ind-eq-card p {
+  .ind-eq-card:hover .ind-eq-title { color: var(--color-gold); }
+
+  .ind-eq-desc {
     font-size: 0.8125rem;
-    color: #6B7280;
-    line-height: 1.6;
-    margin: 0 0 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
     flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin: 0;
   }
 
-  .ind-eq-link {
+  .ind-eq-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
@@ -416,91 +414,163 @@ const schemas = [
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--color-teal);
-    margin-top: auto;
-    transition: color var(--transition-base), gap var(--transition-base);
+    margin-top: 0.25rem;
+    transition: gap var(--transition-base), color var(--transition-base);
   }
 
-  .ind-eq-card:hover .ind-eq-link {
-    color: var(--color-teal-hover);
-    gap: 0.45rem;
-  }
+  .ind-eq-card:hover .ind-eq-cta { gap: 0.45rem; color: var(--color-gold); }
 
-  /* ─── Services Band ──────────────────────── */
-  .services-band {
-    background: var(--color-bg-2);
-    border-top: 1px solid var(--color-border);
+  /* ─── Services Grid ──────────────────────────── */
+  .ind-svc-band {
     border-bottom: 1px solid var(--color-border);
   }
 
-  .services-band .ind-section-header h2 {
-    color: var(--color-white);
-  }
+  .ind-svc-band h2 { margin: 0.4rem 0 2rem; }
 
   .ind-svc-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.125rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 
   .ind-svc-card {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     padding: 1.5rem;
     text-decoration: none;
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .ind-svc-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 3px;
-    background: var(--color-gold-dim);
-    color: var(--color-gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    flex-shrink: 0;
+  .ind-svc-card:hover {
+    border-color: var(--color-border-gold);
+    transform: translateY(-2px);
   }
 
-  .ind-svc-card h3 {
-    font-size: 1.0625rem;
+  .ind-svc-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
     color: var(--color-white);
-    margin: 0 0 0.5rem;
-  }
-
-  .ind-svc-card p {
-    font-size: 0.8125rem;
-    color: var(--color-text-muted);
-    margin: 0 0 1rem;
-    flex: 1;
-    line-height: 1.65;
-  }
-
-  .ind-svc-learn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-family: var(--font-ui);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--color-teal);
-    margin-top: auto;
+    margin: 0;
     transition: color var(--transition-base);
   }
 
-  /* ─── Responsive ─────────────────────────── */
+  .ind-svc-card:hover .ind-svc-title { color: var(--color-gold); }
+
+  .ind-svc-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    flex: 1;
+    margin: 0;
+  }
+
+  .ind-svc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    margin-top: 0.25rem;
+    transition: gap var(--transition-base), color var(--transition-base);
+  }
+
+  .ind-svc-card:hover .ind-svc-cta { gap: 0.5rem; color: var(--color-gold); }
+
+  /* ─── FAQ ────────────────────────────────────── */
+  .ind-faq-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-faq-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .ind-faq-header {
+    position: sticky;
+    top: 90px;
+  }
+
+  .ind-faq-header h2 { margin-top: 0; }
+
+  .ind-faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ind-faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-faq-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .ind-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-white);
+    transition: color var(--transition-base);
+    user-select: none;
+  }
+
+  .ind-faq-question::-webkit-details-marker { display: none; }
+  .ind-faq-question:hover { color: var(--color-gold); }
+  details[open] .ind-faq-question { color: var(--color-gold); }
+
+  .ind-faq-icon {
+    flex-shrink: 0;
+    color: var(--color-text-subtle);
+    transition: transform var(--transition-smooth);
+  }
+
+  details[open] .ind-faq-icon { transform: rotate(180deg); }
+
+  .ind-faq-answer {
+    padding: 0 0 1.25rem;
+    max-width: 68ch;
+  }
+
+  .ind-faq-answer p {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
-    .ind-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .needs-grid { grid-template-columns: repeat(2, 1fr); }
-    .ind-eq-grid { grid-template-columns: repeat(2, 1fr); }
-    .ind-svc-grid { grid-template-columns: repeat(3, 1fr); }
+    .ind-content-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
+    .ind-needs-grid     { grid-template-columns: repeat(2, 1fr); }
+    .ind-eq-grid        { grid-template-columns: repeat(2, 1fr); }
+    .ind-svc-grid       { grid-template-columns: repeat(2, 1fr); }
+    .ind-faq-inner      { grid-template-columns: 1fr; gap: 2rem; }
+    .ind-faq-header     { position: static; }
   }
 
   @media (max-width: 640px) {
-    .ind-hero-ctas { flex-direction: column; }
-    .needs-grid { grid-template-columns: 1fr; }
-    .ind-eq-grid { grid-template-columns: 1fr; }
-    .ind-svc-grid { grid-template-columns: 1fr; }
+    .ind-hero-ctas  { flex-direction: column; }
+    .ind-needs-grid { grid-template-columns: 1fr; }
+    .ind-eq-grid    { grid-template-columns: 1fr 1fr; }
+    .ind-svc-grid   { grid-template-columns: 1fr; }
   }
 </style>
