@@ -2,14 +2,16 @@
 /**
  * Equipment Category Page — /equipment/[slug]
  * Category landing page. All content from central data layer.
- * Supports heroImage background on categories that have photography.
- * Links to Shopify for live inventory.
+ * Sections: Hero → Body+Sidebar → Process(BuyerGuide) → BestFit → Featured → CTA → FAQ
+ * Uses centralized ProcessSteps and BestFitScenarios components.
  */
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import EquipmentCard from '../../components/ui/EquipmentCard.astro';
 import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
+import ProcessSteps from '../../components/ui/ProcessSteps.astro';
+import BestFitScenarios from '../../components/ui/BestFitScenarios.astro';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema, faqSchema, productCategorySchema } from '../../lib/schema';
 
@@ -113,6 +115,25 @@ const schemas = [
       </aside>
     </div>
   </section>
+
+  <!-- ═══ BUYER GUIDE — ProcessSteps component ══ -->
+  {cat.buyerGuide && cat.buyerGuide.length > 0 && (
+    <ProcessSteps
+      steps={cat.buyerGuide}
+      heading={`How to Buy ${cat.title}`}
+      eyebrow="Buyer Guide"
+    />
+  )}
+
+  <!-- ═══ BEST FIT — BestFitScenarios component ═ -->
+  {cat.bestFitBuyers && cat.bestFitBuyers.length > 0 && (
+    <BestFitScenarios
+      scenarios={cat.bestFitBuyers}
+      heading={`Who Should Buy ${cat.title}`}
+      eyebrow="Best Fit"
+      cta={{ label: 'Contact the Trade Desk', href: '/contact' }}
+    />
+  )}
 
   <!-- ═══ FEATURED INVENTORY ═════════════════════ -->
   {cat.featuredItems && cat.featuredItems.length > 0 && (
