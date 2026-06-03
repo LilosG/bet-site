@@ -1,11 +1,15 @@
 ---
 /**
  * Industries Page — /industries/[slug]
- * Industry-specific landing page. All content from industries.ts.
- * Dark theme throughout — zero hardcoded colors, zero bg-light sections.
+ * Single template generating all industry pages from data.
+ * Sections: Hero → Body+Sidebar → BuyerNeeds → Equipment Grid → Services Grid → FAQ → CTA
+ * Uses centralized components: BuyerNeeds, FAQ, CtaStrip.
+ * Dark theme throughout — zero hardcoded colors.
  */
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import BuyerNeeds from '../../components/ui/BuyerNeeds.astro';
+import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { INDUSTRIES } from '../../data/industries';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
@@ -100,22 +104,13 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ═══ BUYER NEEDS ════════════════════════════ -->
+  <!-- ═══ BUYER NEEDS — BuyerNeeds component ════ -->
   {industry.buyerNeeds?.length > 0 && (
-    <section class="ind-needs-band section-y" aria-labelledby="ind-needs-heading">
-      <div class="container">
-        <span class="eyebrow">Common Needs</span>
-        <h2 id="ind-needs-heading">What {industry.shortName} Operations Typically Source</h2>
-        <div class="ind-needs-grid">
-          {industry.buyerNeeds.map((need) => (
-            <div class="need-card">
-              <h3>{need.title}</h3>
-              <p>{need.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <BuyerNeeds
+      needs={industry.buyerNeeds}
+      heading={`What ${industry.shortName} Operations Typically Source`}
+      eyebrow="Common Needs"
+    />
   )}
 
   <!-- ═══ EQUIPMENT CATEGORIES ══════════════════ -->
@@ -162,33 +157,15 @@ const schemas = [
     </section>
   )}
 
-  <!-- ═══ FAQ ════════════════════════════════════ -->
+  <!-- ═══ FAQ — FAQ component ═══════════════════ -->
   {industry.faqs?.length > 0 && (
-    <section class="ind-faq-band section-y" aria-labelledby="ind-faq-heading">
-      <div class="container ind-faq-inner">
-        <div class="ind-faq-header">
-          <span class="eyebrow">FAQ</span>
-          <h2 id="ind-faq-heading">{industry.name} — Frequently Asked Questions</h2>
-        </div>
-        <div class="ind-faq-list">
-          {industry.faqs.map((item) => (
-            <details class="ind-faq-item">
-              <summary class="ind-faq-question">
-                <span>{item.q}</span>
-                <span class="ind-faq-icon" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-                </span>
-              </summary>
-              <div class="ind-faq-answer">
-                <p>{item.a}</p>
-              </div>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
+    <FAQ
+      items={industry.faqs}
+      heading={`${industry.name} — Frequently Asked Questions`}
+    />
   )}
 
+  <!-- ═══ CTA — CtaStrip component ══════════════ -->
   <CtaStrip
     heading={`Ready to source equipment for your ${industry.shortName} operation?`}
     subtext="Our trade desk responds within one business day."
@@ -311,48 +288,6 @@ const schemas = [
     left: 0;
     color: var(--color-gold);
     font-size: 0.75rem;
-  }
-
-  /* ─── Buyer Needs ────────────────────────────── */
-  .ind-needs-band {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .ind-needs-band h2 { margin: 0.4rem 0 2rem; }
-
-  .ind-needs-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
-
-  .need-card {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 1.5rem;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
-  }
-
-  .need-card:hover {
-    border-color: var(--color-border-gold);
-    transform: translateY(-2px);
-  }
-
-  .need-card h3 {
-    font-family: var(--font-display);
-    font-size: 1.0625rem;
-    font-weight: 700;
-    color: var(--color-white);
-    margin: 0 0 0.625rem;
-    line-height: 1.3;
-  }
-
-  .need-card p {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin: 0;
-    line-height: 1.65;
   }
 
   /* ─── Equipment Grid ─────────────────────────── */
@@ -483,94 +418,16 @@ const schemas = [
 
   .ind-svc-card:hover .ind-svc-cta { gap: 0.5rem; color: var(--color-gold); }
 
-  /* ─── FAQ ────────────────────────────────────── */
-  .ind-faq-band {
-    background: var(--color-bg-2);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .ind-faq-inner {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .ind-faq-header {
-    position: sticky;
-    top: 90px;
-  }
-
-  .ind-faq-header h2 { margin-top: 0; }
-
-  .ind-faq-list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .ind-faq-item {
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .ind-faq-item:first-child {
-    border-top: 1px solid var(--color-border);
-  }
-
-  .ind-faq-question {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1.25rem 0;
-    cursor: pointer;
-    list-style: none;
-    font-family: var(--font-display);
-    font-size: 1.0625rem;
-    font-weight: 600;
-    color: var(--color-white);
-    transition: color var(--transition-base);
-    user-select: none;
-  }
-
-  .ind-faq-question::-webkit-details-marker { display: none; }
-  .ind-faq-question:hover { color: var(--color-gold); }
-  details[open] .ind-faq-question { color: var(--color-gold); }
-
-  .ind-faq-icon {
-    flex-shrink: 0;
-    color: var(--color-text-subtle);
-    transition: transform var(--transition-smooth);
-  }
-
-  details[open] .ind-faq-icon { transform: rotate(180deg); }
-
-  .ind-faq-answer {
-    padding: 0 0 1.25rem;
-    max-width: 68ch;
-  }
-
-  .ind-faq-answer p {
-    font-size: 0.9375rem;
-    color: var(--color-text-muted);
-    margin: 0;
-    line-height: 1.75;
-  }
-
   /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
-    .ind-content-inner  { grid-template-columns: 1fr; gap: 2.5rem; }
-    .ind-needs-grid     { grid-template-columns: repeat(2, 1fr); }
+    .ind-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .ind-eq-grid        { grid-template-columns: repeat(2, 1fr); }
     .ind-svc-grid       { grid-template-columns: repeat(2, 1fr); }
-    .ind-faq-inner      { grid-template-columns: 1fr; gap: 2rem; }
-    .ind-faq-header     { position: static; }
   }
 
   @media (max-width: 640px) {
-    .ind-hero-ctas  { flex-direction: column; }
-    .ind-needs-grid { grid-template-columns: 1fr; }
-    .ind-eq-grid    { grid-template-columns: 1fr 1fr; }
-    .ind-svc-grid   { grid-template-columns: 1fr; }
+    .ind-hero-ctas { flex-direction: column; }
+    .ind-eq-grid   { grid-template-columns: 1fr 1fr; }
+    .ind-svc-grid  { grid-template-columns: 1fr; }
   }
 </style>
