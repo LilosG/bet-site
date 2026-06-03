@@ -1,63 +1,114 @@
 ---
 /**
  * Locations Hub — /locations
- * Lists all local and national service area pages.
+ * Service area hub. Local Southern California + National shipping markets.
+ * All data pulled from locations.ts — zero hardcoded content.
  */
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
-import { breadcrumbSchema } from '../../lib/schema';
+import { NAP } from '../../data/site';
+import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema';
 
 const crumbs = [
-  { name: 'Home',           url: '/' },
-  { name: 'Service Areas',  url: '/locations' },
+  { name: 'Home',          url: '/' },
+  { name: 'Service Areas', url: '/locations' },
 ];
 
-const schemas = [breadcrumbSchema(crumbs)];
+const schemas = [
+  localBusinessSchema(),
+  breadcrumbSchema(crumbs),
+];
+
+const shippingFacts = [
+  { value: '50',    label: 'States Served' },
+  { value: '1–2',   label: 'Week Local Rigging Turnaround' },
+  { value: '40K',   label: 'Sq Ft Facility' },
+  { value: '600+',  label: 'Equipment Placements' },
+];
 ---
 
 <Layout
   title="Brewery Equipment Service Areas — Local & National | Beverage Equipment Traders"
-  description="Beverage Equipment Traders serves craft breweries, distilleries, and beverage producers across all 50 states. Local service in Southern California. National shipping from San Marcos, CA."
+  description="Beverage Equipment Traders ships brewery and beverage production equipment to all 50 states. Local service and rigging throughout Southern California from our San Marcos, CA facility."
   schemas={schemas}
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Hero -->
-  <section class="loc-hub-hero">
+  <!-- ═══ HERO ══════════════════════════════════════ -->
+  <section class="hub-hero">
     <div class="container">
       <span class="eyebrow">Service Areas</span>
-      <h1>San Marcos, CA to All 50 States.</h1>
-      <p class="loc-hub-intro">
-        Your buyer in Chicago is as real as the one in San Diego. We ship, rig, and install nationwide.
-        Local buyers benefit from in-person inspection at our 40,000 sq ft facility.
+      <h1>San Marcos, CA<br />to All 50 States.</h1>
+      <p class="hub-intro">
+        Local buyers get in-person inspection at our 40,000 sq ft facility and
+        rigging crews that turn around in 1–2 weeks. National buyers get the same
+        inspected, photographed inventory with bonded freight to any destination.
+        One team, one phone number, coast to coast.
       </p>
+      <div class="hub-hero-ctas">
+        <a href="/contact" class="btn btn-primary btn-lg">
+          Contact the Trade Desk
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/equipment" class="btn btn-outline btn-lg">Browse Equipment</a>
+      </div>
     </div>
   </section>
 
-  <hr class="section-rule" />
+  <!-- ═══ SHIPPING STATS ════════════════════════════ -->
+  <section class="hub-stats-band" aria-label="Service area statistics">
+    <div class="container hub-stats-inner">
+      {shippingFacts.map((fact) => (
+        <div class="hub-stat">
+          <span class="hub-stat-val">{fact.value}</span>
+          <span class="hub-stat-label">{fact.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
 
-  <!-- Local Areas -->
-  <section class="section-y" aria-labelledby="local-areas-heading">
+  <!-- ═══ LOCAL SERVICE AREAS ═══════════════════════ -->
+  <section class="section-y" aria-labelledby="local-heading">
     <div class="container">
-      <span class="eyebrow">Southern California</span>
-      <h2 id="local-areas-heading">Local Service Areas</h2>
-      <p class="loc-section-desc">
-        In-person inspection available. Local rigging typically turns around in 1–2 weeks.
-        Our facility is 30 minutes from downtown San Diego.
-      </p>
+      <div class="loc-section-header">
+        <div>
+          <span class="eyebrow">Southern California</span>
+          <h2 id="local-heading">Local Service Areas</h2>
+          <p class="loc-section-desc">
+            In-person inspection available at our {NAP.street} facility in {NAP.city}.
+            Local rigging and installation typically turns around in 1–2 weeks.
+            30 minutes from downtown San Diego.
+          </p>
+        </div>
+        <div class="loc-facility-note">
+          <div class="facility-note-inner">
+            <p class="facility-note-label">Our Facility</p>
+            <p class="facility-note-address">{NAP.street}<br />{NAP.city}, {NAP.state} {NAP.zip}</p>
+            <a href="tel:+19498882739" class="facility-note-phone">{NAP.phone}</a>
+            <p class="facility-note-hours">Mon–Thu 10AM–4PM · Fri 10AM–3PM</p>
+          </div>
+        </div>
+      </div>
+
       <div class="loc-grid">
         {LOCAL_LOCATIONS.map((loc) => (
           <a href={`/locations/local/${loc.slug}`} class="loc-card">
             <div class="loc-card-inner">
-              <span class="loc-card-badge">Local</span>
-              <h3 class="loc-card-city">{loc.city}, {loc.stateAbbr}</h3>
+              <div class="loc-card-top">
+                <span class="loc-card-badge loc-badge-local">Local Service</span>
+              </div>
+              <h3 class="loc-card-city">{loc.city}</h3>
+              <p class="loc-card-state">{loc.state}</p>
               <p class="loc-card-intro">{loc.intro}</p>
-              <span class="loc-card-cta">
-                View Service Area
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
+              <div class="loc-card-footer">
+                <span class="loc-card-cta">
+                  View Service Area
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+                <span class="loc-card-tag">Rigging · Inspection · Same-week Quotes</span>
+              </div>
             </div>
           </a>
         ))}
@@ -67,28 +118,88 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   <hr class="section-rule" />
 
-  <!-- National -->
-  <section class="section-y" aria-labelledby="national-areas-heading">
+  <!-- ═══ NATIONAL MARKETS ══════════════════════════ -->
+  <section class="section-y" aria-labelledby="national-heading">
     <div class="container">
-      <span class="eyebrow">Nationwide</span>
-      <h2 id="national-areas-heading">National Service Areas</h2>
-      <p class="loc-section-desc">
-        Bonded freight to all 50 states. Rigging and installation at destination available.
-        Equipment ships from San Marcos, CA. Lead times confirmed at purchase.
-      </p>
-      <div class="loc-grid">
+      <div class="loc-section-header">
+        <div>
+          <span class="eyebrow">Nationwide Shipping</span>
+          <h2 id="national-heading">National Markets</h2>
+          <p class="loc-section-desc">
+            Bonded freight to all 50 states. Every piece photographed, inspected,
+            and documented before it leaves our yard. Rigging and installation at
+            destination available. Lead times confirmed at purchase.
+          </p>
+        </div>
+        <div class="shipping-facts-box">
+          <p class="shipping-facts-label">Every Shipment Includes</p>
+          <ul class="shipping-facts-list">
+            <li>Bonded freight coordination</li>
+            <li>Crated or pad-wrapped per equipment type</li>
+            <li>Pre-ship condition documentation</li>
+            <li>Single point of contact through delivery</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="nat-grid">
         {NATIONAL_LOCATIONS.map((loc) => (
-          <a href={`/locations/national/${loc.slug}`} class="loc-card">
-            <div class="loc-card-inner">
-              <span class="loc-card-badge loc-card-badge-national">Nationwide Shipping</span>
-              <h3 class="loc-card-city">{loc.city}, {loc.stateAbbr}</h3>
-              <p class="loc-card-intro">{loc.intro}</p>
-              <span class="loc-card-cta">
-                View Shipping Area
+          <a href={`/locations/national/${loc.slug}`} class="nat-card">
+            <div class="nat-card-inner">
+              <div class="nat-card-top">
+                <span class="loc-card-badge loc-badge-national">Nationwide Shipping</span>
+              </div>
+              <h3 class="nat-card-city">{loc.city}</h3>
+              <p class="nat-card-state">{loc.state}</p>
+              <p class="nat-card-intro">{loc.intro}</p>
+              <span class="nat-card-cta">
+                View Shipping Info
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </div>
           </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY BET NATIONWIDE ════════════════════════ -->
+  <section class="section-y hub-why-band" aria-labelledby="hub-why-heading">
+    <div class="container hub-why-inner">
+      <div>
+        <span class="eyebrow">Why It Works Nationwide</span>
+        <h2 id="hub-why-heading">Your buyer in Chicago is as real as the one in San Diego.</h2>
+        <p>
+          The majority of high-intent equipment searches carry no geographic modifier.
+          A head brewer in Denver searching for a 15 BBL brewhouse is the same qualified
+          buyer as one in San Marcos. BET's inventory, pricing, and logistics infrastructure
+          serve that national buyer as directly as the local one.
+        </p>
+        <p>
+          Every piece in our 40,000 sq ft facility ships nationwide. Bonded freight,
+          documented condition, and rigging at destination available on every transaction.
+          One quote covers the full scope from our yard to your production floor.
+        </p>
+        <a href="/contact" class="btn btn-primary">
+          Get a Shipping Quote
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hub-why-list">
+        {[
+          { label: 'Bonded Freight',         detail: 'All 50 states. Crated or pad-wrapped based on equipment type and fragility.' },
+          { label: 'Rigging at Destination', detail: 'Millwright crews available at destination for full installation and commissioning.' },
+          { label: 'Pre-Ship Documentation', detail: 'Condition photos and inspection notes provided before equipment leaves our facility.' },
+          { label: 'Single Quote',           detail: 'One price covers equipment, freight, and rigging. No surprise add-ons after purchase.' },
+          { label: 'One Point of Contact',   detail: 'Our trade desk handles everything from purchase through delivery confirmation.' },
+        ].map((item, i) => (
+          <div class="hub-why-item">
+            <span class="hub-why-num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <p class="hub-why-label">{item.label}</p>
+              <p class="hub-why-detail">{item.detail}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
@@ -96,8 +207,8 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   <CtaStrip
     heading="Not seeing your city?"
-    subtext="We ship to every state. Contact our trade desk with your location and equipment needs."
-    primaryLabel="Contact Trade Desk"
+    subtext="We ship to every state. Contact our trade desk with your location and equipment requirements."
+    primaryLabel="Contact the Trade Desk"
     primaryHref="/contact"
     secondaryLabel="Browse Equipment"
     secondaryHref="/equipment"
@@ -105,26 +216,186 @@ const schemas = [breadcrumbSchema(crumbs)];
 </Layout>
 
 <style>
-  .loc-hub-hero {
+  /* ═══ HERO ══════════════════════════════════ */
+  .hub-hero {
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .loc-hub-hero h1 {
-    max-width: 22ch;
-    margin: 0.5rem 0 1rem;
+  .hub-hero h1 {
+    max-width: 18ch;
+    margin: 0.5rem 0 1.125rem;
   }
 
-  .loc-hub-intro {
-    max-width: 60ch;
+  .hub-intro {
+    max-width: 62ch;
     font-size: 1.0625rem;
+    margin-bottom: 2rem;
+  }
+
+  .hub-hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* ═══ STATS BAND ════════════════════════════ */
+  .hub-stats-band {
+    background: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
+    padding: 2.25rem 0;
+  }
+
+  .hub-stats-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .hub-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-right: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .hub-stat:last-child { border-right: none; }
+
+  .hub-stat-val {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--color-gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .hub-stat-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin-top: 0.35rem;
+  }
+
+  /* ═══ SECTION HEADERS ═══════════════════════ */
+  .loc-section-header {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
+  }
+
+  .loc-section-header h2 {
+    margin: 0.4rem 0 0.875rem;
   }
 
   .loc-section-desc {
-    max-width: 60ch;
-    margin: 0.5rem 0 1.75rem;
+    max-width: 56ch;
+    margin: 0;
+    font-size: 1rem;
   }
 
+  /* Facility note card */
+  .loc-facility-note {
+    margin-top: 0.5rem;
+  }
+
+  .facility-note-inner {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-md);
+    padding: 1.375rem;
+  }
+
+  .facility-note-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.5rem;
+  }
+
+  .facility-note-address {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 0.625rem;
+    font-style: normal;
+  }
+
+  .facility-note-phone {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-bottom: 0.375rem;
+    transition: color var(--transition-base);
+  }
+
+  .facility-note-phone:hover { color: var(--color-gold-light); }
+
+  .facility-note-hours {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
+    margin: 0;
+  }
+
+  /* Shipping facts box */
+  .shipping-facts-box {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.375rem;
+    margin-top: 0.5rem;
+  }
+
+  .shipping-facts-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.75rem;
+  }
+
+  .shipping-facts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .shipping-facts-list li {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .shipping-facts-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-gold);
+    font-size: 0.75rem;
+  }
+
+  /* ═══ LOCAL CARDS ═══════════════════════════ */
   .loc-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -135,7 +406,7 @@ const schemas = [breadcrumbSchema(crumbs)];
     text-decoration: none;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     display: block;
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
@@ -147,48 +418,74 @@ const schemas = [breadcrumbSchema(crumbs)];
   }
 
   .loc-card-inner {
-    padding: 1.5rem;
+    padding: 1.625rem;
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
+    height: 100%;
+  }
+
+  .loc-card-top {
+    margin-bottom: 0.875rem;
   }
 
   .loc-card-badge {
     display: inline-block;
     font-family: var(--font-ui);
-    font-size: 0.6rem;
+    font-size: 0.5625rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0.175rem 0.5rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 2px;
-    background: var(--color-gold-dim);
-    color: var(--color-gold);
-    width: fit-content;
   }
 
-  .loc-card-badge-national {
+  .loc-badge-local {
+    background: var(--color-gold-dim);
+    color: var(--color-gold);
+  }
+
+  .loc-badge-national {
     background: var(--color-teal-dim);
     color: var(--color-teal);
   }
 
   .loc-card-city {
-    font-size: clamp(1.125rem, 2vw, 1.375rem);
-    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+    font-weight: 700;
     color: var(--color-white);
+    margin: 0 0 0.125rem;
+    line-height: 1.1;
     transition: color var(--transition-base);
   }
 
-  .loc-card:hover .loc-card-city {
-    color: var(--color-gold);
+  .loc-card:hover .loc-card-city { color: var(--color-gold); }
+
+  .loc-card-state {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin: 0 0 0.875rem;
   }
 
   .loc-card-intro {
     font-size: 0.875rem;
     color: var(--color-text-muted);
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.65;
     flex: 1;
+  }
+
+  .loc-card-footer {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .loc-card-cta {
@@ -199,19 +496,180 @@ const schemas = [breadcrumbSchema(crumbs)];
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--color-teal);
-    margin-top: 0.5rem;
-    transition: gap var(--transition-base);
+    transition: gap var(--transition-base), color var(--transition-base);
   }
 
   .loc-card:hover .loc-card-cta {
     gap: 0.5rem;
+    color: var(--color-gold);
   }
 
+  .loc-card-tag {
+    font-family: var(--font-ui);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-text-subtle);
+  }
+
+  /* ═══ NATIONAL CARDS ════════════════════════ */
+  .nat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .nat-card {
+    text-decoration: none;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: block;
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+  }
+
+  .nat-card:hover {
+    border-color: var(--color-teal);
+    transform: translateY(-2px);
+  }
+
+  .nat-card-inner {
+    padding: 1.625rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .nat-card-top {
+    margin-bottom: 0.875rem;
+  }
+
+  .nat-card-city {
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0 0 0.125rem;
+    line-height: 1.1;
+    transition: color var(--transition-base);
+  }
+
+  .nat-card:hover .nat-card-city { color: var(--color-teal); }
+
+  .nat-card-state {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin: 0 0 0.875rem;
+  }
+
+  .nat-card-intro {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .nat-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-teal);
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    transition: gap var(--transition-base), color var(--transition-base);
+  }
+
+  .nat-card:hover .nat-card-cta {
+    gap: 0.5rem;
+  }
+
+  /* ═══ WHY SECTION ═══════════════════════════ */
+  .hub-why-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hub-why-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .hub-why-inner h2 {
+    max-width: 20ch;
+    margin: 0.4rem 0 1.25rem;
+  }
+
+  .hub-why-inner p { margin-bottom: 1.25rem; }
+  .hub-why-inner .btn { margin-top: 0.75rem; }
+
+  .hub-why-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+  }
+
+  .hub-why-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.125rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hub-why-item:first-child { border-top: 1px solid var(--color-border); }
+
+  .hub-why-num {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    padding-top: 0.125rem;
+  }
+
+  .hub-why-label {
+    font-family: var(--font-ui);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0 0 0.2rem;
+  }
+
+  .hub-why-detail {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ═══ RESPONSIVE ════════════════════════════ */
   @media (max-width: 1024px) {
-    .loc-grid { grid-template-columns: repeat(2, 1fr); }
+    .hub-stats-inner      { grid-template-columns: repeat(2, 1fr); }
+    .hub-stat:nth-child(2){ border-right: none; }
+    .loc-section-header   { grid-template-columns: 1fr; gap: 1.75rem; }
+    .loc-grid             { grid-template-columns: repeat(2, 1fr); }
+    .nat-grid             { grid-template-columns: repeat(2, 1fr); }
+    .hub-why-inner        { grid-template-columns: 1fr; gap: 3rem; }
   }
 
   @media (max-width: 640px) {
+    .hub-hero-ctas { flex-direction: column; }
+    .hub-stats-inner { grid-template-columns: repeat(2, 1fr); }
     .loc-grid { grid-template-columns: 1fr; }
+    .nat-grid { grid-template-columns: 1fr; }
   }
 </style>
