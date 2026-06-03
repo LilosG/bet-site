@@ -2,6 +2,7 @@
 /**
  * Local Service Area Pages — /locations/local/[slug]
  * Captures Southern California geographic searches.
+ * Dark theme throughout — all sections use design tokens.
  */
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
@@ -41,7 +42,7 @@ const schemas = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Hero -->
+  <!-- ═══ HERO ══════════════════════════════════ -->
   <section class="loc-hero">
     <div class="container">
       <span class="eyebrow">{loc.city}, {loc.stateAbbr} · Local Service Area</span>
@@ -60,8 +61,8 @@ const schemas = [
   <!-- Trust Bar -->
   <TrustBar />
 
-  <!-- Body Content -->
-  <section class="section-y" aria-labelledby="loc-content-heading">
+  <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
+  <section class="loc-body-band section-y" aria-labelledby="loc-content-heading">
     <div class="container loc-content-inner">
       <div class="prose">
         <h2 id="loc-content-heading">Brewery Equipment Near {loc.city}</h2>
@@ -97,7 +98,7 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Equipment Categories -->
+  <!-- ═══ EQUIPMENT CATEGORIES ══════════════════ -->
   <section class="section-y loc-eq-band" aria-labelledby="loc-eq-heading">
     <div class="container">
       <span class="eyebrow">Equipment Available Near {loc.city}</span>
@@ -116,21 +117,21 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Services in this area -->
+  <!-- ═══ SERVICES ══════════════════════════════ -->
   <section class="section-y" aria-labelledby="loc-svc-heading">
     <div class="container">
       <span class="eyebrow">Services in {loc.city}</span>
       <h2 id="loc-svc-heading">What We Handle in {loc.state}</h2>
       <div class="loc-svc-grid">
         {SERVICES.map((svc) => (
-          <div class="loc-svc-item">
+          <a href={`/services/${svc.slug}`} class="loc-svc-item">
             <p class="loc-svc-title">{svc.title}</p>
             <p class="loc-svc-desc">{svc.intro}</p>
-            <a href={`/services/${svc.slug}`} class="loc-svc-link">
+            <span class="loc-svc-link">
               Learn More
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
+            </span>
+          </a>
         ))}
       </div>
     </div>
@@ -144,9 +145,11 @@ const schemas = [
     secondaryLabel="Get a Rigging Quote"
     secondaryHref="/contact?type=rigging"
   />
+
 </Layout>
 
 <style>
+  /* ─── Hero ───────────────────────────────────── */
   .loc-hero {
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
@@ -169,6 +172,12 @@ const schemas = [
     flex-wrap: wrap;
   }
 
+  /* ─── Body + Sidebar ─────────────────────────── */
+  .loc-body-band {
+    background: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .loc-content-inner {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -178,7 +187,7 @@ const schemas = [
 
   .loc-sidebar-card {
     background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-gold);
     border-radius: var(--radius-md);
     padding: 1.5rem;
   }
@@ -218,12 +227,14 @@ const schemas = [
 
   .loc-phone:hover { color: var(--color-gold-light); }
 
-  /* Equipment category grid — dark theme using tokens */
+  /* ─── Equipment category grid ────────────────── */
   .loc-eq-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
+
+  .loc-eq-band h2 { margin: 0.4rem 0 0; }
 
   .loc-cat-grid {
     display: grid;
@@ -249,10 +260,7 @@ const schemas = [
 
   .loc-cat-item:nth-child(4n)        { border-right: none; }
   .loc-cat-item:nth-last-child(-n+4) { border-bottom: none; }
-
-  .loc-cat-item:hover {
-    background: var(--color-gold-dim);
-  }
+  .loc-cat-item:hover                { background: var(--color-gold-dim); }
 
   .loc-cat-title {
     font-family: var(--font-ui);
@@ -264,9 +272,7 @@ const schemas = [
     transition: color var(--transition-base);
   }
 
-  .loc-cat-item:hover .loc-cat-title {
-    color: var(--color-gold);
-  }
+  .loc-cat-item:hover .loc-cat-title { color: var(--color-gold); }
 
   .loc-cat-link {
     display: inline-flex;
@@ -279,11 +285,9 @@ const schemas = [
     transition: gap var(--transition-base);
   }
 
-  .loc-cat-item:hover .loc-cat-link {
-    gap: 0.45rem;
-  }
+  .loc-cat-item:hover .loc-cat-link { gap: 0.45rem; }
 
-  /* Services grid */
+  /* ─── Services grid ──────────────────────────── */
   .loc-svc-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -292,15 +296,19 @@ const schemas = [
   }
 
   .loc-svc-item {
+    display: flex;
+    flex-direction: column;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 1.5rem;
-    transition: border-color var(--transition-smooth);
+    text-decoration: none;
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
   .loc-svc-item:hover {
     border-color: var(--color-border-gold);
+    transform: translateY(-2px);
   }
 
   .loc-svc-title {
@@ -309,13 +317,17 @@ const schemas = [
     font-weight: 600;
     color: var(--color-white);
     margin: 0 0 0.5rem;
+    transition: color var(--transition-base);
   }
+
+  .loc-svc-item:hover .loc-svc-title { color: var(--color-gold); }
 
   .loc-svc-desc {
     font-size: 0.875rem;
     color: var(--color-text-muted);
     margin: 0 0 1rem;
     line-height: 1.6;
+    flex: 1;
   }
 
   .loc-svc-link {
@@ -326,15 +338,16 @@ const schemas = [
     font-size: 0.8125rem;
     font-weight: 600;
     color: var(--color-teal);
-    text-decoration: none;
     transition: gap var(--transition-base), color var(--transition-base);
+    margin-top: auto;
   }
 
-  .loc-svc-link:hover {
+  .loc-svc-item:hover .loc-svc-link {
     gap: 0.5rem;
     color: var(--color-gold);
   }
 
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
     .loc-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .loc-cat-grid { grid-template-columns: repeat(2, 1fr); }
