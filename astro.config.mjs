@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://beverageequipmenttraders.com',
@@ -10,6 +11,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
+    mdx(),
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,

@@ -1,0 +1,318 @@
+---
+/**
+ * Blog Post Page — /blog/[slug]
+ * Individual post template. Content from src/content/blog/*.mdx.
+ * Uses getStaticPaths() + getCollection() — Astro-native content pattern.
+ * Hero image via import.meta.glob + getImage() — consistent with site.
+ * Prose rendered via .prose class from global.css.
+ */
+import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import CtaStrip from '../../components/ui/CtaStrip.astro';
+import { SITE } from '../../data/site';
+import { breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  });
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props:  { post },
+  }));
+  // Note: the [slug].astro filename maps params.slug to post.id from the glob loader
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+// ─── Hero image ───────────────────────────────
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/images/*.webp',
+  { eager: true }
+);
+
+const heroFilename = post.data.heroImage ?? 'hero-equipment.webp';
+const heroAsset    = allImages[`../../assets/images/${heroFilename}`]?.default;
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, format: 'webp', quality: 80 })
+  : null;
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog' },
+  { name: post.data.title, url: `/blog/${post.id}` },
+];
+
+const schemas = [breadcrumbSchema(crumbs)];
+
+const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
+const updatedDate = post.data.updatedDate
+  ? post.data.updatedDate.toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric',
+    })
+  : null;
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- ═══ HERO ══════════════════════════════════ -->
+  <section class={`post-hero${optimizedHero ? ' post-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="post-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
+    <div class="container post-hero-inner">
+      <span class="post-category tag tag-gold">{post.data.category}</span>
+      <h1>{post.data.title}</h1>
+      <p class="post-hero-desc">{post.data.description}</p>
+      <div class="post-meta">
+        <span class="post-author">{post.data.author}</span>
+        <span class="post-meta-sep" aria-hidden="true">·</span>
+        <time datetime={post.data.pubDate.toISOString()} class="post-date">
+          {formattedDate}
+        </time>
+        {updatedDate && (
+          <>
+            <span class="post-meta-sep" aria-hidden="true">·</span>
+            <span class="post-updated">Updated {updatedDate}</span>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTENT ══════════════════════════════ -->
+  <div class="section-y">
+    <div class="container post-layout">
+
+      <!-- Article body -->
+      <article class="prose" aria-label={post.data.title}>
+        <Content />
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="post-sidebar">
+        <div class="sidebar-card">
+          <p class="sidebar-label">Category</p>
+          <span class="tag tag-gold">{post.data.category}</span>
+        </div>
+
+        {post.data.tags.length > 0 && (
+          <div class="sidebar-card">
+            <p class="sidebar-label">Topics</p>
+            <div class="sidebar-tags">
+              {post.data.tags.map((tag) => (
+                <span class="tag tag-dark">{tag}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="sidebar-card sidebar-cta">
+          <p class="sidebar-cta-heading">Ready to source equipment?</p>
+          <p class="sidebar-cta-body">Our trade desk responds within one business day.</p>
+          <a href="/contact" class="btn btn-primary btn-sm">Contact Trade Desk</a>
+          <a href="/equipment" class="btn btn-dark btn-sm">Browse Equipment</a>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ═══ BACK TO BLOG ══════════════════════════ -->
+  <div class="back-strip">
+    <div class="container">
+      <a href="/blog" class="back-link">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Blog
+      </a>
+    </div>
+  </div>
+
+  <CtaStrip
+    heading="Questions about buying brewery equipment?"
+    subtext="Our trade desk handles sourcing, rigging, and equipment consulting. Responds within one business day."
+    primaryLabel="Contact the Trade Desk"
+    primaryHref="/contact"
+    secondaryLabel="Browse Equipment"
+    secondaryHref="/equipment"
+  />
+</Layout>
+
+<style>
+  /* ─── Hero ───────────────────────────────────── */
+  .post-hero {
+    position: relative;
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-hero-has-image {
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3.5rem, 6vw, 6rem);
+  }
+
+  .post-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
+  }
+
+  .post-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
+  }
+
+  .post-hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .post-category { margin-bottom: 1rem; }
+
+  .post-hero h1 {
+    max-width: 26ch;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .post-hero-desc {
+    max-width: 60ch;
+    font-size: 1.0625rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+  }
+
+  .post-author {
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .post-meta-sep { color: var(--color-text-subtle); }
+
+  .post-date,
+  .post-updated {
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    color: var(--color-text-subtle);
+  }
+
+  /* ─── Post layout ────────────────────────────── */
+  .post-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* ─── Sidebar ────────────────────────────────── */
+  .post-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .sidebar-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+  }
+
+  .sidebar-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    margin: 0 0 0.75rem;
+  }
+
+  .sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .sidebar-cta { border-color: var(--color-border-gold); }
+
+  .sidebar-cta-heading {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0 0 0.375rem;
+  }
+
+  .sidebar-cta-body {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin: 0 0 1rem;
+    line-height: 1.55;
+  }
+
+  .sidebar-cta .btn {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-cta .btn:last-child { margin-bottom: 0; }
+
+  /* ─── Back link ──────────────────────────────── */
+  .back-strip {
+    border-top: 1px solid var(--color-border);
+    padding: 1.25rem 0;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: color var(--transition-base), gap var(--transition-base);
+  }
+
+  .back-link:hover { color: var(--color-gold); gap: 0.55rem; }
+
+  /* ─── Responsive ─────────────────────────────── */
+  @media (max-width: 1024px) {
+    .post-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .post-sidebar { position: static; }
+  }
+</style>
