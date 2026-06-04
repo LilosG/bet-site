@@ -34,35 +34,63 @@
 /* ─── CSS Custom Properties (runtime use) ─── */
 @layer base {
   :root {
+    /* ── Background colors ── */
     --color-bg:           #0B0C0F;
     --color-bg-2:         #111318;
     --color-bg-card:      #16191F;
     --color-bg-light:     #F5F3EF;
     --color-bg-light-2:   #ECEAE4;
+
+    /* ── Brand colors ── */
     --color-gold:         #C9963A;
     --color-gold-light:   #E0AE56;
     --color-gold-dim:     rgba(201,150,58,0.14);
+    --color-gold-overlay: rgba(201,150,58,0.85);
     --color-teal:         #0D9488;
     --color-teal-hover:   #0F766E;
     --color-teal-dim:     rgba(13,148,136,0.12);
+    --color-teal-overlay: rgba(13,148,136,0.85);
     --color-white:        #FFFFFF;
-    --color-text:         #E8E6E1;
-    --color-text-muted:   #9CA3B0;
-    --color-text-subtle:  #6B7280;
-    --color-border:       rgba(255,255,255,0.07);
-    --color-border-gold:  rgba(201,150,58,0.28);
 
+    /* ── Text colors ── */
+    --color-text:             #E8E6E1;
+    --color-text-muted:       #9CA3B0;
+    --color-text-subtle:      #6B7280;
+    --color-text-light-body:  #374151;
+
+    /* ── Border colors ── */
+    --color-border:        rgba(255,255,255,0.07);
+    --color-border-gold:   rgba(201,150,58,0.28);
+    --color-border-subtle: rgba(255,255,255,0.25);
+
+    /* ── Overlay / surface colors ── */
+    --color-bg-overlay:  rgba(255,255,255,0.04);
+    --color-tag-dark:    rgba(255,255,255,0.06);
+
+    /* ── Scrollbar ── */
+    --color-scrollbar-thumb: #2a2d35;
+
+    /* ── Shadows ── */
+    --shadow-text:  0 2px 20px rgba(0,0,0,0.4);
+    --shadow-card:  0 8px 32px rgba(0,0,0,0.35);
+    --shadow-teal:  0 4px 16px rgba(13,148,136,0.3);
+    --shadow-input: 0 0 0 3px rgba(13,148,136,0.12);
+
+    /* ── Fonts ── */
     --font-display: 'Barlow Condensed', sans-serif;
     --font-body:    'DM Sans', sans-serif;
     --font-ui:      'Barlow', sans-serif;
 
+    /* ── Layout ── */
     --section-y:       clamp(3.5rem, 7vw, 6rem);
     --container-max:   1280px;
     --container-pad:   clamp(1.25rem, 4vw, 2.5rem);
 
+    /* ── Transitions ── */
     --transition-base:   150ms ease;
     --transition-smooth: 240ms cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* ── Radii ── */
     --radius-sm:  3px;
     --radius-md:  5px;
     --radius-lg:  8px;
@@ -215,7 +243,7 @@
   .bg-light h3,
   .bg-light h4 { color: var(--color-bg); }
 
-  .bg-light p { color: #374151; }
+  .bg-light p { color: var(--color-text-light-body); }
 
   .bg-light .eyebrow {
     color: var(--color-teal);
@@ -258,17 +286,17 @@
     background: var(--color-teal-hover);
     border-color: var(--color-teal-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(13,148,136,0.3);
+    box-shadow: var(--shadow-teal);
   }
 
   .btn-outline {
     background: transparent;
     color: var(--color-white);
-    border-color: rgba(255,255,255,0.25);
+    border-color: var(--color-border-subtle);
   }
   .btn-outline:hover {
     border-color: rgba(255,255,255,0.7);
-    background: rgba(255,255,255,0.04);
+    background: var(--color-bg-overlay);
   }
 
   .btn-gold {
@@ -310,7 +338,7 @@
   .card:hover {
     border-color: var(--color-border-gold);
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    box-shadow: var(--shadow-card);
   }
 
   /* ── Tags / Badges ── */
@@ -327,7 +355,7 @@
   }
   .tag-gold  { background: var(--color-gold-dim);  color: var(--color-gold);  }
   .tag-teal  { background: var(--color-teal-dim);  color: var(--color-teal);  }
-  .tag-dark  { background: rgba(255,255,255,0.06); color: var(--color-text-muted); }
+  .tag-dark  { background: var(--color-tag-dark);  color: var(--color-text-muted); }
 
   /* ── Form Elements ── */
   .input {
@@ -345,7 +373,7 @@
   .input:focus {
     outline: none;
     border-color: var(--color-teal);
-    box-shadow: 0 0 0 3px rgba(13,148,136,0.12);
+    box-shadow: var(--shadow-input);
   }
 
   .label {
@@ -417,10 +445,10 @@
   }
 
   /* Light context overrides — applied via .bg-light parent */
-  .bg-light .prose p    { color: #374151; }
+  .bg-light .prose p    { color: var(--color-text-light-body); }
   .bg-light .prose h2,
   .bg-light .prose h3   { color: var(--color-bg); }
-  .bg-light .prose li   { color: #374151; }
+  .bg-light .prose li   { color: var(--color-text-light-body); }
   .bg-light .prose strong { color: var(--color-bg); }
 }
 
@@ -452,5 +480,5 @@
 /* ─── Scrollbar ───────────────────────────── */
 ::-webkit-scrollbar       { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb { background: #2a2d35; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle); }

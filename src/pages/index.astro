@@ -2,7 +2,9 @@
 /**
  * Homepage — beverageequipmenttraders.com
  * Uses astro:assets for all images via import.meta.glob.
- * Hero background via getImage(). Inline images via Image component.
+ * Hero background via getImage() + direct inline style on bg div.
+ * Inline images via Image component.
+ * All colors via design tokens — zero hardcoding.
  */
 import { getImage, Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
@@ -16,7 +18,7 @@ import { EQUIPMENT_CATEGORIES } from '../data/equipment';
 import { SERVICES } from '../data/services';
 import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
 
-// Glob all images at build time
+// ─── Glob all images at build time ───────────
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/images/*.webp',
   { eager: true }
@@ -26,21 +28,21 @@ function getAsset(filename: string): ImageMetadata | undefined {
   return allImages[`../assets/images/${filename}`]?.default;
 }
 
-// Hero background
+// ─── Hero background ─────────────────────────
 const heroAsset = getAsset('hero-brewhouse.webp');
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1920, height: 1080, format: 'webp', quality: 80 })
   : null;
 
-// Why BET image
+// ─── Why BET image ────────────────────────────
 const whyAsset = getAsset('hero-brewhouse.webp');
 
-// Rigging images
-const riggingTruck     = getAsset('rigging-loaded-truck.webp');
+// ─── Rigging images ───────────────────────────
+const riggingTruck      = getAsset('rigging-loaded-truck.webp');
 const riggingFermenters = getAsset('rigging-fermenters-transport.webp');
-const riggingForklift  = getAsset('rigging-forklift-install.webp');
+const riggingForklift   = getAsset('rigging-forklift-install.webp');
 
-// Featured inventory
+// ─── Featured inventory ───────────────────────
 const featuredItems = [
   { name: '30 BBL 4-Vessel Marks Brewhouse', price: '$78,500', condition: 'Used' as const, category: 'BREWHOUSE', imageFile: 'brewhouse-30bbl-marks.webp', href: 'https://beverageequipmenttraders.com/collections/brewhouses' },
   { name: '60 BBL Jacketed Unitank',          price: '$24,900', condition: 'Used' as const, category: 'FERMENTER',  imageFile: 'fermenters-60bbl-pano.webp',  href: 'https://beverageequipmenttraders.com/collections/fermenters-manual' },
@@ -60,12 +62,14 @@ const schemas = [
 >
 
   <!-- ═══ HERO ═══════════════════════════════════ -->
-  <section
-    class="hero"
-    aria-label="Hero"
-    style={optimizedHero ? `--hero-img: url('${optimizedHero.src}')` : ''}
-  >
-    <div class="hero-bg" aria-hidden="true"></div>
+  <section class="hero" aria-label="Hero">
+    {optimizedHero && (
+      <div
+        class="hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
     <div class="container hero-inner">
       <div class="hero-content">
         <div class="hero-badge animate-fade-up">
@@ -309,10 +313,10 @@ const schemas = [
     border-bottom: 1px solid var(--color-border);
   }
 
+  /* Hero bg — direct inline style pattern, consistent with all other heroes on site */
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: var(--hero-img);
     background-size: cover;
     background-position: center center;
     pointer-events: none;
@@ -323,8 +327,8 @@ const schemas = [
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(11,12,15,0.95) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.4) 75%, rgba(11,12,15,0.15) 100%),
-      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 20%, rgba(11,12,15,0.5) 100%);
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
 
   .hero-inner {
@@ -342,7 +346,7 @@ const schemas = [
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255,255,255,0.04);
+    background: var(--color-bg-overlay);
     border: 1px solid var(--color-border);
     border-radius: 100px;
     padding: 0.3125rem 0.875rem;
@@ -372,7 +376,7 @@ const schemas = [
     line-height: 1.05;
     margin: 0 0 1.125rem;
     color: var(--color-white);
-    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    text-shadow: var(--shadow-text);
   }
 
   .hero-sub {

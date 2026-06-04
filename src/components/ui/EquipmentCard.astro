@@ -121,9 +121,10 @@ const conditionClass = {
     border-radius: 2px;
   }
 
-  .tag-used   { background: rgba(11,12,15,0.85); color: var(--color-text-muted); border: 1px solid var(--color-border); }
-  .tag-new    { background: rgba(13,148,136,0.85); color: var(--color-white); }
-  .tag-refurb { background: rgba(201,150,58,0.85); color: var(--color-white); }
+  /* Badge backgrounds use design tokens — zero hardcoded rgba */
+  .tag-used   { background: var(--color-bg); color: var(--color-text-muted); border: 1px solid var(--color-border); }
+  .tag-new    { background: var(--color-teal-overlay); color: var(--color-white); }
+  .tag-refurb { background: var(--color-gold-overlay); color: var(--color-white); }
 
   .card-body {
     padding: 1rem 1.125rem 1.125rem;
