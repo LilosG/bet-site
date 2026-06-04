@@ -2,14 +2,26 @@
 /**
  * Locations Hub — /locations
  * Service area hub. Local Southern California + National shipping markets.
- * All data pulled from locations.ts — zero hardcoded content.
+ * Hero image resolved via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { NAP } from '../../data/site';
 import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema';
+
+// Glob all images at build time — same pattern as equipment/[slug].astro
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/images/*.webp',
+  { eager: true }
+);
+
+const heroAsset = allImages['../../assets/images/hero-locations.webp']?.default;
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
 
 const crumbs = [
   { name: 'Home',          url: '/' },
@@ -36,9 +48,13 @@ const shippingFacts = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- ═══ HERO ══════════════════════════════════════ -->
-  <section class="hub-hero">
-    <div class="container">
+  <!-- Hero -->
+  <section
+    class={`hub-hero${optimizedHero ? ' hub-hero-has-image' : ''}`}
+    style={optimizedHero ? `--hero-img: url('${optimizedHero.src}')` : ''}
+  >
+    {optimizedHero && <div class="hub-hero-bg" aria-hidden="true"></div>}
+    <div class="container hub-hero-inner">
       <span class="eyebrow">Service Areas</span>
       <h1>San Marcos, CA<br />to All 50 States.</h1>
       <p class="hub-intro">
@@ -57,7 +73,7 @@ const shippingFacts = [
     </div>
   </section>
 
-  <!-- ═══ SHIPPING STATS ════════════════════════════ -->
+  <!-- Shipping Stats -->
   <section class="hub-stats-band" aria-label="Service area statistics">
     <div class="container hub-stats-inner">
       {shippingFacts.map((fact) => (
@@ -69,7 +85,7 @@ const shippingFacts = [
     </div>
   </section>
 
-  <!-- ═══ LOCAL SERVICE AREAS ═══════════════════════ -->
+  <!-- Local Service Areas -->
   <section class="section-y" aria-labelledby="local-heading">
     <div class="container">
       <div class="loc-section-header">
@@ -118,7 +134,7 @@ const shippingFacts = [
 
   <hr class="section-rule" />
 
-  <!-- ═══ NATIONAL MARKETS ══════════════════════════ -->
+  <!-- National Markets -->
   <section class="section-y" aria-labelledby="national-heading">
     <div class="container">
       <div class="loc-section-header">
@@ -163,7 +179,7 @@ const shippingFacts = [
     </div>
   </section>
 
-  <!-- ═══ WHY BET NATIONWIDE ════════════════════════ -->
+  <!-- Why BET Nationwide -->
   <section class="section-y hub-why-band" aria-labelledby="hub-why-heading">
     <div class="container hub-why-inner">
       <div>
@@ -216,22 +232,43 @@ const shippingFacts = [
 </Layout>
 
 <style>
-  /* ═══ HERO ══════════════════════════════════ */
+  /* ── Hero ─────────────────────────────────── */
   .hub-hero {
+    position: relative;
+    overflow: hidden;
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .hub-hero h1 {
-    max-width: 18ch;
-    margin: 0.5rem 0 1.125rem;
+  .hub-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
   }
 
-  .hub-intro {
-    max-width: 62ch;
-    font-size: 1.0625rem;
-    margin-bottom: 2rem;
+  .hub-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-img);
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
   }
+
+  .hub-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
+  }
+
+  .hub-hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hub-hero h1    { max-width: 18ch; margin: 0.5rem 0 1.125rem; }
+  .hub-intro      { max-width: 62ch; font-size: 1.0625rem; margin-bottom: 2rem; }
 
   .hub-hero-ctas {
     display: flex;
@@ -239,7 +276,7 @@ const shippingFacts = [
     flex-wrap: wrap;
   }
 
-  /* ═══ STATS BAND ════════════════════════════ */
+  /* ── Stats Band ───────────────────────────── */
   .hub-stats-band {
     background: var(--color-bg-2);
     border-bottom: 1px solid var(--color-border);
@@ -249,7 +286,6 @@ const shippingFacts = [
   .hub-stats-inner {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0;
   }
 
   .hub-stat {
@@ -282,7 +318,7 @@ const shippingFacts = [
     margin-top: 0.35rem;
   }
 
-  /* ═══ SECTION HEADERS ═══════════════════════ */
+  /* ── Section Headers ──────────────────────── */
   .loc-section-header {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -291,20 +327,10 @@ const shippingFacts = [
     margin-bottom: 2.5rem;
   }
 
-  .loc-section-header h2 {
-    margin: 0.4rem 0 0.875rem;
-  }
+  .loc-section-header h2  { margin: 0.4rem 0 0.875rem; }
+  .loc-section-desc       { max-width: 56ch; margin: 0; font-size: 1rem; }
 
-  .loc-section-desc {
-    max-width: 56ch;
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  /* Facility note card */
-  .loc-facility-note {
-    margin-top: 0.5rem;
-  }
+  .loc-facility-note      { margin-top: 0.5rem; }
 
   .facility-note-inner {
     background: var(--color-bg-card);
@@ -351,7 +377,6 @@ const shippingFacts = [
     margin: 0;
   }
 
-  /* Shipping facts box */
   .shipping-facts-box {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
@@ -395,7 +420,7 @@ const shippingFacts = [
     font-size: 0.75rem;
   }
 
-  /* ═══ LOCAL CARDS ═══════════════════════════ */
+  /* ── Local Cards ──────────────────────────── */
   .loc-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -424,9 +449,7 @@ const shippingFacts = [
     height: 100%;
   }
 
-  .loc-card-top {
-    margin-bottom: 0.875rem;
-  }
+  .loc-card-top         { margin-bottom: 0.875rem; }
 
   .loc-card-badge {
     display: inline-block;
@@ -439,15 +462,8 @@ const shippingFacts = [
     border-radius: 2px;
   }
 
-  .loc-badge-local {
-    background: var(--color-gold-dim);
-    color: var(--color-gold);
-  }
-
-  .loc-badge-national {
-    background: var(--color-teal-dim);
-    color: var(--color-teal);
-  }
+  .loc-badge-local    { background: var(--color-gold-dim);  color: var(--color-gold); }
+  .loc-badge-national { background: var(--color-teal-dim);  color: var(--color-teal); }
 
   .loc-card-city {
     font-family: var(--font-display);
@@ -499,10 +515,7 @@ const shippingFacts = [
     transition: gap var(--transition-base), color var(--transition-base);
   }
 
-  .loc-card:hover .loc-card-cta {
-    gap: 0.5rem;
-    color: var(--color-gold);
-  }
+  .loc-card:hover .loc-card-cta { gap: 0.5rem; color: var(--color-gold); }
 
   .loc-card-tag {
     font-family: var(--font-ui);
@@ -512,7 +525,7 @@ const shippingFacts = [
     color: var(--color-text-subtle);
   }
 
-  /* ═══ NATIONAL CARDS ════════════════════════ */
+  /* ── National Cards ───────────────────────── */
   .nat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -529,10 +542,7 @@ const shippingFacts = [
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .nat-card:hover {
-    border-color: var(--color-teal);
-    transform: translateY(-2px);
-  }
+  .nat-card:hover { border-color: var(--color-teal); transform: translateY(-2px); }
 
   .nat-card-inner {
     padding: 1.625rem;
@@ -541,9 +551,7 @@ const shippingFacts = [
     height: 100%;
   }
 
-  .nat-card-top {
-    margin-bottom: 0.875rem;
-  }
+  .nat-card-top   { margin-bottom: 0.875rem; }
 
   .nat-card-city {
     font-family: var(--font-display);
@@ -589,11 +597,9 @@ const shippingFacts = [
     transition: gap var(--transition-base), color var(--transition-base);
   }
 
-  .nat-card:hover .nat-card-cta {
-    gap: 0.5rem;
-  }
+  .nat-card:hover .nat-card-cta { gap: 0.5rem; }
 
-  /* ═══ WHY SECTION ═══════════════════════════ */
+  /* ── Why Section ──────────────────────────── */
   .hub-why-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -607,12 +613,8 @@ const shippingFacts = [
     align-items: start;
   }
 
-  .hub-why-inner h2 {
-    max-width: 20ch;
-    margin: 0.4rem 0 1.25rem;
-  }
-
-  .hub-why-inner p { margin-bottom: 1.25rem; }
+  .hub-why-inner h2   { max-width: 20ch; margin: 0.4rem 0 1.25rem; }
+  .hub-why-inner p    { margin-bottom: 1.25rem; }
   .hub-why-inner .btn { margin-top: 0.75rem; }
 
   .hub-why-list {
@@ -656,20 +658,20 @@ const shippingFacts = [
     line-height: 1.55;
   }
 
-  /* ═══ RESPONSIVE ════════════════════════════ */
+  /* ── Responsive ───────────────────────────── */
   @media (max-width: 1024px) {
-    .hub-stats-inner      { grid-template-columns: repeat(2, 1fr); }
-    .hub-stat:nth-child(2){ border-right: none; }
-    .loc-section-header   { grid-template-columns: 1fr; gap: 1.75rem; }
-    .loc-grid             { grid-template-columns: repeat(2, 1fr); }
-    .nat-grid             { grid-template-columns: repeat(2, 1fr); }
-    .hub-why-inner        { grid-template-columns: 1fr; gap: 3rem; }
+    .hub-stats-inner        { grid-template-columns: repeat(2, 1fr); }
+    .hub-stat:nth-child(2)  { border-right: none; }
+    .loc-section-header     { grid-template-columns: 1fr; gap: 1.75rem; }
+    .loc-grid               { grid-template-columns: repeat(2, 1fr); }
+    .nat-grid               { grid-template-columns: repeat(2, 1fr); }
+    .hub-why-inner          { grid-template-columns: 1fr; gap: 3rem; }
   }
 
   @media (max-width: 640px) {
-    .hub-hero-ctas { flex-direction: column; }
-    .hub-stats-inner { grid-template-columns: repeat(2, 1fr); }
-    .loc-grid { grid-template-columns: 1fr; }
-    .nat-grid { grid-template-columns: 1fr; }
+    .hub-hero-ctas    { flex-direction: column; }
+    .hub-stats-inner  { grid-template-columns: repeat(2, 1fr); }
+    .loc-grid         { grid-template-columns: 1fr; }
+    .nat-grid         { grid-template-columns: 1fr; }
   }
 </style>

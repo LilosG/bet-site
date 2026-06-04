@@ -2,7 +2,9 @@
 /**
  * Services Hub — /services
  * Overview of all 5 service offerings.
+ * Hero image resolved via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import ServiceCard from '../../components/ui/ServiceCard.astro';
@@ -10,6 +12,17 @@ import CtaStrip from '../../components/ui/CtaStrip.astro';
 import StatBar from '../../components/ui/StatBar.astro';
 import { SERVICES } from '../../data/services';
 import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
+
+// Glob all images at build time — same pattern as equipment/[slug].astro
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/images/*.webp',
+  { eager: true }
+);
+
+const heroAsset = allImages['../../assets/images/hero-services.webp']?.default;
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
 
 const crumbs = [
   { name: 'Home',     url: '/' },
@@ -37,8 +50,12 @@ const schemas = [
   <Breadcrumb crumbs={crumbs} />
 
   <!-- Hero -->
-  <section class="services-hero">
-    <div class="container">
+  <section
+    class={`services-hero${optimizedHero ? ' services-hero-has-image' : ''}`}
+    style={optimizedHero ? `--hero-img: url('${optimizedHero.src}')` : ''}
+  >
+    {optimizedHero && <div class="services-hero-bg" aria-hidden="true"></div>}
+    <div class="container services-hero-inner">
       <span class="eyebrow">Services</span>
       <h1>One Partner, Every Step of the Lifecycle.</h1>
       <p class="services-hero-intro">
@@ -127,9 +144,39 @@ const schemas = [
 </Layout>
 
 <style>
+  /* ── Hero ─────────────────────────────────── */
   .services-hero {
+    position: relative;
+    overflow: hidden;
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .services-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
+  }
+
+  .services-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-img);
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
+  }
+
+  .services-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
+  }
+
+  .services-hero-inner {
+    position: relative;
+    z-index: 1;
   }
 
   .services-hero h1 {
@@ -142,6 +189,7 @@ const schemas = [
     font-size: 1.0625rem;
   }
 
+  /* ── Services Grid ────────────────────────── */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -155,6 +203,7 @@ const schemas = [
     padding: 3rem 0;
   }
 
+  /* ── Why One Partner ──────────────────────── */
   .why-one-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -167,13 +216,8 @@ const schemas = [
     margin: 0.5rem 0 1.25rem;
   }
 
-  .why-one-inner p {
-    margin-bottom: 1.25rem;
-  }
-
-  .why-one-inner .btn {
-    margin-top: 0.75rem;
-  }
+  .why-one-inner p        { margin-bottom: 1.25rem; }
+  .why-one-inner .btn     { margin-top: 0.75rem; }
 
   .why-one-list {
     display: flex;
@@ -190,9 +234,7 @@ const schemas = [
     border-bottom: 1px solid var(--color-border);
   }
 
-  .why-one-item:first-child {
-    border-top: 1px solid var(--color-border);
-  }
+  .why-one-item:first-child { border-top: 1px solid var(--color-border); }
 
   .why-one-num {
     font-family: var(--font-display);
@@ -220,8 +262,8 @@ const schemas = [
   }
 
   @media (max-width: 1024px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-    .why-one-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid  { grid-template-columns: repeat(2, 1fr); }
+    .why-one-inner  { grid-template-columns: 1fr; gap: 3rem; }
   }
 
   @media (max-width: 640px) {

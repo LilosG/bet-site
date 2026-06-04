@@ -2,14 +2,25 @@
 /**
  * Industries Hub — /industries
  * Answers: "Do you serve my type of operation?"
- * Routes buyers into industry-specific pages.
- * All content from industries.ts — zero hardcoding.
+ * Hero image resolved via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { INDUSTRIES } from '../../data/industries';
 import { breadcrumbSchema } from '../../lib/schema';
+
+// Glob all images at build time — same pattern as equipment/[slug].astro
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/images/*.webp',
+  { eager: true }
+);
+
+const heroAsset = allImages['../../assets/images/hero-industries.webp']?.default;
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
 
 const crumbs = [
   { name: 'Home',       url: '/' },
@@ -18,7 +29,6 @@ const crumbs = [
 
 const schemas = [breadcrumbSchema(crumbs)];
 
-// Group industries for display
 const beverageIndustries = INDUSTRIES.filter(i =>
   ['craft-brewery','distillery','cidery','beverage-production','hard-seltzer'].includes(i.slug)
 );
@@ -35,8 +45,12 @@ const industrialIndustries = INDUSTRIES.filter(i =>
   <Breadcrumb crumbs={crumbs} />
 
   <!-- Hero -->
-  <section class="ind-hub-hero">
-    <div class="container">
+  <section
+    class={`ind-hub-hero${optimizedHero ? ' ind-hub-hero-has-image' : ''}`}
+    style={optimizedHero ? `--hero-img: url('${optimizedHero.src}')` : ''}
+  >
+    {optimizedHero && <div class="ind-hub-hero-bg" aria-hidden="true"></div>}
+    <div class="container ind-hub-hero-inner">
       <span class="eyebrow">Industries</span>
       <h1>Equipment Built for Production.<br />Industries Beyond Brewing.</h1>
       <p class="ind-hub-intro">
@@ -72,9 +86,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
               </div>
               <span class="ind-card-cta">
                 View Equipment & Services
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </div>
           </a>
@@ -85,7 +97,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
 
   <hr class="section-rule" />
 
-  <!-- Industrial / Crossover Industries -->
+  <!-- Industrial Industries -->
   <section class="section-y" aria-labelledby="ind-heading">
     <div class="container">
       <span class="eyebrow">Industrial & Processing</span>
@@ -108,9 +120,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
               </div>
               <span class="ind-card-cta">
                 View Equipment & Services
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </div>
           </a>
@@ -138,9 +148,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
         </p>
         <a href="/contact" class="btn btn-primary">
           Talk to Our Team
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
       <div class="ind-why-list">
@@ -171,40 +179,56 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     secondaryLabel="Browse All Equipment"
     secondaryHref="/equipment"
   />
-
 </Layout>
 
 <style>
+  /* ── Hero ─────────────────────────────────── */
   .ind-hub-hero {
+    position: relative;
+    overflow: hidden;
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .ind-hub-hero h1 {
-    max-width: 22ch;
-    margin: 0.5rem 0 1rem;
+  .ind-hub-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
   }
 
-  .ind-hub-intro {
-    max-width: 64ch;
-    font-size: 1.0625rem;
+  .ind-hub-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-img);
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
   }
 
-  .ind-group-intro {
-    max-width: 60ch;
-    margin: 0.5rem 0 2rem;
+  .ind-hub-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
 
-  /* Industry card grid */
+  .ind-hub-hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ind-hub-hero h1    { max-width: 22ch; margin: 0.5rem 0 1rem; }
+  .ind-hub-intro      { max-width: 64ch; font-size: 1.0625rem; }
+  .ind-group-intro    { max-width: 60ch; margin: 0.5rem 0 2rem; }
+
+  /* ── Industry Cards ───────────────────────── */
   .ind-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
   }
 
-  .ind-grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .ind-grid-3 { grid-template-columns: repeat(3, 1fr); }
 
   .ind-card {
     display: block;
@@ -239,9 +263,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     transition: color var(--transition-base);
   }
 
-  .ind-card:hover .ind-card-title {
-    color: var(--color-gold);
-  }
+  .ind-card:hover .ind-card-title { color: var(--color-gold); }
 
   .ind-card-intro {
     font-size: 0.875rem;
@@ -281,12 +303,9 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     transition: color var(--transition-base), gap var(--transition-base);
   }
 
-  .ind-card:hover .ind-card-cta {
-    color: var(--color-gold);
-    gap: 0.5rem;
-  }
+  .ind-card:hover .ind-card-cta { color: var(--color-gold); gap: 0.5rem; }
 
-  /* Why section */
+  /* ── Why Section ──────────────────────────── */
   .ind-why {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -300,13 +319,9 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     align-items: start;
   }
 
-  .ind-why-inner h2 {
-    max-width: 18ch;
-    margin: 0.5rem 0 1.25rem;
-  }
-
-  .ind-why-inner p { margin-bottom: 1.25rem; }
-  .ind-why-inner .btn { margin-top: 0.75rem; }
+  .ind-why-inner h2       { max-width: 18ch; margin: 0.5rem 0 1.25rem; }
+  .ind-why-inner p        { margin-bottom: 1.25rem; }
+  .ind-why-inner .btn     { margin-top: 0.75rem; }
 
   .ind-why-list {
     display: flex;
@@ -350,12 +365,12 @@ const industrialIndustries = INDUSTRIES.filter(i =>
   }
 
   @media (max-width: 1024px) {
-    .ind-grid { grid-template-columns: repeat(2, 1fr); }
-    .ind-why-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .ind-grid       { grid-template-columns: repeat(2, 1fr); }
+    .ind-why-inner  { grid-template-columns: 1fr; gap: 3rem; }
   }
 
   @media (max-width: 640px) {
-    .ind-grid { grid-template-columns: 1fr; }
-    .ind-grid-3 { grid-template-columns: 1fr; }
+    .ind-grid     { grid-template-columns: 1fr; }
+    .ind-grid-3   { grid-template-columns: 1fr; }
   }
 </style>
