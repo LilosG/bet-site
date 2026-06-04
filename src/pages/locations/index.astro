@@ -2,7 +2,7 @@
 /**
  * Locations Hub — /locations
  * Service area hub. Local Southern California + National shipping markets.
- * Hero image resolved via import.meta.glob + getImage — same pattern as equipment/[slug].astro
+ * Hero image via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
 import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
@@ -12,7 +12,6 @@ import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { NAP } from '../../data/site';
 import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema';
 
-// Glob all images at build time — same pattern as equipment/[slug].astro
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/images/*.webp',
   { eager: true }
@@ -48,12 +47,14 @@ const shippingFacts = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Hero -->
-  <section
-    class={`hub-hero${optimizedHero ? ' hub-hero-has-image' : ''}`}
-    style={optimizedHero ? `--hero-img: url('${optimizedHero.src}')` : ''}
-  >
-    {optimizedHero && <div class="hub-hero-bg" aria-hidden="true"></div>}
+  <section class={`hub-hero${optimizedHero ? ' hub-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="hub-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
     <div class="container hub-hero-inner">
       <span class="eyebrow">Service Areas</span>
       <h1>San Marcos, CA<br />to All 50 States.</h1>
@@ -73,7 +74,6 @@ const shippingFacts = [
     </div>
   </section>
 
-  <!-- Shipping Stats -->
   <section class="hub-stats-band" aria-label="Service area statistics">
     <div class="container hub-stats-inner">
       {shippingFacts.map((fact) => (
@@ -85,7 +85,6 @@ const shippingFacts = [
     </div>
   </section>
 
-  <!-- Local Service Areas -->
   <section class="section-y" aria-labelledby="local-heading">
     <div class="container">
       <div class="loc-section-header">
@@ -107,7 +106,6 @@ const shippingFacts = [
           </div>
         </div>
       </div>
-
       <div class="loc-grid">
         {LOCAL_LOCATIONS.map((loc) => (
           <a href={`/locations/local/${loc.slug}`} class="loc-card">
@@ -134,7 +132,6 @@ const shippingFacts = [
 
   <hr class="section-rule" />
 
-  <!-- National Markets -->
   <section class="section-y" aria-labelledby="national-heading">
     <div class="container">
       <div class="loc-section-header">
@@ -157,7 +154,6 @@ const shippingFacts = [
           </ul>
         </div>
       </div>
-
       <div class="nat-grid">
         {NATIONAL_LOCATIONS.map((loc) => (
           <a href={`/locations/national/${loc.slug}`} class="nat-card">
@@ -179,7 +175,6 @@ const shippingFacts = [
     </div>
   </section>
 
-  <!-- Why BET Nationwide -->
   <section class="section-y hub-why-band" aria-labelledby="hub-why-heading">
     <div class="container hub-why-inner">
       <div>
@@ -232,7 +227,6 @@ const shippingFacts = [
 </Layout>
 
 <style>
-  /* ── Hero ─────────────────────────────────── */
   .hub-hero {
     position: relative;
     overflow: hidden;
@@ -247,7 +241,6 @@ const shippingFacts = [
   .hub-hero-bg {
     position: absolute;
     inset: 0;
-    background-image: var(--hero-img);
     background-size: cover;
     background-position: center 40%;
     pointer-events: none;
@@ -262,21 +255,11 @@ const shippingFacts = [
       linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
 
-  .hub-hero-inner {
-    position: relative;
-    z-index: 1;
-  }
+  .hub-hero-inner  { position: relative; z-index: 1; }
+  .hub-hero h1     { max-width: 18ch; margin: 0.5rem 0 1.125rem; }
+  .hub-intro       { max-width: 62ch; font-size: 1.0625rem; margin-bottom: 2rem; }
+  .hub-hero-ctas   { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  .hub-hero h1    { max-width: 18ch; margin: 0.5rem 0 1.125rem; }
-  .hub-intro      { max-width: 62ch; font-size: 1.0625rem; margin-bottom: 2rem; }
-
-  .hub-hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  /* ── Stats Band ───────────────────────────── */
   .hub-stats-band {
     background: var(--color-bg-2);
     border-bottom: 1px solid var(--color-border);
@@ -318,7 +301,6 @@ const shippingFacts = [
     margin-top: 0.35rem;
   }
 
-  /* ── Section Headers ──────────────────────── */
   .loc-section-header {
     display: grid;
     grid-template-columns: 1fr 280px;
@@ -327,10 +309,9 @@ const shippingFacts = [
     margin-bottom: 2.5rem;
   }
 
-  .loc-section-header h2  { margin: 0.4rem 0 0.875rem; }
-  .loc-section-desc       { max-width: 56ch; margin: 0; font-size: 1rem; }
-
-  .loc-facility-note      { margin-top: 0.5rem; }
+  .loc-section-header h2 { margin: 0.4rem 0 0.875rem; }
+  .loc-section-desc      { max-width: 56ch; margin: 0; font-size: 1rem; }
+  .loc-facility-note     { margin-top: 0.5rem; }
 
   .facility-note-inner {
     background: var(--color-bg-card);
@@ -420,7 +401,6 @@ const shippingFacts = [
     font-size: 0.75rem;
   }
 
-  /* ── Local Cards ──────────────────────────── */
   .loc-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -437,10 +417,7 @@ const shippingFacts = [
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .loc-card:hover {
-    border-color: var(--color-border-gold);
-    transform: translateY(-2px);
-  }
+  .loc-card:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
   .loc-card-inner {
     padding: 1.625rem;
@@ -449,7 +426,7 @@ const shippingFacts = [
     height: 100%;
   }
 
-  .loc-card-top         { margin-bottom: 0.875rem; }
+  .loc-card-top { margin-bottom: 0.875rem; }
 
   .loc-card-badge {
     display: inline-block;
@@ -462,8 +439,8 @@ const shippingFacts = [
     border-radius: 2px;
   }
 
-  .loc-badge-local    { background: var(--color-gold-dim);  color: var(--color-gold); }
-  .loc-badge-national { background: var(--color-teal-dim);  color: var(--color-teal); }
+  .loc-badge-local    { background: var(--color-gold-dim); color: var(--color-gold); }
+  .loc-badge-national { background: var(--color-teal-dim); color: var(--color-teal); }
 
   .loc-card-city {
     font-family: var(--font-display);
@@ -525,7 +502,6 @@ const shippingFacts = [
     color: var(--color-text-subtle);
   }
 
-  /* ── National Cards ───────────────────────── */
   .nat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -551,7 +527,7 @@ const shippingFacts = [
     height: 100%;
   }
 
-  .nat-card-top   { margin-bottom: 0.875rem; }
+  .nat-card-top { margin-bottom: 0.875rem; }
 
   .nat-card-city {
     font-family: var(--font-display);
@@ -594,12 +570,11 @@ const shippingFacts = [
     margin-top: 1.25rem;
     padding-top: 1rem;
     border-top: 1px solid var(--color-border);
-    transition: gap var(--transition-base), color var(--transition-base);
+    transition: gap var(--transition-base);
   }
 
   .nat-card:hover .nat-card-cta { gap: 0.5rem; }
 
-  /* ── Why Section ──────────────────────────── */
   .hub-why-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -617,11 +592,7 @@ const shippingFacts = [
   .hub-why-inner p    { margin-bottom: 1.25rem; }
   .hub-why-inner .btn { margin-top: 0.75rem; }
 
-  .hub-why-list {
-    display: flex;
-    flex-direction: column;
-    padding-top: 0.5rem;
-  }
+  .hub-why-list { display: flex; flex-direction: column; padding-top: 0.5rem; }
 
   .hub-why-item {
     display: flex;
@@ -658,20 +629,19 @@ const shippingFacts = [
     line-height: 1.55;
   }
 
-  /* ── Responsive ───────────────────────────── */
   @media (max-width: 1024px) {
-    .hub-stats-inner        { grid-template-columns: repeat(2, 1fr); }
-    .hub-stat:nth-child(2)  { border-right: none; }
-    .loc-section-header     { grid-template-columns: 1fr; gap: 1.75rem; }
-    .loc-grid               { grid-template-columns: repeat(2, 1fr); }
-    .nat-grid               { grid-template-columns: repeat(2, 1fr); }
-    .hub-why-inner          { grid-template-columns: 1fr; gap: 3rem; }
+    .hub-stats-inner       { grid-template-columns: repeat(2, 1fr); }
+    .hub-stat:nth-child(2) { border-right: none; }
+    .loc-section-header    { grid-template-columns: 1fr; gap: 1.75rem; }
+    .loc-grid              { grid-template-columns: repeat(2, 1fr); }
+    .nat-grid              { grid-template-columns: repeat(2, 1fr); }
+    .hub-why-inner         { grid-template-columns: 1fr; gap: 3rem; }
   }
 
   @media (max-width: 640px) {
-    .hub-hero-ctas    { flex-direction: column; }
-    .hub-stats-inner  { grid-template-columns: repeat(2, 1fr); }
-    .loc-grid         { grid-template-columns: 1fr; }
-    .nat-grid         { grid-template-columns: 1fr; }
+    .hub-hero-ctas   { flex-direction: column; }
+    .hub-stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .loc-grid        { grid-template-columns: 1fr; }
+    .nat-grid        { grid-template-columns: 1fr; }
   }
 </style>

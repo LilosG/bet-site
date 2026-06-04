@@ -2,7 +2,7 @@
 /**
  * Industries Hub — /industries
  * Answers: "Do you serve my type of operation?"
- * Hero image resolved via import.meta.glob + getImage — same pattern as equipment/[slug].astro
+ * Hero image via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
 import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
@@ -11,7 +11,6 @@ import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { INDUSTRIES } from '../../data/industries';
 import { breadcrumbSchema } from '../../lib/schema';
 
-// Glob all images at build time — same pattern as equipment/[slug].astro
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/images/*.webp',
   { eager: true }
@@ -44,12 +43,14 @@ const industrialIndustries = INDUSTRIES.filter(i =>
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Hero -->
-  <section
-    class={`ind-hub-hero${optimizedHero ? ' ind-hub-hero-has-image' : ''}`}
-    style={optimizedHero ? `--hero-img: url('${optimizedHero.src}')` : ''}
-  >
-    {optimizedHero && <div class="ind-hub-hero-bg" aria-hidden="true"></div>}
+  <section class={`ind-hub-hero${optimizedHero ? ' ind-hub-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="ind-hub-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
     <div class="container ind-hub-hero-inner">
       <span class="eyebrow">Industries</span>
       <h1>Equipment Built for Production.<br />Industries Beyond Brewing.</h1>
@@ -64,7 +65,6 @@ const industrialIndustries = INDUSTRIES.filter(i =>
 
   <hr class="section-rule" />
 
-  <!-- Beverage Industries -->
   <section class="section-y" aria-labelledby="bev-heading">
     <div class="container">
       <span class="eyebrow">Beverage Production</span>
@@ -97,7 +97,6 @@ const industrialIndustries = INDUSTRIES.filter(i =>
 
   <hr class="section-rule" />
 
-  <!-- Industrial Industries -->
   <section class="section-y" aria-labelledby="ind-heading">
     <div class="container">
       <span class="eyebrow">Industrial & Processing</span>
@@ -129,7 +128,6 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     </div>
   </section>
 
-  <!-- Why BET across industries -->
   <section class="section-y ind-why" aria-labelledby="why-heading">
     <div class="container ind-why-inner">
       <div>
@@ -182,7 +180,6 @@ const industrialIndustries = INDUSTRIES.filter(i =>
 </Layout>
 
 <style>
-  /* ── Hero ─────────────────────────────────── */
   .ind-hub-hero {
     position: relative;
     overflow: hidden;
@@ -197,7 +194,6 @@ const industrialIndustries = INDUSTRIES.filter(i =>
   .ind-hub-hero-bg {
     position: absolute;
     inset: 0;
-    background-image: var(--hero-img);
     background-size: cover;
     background-position: center 40%;
     pointer-events: none;
@@ -212,16 +208,11 @@ const industrialIndustries = INDUSTRIES.filter(i =>
       linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
 
-  .ind-hub-hero-inner {
-    position: relative;
-    z-index: 1;
-  }
-
+  .ind-hub-hero-inner { position: relative; z-index: 1; }
   .ind-hub-hero h1    { max-width: 22ch; margin: 0.5rem 0 1rem; }
   .ind-hub-intro      { max-width: 64ch; font-size: 1.0625rem; }
   .ind-group-intro    { max-width: 60ch; margin: 0.5rem 0 2rem; }
 
-  /* ── Industry Cards ───────────────────────── */
   .ind-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -273,11 +264,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     flex: 1;
   }
 
-  .ind-card-chips {
-    display: flex;
-    gap: 0.375rem;
-    flex-wrap: wrap;
-  }
+  .ind-card-chips { display: flex; gap: 0.375rem; flex-wrap: wrap; }
 
   .ind-chip {
     font-family: var(--font-ui);
@@ -305,7 +292,6 @@ const industrialIndustries = INDUSTRIES.filter(i =>
 
   .ind-card:hover .ind-card-cta { color: var(--color-gold); gap: 0.5rem; }
 
-  /* ── Why Section ──────────────────────────── */
   .ind-why {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -319,15 +305,11 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     align-items: start;
   }
 
-  .ind-why-inner h2       { max-width: 18ch; margin: 0.5rem 0 1.25rem; }
-  .ind-why-inner p        { margin-bottom: 1.25rem; }
-  .ind-why-inner .btn     { margin-top: 0.75rem; }
+  .ind-why-inner h2   { max-width: 18ch; margin: 0.5rem 0 1.25rem; }
+  .ind-why-inner p    { margin-bottom: 1.25rem; }
+  .ind-why-inner .btn { margin-top: 0.75rem; }
 
-  .ind-why-list {
-    display: flex;
-    flex-direction: column;
-    padding-top: 0.5rem;
-  }
+  .ind-why-list { display: flex; flex-direction: column; padding-top: 0.5rem; }
 
   .ind-why-item {
     display: flex;
@@ -365,12 +347,12 @@ const industrialIndustries = INDUSTRIES.filter(i =>
   }
 
   @media (max-width: 1024px) {
-    .ind-grid       { grid-template-columns: repeat(2, 1fr); }
-    .ind-why-inner  { grid-template-columns: 1fr; gap: 3rem; }
+    .ind-grid      { grid-template-columns: repeat(2, 1fr); }
+    .ind-why-inner { grid-template-columns: 1fr; gap: 3rem; }
   }
 
   @media (max-width: 640px) {
-    .ind-grid     { grid-template-columns: 1fr; }
-    .ind-grid-3   { grid-template-columns: 1fr; }
+    .ind-grid   { grid-template-columns: 1fr; }
+    .ind-grid-3 { grid-template-columns: 1fr; }
   }
 </style>

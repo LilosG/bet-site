@@ -2,7 +2,7 @@
 /**
  * Services Hub — /services
  * Overview of all 5 service offerings.
- * Hero image resolved via import.meta.glob + getImage — same pattern as equipment/[slug].astro
+ * Hero image via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
 import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
@@ -13,7 +13,6 @@ import StatBar from '../../components/ui/StatBar.astro';
 import { SERVICES } from '../../data/services';
 import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
 
-// Glob all images at build time — same pattern as equipment/[slug].astro
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/images/*.webp',
   { eager: true }
@@ -49,12 +48,14 @@ const schemas = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Hero -->
-  <section
-    class={`services-hero${optimizedHero ? ' services-hero-has-image' : ''}`}
-    style={optimizedHero ? `--hero-img: url('${optimizedHero.src}')` : ''}
-  >
-    {optimizedHero && <div class="services-hero-bg" aria-hidden="true"></div>}
+  <section class={`services-hero${optimizedHero ? ' services-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="services-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
     <div class="container services-hero-inner">
       <span class="eyebrow">Services</span>
       <h1>One Partner, Every Step of the Lifecycle.</h1>
@@ -67,7 +68,6 @@ const schemas = [
 
   <hr class="section-rule" />
 
-  <!-- Service Cards Grid -->
   <section class="section-y" aria-labelledby="services-list-heading">
     <div class="container">
       <h2 id="services-list-heading" class="sr-only">Our Services</h2>
@@ -85,14 +85,12 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Stats -->
   <div class="stats-band">
     <div class="container">
       <StatBar />
     </div>
   </div>
 
-  <!-- Why One Partner -->
   <section class="section-y" aria-labelledby="why-one-heading">
     <div class="container why-one-inner">
       <div>
@@ -144,7 +142,6 @@ const schemas = [
 </Layout>
 
 <style>
-  /* ── Hero ─────────────────────────────────── */
   .services-hero {
     position: relative;
     overflow: hidden;
@@ -159,7 +156,6 @@ const schemas = [
   .services-hero-bg {
     position: absolute;
     inset: 0;
-    background-image: var(--hero-img);
     background-size: cover;
     background-position: center 40%;
     pointer-events: none;
@@ -174,22 +170,10 @@ const schemas = [
       linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
 
-  .services-hero-inner {
-    position: relative;
-    z-index: 1;
-  }
+  .services-hero-inner { position: relative; z-index: 1; }
+  .services-hero h1    { max-width: 20ch; margin: 0.5rem 0 1rem; }
+  .services-hero-intro { max-width: 62ch; font-size: 1.0625rem; }
 
-  .services-hero h1 {
-    max-width: 20ch;
-    margin: 0.5rem 0 1rem;
-  }
-
-  .services-hero-intro {
-    max-width: 62ch;
-    font-size: 1.0625rem;
-  }
-
-  /* ── Services Grid ────────────────────────── */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -203,7 +187,6 @@ const schemas = [
     padding: 3rem 0;
   }
 
-  /* ── Why One Partner ──────────────────────── */
   .why-one-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -211,13 +194,9 @@ const schemas = [
     align-items: start;
   }
 
-  .why-one-inner h2 {
-    max-width: 18ch;
-    margin: 0.5rem 0 1.25rem;
-  }
-
-  .why-one-inner p        { margin-bottom: 1.25rem; }
-  .why-one-inner .btn     { margin-top: 0.75rem; }
+  .why-one-inner h2   { max-width: 18ch; margin: 0.5rem 0 1.25rem; }
+  .why-one-inner p    { margin-bottom: 1.25rem; }
+  .why-one-inner .btn { margin-top: 0.75rem; }
 
   .why-one-list {
     display: flex;
@@ -262,8 +241,8 @@ const schemas = [
   }
 
   @media (max-width: 1024px) {
-    .services-grid  { grid-template-columns: repeat(2, 1fr); }
-    .why-one-inner  { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-one-inner { grid-template-columns: 1fr; gap: 3rem; }
   }
 
   @media (max-width: 640px) {
