@@ -2,15 +2,24 @@
 /**
  * About Page — /about
  * Brewery origin story, operator credentials, team, client roster.
- * This content is the primary differentiator vs. generic equipment dealers.
+ * Uses astro:assets Image component for optimized images.
  */
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import StatBar from '../components/ui/StatBar.astro';
 import TrustBar from '../components/ui/TrustBar.astro';
 import CtaStrip from '../components/ui/CtaStrip.astro';
-import { NAP, STATS } from '../data/site';
+import { NAP } from '../data/site';
 import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
+
+// Glob all images at build time
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/images/*.webp',
+  { eager: true }
+);
+
+const storyImage = allImages['../assets/images/brewhouse-15bbl-hlt.webp']?.default;
 
 const crumbs = [
   { name: 'Home',  url: '/' },
@@ -30,7 +39,7 @@ const schemas = [
 >
   <Breadcrumb crumbs={crumbs} />
 
-  <!-- Hero -->
+  <!-- ═══ HERO ══════════════════════════════════ -->
   <section class="about-hero">
     <div class="container">
       <span class="eyebrow">About BET</span>
@@ -43,24 +52,29 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Stats Band -->
+  <!-- ═══ STATS BAND ════════════════════════════ -->
   <div class="stats-band">
     <div class="container">
       <StatBar />
     </div>
   </div>
 
-  <!-- Origin Story -->
+  <!-- ═══ ORIGIN STORY ═════════════════════════ -->
   <section class="section-y" aria-labelledby="story-heading">
     <div class="container story-inner">
       <div class="story-image-block" aria-hidden="true">
         <div class="story-image-placeholder">
-          <img
-            src="/images/brewhouse-15bbl-hlt.webp"
-            alt="15 BBL brewhouse with HLT — Beverage Equipment Traders"
-            loading="lazy"
-            decoding="async"
-          />
+          {storyImage && (
+            <Image
+              src={storyImage}
+              alt="15 BBL brewhouse with HLT — Beverage Equipment Traders"
+              class="story-img"
+              width={480}
+              height={640}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
           <span class="story-est">EST. 2009</span>
           <span class="story-city">San Marcos, California</span>
         </div>
@@ -79,7 +93,6 @@ const schemas = [
       <div class="story-content">
         <span class="eyebrow">The Story</span>
         <h2 id="story-heading">Before we brokered a single tank, we ran a brewhouse.</h2>
-
         <p>
           Most equipment dealers have never brewed a batch. They learned equipment pricing from a spreadsheet
           and condition grading from a checklist. We did not. We troubleshot glycol loops at 2 a.m. We welded
@@ -99,7 +112,6 @@ const schemas = [
           blurry listing. Buyers are encouraged to inspect in person. Our team can walk you through every piece
           in our yard and give you the operator's take on what it's actually worth.
         </p>
-
         <div class="story-ctas">
           <a href="/equipment" class="btn btn-primary">Browse Equipment</a>
           <a href="/contact" class="btn btn-outline">Contact the Trade Desk</a>
@@ -108,37 +120,19 @@ const schemas = [
     </div>
   </section>
 
-  <!-- What We Do -->
+  <!-- ═══ WHAT WE DO ════════════════════════════ -->
   <section class="section-y what-we-do-band" aria-labelledby="what-we-do-heading">
     <div class="container">
       <span class="eyebrow">What We Do</span>
       <h2 id="what-we-do-heading">The Full Capital Equipment Lifecycle</h2>
       <div class="what-grid">
         {[
-          {
-            label: 'Buy and Sell',
-            detail: '225+ items in our yard at any time. Brewhouses, fermenters, canning lines, chillers, distilling equipment, kegs, boilers, and cold rooms. Every piece inspected.',
-          },
-          {
-            label: 'Rig and Install',
-            detail: 'Millwright crews, crane operation, bonded freight, and commissioning. All 50 states. One quote covers the full scope.',
-          },
-          {
-            label: 'Consign',
-            detail: 'Managed listing, valuation, marketing, and payout for equipment you need to move. No upfront cost.',
-          },
-          {
-            label: 'Auction',
-            detail: 'Full-facility liquidations and competitive online auction events for distressed and surplus assets.',
-          },
-          {
-            label: 'Consult',
-            detail: 'Pre-purchase audits, capacity planning, and commissioning support from licensed brewery engineers.',
-          },
-          {
-            label: 'Source New',
-            detail: 'Manufacturer relationships for custom new equipment builds when the right used piece is not available.',
-          },
+          { label: 'Buy and Sell',  detail: '225+ items in our yard at any time. Brewhouses, fermenters, canning lines, chillers, distilling equipment, kegs, boilers, and cold rooms. Every piece inspected.' },
+          { label: 'Rig and Install', detail: 'Millwright crews, crane operation, bonded freight, and commissioning. All 50 states. One quote covers the full scope.' },
+          { label: 'Consign',       detail: 'Managed listing, valuation, marketing, and payout for equipment you need to move. No upfront cost.' },
+          { label: 'Auction',       detail: 'Full-facility liquidations and competitive online auction events for distressed and surplus assets.' },
+          { label: 'Consult',       detail: 'Pre-purchase audits, capacity planning, and commissioning support from licensed brewery engineers.' },
+          { label: 'Source New',    detail: 'Manufacturer relationships for custom new equipment builds when the right used piece is not available.' },
         ].map((item) => (
           <div class="what-item">
             <h3 class="what-label">{item.label}</h3>
@@ -149,10 +143,10 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Client Roster -->
+  <!-- ═══ CLIENT ROSTER ════════════════════════ -->
   <TrustBar heading="Clients we have worked with" />
 
-  <!-- Location / Visit -->
+  <!-- ═══ VISIT ════════════════════════════════ -->
   <section class="section-y" aria-labelledby="visit-heading">
     <div class="container visit-inner">
       <div>
@@ -209,24 +203,20 @@ const schemas = [
     secondaryLabel="Browse Inventory"
     secondaryHref="/equipment"
   />
+
 </Layout>
 
 <style>
+  /* ─── Hero ───────────────────────────────────── */
   .about-hero {
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .about-hero h1 {
-    max-width: 22ch;
-    margin: 0.5rem 0 1rem;
-  }
+  .about-hero h1 { max-width: 22ch; margin: 0.5rem 0 1rem; }
+  .about-hero-intro { max-width: 64ch; font-size: 1.0625rem; }
 
-  .about-hero-intro {
-    max-width: 64ch;
-    font-size: 1.0625rem;
-  }
-
+  /* ─── Stats ──────────────────────────────────── */
   .stats-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -234,7 +224,7 @@ const schemas = [
     padding: 3rem 0;
   }
 
-  /* Story section */
+  /* ─── Story ──────────────────────────────────── */
   .story-inner {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -254,13 +244,14 @@ const schemas = [
     border: 1px solid var(--color-border-gold);
   }
 
-  .story-image-placeholder img {
+  .story-img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    display: block;
   }
 
   .story-image-placeholder::after {
@@ -287,7 +278,6 @@ const schemas = [
     font-family: var(--font-ui);
     font-size: 0.75rem;
     color: var(--color-text-muted);
-    margin-top: 0.2rem;
     position: relative;
     z-index: 2;
     padding: 0 1.5rem 1.5rem;
@@ -331,30 +321,19 @@ const schemas = [
 
   .story-phone:hover { color: var(--color-gold-light); }
 
-  .story-content h2 {
-    max-width: 24ch;
-    margin: 0.5rem 0 1.5rem;
-  }
+  .story-content h2 { max-width: 24ch; margin: 0.5rem 0 1.5rem; }
+  .story-content p  { margin-bottom: 1.25rem; }
 
-  .story-content p { margin-bottom: 1.25rem; }
+  .story-ctas { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
 
-  .story-ctas {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
-
-  /* What We Do — dark theme cards using design tokens */
+  /* ─── What We Do ─────────────────────────────── */
   .what-we-do-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .what-we-do-band h2 {
-    margin: 0.5rem 0 0;
-  }
+  .what-we-do-band h2 { margin: 0.5rem 0 0; }
 
   .what-grid {
     display: grid;
@@ -371,10 +350,7 @@ const schemas = [
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .what-item:hover {
-    border-color: var(--color-gold);
-    transform: translateY(-2px);
-  }
+  .what-item:hover { border-color: var(--color-gold); transform: translateY(-2px); }
 
   .what-label {
     font-family: var(--font-display);
@@ -385,32 +361,14 @@ const schemas = [
     transition: color var(--transition-base);
   }
 
-  .what-item:hover .what-label {
-    color: var(--color-gold);
-  }
+  .what-item:hover .what-label { color: var(--color-gold); }
 
-  .what-detail {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin: 0;
-    line-height: 1.65;
-  }
+  .what-detail { font-size: 0.875rem; color: var(--color-text-muted); margin: 0; line-height: 1.65; }
 
-  /* Visit section */
-  .visit-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
+  /* ─── Visit ──────────────────────────────────── */
+  .visit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 
-  .visit-address {
-    font-style: normal;
-    font-size: 1rem;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    margin: 1.25rem 0 0.75rem;
-  }
+  .visit-address { font-style: normal; font-size: 1rem; color: var(--color-text-muted); line-height: 1.7; margin: 1.25rem 0 0.75rem; }
 
   .visit-phone {
     display: block;
@@ -425,20 +383,9 @@ const schemas = [
 
   .visit-phone:hover { color: var(--color-gold-light); }
 
-  .visit-hours {
-    border-top: 1px solid var(--color-border);
-    padding-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .visit-hours { border-top: 1px solid var(--color-border); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
 
-  .visit-hour-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.875rem;
-  }
-
+  .visit-hour-row { display: flex; justify-content: space-between; font-size: 0.875rem; }
   .visit-day  { color: var(--color-text-muted); }
   .visit-time { color: var(--color-white); font-weight: 500; }
 
@@ -453,22 +400,10 @@ const schemas = [
     justify-content: center;
   }
 
-  .visit-map-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-text-subtle);
-    font-family: var(--font-ui);
-    font-size: 0.8125rem;
-    letter-spacing: 0.04em;
-  }
+  .visit-map-inner { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; color: var(--color-text-subtle); font-family: var(--font-ui); font-size: 0.8125rem; letter-spacing: 0.04em; }
+  .visit-map-icon  { color: var(--color-gold); opacity: 0.4; }
 
-  .visit-map-icon {
-    color: var(--color-gold);
-    opacity: 0.4;
-  }
-
+  /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
     .story-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .story-image-placeholder { aspect-ratio: 16/9; max-height: 280px; }
@@ -479,7 +414,7 @@ const schemas = [
   }
 
   @media (max-width: 640px) {
-    .what-grid { grid-template-columns: 1fr; }
+    .what-grid  { grid-template-columns: 1fr; }
     .story-ctas { flex-direction: column; }
   }
 </style>

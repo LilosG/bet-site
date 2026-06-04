@@ -1,15 +1,18 @@
 ---
 /**
  * EquipmentCard — Reusable card for equipment items.
- * Used on homepage featured inventory, category pages, search results.
+ * Uses astro:assets Image component for optimized images.
+ * Falls back to placeholder when no image provided.
  * All colors use design tokens — zero hardcoding.
  */
+import { Image } from 'astro:assets';
+
 export interface Props {
   name: string;
   price: string;
   condition: 'Used' | 'New' | 'Refurbished';
   category: string;
-  image?: string;
+  image?: ImageMetadata;
   href?: string;
   sku?: string;
 }
@@ -34,14 +37,14 @@ const conditionClass = {
 <article class="equipment-card card">
   <div class="card-image-wrap">
     {image ? (
-      <img
+      <Image
         src={image}
         alt={`${name} — ${condition} ${category}`}
         class="card-image"
+        width={480}
+        height={320}
         loading="lazy"
         decoding="async"
-        width="480"
-        height="320"
       />
     ) : (
       <div class="card-image-placeholder" aria-hidden="true">
@@ -77,12 +80,8 @@ const conditionClass = {
 </article>
 
 <style>
-  .equipment-card {
-    display: flex;
-    flex-direction: column;
-  }
+  .equipment-card { display: flex; flex-direction: column; }
 
-  /* ─── Image ──────────────────────────────────── */
   .card-image-wrap {
     position: relative;
     aspect-ratio: 3/2;
@@ -95,11 +94,10 @@ const conditionClass = {
     height: 100%;
     object-fit: cover;
     transition: transform 400ms ease;
+    display: block;
   }
 
-  .equipment-card:hover .card-image {
-    transform: scale(1.03);
-  }
+  .equipment-card:hover .card-image { transform: scale(1.03); }
 
   .card-image-placeholder {
     width: 100%;
@@ -127,7 +125,6 @@ const conditionClass = {
   .tag-new    { background: rgba(13,148,136,0.85); color: var(--color-white); }
   .tag-refurb { background: rgba(201,150,58,0.85); color: var(--color-white); }
 
-  /* ─── Body ───────────────────────────────────── */
   .card-body {
     padding: 1rem 1.125rem 1.125rem;
     display: flex;
@@ -135,11 +132,7 @@ const conditionClass = {
     flex: 1;
   }
 
-  .card-category {
-    margin-bottom: 0.5rem;
-    font-size: 0.5625rem;
-    letter-spacing: 0.1em;
-  }
+  .card-category { margin-bottom: 0.5rem; font-size: 0.5625rem; letter-spacing: 0.1em; }
 
   .card-title {
     font-family: var(--font-display);
@@ -158,7 +151,6 @@ const conditionClass = {
     letter-spacing: 0.03em;
   }
 
-  /* ─── Footer ─────────────────────────────────── */
   .card-footer {
     display: flex;
     align-items: center;
@@ -188,8 +180,5 @@ const conditionClass = {
     transition: color var(--transition-base), gap var(--transition-base);
   }
 
-  .card-cta:hover {
-    color: var(--color-gold);
-    gap: 0.45rem;
-  }
+  .card-cta:hover { color: var(--color-gold); gap: 0.45rem; }
 </style>
