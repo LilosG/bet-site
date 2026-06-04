@@ -1,9 +1,9 @@
 ---
 /**
  * National Service Area Pages — /locations/national/[slug]
- * Captures out-of-state equipment searches by city.
- * Dark theme throughout — all sections use design tokens.
+ * Hero image via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
+import { getImage } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../../components/ui/CtaStrip.astro';
@@ -13,6 +13,16 @@ import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
 import { SERVICES } from '../../../data/services';
 import { breadcrumbSchema } from '../../../lib/schema';
 
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../../assets/images/*.webp',
+  { eager: true }
+);
+
+function getAsset(filename: string | undefined): ImageMetadata | undefined {
+  if (!filename) return undefined;
+  return allImages[`../../../assets/images/${filename}`]?.default;
+}
+
 export async function getStaticPaths() {
   return NATIONAL_LOCATIONS.map((loc) => ({
     params: { slug: loc.slug },
@@ -21,6 +31,11 @@ export async function getStaticPaths() {
 }
 
 const { loc } = Astro.props;
+
+const heroAsset = getAsset(loc.heroImage);
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
 
 const crumbs = [
   { name: 'Home',          url: '/' },
@@ -40,8 +55,15 @@ const schemas = [breadcrumbSchema(crumbs)];
   <Breadcrumb crumbs={crumbs} />
 
   <!-- ═══ HERO ══════════════════════════════════ -->
-  <section class="nat-hero">
-    <div class="container">
+  <section class={`nat-hero${optimizedHero ? ' nat-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="nat-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
+    <div class="container nat-hero-inner">
       <span class="eyebrow">{loc.city}, {loc.stateAbbr} · National Shipping</span>
       <h1>{loc.h1}</h1>
       <p class="nat-intro">{loc.intro}</p>
@@ -59,7 +81,6 @@ const schemas = [breadcrumbSchema(crumbs)];
     </div>
   </section>
 
-  <!-- Trust Bar -->
   <TrustBar />
 
   <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
@@ -145,33 +166,43 @@ const schemas = [breadcrumbSchema(crumbs)];
     secondaryLabel="View Full Inventory"
     secondaryHref="https://beverageequipmenttraders.com/collections/all"
   />
-
 </Layout>
 
 <style>
   /* ─── Hero ───────────────────────────────────── */
   .nat-hero {
+    position: relative;
+    overflow: hidden;
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .nat-hero h1 {
-    max-width: 26ch;
-    margin: 0.5rem 0 1rem;
+  .nat-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
   }
 
-  .nat-intro {
-    max-width: 60ch;
-    font-size: 1.0625rem;
-    margin-bottom: 2rem;
+  .nat-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
   }
 
-  .nat-hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+  .nat-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
+
+  .nat-hero-inner { position: relative; z-index: 1; }
+  .nat-hero h1    { max-width: 26ch; margin: 0.5rem 0 1rem; }
+  .nat-intro      { max-width: 60ch; font-size: 1.0625rem; margin-bottom: 2rem; }
+
+  .nat-hero-ctas  { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
 
   .nat-ship-note {
     display: inline-flex;
@@ -183,10 +214,7 @@ const schemas = [breadcrumbSchema(crumbs)];
   }
 
   /* ─── Body + Sidebar ─────────────────────────── */
-  .nat-body-band {
-    background: var(--color-bg-2);
-    border-bottom: 1px solid var(--color-border);
-  }
+  .nat-body-band { background: var(--color-bg-2); border-bottom: 1px solid var(--color-border); }
 
   .nat-content-inner {
     display: grid;
@@ -203,17 +231,8 @@ const schemas = [breadcrumbSchema(crumbs)];
     margin-bottom: 1.25rem;
   }
 
-  .nat-sidebar-card h3 {
-    font-size: 1.0625rem;
-    color: var(--color-white);
-    margin: 0 0 0.5rem;
-  }
-
-  .nat-sidebar-card p {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.25rem;
-  }
+  .nat-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-white); margin: 0 0 0.5rem; }
+  .nat-sidebar-card p  { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
 
   .nat-phone {
     display: flex;
@@ -247,14 +266,7 @@ const schemas = [breadcrumbSchema(crumbs)];
     margin: 0 0 0.75rem;
   }
 
-  .nat-fact-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .nat-fact-box ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 
   .nat-fact-box li {
     font-size: 0.875rem;
@@ -263,15 +275,9 @@ const schemas = [breadcrumbSchema(crumbs)];
     position: relative;
   }
 
-  .nat-fact-box li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--color-gold);
-    font-size: 0.75rem;
-  }
+  .nat-fact-box li::before { content: '—'; position: absolute; left: 0; color: var(--color-gold); font-size: 0.75rem; }
 
-  /* ─── Equipment category grid ────────────────── */
+  /* ─── Equipment grid ─────────────────────────── */
   .nat-eq-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -280,12 +286,7 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   .nat-eq-band h2 { margin: 0.4rem 0 0; }
 
-  .nat-cat-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
+  .nat-cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.5rem; }
 
   .nat-cat-item {
     display: flex;
@@ -299,27 +300,11 @@ const schemas = [breadcrumbSchema(crumbs)];
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .nat-cat-item:hover {
-    border-color: var(--color-border-gold);
-    transform: translateY(-2px);
-  }
+  .nat-cat-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .nat-cat-name {
-    font-family: var(--font-ui);
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--color-white);
-    transition: color var(--transition-base);
-  }
-
+  .nat-cat-name { font-family: var(--font-ui); font-size: 0.9375rem; font-weight: 700; color: var(--color-white); transition: color var(--transition-base); }
   .nat-cat-item:hover .nat-cat-name { color: var(--color-gold); }
-
-  .nat-cat-desc {
-    font-size: 0.8125rem;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-    flex: 1;
-  }
+  .nat-cat-desc { font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.5; flex: 1; }
 
   .nat-cat-cta {
     display: inline-flex;
@@ -336,12 +321,7 @@ const schemas = [breadcrumbSchema(crumbs)];
   .nat-cat-item:hover .nat-cat-cta { gap: 0.45rem; color: var(--color-gold); }
 
   /* ─── Services grid ──────────────────────────── */
-  .nat-svc-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 1.5rem;
-  }
+  .nat-svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
 
   .nat-svc-item {
     display: flex;
@@ -354,29 +334,11 @@ const schemas = [breadcrumbSchema(crumbs)];
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .nat-svc-item:hover {
-    border-color: var(--color-border-gold);
-    transform: translateY(-2px);
-  }
+  .nat-svc-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .nat-svc-title {
-    font-family: var(--font-ui);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-white);
-    margin: 0 0 0.5rem;
-    transition: color var(--transition-base);
-  }
-
+  .nat-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-white); margin: 0 0 0.5rem; transition: color var(--transition-base); }
   .nat-svc-item:hover .nat-svc-title { color: var(--color-gold); }
-
-  .nat-svc-desc {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin: 0 0 1rem;
-    line-height: 1.6;
-    flex: 1;
-  }
+  .nat-svc-desc  { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 1rem; line-height: 1.6; flex: 1; }
 
   .nat-svc-link {
     display: inline-flex;
@@ -395,8 +357,8 @@ const schemas = [breadcrumbSchema(crumbs)];
   /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
     .nat-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .nat-cat-grid { grid-template-columns: repeat(2, 1fr); }
-    .nat-svc-grid { grid-template-columns: repeat(2, 1fr); }
+    .nat-cat-grid      { grid-template-columns: repeat(2, 1fr); }
+    .nat-svc-grid      { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 640px) {

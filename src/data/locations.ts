@@ -14,6 +14,7 @@ export interface LocationPage {
   intro: string;
   bodyContent: string;
   keywords: string[];
+  heroImage?: string;
 }
 
 // ─── Local Service Areas ──────────────────────
@@ -24,6 +25,7 @@ export const LOCAL_LOCATIONS: LocationPage[] = [
     state: 'California',
     stateAbbr: 'CA',
     type: 'local',
+    heroImage: 'hero-locations.webp',
     h1: 'Brewery Equipment San Diego — New and Used Equipment Dealer',
     metaTitle: 'Brewery Equipment San Diego | Beverage Equipment Traders — San Marcos, CA',
     metaDescription:
@@ -49,6 +51,7 @@ San Diego buyers benefit from the proximity: shorter freight leads times, local 
     state: 'California',
     stateAbbr: 'CA',
     type: 'local',
+    heroImage: 'hero-locations.webp',
     h1: 'Brewery Equipment Dealer San Marcos, CA — Beverage Equipment Traders',
     metaTitle: 'Brewery Equipment Dealer San Marcos CA | Beverage Equipment Traders',
     metaDescription:
@@ -73,6 +76,7 @@ Hours: Monday through Thursday 10AM to 4PM, Friday 10AM to 3PM, Saturday by appo
     state: 'California',
     stateAbbr: 'CA',
     type: 'local',
+    heroImage: 'hero-locations.webp',
     h1: 'Brewery Equipment Los Angeles — New and Used Dealer',
     metaTitle: 'Brewery Equipment Los Angeles | Beverage Equipment Traders — San Marcos, CA',
     metaDescription:
@@ -98,6 +102,7 @@ Contact us with your equipment requirements or consignment inquiry. Our trade de
     state: 'California',
     stateAbbr: 'CA',
     type: 'local',
+    heroImage: 'hero-locations.webp',
     h1: 'Brewery Equipment Orange County, CA',
     metaTitle: 'Brewery Equipment Orange County CA | Beverage Equipment Traders',
     metaDescription:
@@ -122,6 +127,7 @@ Contact us for current inventory and to discuss your equipment needs.`,
     state: 'California',
     stateAbbr: 'CA',
     type: 'local',
+    heroImage: 'hero-locations.webp',
     h1: 'Brewery Equipment Riverside, CA',
     metaTitle: 'Brewery Equipment Riverside CA | Beverage Equipment Traders',
     metaDescription:
@@ -146,6 +152,7 @@ export const NATIONAL_LOCATIONS: LocationPage[] = [
     state: 'Colorado',
     stateAbbr: 'CO',
     type: 'national',
+    heroImage: 'hero-equipment.webp',
     h1: 'Used Brewery Equipment Denver, Colorado',
     metaTitle: 'Used Brewery Equipment Denver CO | Beverage Equipment Traders',
     metaDescription:
@@ -171,6 +178,7 @@ Browse our current inventory or contact our trade desk for help identifying equi
     state: 'Oregon',
     stateAbbr: 'OR',
     type: 'national',
+    heroImage: 'hero-equipment.webp',
     h1: 'Used Brewery Equipment Portland, Oregon',
     metaTitle: 'Used Brewery Equipment Portland OR | Beverage Equipment Traders',
     metaDescription:
@@ -194,6 +202,7 @@ Rigging and installation services in Portland are available. Contact us for curr
     state: 'Illinois',
     stateAbbr: 'IL',
     type: 'national',
+    heroImage: 'hero-equipment.webp',
     h1: 'Used Brewery Equipment Chicago, Illinois',
     metaTitle: 'Used Brewery Equipment Chicago IL | Beverage Equipment Traders',
     metaDescription:
@@ -215,6 +224,7 @@ Freight to Chicago typically runs 3 to 4 business days. For large systems and fu
     state: 'Texas',
     stateAbbr: 'TX',
     type: 'national',
+    heroImage: 'hero-equipment.webp',
     h1: 'Used Brewery Equipment Austin, Texas',
     metaTitle: 'Used Brewery Equipment Austin TX | Beverage Equipment Traders',
     metaDescription:
@@ -236,6 +246,7 @@ Freight to Austin from San Marcos typically runs 2 business days. Rigging and in
     state: 'Washington',
     stateAbbr: 'WA',
     type: 'national',
+    heroImage: 'hero-equipment.webp',
     h1: 'Used Brewery Equipment Seattle, Washington',
     metaTitle: 'Used Brewery Equipment Seattle WA | Beverage Equipment Traders',
     metaDescription:
@@ -254,6 +265,7 @@ Freight to Austin from San Marcos typically runs 2 business days. Rigging and in
     state: 'Tennessee',
     stateAbbr: 'TN',
     type: 'national',
+    heroImage: 'hero-equipment.webp',
     h1: 'Used Brewery Equipment Nashville, Tennessee',
     metaTitle: 'Used Brewery Equipment Nashville TN | Beverage Equipment Traders',
     metaDescription:

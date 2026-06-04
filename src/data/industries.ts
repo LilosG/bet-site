@@ -30,11 +30,13 @@ export interface IndustryPage {
   featuredEquipmentTypes: string[];
   faqs: { q: string; a: string }[];
   keywords: string[];
+  heroImage?: string;
 }
 
 export const INDUSTRIES: IndustryPage[] = [
   {
     slug: 'craft-brewery',
+    heroImage: 'hero-brewhouse.webp',
     name: 'Craft Breweries',
     shortName: 'Breweries',
     h1: 'Brewery Equipment for Craft Breweries',
@@ -97,6 +99,7 @@ We also provide full-service rigging and installation for equipment moves, new b
   },
   {
     slug: 'distillery',
+    heroImage: 'hero-distilling.webp',
     name: 'Craft Distilleries',
     shortName: 'Distilleries',
     h1: 'Distillery Equipment for Craft Spirits Producers',
@@ -159,6 +162,7 @@ For distilleries selling equipment — upgrading stills, liquidating after a clo
   },
   {
     slug: 'cidery',
+    heroImage: 'hero-fermenters.webp',
     name: 'Cideries & Meaderies',
     shortName: 'Cideries',
     h1: 'Equipment for Cideries, Meaderies, and Fermented Beverage Producers',
@@ -215,6 +219,7 @@ For cideries and meaderies looking to sell equipment — upgrading packaging cap
   },
   {
     slug: 'beverage-production',
+    heroImage: 'hero-canning.webp',
     name: 'Beverage Manufacturers',
     shortName: 'Beverage Production',
     h1: 'Equipment for Beverage Manufacturers and Producers',
@@ -271,6 +276,7 @@ National buyer demand in beverage manufacturing has grown significantly as the f
   },
   {
     slug: 'hard-seltzer',
+    heroImage: 'hero-canning.webp',
     name: 'Hard Seltzer Producers',
     shortName: 'Hard Seltzer',
     h1: 'Equipment for Hard Seltzer and RTD Producers',
@@ -321,6 +327,7 @@ Our inventory is updated regularly and reflects current secondary market availab
   },
   {
     slug: 'food-processing',
+    heroImage: 'hero-food-processing.webp',
     name: 'Food Processing Facilities',
     shortName: 'Food Processing',
     h1: 'Processing Equipment for Food Manufacturers',
@@ -347,6 +354,7 @@ Beverage Equipment Traders maintains inventory of food-grade stainless equipment
   },
   {
     slug: 'dairy-processing',
+    heroImage: 'hero-fermenters.webp',
     name: 'Dairy Processors',
     shortName: 'Dairy',
     h1: 'Processing Equipment for Dairy Operations',
@@ -372,6 +380,7 @@ Beverage Equipment Traders serves dairy processors with the same food-grade stai
   },
   {
     slug: 'pharmaceutical',
+    heroImage: 'hero-equipment.webp',
     name: 'Pharmaceutical & Biotech',
     shortName: 'Pharma & Biotech',
     h1: 'Stainless Processing Equipment for Pharmaceutical and Biotech Operations',

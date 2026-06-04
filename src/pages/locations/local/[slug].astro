@@ -1,9 +1,9 @@
 ---
 /**
  * Local Service Area Pages — /locations/local/[slug]
- * Captures Southern California geographic searches.
- * Dark theme throughout — all sections use design tokens.
+ * Hero image via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
+import { getImage } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../../components/ui/CtaStrip.astro';
@@ -13,6 +13,16 @@ import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
 import { SERVICES } from '../../../data/services';
 import { breadcrumbSchema, localBusinessSchema } from '../../../lib/schema';
 
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../../assets/images/*.webp',
+  { eager: true }
+);
+
+function getAsset(filename: string | undefined): ImageMetadata | undefined {
+  if (!filename) return undefined;
+  return allImages[`../../../assets/images/${filename}`]?.default;
+}
+
 export async function getStaticPaths() {
   return LOCAL_LOCATIONS.map((loc) => ({
     params: { slug: loc.slug },
@@ -21,6 +31,11 @@ export async function getStaticPaths() {
 }
 
 const { loc } = Astro.props;
+
+const heroAsset = getAsset(loc.heroImage);
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
 
 const crumbs = [
   { name: 'Home',          url: '/' },
@@ -43,8 +58,15 @@ const schemas = [
   <Breadcrumb crumbs={crumbs} />
 
   <!-- ═══ HERO ══════════════════════════════════ -->
-  <section class="loc-hero">
-    <div class="container">
+  <section class={`loc-hero${optimizedHero ? ' loc-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="loc-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
+    <div class="container loc-hero-inner">
       <span class="eyebrow">{loc.city}, {loc.stateAbbr} · Local Service Area</span>
       <h1>{loc.h1}</h1>
       <p class="loc-intro">{loc.intro}</p>
@@ -58,7 +80,6 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Trust Bar -->
   <TrustBar />
 
   <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
@@ -145,38 +166,45 @@ const schemas = [
     secondaryLabel="Get a Rigging Quote"
     secondaryHref="/contact?type=rigging"
   />
-
 </Layout>
 
 <style>
   /* ─── Hero ───────────────────────────────────── */
   .loc-hero {
+    position: relative;
+    overflow: hidden;
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .loc-hero h1 {
-    max-width: 26ch;
-    margin: 0.5rem 0 1rem;
+  .loc-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
   }
 
-  .loc-intro {
-    max-width: 60ch;
-    font-size: 1.0625rem;
-    margin-bottom: 2rem;
+  .loc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
   }
 
-  .loc-hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+  .loc-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
+
+  .loc-hero-inner { position: relative; z-index: 1; }
+  .loc-hero h1    { max-width: 26ch; margin: 0.5rem 0 1rem; }
+  .loc-intro      { max-width: 60ch; font-size: 1.0625rem; margin-bottom: 2rem; }
+  .loc-hero-ctas  { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   /* ─── Body + Sidebar ─────────────────────────── */
-  .loc-body-band {
-    background: var(--color-bg-2);
-    border-bottom: 1px solid var(--color-border);
-  }
+  .loc-body-band { background: var(--color-bg-2); border-bottom: 1px solid var(--color-border); }
 
   .loc-content-inner {
     display: grid;
@@ -192,11 +220,7 @@ const schemas = [
     padding: 1.5rem;
   }
 
-  .loc-sidebar-card h3 {
-    font-size: 1.0625rem;
-    color: var(--color-white);
-    margin: 0 0 0.75rem;
-  }
+  .loc-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-white); margin: 0 0 0.75rem; }
 
   .loc-address {
     font-style: normal;
@@ -206,12 +230,7 @@ const schemas = [
     margin-bottom: 0.75rem;
   }
 
-  .loc-hours-note {
-    font-size: 0.8125rem;
-    color: var(--color-text-subtle);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-  }
+  .loc-hours-note { font-size: 0.8125rem; color: var(--color-text-subtle); margin-bottom: 1rem; line-height: 1.6; }
 
   .loc-phone {
     display: flex;
@@ -227,7 +246,7 @@ const schemas = [
 
   .loc-phone:hover { color: var(--color-gold-light); }
 
-  /* ─── Equipment category grid ────────────────── */
+  /* ─── Equipment grid ─────────────────────────── */
   .loc-eq-band {
     background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
@@ -288,12 +307,7 @@ const schemas = [
   .loc-cat-item:hover .loc-cat-link { gap: 0.45rem; }
 
   /* ─── Services grid ──────────────────────────── */
-  .loc-svc-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 1.5rem;
-  }
+  .loc-svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
 
   .loc-svc-item {
     display: flex;
@@ -306,29 +320,11 @@ const schemas = [
     transition: border-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .loc-svc-item:hover {
-    border-color: var(--color-border-gold);
-    transform: translateY(-2px);
-  }
+  .loc-svc-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .loc-svc-title {
-    font-family: var(--font-ui);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-white);
-    margin: 0 0 0.5rem;
-    transition: color var(--transition-base);
-  }
-
+  .loc-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-white); margin: 0 0 0.5rem; transition: color var(--transition-base); }
   .loc-svc-item:hover .loc-svc-title { color: var(--color-gold); }
-
-  .loc-svc-desc {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin: 0 0 1rem;
-    line-height: 1.6;
-    flex: 1;
-  }
+  .loc-svc-desc  { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 1rem; line-height: 1.6; flex: 1; }
 
   .loc-svc-link {
     display: inline-flex;
@@ -342,19 +338,16 @@ const schemas = [
     margin-top: auto;
   }
 
-  .loc-svc-item:hover .loc-svc-link {
-    gap: 0.5rem;
-    color: var(--color-gold);
-  }
+  .loc-svc-item:hover .loc-svc-link { gap: 0.5rem; color: var(--color-gold); }
 
   /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
-    .loc-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .loc-cat-grid { grid-template-columns: repeat(2, 1fr); }
-    .loc-cat-item:nth-child(4n)        { border-right: 1px solid var(--color-border-gold); }
-    .loc-cat-item:nth-child(2n)        { border-right: none; }
-    .loc-cat-item:nth-last-child(-n+2) { border-bottom: none; }
-    .loc-svc-grid { grid-template-columns: repeat(2, 1fr); }
+    .loc-content-inner                   { grid-template-columns: 1fr; gap: 2.5rem; }
+    .loc-cat-grid                        { grid-template-columns: repeat(2, 1fr); }
+    .loc-cat-item:nth-child(4n)          { border-right: 1px solid var(--color-border-gold); }
+    .loc-cat-item:nth-child(2n)          { border-right: none; }
+    .loc-cat-item:nth-last-child(-n+2)   { border-bottom: none; }
+    .loc-svc-grid                        { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 640px) {
