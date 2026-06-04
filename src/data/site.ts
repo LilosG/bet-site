@@ -119,6 +119,7 @@ export const NAV = {
     },
     { label: 'Auctions', href: '/services/auctions' },
     { label: 'About',    href: '/about' },
+    { label: 'Blog',     href: '/blog' },
     { label: 'Contact',  href: '/contact' },
   ],
   cta: { label: 'Get a Rigging Quote', href: '/contact?type=rigging' },
