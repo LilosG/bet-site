@@ -201,15 +201,14 @@ const schemas = [
         </a>
       </div>
 
-      <!-- Google Maps embed — place_id pulled from GEO in site.ts, no API key required -->
+      <!-- Google Maps embed — Maps Embed API, key from env, placeId from site.ts GEO -->
       <div class="visit-map-wrap">
         <iframe
           class="visit-map"
           title="Beverage Equipment Traders — San Marcos, CA facility location"
-          src={`https://maps.google.com/maps?q=place_id:${GEO.placeId}&output=embed`}
+          src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.PUBLIC_GOOGLE_MAPS_KEY}&q=place_id:${GEO.placeId}`}
           width="100%"
           height="400"
-          style="border:0;"
           allowfullscreen
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -254,8 +253,8 @@ const schemas = [
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, var(--color-bg) 96%, var(--color-bg) 45%, color-mix(in srgb, var(--color-bg) 55%, transparent) 75%, color-mix(in srgb, var(--color-bg) 20%, transparent)),
-      linear-gradient(to bottom, color-mix(in srgb, var(--color-bg) 30%, transparent) 0%, transparent 30%, color-mix(in srgb, var(--color-bg) 50%, transparent) 100%);
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
   }
 
   .about-hero-inner {
@@ -308,7 +307,7 @@ const schemas = [
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, color-mix(in srgb, var(--color-bg) 85%, transparent) 0%, transparent 55%);
+    background: linear-gradient(to top, rgba(11,12,15,0.85) 0%, transparent 55%);
     z-index: 1;
   }
 
