@@ -2,23 +2,31 @@
 /**
  * About Page — /about
  * Brewery origin story, operator credentials, team, client roster.
- * Uses astro:assets Image component for optimized images.
+ * Uses astro:assets Image component for optimized inline images.
+ * Hero background resolved via import.meta.glob + getImage() — same
+ * pattern as all other page heroes on this site.
  */
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import StatBar from '../components/ui/StatBar.astro';
 import TrustBar from '../components/ui/TrustBar.astro';
 import CtaStrip from '../components/ui/CtaStrip.astro';
-import { NAP } from '../data/site';
+import { NAP, GEO } from '../data/site';
 import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
 
-// Glob all images at build time
+// ─── Hero image ───────────────────────────────
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/images/*.webp',
   { eager: true }
 );
 
+const heroAsset = allImages['../assets/images/hero-equipment.webp']?.default;
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, format: 'webp', quality: 80 })
+  : null;
+
+// ─── Story image ──────────────────────────────
 const storyImage = allImages['../assets/images/brewhouse-15bbl-hlt.webp']?.default;
 
 const crumbs = [
@@ -40,8 +48,15 @@ const schemas = [
   <Breadcrumb crumbs={crumbs} />
 
   <!-- ═══ HERO ══════════════════════════════════ -->
-  <section class="about-hero">
-    <div class="container">
+  <section class={`about-hero${optimizedHero ? ' about-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="about-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
+    <div class="container about-hero-inner">
       <span class="eyebrow">About BET</span>
       <h1>Built by Operators, For Operators.</h1>
       <p class="about-hero-intro">
@@ -177,20 +192,28 @@ const schemas = [
           ))}
         </div>
         <a
-          href="https://www.google.com/maps/dir/?api=1&destination=1520+E+Barham+Dr,+San+Marcos,+CA+92078"
-          class="btn btn-outline"
+          href={`https://www.google.com/maps/dir/?api=1&destination_place_id=${GEO.placeId}`}
+          class="btn btn-outline visit-directions-btn"
           target="_blank"
           rel="noopener noreferrer"
-          style="margin-top:1.5rem;"
         >
           Get Directions
         </a>
       </div>
-      <div class="visit-map-placeholder" aria-hidden="true">
-        <div class="visit-map-inner">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="visit-map-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>San Marcos, CA</span>
-        </div>
+
+      <!-- Google Maps embed — place_id pulled from GEO in site.ts, no API key required -->
+      <div class="visit-map-wrap">
+        <iframe
+          class="visit-map"
+          title="Beverage Equipment Traders — San Marcos, CA facility location"
+          src={`https://maps.google.com/maps?q=place_id:${GEO.placeId}&output=embed`}
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   </section>
@@ -209,8 +232,35 @@ const schemas = [
 <style>
   /* ─── Hero ───────────────────────────────────── */
   .about-hero {
+    position: relative;
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-hero-has-image {
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(3.5rem, 6vw, 6rem);
+  }
+
+  .about-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
+  }
+
+  .about-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, var(--color-bg) 96%, var(--color-bg) 45%, color-mix(in srgb, var(--color-bg) 55%, transparent) 75%, color-mix(in srgb, var(--color-bg) 20%, transparent)),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-bg) 30%, transparent) 0%, transparent 30%, color-mix(in srgb, var(--color-bg) 50%, transparent) 100%);
+  }
+
+  .about-hero-inner {
+    position: relative;
+    z-index: 1;
   }
 
   .about-hero h1 { max-width: 22ch; margin: 0.5rem 0 1rem; }
@@ -258,7 +308,7 @@ const schemas = [
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(11,12,15,0.85) 0%, transparent 55%);
+    background: linear-gradient(to top, color-mix(in srgb, var(--color-bg) 85%, transparent) 0%, transparent 55%);
     z-index: 1;
   }
 
@@ -368,7 +418,13 @@ const schemas = [
   /* ─── Visit ──────────────────────────────────── */
   .visit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 
-  .visit-address { font-style: normal; font-size: 1rem; color: var(--color-text-muted); line-height: 1.7; margin: 1.25rem 0 0.75rem; }
+  .visit-address {
+    font-style: normal;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 1.25rem 0 0.75rem;
+  }
 
   .visit-phone {
     display: block;
@@ -383,25 +439,34 @@ const schemas = [
 
   .visit-phone:hover { color: var(--color-gold-light); }
 
-  .visit-hours { border-top: 1px solid var(--color-border); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .visit-hours {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
   .visit-hour-row { display: flex; justify-content: space-between; font-size: 0.875rem; }
   .visit-day  { color: var(--color-text-muted); }
   .visit-time { color: var(--color-white); font-weight: 500; }
 
-  .visit-map-placeholder {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
+  .visit-directions-btn { margin-top: 1.5rem; }
+
+  /* ─── Map ────────────────────────────────────── */
+  .visit-map-wrap {
     border-radius: var(--radius-md);
-    aspect-ratio: 1;
-    max-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    line-height: 0;
   }
 
-  .visit-map-inner { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; color: var(--color-text-subtle); font-family: var(--font-ui); font-size: 0.8125rem; letter-spacing: 0.04em; }
-  .visit-map-icon  { color: var(--color-gold); opacity: 0.4; }
+  .visit-map {
+    display: block;
+    width: 100%;
+    height: 400px;
+    border: 0;
+  }
 
   /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
@@ -410,7 +475,7 @@ const schemas = [
     .story-image-block { display: flex; gap: 1.25rem; align-items: flex-start; flex-wrap: wrap; }
     .what-grid { grid-template-columns: repeat(2, 1fr); }
     .visit-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .visit-map-placeholder { max-height: 250px; }
+    .visit-map { height: 300px; }
   }
 
   @media (max-width: 640px) {
