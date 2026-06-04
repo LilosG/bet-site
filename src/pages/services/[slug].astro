@@ -3,8 +3,9 @@
  * Service Page — /services/[slug]
  * Full service page template.
  * All content from central data layer — zero hardcoding.
- * Sections: Hero → Body+Sidebar → Process → Best Fit → Related Equipment → FAQ → CTA
+ * Hero image via import.meta.glob + getImage — same pattern as equipment/[slug].astro
  */
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import FAQ from '../../components/ui/FAQ.astro';
@@ -16,6 +17,16 @@ import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '../../lib/schema';
 import { NAP } from '../../data/site';
 
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/images/*.webp',
+  { eager: true }
+);
+
+function getAsset(filename: string | undefined): ImageMetadata | undefined {
+  if (!filename) return undefined;
+  return allImages[`../../assets/images/${filename}`]?.default;
+}
+
 export async function getStaticPaths() {
   return SERVICES.map((service) => ({
     params: { slug: service.slug },
@@ -24,6 +35,11 @@ export async function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+
+const heroAsset = getAsset(service.heroImage);
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
 
 const related = service.relatedServices
   .map((slug) => SERVICES.find((s) => s.slug === slug))
@@ -61,8 +77,15 @@ const schemas = [
   <Breadcrumb crumbs={crumbs} />
 
   <!-- ═══ HERO ══════════════════════════════════ -->
-  <section class="svc-hero">
-    <div class="container">
+  <section class={`svc-hero${optimizedHero ? ' svc-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="svc-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
+    <div class="container svc-hero-inner">
       <span class="eyebrow">Service</span>
       <h1>{service.h1}</h1>
       <p class="svc-hero-intro">{service.intro}</p>
@@ -86,14 +109,12 @@ const schemas = [
   <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
   <section class="svc-body-band section-y" aria-labelledby="svc-content-heading">
     <div class="container svc-content-inner">
-
       <div class="prose svc-prose">
         <h2 id="svc-content-heading">{service.title} — What to Know</h2>
         {service.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
       </div>
-
       <aside class="svc-sidebar">
         <div class="svc-sidebar-card">
           <h3>{service.cta.label}</h3>
@@ -108,7 +129,6 @@ const schemas = [
             {NAP.phone}
           </a>
         </div>
-
         {related.length > 0 && (
           <div class="svc-related">
             <p class="svc-related-label">Other Services</p>
@@ -125,7 +145,6 @@ const schemas = [
           </div>
         )}
       </aside>
-
     </div>
   </section>
 
@@ -194,26 +213,41 @@ const schemas = [
     secondaryLabel="Browse Equipment"
     secondaryHref="/equipment"
   />
-
 </Layout>
 
 <style>
   /* ─── Hero ───────────────────────────────────── */
   .svc-hero {
+    position: relative;
+    overflow: hidden;
     padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .svc-hero h1 {
-    max-width: 26ch;
-    margin: 0.5rem 0 1rem;
+  .svc-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
   }
 
-  .svc-hero-intro {
-    max-width: 60ch;
-    font-size: 1.0625rem;
-    margin-bottom: 2rem;
+  .svc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
   }
+
+  .svc-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(11,12,15,0.96) 0%, rgba(11,12,15,0.88) 45%, rgba(11,12,15,0.55) 75%, rgba(11,12,15,0.2) 100%),
+      linear-gradient(to bottom, rgba(11,12,15,0.3) 0%, transparent 30%, rgba(11,12,15,0.5) 100%);
+  }
+
+  .svc-hero-inner   { position: relative; z-index: 1; }
+  .svc-hero h1      { max-width: 26ch; margin: 0.5rem 0 1rem; }
+  .svc-hero-intro   { max-width: 60ch; font-size: 1.0625rem; margin-bottom: 2rem; }
 
   .svc-hero-ctas {
     display: flex;
@@ -222,11 +256,7 @@ const schemas = [
     margin-bottom: 1.75rem;
   }
 
-  .svc-trust-chips {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
+  .svc-trust-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 
   .trust-chip {
     font-family: var(--font-ui);
@@ -261,17 +291,8 @@ const schemas = [
     margin-bottom: 1.25rem;
   }
 
-  .svc-sidebar-card h3 {
-    font-size: 1.0625rem;
-    color: var(--color-white);
-    margin: 0 0 0.5rem;
-  }
-
-  .svc-sidebar-card p {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.25rem;
-  }
+  .svc-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-white); margin: 0 0 0.5rem; }
+  .svc-sidebar-card p  { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
 
   .svc-phone-link {
     display: flex;
@@ -305,14 +326,7 @@ const schemas = [
     margin: 0 0 0.75rem;
   }
 
-  .svc-related ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
+  .svc-related ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
 
   .svc-related a {
     display: inline-flex;
@@ -334,13 +348,8 @@ const schemas = [
     border-bottom: 1px solid var(--color-border);
   }
 
-  .related-eq-header {
-    margin-bottom: 1.75rem;
-  }
-
-  .related-eq-header h2 {
-    margin: 0.3rem 0 0;
-  }
+  .related-eq-header        { margin-bottom: 1.75rem; }
+  .related-eq-header h2     { margin: 0.3rem 0 0; }
 
   .related-eq-grid {
     display: grid;
@@ -377,10 +386,7 @@ const schemas = [
     flex-shrink: 0;
   }
 
-  .related-eq-content {
-    flex: 1;
-    min-width: 0;
-  }
+  .related-eq-content       { flex: 1; min-width: 0; }
 
   .related-eq-content h3 {
     font-family: var(--font-display);
@@ -392,9 +398,7 @@ const schemas = [
     transition: color var(--transition-base);
   }
 
-  .related-eq-card:hover .related-eq-content h3 {
-    color: var(--color-gold);
-  }
+  .related-eq-card:hover .related-eq-content h3 { color: var(--color-gold); }
 
   .related-eq-content p {
     font-size: 0.8125rem;
@@ -421,27 +425,15 @@ const schemas = [
 
   /* ─── Responsive ─────────────────────────────── */
   @media (max-width: 1024px) {
-    .svc-content-inner {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-    .svc-sidebar {
-      display: flex;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
+    .svc-content-inner    { grid-template-columns: 1fr; gap: 2.5rem; }
+    .svc-sidebar          { display: flex; gap: 1.25rem; flex-wrap: wrap; }
     .svc-sidebar-card,
-    .svc-related {
-      flex: 1;
-      min-width: 240px;
-    }
-    .related-eq-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .svc-related          { flex: 1; min-width: 240px; }
+    .related-eq-grid      { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 640px) {
-    .svc-hero-ctas { flex-direction: column; }
+    .svc-hero-ctas   { flex-direction: column; }
     .related-eq-grid { grid-template-columns: 1fr; }
   }
 </style>
