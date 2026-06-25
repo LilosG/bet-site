@@ -526,8 +526,13 @@
 .services-hero h1,
 .loc-hero h1,
 .nat-hero h1,
-.contact-hero h1 {
+.contact-hero h1,
+.svc-hero h1,
+.ind-hero h1,
+.eq-hero h1 {
   color: var(--color-white);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .about-hero-intro,
