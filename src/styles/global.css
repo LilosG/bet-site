@@ -511,3 +511,31 @@
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: var(--color-scrollbar-thumb); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-subtle); }
+
+/* ── Hero context — overlay is always dark regardless of theme ─────────────
+   These rules live here once. Every hero on every page uses a dark overlay.
+   Hero h1 and intro text must always be white — never inherit from theme.
+   Adding a new hero page: add its classes here. Zero template changes needed.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.about-hero h1,
+.ind-hub-hero h1,
+.blog-hero h1,
+.hub-hero h1,
+.equipment-hub-hero h1,
+.services-hero h1,
+.loc-hero h1,
+.nat-hero h1,
+.contact-hero h1 {
+  color: var(--color-white);
+}
+
+.about-hero-intro,
+.ind-hub-intro,
+.contact-hero-intro,
+.hub-intro,
+.services-hero-intro,
+.blog-hero-intro {
+  color: rgba(255, 255, 255, 0.85);
+}
+
