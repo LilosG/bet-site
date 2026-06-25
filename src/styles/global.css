@@ -12,21 +12,21 @@
    e.g. bg-gold, text-teal, border-gold etc.
    ─────────────────────────────────────────── */
 @theme {
-  --color-bg:           #2C2218;
-  --color-bg-header:    rgba(44, 34, 24, 0.97);
-  --color-bg-2:         #3D3020;
-  --color-bg-card:      #221A12;
-  --color-bg-light:     #F5F3EF;
-  --color-bg-light-2:   #ECEAE4;
+  --color-bg:           #F0E8DC;
+  --color-bg-header:    rgba(16, 10, 5, 0.97);
+  --color-bg-2:         #C8BFAF;
+  --color-bg-card:      #FAF5EE;
+  --color-bg-light:     #D8CCBA;
+  --color-bg-light-2:   #CEC0AB;
   --color-gold:         #C9963A;
   --color-gold-light:   #E0AE56;
   --color-teal:         #0D9488;
   --color-teal-hover:   #0F766E;
   --color-white:        #FFFFFF;
-  --color-heading:      #FFFFFF;
-  --color-text:         #E8E6E1;
-  --color-text-muted:   #9CA3B0;
-  --color-text-subtle:  #6B7280;
+  --color-heading:      #1A1208;
+  --color-text:         #2C2016;
+  --color-text-muted:   #4D3E2C;
+  --color-text-subtle:  #6B5840;
 
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body:    'DM Sans', sans-serif;
@@ -37,12 +37,12 @@
 @layer base {
   :root {
     /* ── Background colors ── */
-    --color-bg:           #2C2218;
-    --color-bg-header:    rgba(44, 34, 24, 0.97);
-    --color-bg-2:         #3D3020;
-    --color-bg-card:      #221A12;
-    --color-bg-light:     #F5F3EF;
-    --color-bg-light-2:   #ECEAE4;
+    --color-bg:           #F0E8DC;
+    --color-bg-header:    rgba(16, 10, 5, 0.97);
+    --color-bg-2:         #C8BFAF;
+    --color-bg-card:      #FAF5EE;
+    --color-bg-light:     #D8CCBA;
+    --color-bg-light-2:   #CEC0AB;
 
     /* ── Brand colors ── */
     --color-gold:         #C9963A;
@@ -54,30 +54,30 @@
     --color-teal-dim:     rgba(13,148,136,0.12);
     --color-teal-overlay: rgba(13,148,136,0.85);
     --color-white:        #FFFFFF;
-    --color-heading:      var(--color-white);
+    --color-heading:      #1A1208;
 
     /* ── Text colors ── */
-    --color-text:             #E8E6E1;
-    --color-text-muted:       #9CA3B0;
-    --color-text-subtle:      #6B7280;
+    --color-text:             #2C2016;
+    --color-text-muted:       #4D3E2C;
+    --color-text-subtle:      #6B5840;
     --color-text-light-body:  #374151;
 
     /* ── Border colors ── */
-    --color-border:        rgba(255,255,255,0.07);
-    --color-border-gold:   rgba(201,150,58,0.28);
-    --color-border-subtle: rgba(255,255,255,0.25);
+    --color-border:        rgba(0,0,0,0.10);
+    --color-border-gold:   rgba(201,150,58,0.45);
+    --color-border-subtle: rgba(0,0,0,0.22);
 
     /* ── Overlay / surface colors ── */
-    --color-bg-overlay:  rgba(255,255,255,0.04);
-    --color-tag-dark:    rgba(255,255,255,0.06);
+    --color-bg-overlay:  rgba(0,0,0,0.04);
+    --color-tag-dark:    rgba(0,0,0,0.07);
     /* ── Hero overlay gradients — tokenized for theme control ── */
-    --hero-overlay-right:    linear-gradient(to right, rgba(44,34,24,0.82) 0%, rgba(44,34,24,0.65) 45%, rgba(44,34,24,0.3) 75%, rgba(44,34,24,0.05) 100%);
-    --hero-overlay-bottom:   linear-gradient(to bottom, rgba(44,34,24,0.15) 0%, transparent 30%, rgba(44,34,24,0.35) 100%);
-    --hero-overlay-img-fade: linear-gradient(to top, rgba(44,34,24,0.75) 0%, transparent 55%);
-    --hero-overlay-img-full: linear-gradient(to top, rgba(44,34,24,0.75) 0%, transparent 100%);
+    --hero-overlay-right:    linear-gradient(to right, rgba(240,232,220,0.82) 0%, rgba(240,232,220,0.68) 45%, rgba(240,232,220,0.35) 75%, rgba(240,232,220,0.05) 100%);
+    --hero-overlay-bottom:   linear-gradient(to bottom, rgba(240,232,220,0.15) 0%, transparent 30%, rgba(240,232,220,0.30) 100%);
+    --hero-overlay-img-fade: linear-gradient(to top, rgba(240,232,220,0.75) 0%, transparent 55%);
+    --hero-overlay-img-full: linear-gradient(to top, rgba(240,232,220,0.75) 0%, transparent 100%);
 
     /* ── Scrollbar ── */
-    --color-scrollbar-thumb: #2a2d35;
+    --color-scrollbar-thumb: #C4B5A4;
 
     /* ── Shadows ── */
     --shadow-text:  0 2px 20px rgba(0,0,0,0.4);
