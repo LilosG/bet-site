@@ -10,7 +10,7 @@ import { Image } from 'astro:assets';
 export interface Props {
   name: string;
   price: string;
-  condition: 'Used' | 'New' | 'Refurbished';
+  condition: 'Used' | 'New';
   category: string;
   image?: ImageMetadata;
   href?: string;
@@ -28,9 +28,8 @@ const {
 } = Astro.props;
 
 const conditionClass = {
-  Used:        'tag-used',
-  New:         'tag-new',
-  Refurbished: 'tag-refurb',
+  Used: 'tag-used',
+  New:  'tag-new',
 }[condition] ?? 'tag-used';
 ---
 

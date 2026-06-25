@@ -49,7 +49,7 @@ export const INDUSTRIES: IndustryPage[] = [
 
 What sets us apart from a listing site or general equipment broker is operating context. Beverage Equipment Traders was founded by brewery operators. We have run the equipment we sell — sized glycol systems, configured fermentation programs, and troubleshot brewhouse failures at 2 a.m. That experience means we advise on what a craft brewery actually needs, not just what we have available.
 
-Our inventory covers the full range of craft brewery capital equipment: complete brewhouses from 7 BBL to 30 BBL+, fermentation vessels and brite tanks, canning lines from taproom crowler volume through full automated production, glycol chilling systems, kegs and casks, and supporting systems including boilers and cold storage. All equipment is inspected and photographed before listing.
+Our inventory covers the full range of craft brewery capital equipment: complete brewhouses from 7 BBL to 30 BBL+, fermentation vessels and brite tanks, canning lines from taproom crowler volume through full automated production, glycol chilling systems, kegs and casks, and supporting systems including boilers and cold storage. All equipment is photographed and listed with condition documentation.
 
 We also provide full-service rigging and installation for equipment moves, new builds, and expansion projects. For breweries selling or upgrading equipment, our consignment and auction programs provide structured liquidation options.`,
     relevantEquipment: ['brewhouses', 'fermenters', 'canning', 'chillers', 'kegs', 'boilers', 'cold-rooms'],

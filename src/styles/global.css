@@ -13,6 +13,7 @@
    ─────────────────────────────────────────── */
 @theme {
   --color-bg:           #0B0C0F;
+  --color-bg-header:    rgba(11, 12, 15, 0.97);
   --color-bg-2:         #111318;
   --color-bg-card:      #16191F;
   --color-bg-light:     #F5F3EF;
@@ -36,6 +37,7 @@
   :root {
     /* ── Background colors ── */
     --color-bg:           #0B0C0F;
+    --color-bg-header:    rgba(11, 12, 15, 0.97);
     --color-bg-2:         #111318;
     --color-bg-card:      #16191F;
     --color-bg-light:     #F5F3EF;

@@ -21,7 +21,7 @@ export interface EquipmentCategory {
   featuredItems?: {
     name: string;
     price: string;
-    condition: 'Used' | 'New' | 'Refurbished';
+    condition: 'Used' | 'New';
     category: string;
     image?: string;              // filename only — resolved via import.meta.glob in template
   }[];
@@ -45,9 +45,9 @@ export const EQUIPMENT_CATEGORIES: EquipmentCategory[] = [
     shopifyCollectionUrl: 'https://beverageequipmenttraders.com/collections/brewhouses',
     metaTitle: 'New and Used Brewhouses For Sale | Beverage Equipment Traders — San Marcos, CA',
     metaDescription:
-      'Shop new and used brewhouses from 7BBL to 30BBL+. Inspected, photographed, and ready to ship nationwide from San Marcos, CA. Rigging and installation available.',
+      'Shop new and used brewhouses from 7BBL to 30BBL+. Photographed, documented, and ready to ship nationwide from San Marcos, CA. Rigging and installation available.',
     description:
-      'Beverage Equipment Traders maintains one of the largest inventories of new and used brewhouses in the western United States. Every system is inspected on-site before listing.',
+      'Beverage Equipment Traders maintains one of the largest inventories of new and used brewhouses in the western United States. Every system is photographed and listed with condition documentation.',
     bodyContent: `Complete brewhouse systems from 7BBL to 30BBL and larger, sourced from working brewery liquidations, upgrades, and direct manufacturer relationships. Our catalog spans 2-vessel and 3-vessel configurations from manufacturers including Marks Design and Metalworks, Specific Mechanical Systems, Premier Stainless, and DME Brewing.
 
 What sets Beverage Equipment Traders apart is operator context. We started as a brewery. We have sized brewhouses, run the same equipment we sell, and troubleshot every failure point buyers encounter. When you call us, you are speaking with someone who has actually brewed on it.
@@ -142,7 +142,7 @@ All fermentation vessels can be shipped nationwide. Rigging and installation ser
     h1: 'Canning Equipment and Canning Lines For Sale',
     shopifyCollectionUrl: 'https://beverageequipmenttraders.com/collections/canning',
     metaTitle: 'Canning Equipment & Canning Lines For Sale | Beverage Equipment Traders',
-    metaDescription: 'Used and new canning machines, crowlers, shrink sleeve applicators, and complete canning lines. Ships nationwide. Inspected in San Marcos, CA.',
+    metaDescription: 'Used and new canning machines, crowlers, shrink sleeve applicators, and complete canning lines. Ships nationwide from San Marcos, CA.',
     description: 'Commercial canning machines, crowler fillers, Wild Goose canning lines, and full packaging systems for craft producers across all volume tiers.',
     bodyContent: `Canning and packaging equipment for craft beverage producers at every scale. Our inventory covers everything from crowler machines for taproom-volume operations through full automated canning lines capable of 50+ CPM. Wild Goose canning systems, manual and semi-automatic crowlers, shrink sleeve applicators, and inline date coders.
 
@@ -189,7 +189,7 @@ All equipment ships nationwide. Rigging, installation, and commissioning service
 
 Chiller sizing depends on total fermentation volume, cellar design, ambient facility temperatures, and whether the system is serving fermenters only or also cold-side packaging equipment. Undersizing a chiller creates production bottlenecks that are expensive to correct post-installation. We can help buyers evaluate sizing requirements before purchase.
 
-Used chillers from working breweries are a value-strong option for producers who need proven, heavy-duty cooling capacity at significantly below-replacement cost. Our used chillers are inspected and photographed before listing.
+Used chillers from working breweries are a value-strong option for producers who need proven, heavy-duty cooling capacity at significantly below-replacement cost. Our used chillers are photographed and listed with condition documentation.
 
 Contact us for current glycol chiller inventory. We can also source specific tonnage ranges on request.`,
     keywords: ['glycol chiller brewery', 'used glycol chiller', 'G&D chillers', 'Pro Refrigeration chiller', 'brewery cooling system', 'fermentation chiller', 'glycol cooling system brewing'],

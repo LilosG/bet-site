@@ -57,10 +57,10 @@ San Diego buyers benefit from the proximity: shorter freight leads times, local 
     metaDescription:
       'Beverage Equipment Traders is based in San Marcos, CA. 40,000 sq ft facility with 225+ items in stock. New and used brewhouses, fermenters, canning lines, and more. Visit by appointment.',
     intro:
-      'Our home base. 40,000 square feet of inspected, photographed brewery and beverage equipment in San Marcos, CA.',
+      'Our home base. 40,000 square feet of photographed, documented brewery and beverage equipment in San Marcos, CA.',
     bodyContent: `Beverage Equipment Traders is headquartered at 1520 E Barham Dr, San Marcos, CA 92078. Our 40,000 sq ft consolidation facility houses 225+ items across the full spectrum of brewery and beverage production equipment: brewhouses, fermenters, canning lines, glycol chillers, kegs, boilers, distilling equipment, cold boxes, and supporting systems.
 
-All equipment in our facility has been photographed, inspected, and listed with condition details before being offered for sale. We are a dealer, not an aggregator — every piece in our yard has been evaluated by someone who has personally run production equipment.
+All equipment in our facility has been photographed and listed with condition details before being offered for sale. We are a dealer, not an aggregator — every piece in our yard has been evaluated by someone who has personally run production equipment.
 
 In-person inspection is available by appointment. Many buyers prefer to evaluate high-value equipment on-site before committing, and we encourage it. Our team is available to walk you through equipment, discuss specifications, and answer technical questions from an operator's perspective.
 
