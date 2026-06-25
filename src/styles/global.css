@@ -23,6 +23,7 @@
   --color-teal:         #0D9488;
   --color-teal-hover:   #0F766E;
   --color-white:        #FFFFFF;
+  --color-heading:      #FFFFFF;
   --color-text:         #E8E6E1;
   --color-text-muted:   #9CA3B0;
   --color-text-subtle:  #6B7280;
@@ -53,6 +54,7 @@
     --color-teal-dim:     rgba(13,148,136,0.12);
     --color-teal-overlay: rgba(13,148,136,0.85);
     --color-white:        #FFFFFF;
+    --color-heading:      var(--color-white);
 
     /* ── Text colors ── */
     --color-text:             #E8E6E1;
@@ -127,7 +129,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.05;
-    color: var(--color-white);
+    color: var(--color-heading);
     letter-spacing: -0.01em;
   }
 
