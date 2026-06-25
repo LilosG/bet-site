@@ -165,6 +165,11 @@ const schemas = [
         <div class="ind-svc-grid">
           {relatedServices.map((svc) => (
             <a href={`/services/${svc.slug}`} class="ind-svc-card">
+              <div class="ind-svc-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={svc.icon} />
+                </svg>
+              </div>
               <h3 class="ind-svc-title">{svc.title}</h3>
               <p class="ind-svc-desc">{svc.intro}</p>
               <span class="ind-svc-cta">
@@ -228,8 +233,8 @@ const schemas = [
   }
 
   .ind-hero-inner  { position: relative; z-index: 1; }
-  .ind-hero h1     { max-width: 26ch; margin: 0.5rem 0 1rem; }
-  .ind-hero-intro  { max-width: 60ch; font-size: 1.0625rem; margin-bottom: 2rem; }
+  .ind-hero h1     { max-width: 26ch; margin: 0.5rem 0 1rem; color: var(--color-white); }
+  .ind-hero-intro  { max-width: 60ch; font-size: 1.0625rem; margin-bottom: 2rem; color: rgba(255,255,255,0.85); }
   .ind-hero-ctas   { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   /* ─── Body + Sidebar ─────────────────────────── */
@@ -250,7 +255,7 @@ const schemas = [
     margin-bottom: 1.25rem;
   }
 
-  .ind-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-white); margin: 0 0 0.5rem; }
+  .ind-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-heading); margin: 0 0 0.5rem; }
   .ind-sidebar-card p  { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
 
   .ind-phone {
@@ -298,7 +303,7 @@ const schemas = [
 
   /* ─── Equipment Grid ─────────────────────────── */
   .ind-eq-band {
-    background: var(--color-bg-2);
+    background: var(--color-bg);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
@@ -313,15 +318,16 @@ const schemas = [
     gap: 0.5rem;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
+    border-top: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 1.25rem;
     text-decoration: none;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    transition: border-color var(--transition-smooth), border-top-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .ind-eq-card:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
+  .ind-eq-card:hover { border-color: var(--color-border-gold); border-top-color: var(--color-teal); transform: translateY(-2px); }
 
-  .ind-eq-title { font-family: var(--font-ui); font-size: 0.9375rem; font-weight: 700; color: var(--color-white); margin: 0; transition: color var(--transition-base); }
+  .ind-eq-title { font-family: var(--font-ui); font-size: 0.9375rem; font-weight: 700; color: var(--color-heading); margin: 0; transition: color var(--transition-base); }
   .ind-eq-card:hover .ind-eq-title { color: var(--color-gold); }
   .ind-eq-desc  { font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.5; flex: 1; margin: 0; }
 
@@ -350,15 +356,35 @@ const schemas = [
     gap: 0.5rem;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
+    border-top: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 1.5rem;
     text-decoration: none;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    transition: border-color var(--transition-smooth), border-top-color var(--transition-smooth), transform var(--transition-smooth);
   }
 
-  .ind-svc-card:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
+  .ind-svc-card:hover { border-color: var(--color-border-gold); border-top-color: var(--color-gold); transform: translateY(-2px); }
 
-  .ind-svc-title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--color-white); margin: 0; transition: color var(--transition-base); }
+  .ind-svc-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 3px;
+    background: var(--color-gold-dim);
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.875rem;
+    flex-shrink: 0;
+    transition: background var(--transition-smooth);
+  }
+
+  .ind-svc-card:hover .ind-svc-icon {
+    background: var(--color-teal-dim);
+    color: var(--color-teal);
+  }
+
+  .ind-svc-title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--color-heading); margin: 0; transition: color var(--transition-base); }
   .ind-svc-card:hover .ind-svc-title { color: var(--color-gold); }
   .ind-svc-desc { font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.65; flex: 1; margin: 0; }
 
