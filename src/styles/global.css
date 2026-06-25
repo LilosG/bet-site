@@ -12,10 +12,10 @@
    e.g. bg-gold, text-teal, border-gold etc.
    ─────────────────────────────────────────── */
 @theme {
-  --color-bg:           #1A1510;
-  --color-bg-header:    rgba(26, 21, 16, 0.97);
-  --color-bg-2:         #221B14;
-  --color-bg-card:      #2B2219;
+  --color-bg:           #110D07;
+  --color-bg-header:    rgba(17, 13, 7, 0.97);
+  --color-bg-2:         #1E1509;
+  --color-bg-card:      #281C0F;
   --color-bg-light:     #F5F3EF;
   --color-bg-light-2:   #ECEAE4;
   --color-gold:         #C9963A;
@@ -36,10 +36,10 @@
 @layer base {
   :root {
     /* ── Background colors ── */
-    --color-bg:           #1A1510;
-    --color-bg-header:    rgba(26, 21, 16, 0.97);
-    --color-bg-2:         #221B14;
-    --color-bg-card:      #2B2219;
+    --color-bg:           #110D07;
+    --color-bg-header:    rgba(17, 13, 7, 0.97);
+    --color-bg-2:         #1E1509;
+    --color-bg-card:      #281C0F;
     --color-bg-light:     #F5F3EF;
     --color-bg-light-2:   #ECEAE4;
 
