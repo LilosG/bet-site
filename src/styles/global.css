@@ -271,6 +271,16 @@
     border-color: rgba(26,18,8,0.65);
     background: rgba(0,0,0,0.04);
   }
+
+  /* btn-outline on cream/light backgrounds */
+  .bg-light .btn-outline {
+    color: var(--color-heading);
+    border-color: rgba(26,18,8,0.35);
+  }
+  .bg-light .btn-outline:hover {
+    border-color: rgba(26,18,8,0.65);
+    background: rgba(0,0,0,0.04);
+  }
 }
 
 /* ─── Components ──────────────────────────── */
