@@ -12,10 +12,10 @@
    e.g. bg-gold, text-teal, border-gold etc.
    ─────────────────────────────────────────── */
 @theme {
-  --color-bg:           #050915;
-  --color-bg-header:    rgba(5, 9, 21, 0.97);
-  --color-bg-2:         #0B1228;
-  --color-bg-card:      #111B38;
+  --color-bg:           #050A1C;
+  --color-bg-header:    rgba(5, 10, 28, 0.97);
+  --color-bg-2:         #091330;
+  --color-bg-card:      #0F1D48;
   --color-bg-light:     #F5F3EF;
   --color-bg-light-2:   #ECEAE4;
   --color-gold:         #C9963A;
@@ -37,10 +37,10 @@
 @layer base {
   :root {
     /* ── Background colors ── */
-    --color-bg:           #050915;
-    --color-bg-header:    rgba(5, 9, 21, 0.97);
-    --color-bg-2:         #0B1228;
-    --color-bg-card:      #111B38;
+    --color-bg:           #050A1C;
+    --color-bg-header:    rgba(5, 10, 28, 0.97);
+    --color-bg-2:         #091330;
+    --color-bg-card:      #0F1D48;
     --color-bg-light:     #F5F3EF;
     --color-bg-light-2:   #ECEAE4;
 
@@ -54,7 +54,7 @@
     --color-teal-dim:     rgba(13,148,136,0.12);
     --color-teal-overlay: rgba(13,148,136,0.85);
     --color-white:        #FFFFFF;
-    --color-heading:      var(--color-white);
+    --color-heading:      #FFFFFF;
 
     /* ── Text colors ── */
     --color-text:             #E8E6E1;
@@ -71,10 +71,10 @@
     --color-bg-overlay:  rgba(255,255,255,0.04);
     --color-tag-dark:    rgba(255,255,255,0.06);
     /* ── Hero overlay gradients — tokenized for theme control ── */
-    --hero-overlay-right:    linear-gradient(to right, rgba(5,9,21,0.96) 0%, rgba(5,9,21,0.88) 45%, rgba(5,9,21,0.55) 75%, rgba(5,9,21,0.2) 100%);
-    --hero-overlay-bottom:   linear-gradient(to bottom, rgba(5,9,21,0.3) 0%, transparent 30%, rgba(5,9,21,0.5) 100%);
-    --hero-overlay-img-fade: linear-gradient(to top, rgba(5,9,21,0.85) 0%, transparent 55%);
-    --hero-overlay-img-full: linear-gradient(to top, rgba(5,9,21,0.85) 0%, transparent 100%);
+    --hero-overlay-right:    linear-gradient(to right, rgba(5,10,28,0.96) 0%, rgba(5,10,28,0.88) 45%, rgba(5,10,28,0.55) 75%, rgba(5,10,28,0.2) 100%);
+    --hero-overlay-bottom:   linear-gradient(to bottom, rgba(5,10,28,0.3) 0%, transparent 30%, rgba(5,10,28,0.5) 100%);
+    --hero-overlay-img-fade: linear-gradient(to top, rgba(5,10,28,0.85) 0%, transparent 55%);
+    --hero-overlay-img-full: linear-gradient(to top, rgba(5,10,28,0.85) 0%, transparent 100%);
 
     /* ── Scrollbar ── */
     --color-scrollbar-thumb: #2a2d35;
