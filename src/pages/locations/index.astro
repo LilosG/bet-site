@@ -9,6 +9,7 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import TrustBar from '../../components/ui/TrustBar.astro';
+import CoverageMap from '../../components/ui/CoverageMap.astro';
 import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { NAP } from '../../data/site';
 import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema';
@@ -176,46 +177,7 @@ const shippingFacts = [
 
   <TrustBar />
 
-  <section class="section-y hub-why-band" aria-labelledby="hub-why-heading">
-    <div class="container hub-why-inner">
-      <div>
-        <span class="eyebrow">Why It Works Nationwide</span>
-        <h2 id="hub-why-heading">Your buyer in Chicago is as real as the one in San Diego.</h2>
-        <p>
-          The majority of high-intent equipment searches carry no geographic modifier.
-          A head brewer in Denver searching for a 15 BBL brewhouse is the same qualified
-          buyer as one in San Marcos. BET's inventory, pricing, and logistics infrastructure
-          serve that national buyer as directly as the local one.
-        </p>
-        <p>
-          Every piece in our 40,000 sq ft facility ships nationwide. Bonded freight,
-          documented condition, and rigging at destination available on every transaction.
-          One quote covers the full scope from our yard to your production floor.
-        </p>
-        <a href="/contact" class="btn btn-primary">
-          Get a Shipping Quote
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-      <div class="hub-why-list">
-        {[
-          { label: 'Bonded Freight',         detail: 'All 50 states. Crated or pad-wrapped based on equipment type and fragility.' },
-          { label: 'Rigging at Destination', detail: 'Millwright crews available at destination for full installation and commissioning.' },
-          { label: 'Pre-Ship Documentation', detail: 'Condition photos and inspection notes provided before equipment leaves our facility.' },
-          { label: 'Single Quote',           detail: 'One price covers equipment, freight, and rigging. No surprise add-ons after purchase.' },
-          { label: 'One Point of Contact',   detail: 'Our trade desk handles everything from purchase through delivery confirmation.' },
-        ].map((item, i) => (
-          <div class="hub-why-item">
-            <span class="hub-why-num">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <p class="hub-why-label">{item.label}</p>
-              <p class="hub-why-detail">{item.detail}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <CoverageMap />
 
   <CtaStrip
     heading="Not seeing your city?"
@@ -580,59 +542,7 @@ const shippingFacts = [
 
   .nat-card:hover .nat-card-cta { gap: 0.5rem; }
 
-  .hub-why-band {
-    background: var(--color-bg-2);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
 
-  .hub-why-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .hub-why-inner h2   { max-width: 20ch; margin: 0.4rem 0 1.25rem; }
-  .hub-why-inner p    { margin-bottom: 1.25rem; }
-  .hub-why-inner .btn { margin-top: 0.75rem; }
-
-  .hub-why-list { display: flex; flex-direction: column; padding-top: 0.5rem; }
-
-  .hub-why-item {
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-    padding: 1.125rem 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .hub-why-item:first-child { border-top: 1px solid var(--color-border); }
-
-  .hub-why-num {
-    font-family: var(--font-display);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    color: var(--color-gold);
-    letter-spacing: 0.06em;
-    flex-shrink: 0;
-    padding-top: 0.125rem;
-  }
-
-  .hub-why-label {
-    font-family: var(--font-ui);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--color-heading);
-    margin: 0 0 0.2rem;
-  }
-
-  .hub-why-detail {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin: 0;
-    line-height: 1.55;
-  }
 
   @media (max-width: 1024px) {
     .hub-stats-inner       { grid-template-columns: repeat(2, 1fr); }
