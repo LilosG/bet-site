@@ -10,6 +10,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import ServiceCard from '../../components/ui/ServiceCard.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import { SERVICES } from '../../data/services';
 import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
 
@@ -66,8 +67,6 @@ const schemas = [
     </div>
   </section>
 
-  <hr class="section-rule" />
-
   <section class="section-y" aria-labelledby="services-list-heading">
     <div class="container">
       <h2 id="services-list-heading" class="sr-only">Our Services</h2>
@@ -85,11 +84,7 @@ const schemas = [
     </div>
   </section>
 
-  <div class="stats-band">
-    <div class="container">
-      <StatBar />
-    </div>
-  </div>
+  <StatBar />
 
   <section class="section-y" aria-labelledby="why-one-heading">
     <div class="container why-one-inner">
@@ -130,6 +125,8 @@ const schemas = [
       </div>
     </div>
   </section>
+
+  <TrustBar />
 
   <CtaStrip
     heading="Not sure which service fits your situation?"
@@ -180,12 +177,7 @@ const schemas = [
     gap: 1.25rem;
   }
 
-  .stats-band {
-    background: var(--color-bg-2);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 3rem 0;
-  }
+
 
   .why-one-inner {
     display: grid;
@@ -229,7 +221,7 @@ const schemas = [
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.2rem;
   }
 

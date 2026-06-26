@@ -59,26 +59,45 @@ const {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.125rem;
+    counter-reset: need-counter;
   }
 
   .need-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-top: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    position: relative;
+    counter-increment: need-counter;
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), border-top-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
+  }
+
+  .need-card::before {
+    content: counter(need-counter, decimal-leading-zero);
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 800;
+    color: var(--color-text-subtle);
+    letter-spacing: 0.08em;
   }
 
   .need-card:hover {
     border-color: var(--color-border-gold);
+    border-top-color: var(--color-gold);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
   }
 
   .need-title {
     font-family: var(--font-display);
     font-size: 1.0625rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.625rem;
     line-height: 1.3;
   }

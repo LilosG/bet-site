@@ -8,10 +8,11 @@ import Layout from '../../../layouts/Layout.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../../components/ui/CtaStrip.astro';
 import TrustBar from '../../../components/ui/TrustBar.astro';
+import StatBar from '../../../components/ui/StatBar.astro';
 import { NATIONAL_LOCATIONS } from '../../../data/locations';
 import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
 import { SERVICES } from '../../../data/services';
-import { breadcrumbSchema } from '../../../lib/schema';
+import { breadcrumbSchema, localBusinessSchema } from '../../../lib/schema';
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   '../../../assets/images/*.webp',
@@ -43,7 +44,10 @@ const crumbs = [
   { name: loc.city,        url: `/locations/national/${loc.slug}` },
 ];
 
-const schemas = [breadcrumbSchema(crumbs)];
+const schemas = [
+  localBusinessSchema(),
+  breadcrumbSchema(crumbs),
+];
 ---
 
 <Layout
@@ -80,6 +84,8 @@ const schemas = [breadcrumbSchema(crumbs)];
       </div>
     </div>
   </section>
+
+  <StatBar />
 
   <TrustBar />
 
@@ -125,9 +131,9 @@ const schemas = [breadcrumbSchema(crumbs)];
       <h2 id="nat-eq-heading">Browse Equipment by Category</h2>
       <div class="nat-cat-grid">
         {EQUIPMENT_CATEGORIES.map((cat) => (
-          <a href={`/equipment/${cat.slug}`} class="nat-cat-item">
+          <a href={`/equipment/${cat.slug}/${loc.slug}`} class="nat-cat-item">
             <span class="nat-cat-name">{cat.title}</span>
-            <span class="nat-cat-desc">{cat.description.slice(0, 80)}…</span>
+            <span class="nat-cat-desc">{cat.description}</span>
             <span class="nat-cat-cta">
               Browse {cat.title}
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -145,7 +151,7 @@ const schemas = [breadcrumbSchema(crumbs)];
       <h2 id="nat-svc-heading">What We Handle Nationally</h2>
       <div class="nat-svc-grid">
         {SERVICES.map((svc) => (
-          <a href={`/services/${svc.slug}`} class="nat-svc-item">
+          <a href={`/services/${svc.slug}/${loc.slug}`} class="nat-svc-item">
             <p class="nat-svc-title">{svc.title}</p>
             <p class="nat-svc-desc">{svc.intro}</p>
             <span class="nat-svc-link">
@@ -226,12 +232,13 @@ const schemas = [breadcrumbSchema(crumbs)];
   .nat-sidebar-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border-gold);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
     margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-card-rest);
   }
 
-  .nat-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-white); margin: 0 0 0.5rem; }
+  .nat-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-heading); margin: 0 0 0.5rem; }
   .nat-sidebar-card p  { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
 
   .nat-phone {
@@ -252,8 +259,9 @@ const schemas = [breadcrumbSchema(crumbs)];
   .nat-fact-box {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card-rest);
   }
 
   .nat-fact-label {
@@ -279,7 +287,7 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   /* ─── Equipment grid ─────────────────────────── */
   .nat-eq-band {
-    background: var(--color-bg-2);
+    background: var(--color-bg);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
@@ -302,9 +310,18 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   .nat-cat-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .nat-cat-name { font-family: var(--font-ui); font-size: 0.9375rem; font-weight: 700; color: var(--color-white); transition: color var(--transition-base); }
+  .nat-cat-name { font-family: var(--font-ui); font-size: 0.9375rem; font-weight: 700; color: var(--color-heading); transition: color var(--transition-base); }
   .nat-cat-item:hover .nat-cat-name { color: var(--color-gold); }
-  .nat-cat-desc { font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.5; flex: 1; }
+  .nat-cat-desc {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
   .nat-cat-cta {
     display: inline-flex;
@@ -336,7 +353,7 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   .nat-svc-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .nat-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-white); margin: 0 0 0.5rem; transition: color var(--transition-base); }
+  .nat-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-heading); margin: 0 0 0.5rem; transition: color var(--transition-base); }
   .nat-svc-item:hover .nat-svc-title { color: var(--color-gold); }
   .nat-svc-desc  { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 1rem; line-height: 1.6; flex: 1; }
 
