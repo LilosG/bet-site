@@ -13,6 +13,7 @@ import CtaStrip from '../../components/ui/CtaStrip.astro';
 import ProcessSteps from '../../components/ui/ProcessSteps.astro';
 import BestFitScenarios from '../../components/ui/BestFitScenarios.astro';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
+import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { NAP } from '../../data/site';
 import { breadcrumbSchema, faqSchema, productCategorySchema } from '../../lib/schema';
 
@@ -196,6 +197,43 @@ const schemas = [
     secondaryHref="/services/rigging"
   />
 
+  <!-- ═══ SHOP BY LOCATION ══════════════════════ -->
+  <section class="section-y eq-locations-band" aria-labelledby="eq-locations-heading">
+    <div class="container">
+      <span class="eyebrow">Shop by Location</span>
+      <h2 id="eq-locations-heading">{cat.title} Available Near You</h2>
+      <p class="eq-locations-intro">We ship {cat.title.toLowerCase()} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.</p>
+      <div class="eq-locations-grid">
+        <div class="eq-locations-col">
+          <p class="eq-locations-group-label">Local — Southern California</p>
+          <ul class="eq-locations-list">
+            {LOCAL_LOCATIONS.map((loc) => (
+              <li>
+                <a href={`/equipment/${cat.slug}/${loc.slug}`} class="eq-location-link">
+                  {cat.title} — {loc.city}, {loc.stateAbbr}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="eq-locations-col">
+          <p class="eq-locations-group-label">National Markets</p>
+          <ul class="eq-locations-list">
+            {NATIONAL_LOCATIONS.map((loc) => (
+              <li>
+                <a href={`/equipment/${cat.slug}/${loc.slug}`} class="eq-location-link">
+                  {cat.title} — {loc.city}, {loc.stateAbbr}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ FAQ ════════════════════════════════════ -->
   <FAQ
     items={cat.faqs}
@@ -368,5 +406,67 @@ const schemas = [
   @media (max-width: 640px) {
     .eq-cards-grid { grid-template-columns: 1fr; }
     .eq-hero-ctas { flex-direction: column; }
+  }
+
+  /* ─── Location links ─────────────────────────── */
+  .eq-locations-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .eq-locations-band h2 { margin: 0.4rem 0 0.5rem; }
+
+  .eq-locations-intro {
+    max-width: 60ch;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .eq-locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .eq-locations-group-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.875rem;
+  }
+
+  .eq-locations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .eq-location-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-base), padding-left var(--transition-base);
+  }
+
+  .eq-location-link:hover {
+    color: var(--color-teal);
+    padding-left: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .eq-locations-grid { grid-template-columns: 1fr; gap: 2rem; }
   }
 </style>

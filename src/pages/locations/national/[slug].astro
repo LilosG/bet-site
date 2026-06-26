@@ -131,7 +131,7 @@ const schemas = [
       <h2 id="nat-eq-heading">Browse Equipment by Category</h2>
       <div class="nat-cat-grid">
         {EQUIPMENT_CATEGORIES.map((cat) => (
-          <a href={`/equipment/${cat.slug}`} class="nat-cat-item">
+          <a href={`/equipment/${cat.slug}/${loc.slug}`} class="nat-cat-item">
             <span class="nat-cat-name">{cat.title}</span>
             <span class="nat-cat-desc">{cat.description}</span>
             <span class="nat-cat-cta">
@@ -151,7 +151,7 @@ const schemas = [
       <h2 id="nat-svc-heading">What We Handle Nationally</h2>
       <div class="nat-svc-grid">
         {SERVICES.map((svc) => (
-          <a href={`/services/${svc.slug}`} class="nat-svc-item">
+          <a href={`/services/${svc.slug}/${loc.slug}`} class="nat-svc-item">
             <p class="nat-svc-title">{svc.title}</p>
             <p class="nat-svc-desc">{svc.intro}</p>
             <span class="nat-svc-link">
