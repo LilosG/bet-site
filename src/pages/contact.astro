@@ -10,6 +10,7 @@ import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import { NAP, HOURS } from '../data/site';
+import StatBar from '../components/ui/StatBar.astro';
 import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
 
 // ─── Hero image ───────────────────────────────
@@ -70,7 +71,7 @@ const inquiryTypes = [
     </div>
   </section>
 
-  <hr class="section-rule" />
+  <StatBar />
 
   <!-- ═══ CONTACT GRID ═════════════════════════ -->
   <section class="section-y" aria-labelledby="contact-form-heading">
@@ -455,7 +456,7 @@ const inquiryTypes = [
 
   .hours-time {
     padding: 0.4rem 0;
-    color: var(--color-white);
+    color: var(--color-heading);
     text-align: right;
   }
 

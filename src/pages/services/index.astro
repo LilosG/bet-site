@@ -10,6 +10,7 @@ import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import ServiceCard from '../../components/ui/ServiceCard.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import { SERVICES } from '../../data/services';
 import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
 
@@ -131,6 +132,8 @@ const schemas = [
     </div>
   </section>
 
+  <TrustBar />
+
   <CtaStrip
     heading="Not sure which service fits your situation?"
     subtext="Describe what you have or what you need. We will tell you what makes sense and what it costs."
@@ -229,7 +232,7 @@ const schemas = [
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.2rem;
   }
 

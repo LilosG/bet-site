@@ -8,6 +8,8 @@ import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
+import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import { INDUSTRIES } from '../../data/industries';
 import { breadcrumbSchema } from '../../lib/schema';
 
@@ -63,7 +65,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     </div>
   </section>
 
-  <hr class="section-rule" />
+  <StatBar />
 
   <section class="section-y" aria-labelledby="bev-heading">
     <div class="container">
@@ -169,6 +171,8 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     </div>
   </section>
 
+  <TrustBar />
+
   <CtaStrip
     heading="Not sure if we serve your industry?"
     subtext="Describe your application and equipment requirements. We will tell you what we have and whether it fits."
@@ -248,7 +252,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0;
     line-height: 1.2;
     transition: color var(--transition-base);
@@ -335,7 +339,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.2rem;
   }
 
