@@ -1,0 +1,220 @@
+---
+/**
+ * CoverageMap — Nationwide and international service coverage map.
+ * D3.js hub-and-spoke visualization. Self-contained, no props required.
+ * Used on: industries/[slug].astro, locations/index.astro
+ */
+---
+
+<section class="cvg-section section-y" aria-labelledby="cvg-heading">
+  <div class="container">
+    <div class="cvg-header">
+      <span class="eyebrow">Service Coverage</span>
+      <h2 id="cvg-heading">Services all 50 states and internationally.</h2>
+      <p class="cvg-intro">
+        Every piece ships nationwide and internationally from our San Marcos, CA facility —
+        bonded freight, rigging at destination, one point of contact regardless of where you are.
+      </p>
+    </div>
+    <div class="cvg-map-wrap">
+      <p class="cvg-loading">Loading map...</p>
+      <svg class="cvg-svg" viewBox="0 0 960 580" role="img" aria-label="Service coverage map — all 50 states and internationally from San Marcos CA"></svg>
+    </div>
+    <div class="cvg-legend" aria-hidden="true">
+      <div class="cvg-legend-item">
+        <span class="cvg-dot cvg-dot-hq"></span>
+        <span>HQ — San Marcos, CA</span>
+      </div>
+      <div class="cvg-legend-item">
+        <span class="cvg-dot cvg-dot-market"></span>
+        <span>Services all 50 states and internationally</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+(function() {
+  if (window._cvgMapLoaded) return;
+  window._cvgMapLoaded = true;
+
+  function loadScript(src) {
+    return new Promise(function(res, rej) {
+      if (document.querySelector('script[src="' + src + '"]')) { res(); return; }
+      var s = document.createElement('script');
+      s.src = src; s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+
+  (async function() {
+    try {
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js');
+      await loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js');
+
+      var wrap = document.querySelector('.cvg-map-wrap');
+      if (!wrap) return;
+      var loadingEl = wrap.querySelector('.cvg-loading');
+      var svgEl = wrap.querySelector('.cvg-svg');
+
+      var us = await fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json').then(function(r) { return r.json(); });
+
+      var W = 960, H = 580;
+      var proj = d3.geoAlbersUsa().scale(1280).translate([W / 2, H / 2 - 10]);
+      var path = d3.geoPath().projection(proj);
+      var svg = d3.select(svgEl);
+      var dark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+
+      svg.append('g').selectAll('path')
+        .data(topojson.feature(us, us.objects.states).features)
+        .enter().append('path').attr('d', path)
+        .attr('fill', dark ? 'rgba(13,148,136,0.07)' : 'rgba(13,148,136,0.05)')
+        .attr('stroke', dark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.10)')
+        .attr('stroke-width', 0.5);
+
+      svg.append('path')
+        .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a === b; }))
+        .attr('d', path).attr('fill', 'none')
+        .attr('stroke', dark ? 'rgba(13,148,136,0.38)' : 'rgba(13,148,136,0.28)')
+        .attr('stroke-width', 1.2);
+
+      var HQ = [-117.165, 33.143];
+      var hq = proj(HQ);
+
+      var cities = [
+        [-122.332,47.606],[-122.676,45.523],[-123.086,44.052],[-117.426,47.659],[-122.438,47.253],
+        [-122.419,37.774],[-121.468,38.576],[-119.787,36.737],[-118.243,34.052],[-118.188,33.771],
+        [-122.271,37.804],[-121.887,37.339],[-119.699,34.420],[-117.831,33.715],[-117.396,33.953],
+        [-115.139,36.175],[-112.074,33.449],[-110.926,32.221],[-111.891,40.760],[-119.817,39.529],
+        [-116.203,43.616],[-106.651,35.085],[-105.937,35.687],[-106.490,31.762],
+        [-104.991,39.739],[-104.822,38.834],[-105.084,40.585],[-104.820,41.140],
+        [-108.776,45.788],[-111.042,45.680],[-114.133,46.870],[-100.783,46.813],[-103.200,44.080],
+        [-93.265,44.977],[-96.789,46.877],[-96.729,43.550],[-95.934,41.257],[-93.620,41.601],
+        [-94.578,39.099],[-90.197,38.627],[-97.338,37.692],[-97.521,35.467],[-95.992,36.154],
+        [-89.401,43.073],[-87.906,43.039],[-88.043,44.519],
+        [-96.797,32.776],[-97.332,32.753],[-97.743,30.267],[-98.494,29.424],[-95.369,29.760],
+        [-101.855,33.577],[-90.070,29.951],[-91.140,30.458],[-92.290,34.746],[-89.971,35.149],
+        [-87.629,41.878],[-83.045,42.331],[-86.158,39.768],[-82.999,39.961],[-84.512,39.101],
+        [-81.694,41.500],[-83.555,41.664],[-79.976,40.440],[-85.758,38.252],[-84.497,38.049],
+        [-86.781,36.162],[-83.921,35.961],[-85.311,35.045],[-86.802,33.520],[-84.388,33.749],
+        [-81.099,32.076],[-80.843,35.227],[-78.639,35.779],[-81.035,34.000],[-79.931,32.776],
+        [-82.394,34.852],[-81.656,30.332],[-82.458,27.947],[-81.379,28.538],[-80.191,25.774],
+        [-86.158,32.361],[-74.006,40.714],[-75.165,39.952],[-77.036,38.907],[-71.057,42.360],
+        [-76.612,39.290],[-77.435,37.541],[-76.288,36.854],[-72.682,41.763],[-71.418,41.824],
+        [-73.757,42.652],[-78.878,42.886],[-77.608,43.157],[-70.255,43.661],
+        [-95.677,39.123],[-90.993,35.831],[-88.186,41.524],[-98.300,48.232],[-96.728,40.813],[-111.842,41.224]
+      ];
+
+      var linesG = svg.append('g');
+      var dotsG = svg.append('g');
+
+      cities.forEach(function(c) {
+        var px = proj(c);
+        if (!px) return;
+        linesG.append('line')
+          .attr('x1', hq[0]).attr('y1', hq[1])
+          .attr('x2', px[0]).attr('y2', px[1])
+          .attr('stroke', '#0D9488').attr('stroke-width', 0.45).attr('opacity', 0.13);
+      });
+
+      cities.forEach(function(c) {
+        var px = proj(c);
+        if (!px) return;
+        dotsG.append('circle')
+          .attr('cx', px[0]).attr('cy', px[1]).attr('r', 3)
+          .attr('fill', '#0D9488').attr('opacity', 0.72);
+      });
+
+      var intl = [{x:82,y:48},{x:714,y:106},{x:328,y:530}];
+      intl.forEach(function(m) {
+        svg.append('line')
+          .attr('x1', hq[0]).attr('y1', hq[1]).attr('x2', m.x).attr('y2', m.y)
+          .attr('stroke', '#818cf8').attr('stroke-width', 0.45).attr('opacity', 0.2);
+        svg.append('text').attr('x', m.x).attr('y', m.y + 4)
+          .attr('text-anchor', 'middle').attr('font-size', 12).attr('font-weight', 700)
+          .attr('fill', '#818cf8').attr('opacity', 0.72).text('+');
+      });
+
+      var style = document.createElement('style');
+      style.textContent = '@keyframes cvgp1{0%,100%{r:24;opacity:.08}50%{r:34;opacity:.04}}@keyframes cvgp2{0%,100%{r:14;opacity:.14}50%{r:20;opacity:.07}}.cvgpa{animation:cvgp1 2.8s ease-in-out infinite}.cvgpb{animation:cvgp2 2.8s ease-in-out infinite .5s}';
+      document.head.appendChild(style);
+
+      var hqG = svg.append('g');
+      hqG.append('circle').attr('class', 'cvgpa').attr('cx', hq[0]).attr('cy', hq[1]).attr('r', 24).attr('fill', '#C9963A');
+      hqG.append('circle').attr('class', 'cvgpb').attr('cx', hq[0]).attr('cy', hq[1]).attr('r', 14).attr('fill', '#C9963A');
+      hqG.append('circle').attr('cx', hq[0]).attr('cy', hq[1]).attr('r', 7).attr('fill', '#C9963A').attr('opacity', 0.97);
+
+      loadingEl.style.display = 'none';
+      svgEl.style.display = 'block';
+
+    } catch (e) {
+      console.error('CoverageMap:', e);
+    }
+  })();
+})();
+</script>
+
+<style>
+  .cvg-section {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .cvg-header { margin-bottom: 2rem; }
+  .cvg-header h2 { margin: 0.4rem 0 0.75rem; max-width: 30ch; }
+
+  .cvg-intro {
+    max-width: 60ch;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .cvg-map-wrap {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-card-rest);
+  }
+
+  .cvg-loading {
+    color: var(--color-text-subtle);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .cvg-svg { width: 100%; display: none; }
+
+  .cvg-legend {
+    display: flex;
+    gap: 1.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .cvg-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .cvg-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cvg-dot-hq     { background: var(--color-gold); }
+  .cvg-dot-market { background: var(--color-teal); }
+</style>
