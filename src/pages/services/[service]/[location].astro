@@ -1,0 +1,315 @@
+---
+/**
+ * Service + Location Money Page — /services/[service]/[location]
+ * Generates 55 pages: 5 services × 11 locations (5 local + 6 national)
+ * All content from central data layer — zero hardcoding.
+ * getStaticPaths: SERVICES × [...LOCAL_LOCATIONS, ...NATIONAL_LOCATIONS]
+ */
+import { getImage } from 'astro:assets';
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import FAQ from '../../../components/ui/FAQ.astro';
+import CtaStrip from '../../../components/ui/CtaStrip.astro';
+import ProcessSteps from '../../../components/ui/ProcessSteps.astro';
+import StatBar from '../../../components/ui/StatBar.astro';
+import TrustBar from '../../../components/ui/TrustBar.astro';
+import { SERVICES } from '../../../data/services';
+import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../../data/locations';
+import { NAP } from '../../../data/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, localBusinessSchema } from '../../../lib/schema';
+
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../../assets/images/*.webp',
+  { eager: true }
+);
+
+function getAsset(filename: string | undefined): ImageMetadata | undefined {
+  if (!filename) return undefined;
+  return allImages[`../../../assets/images/${filename}`]?.default;
+}
+
+export async function getStaticPaths() {
+  const allLocations = [...LOCAL_LOCATIONS, ...NATIONAL_LOCATIONS];
+  return SERVICES.flatMap((service) =>
+    allLocations.map((loc) => ({
+      params: { service: service.slug, location: loc.slug },
+      props: { service, loc },
+    }))
+  );
+}
+
+const { service, loc } = Astro.props;
+
+const heroAsset = getAsset(service.heroImage);
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
+
+const isLocal = loc.type === 'local';
+
+const pageH1 = `${service.title} — ${loc.city}, ${loc.stateAbbr}`;
+const metaTitle = `${service.title} ${loc.city}, ${loc.stateAbbr} | Beverage Equipment Traders`;
+const metaDescription = `${service.intro} Serving ${loc.city}, ${loc.state} and nationwide from San Marcos, CA. One quote covers full scope.`;
+
+const crumbs = [
+  { name: 'Home',        url: '/' },
+  { name: 'Services',    url: '/services' },
+  { name: service.title, url: `/services/${service.slug}` },
+  { name: loc.city,      url: `/services/${service.slug}/${loc.slug}` },
+];
+
+const schemas = [
+  ...(isLocal ? [localBusinessSchema()] : []),
+  breadcrumbSchema(crumbs),
+  faqSchema(service.faqs),
+  serviceSchema({
+    name: pageH1,
+    description: metaDescription,
+    url: `/services/${service.slug}/${loc.slug}`,
+    keywords: [...service.keywords, `${service.shortTitle} ${loc.city}`, `${service.shortTitle} ${loc.state}`],
+  }),
+];
+---
+
+<Layout
+  title={metaTitle}
+  description={metaDescription}
+  canonical={`/services/${service.slug}/${loc.slug}`}
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- ═══ HERO ══════════════════════════════════ -->
+  <section class={`svc-loc-hero${optimizedHero ? ' svc-loc-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="svc-loc-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
+    <div class="container svc-loc-hero-inner">
+      <span class="eyebrow">{service.shortTitle} · {loc.city}, {loc.stateAbbr}</span>
+      <h1>{pageH1}</h1>
+      <p class="svc-loc-hero-intro">{service.intro} Available in {loc.city} and nationwide.</p>
+      <div class="svc-loc-hero-ctas">
+        <a href={service.cta.href} class="btn btn-primary btn-lg">
+          {service.cta.label}
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href={`tel:${NAP.phonePlain}`} class="btn btn-outline btn-lg">
+          Call {NAP.phone}
+        </a>
+      </div>
+      <div class="svc-loc-trust-chips">
+        {['All 50 States', 'One Quote — Full Scope', 'Prior Brewery Operators', 'San Marcos, CA'].map((chip) => (
+          <span class="trust-chip">{chip}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StatBar />
+
+  <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
+  <section class="svc-loc-body section-y" aria-labelledby="svc-loc-heading">
+    <div class="container svc-loc-content-inner">
+      <div class="prose">
+        <h2 id="svc-loc-heading">{service.title} in {loc.city} — What to Know</h2>
+        {service.bodyContent.split('\n\n').filter(Boolean).map((para) => (
+          <p>{para}</p>
+        ))}
+        <p>
+          {isLocal
+            ? `For ${loc.city} area clients, ${service.shortTitle.toLowerCase()} jobs typically turn around within 1 to 2 weeks. Our San Marcos facility is a short drive — equipment can be inspected in person before any commitment.`
+            : `We handle ${service.shortTitle.toLowerCase()} in ${loc.city} and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.`
+          }
+        </p>
+        <p>
+          Beverage Equipment Traders serves buyers and sellers throughout North America. The {loc.city} market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.
+        </p>
+      </div>
+      <aside class="svc-loc-sidebar">
+        <div class="svc-loc-sidebar-card">
+          <h3>{service.cta.label}</h3>
+          <p>Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for {loc.city}.</p>
+          <a href={service.cta.href} class="btn btn-primary" style="width:100%;justify-content:center;">
+            {service.cta.label}
+          </a>
+          <a href={`tel:${NAP.phonePlain}`} class="svc-loc-phone">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            {NAP.phone}
+          </a>
+        </div>
+        <div class="svc-loc-related">
+          <p class="svc-loc-related-label">Related Services in {loc.city}</p>
+          <ul>
+            {SERVICES.filter((s) => s.slug !== service.slug).map((s) => (
+              <li>
+                <a href={`/services/${s.slug}/${loc.slug}`}>
+                  {s.title}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS STEPS ══════════════════════════ -->
+  {service.processSteps.length > 0 && (
+    <ProcessSteps
+      steps={service.processSteps}
+      heading={`How ${service.shortTitle} Works in ${loc.city}`}
+      eyebrow="The Process"
+    />
+  )}
+
+  <TrustBar />
+
+  <!-- ═══ FAQ ════════════════════════════════════ -->
+  <FAQ
+    items={service.faqs}
+    heading={`${service.title} ${loc.city} — Frequently Asked Questions`}
+  />
+
+  <CtaStrip
+    heading={`Ready to get started in ${loc.city}?`}
+    subtext="One call, one quote. Our trade desk handles everything from scope to scheduling."
+    primaryLabel={service.cta.label}
+    primaryHref={service.cta.href}
+    secondaryLabel="Browse Equipment"
+    secondaryHref="/equipment"
+  />
+</Layout>
+
+<style>
+  .svc-loc-hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .svc-loc-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
+  }
+
+  .svc-loc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
+  }
+
+  .svc-loc-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      var(--hero-overlay-right),
+      var(--hero-overlay-bottom);
+  }
+
+  .svc-loc-hero-inner  { position: relative; z-index: 1; }
+  .svc-loc-hero h1     { max-width: 26ch; margin: 0.5rem 0 1rem; }
+  .svc-loc-hero-intro  { max-width: 60ch; font-size: 1.0625rem; margin-bottom: 2rem; }
+  .svc-loc-hero-ctas   { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+
+  .svc-loc-trust-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  .trust-chip {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .svc-loc-body { background: var(--color-bg-2); border-bottom: 1px solid var(--color-border); }
+
+  .svc-loc-content-inner {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .svc-loc-sidebar-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-card-rest);
+  }
+
+  .svc-loc-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-heading); margin: 0 0 0.5rem; }
+  .svc-loc-sidebar-card p  { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
+
+  .svc-loc-phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: color var(--transition-base);
+  }
+
+  .svc-loc-phone:hover { color: var(--color-gold-light); }
+
+  .svc-loc-related {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card-rest);
+  }
+
+  .svc-loc-related-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.75rem;
+  }
+
+  .svc-loc-related ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+
+  .svc-loc-related a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: 0.3rem 0;
+    transition: color var(--transition-base);
+  }
+
+  .svc-loc-related a:hover { color: var(--color-teal); }
+
+  @media (max-width: 1024px) {
+    .svc-loc-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .svc-loc-sidebar { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .svc-loc-sidebar-card,
+    .svc-loc-related { flex: 1; min-width: 240px; }
+  }
+
+  @media (max-width: 640px) {
+    .svc-loc-hero-ctas { flex-direction: column; }
+  }
+</style>

@@ -1,0 +1,362 @@
+---
+/**
+ * Equipment + Location Money Page — /equipment/[category]/[location]
+ * Generates 88 pages: 8 equipment categories × 11 locations (5 local + 6 national)
+ * All content from central data layer — zero hardcoding.
+ * getStaticPaths: EQUIPMENT_CATEGORIES × [...LOCAL_LOCATIONS, ...NATIONAL_LOCATIONS]
+ */
+import { getImage } from 'astro:assets';
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
+import EquipmentCard from '../../../components/ui/EquipmentCard.astro';
+import FAQ from '../../../components/ui/FAQ.astro';
+import CtaStrip from '../../../components/ui/CtaStrip.astro';
+import StatBar from '../../../components/ui/StatBar.astro';
+import TrustBar from '../../../components/ui/TrustBar.astro';
+import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
+import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../../data/locations';
+import { NAP } from '../../../data/site';
+import { breadcrumbSchema, faqSchema, productCategorySchema, localBusinessSchema } from '../../../lib/schema';
+
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../../assets/images/*.webp',
+  { eager: true }
+);
+
+function getAsset(filename: string | undefined): ImageMetadata | undefined {
+  if (!filename) return undefined;
+  return allImages[`../../../assets/images/${filename}`]?.default;
+}
+
+export async function getStaticPaths() {
+  const allLocations = [...LOCAL_LOCATIONS, ...NATIONAL_LOCATIONS];
+  return EQUIPMENT_CATEGORIES.flatMap((cat) =>
+    allLocations.map((loc) => ({
+      params: { category: cat.slug, location: loc.slug },
+      props: { cat, loc },
+    }))
+  );
+}
+
+const { cat, loc } = Astro.props;
+
+const heroAsset = getAsset(cat.heroImage);
+const optimizedHero = heroAsset
+  ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
+  : null;
+
+const resolvedItems = cat.featuredItems?.map((item) => ({
+  ...item,
+  imageAsset: getAsset(item.image),
+})) ?? [];
+
+const isLocal = loc.type === 'local';
+
+const pageH1 = `${cat.title} For Sale — ${loc.city}, ${loc.stateAbbr}`;
+const metaTitle = `${cat.title} For Sale ${loc.city}, ${loc.stateAbbr} | Beverage Equipment Traders`;
+const metaDescription = `New and used ${cat.title.toLowerCase()} shipping to ${loc.city}, ${loc.state}. ${cat.description.slice(0, 100)}. Ships from San Marcos, CA. Rigging and installation available.`;
+
+const crumbs = [
+  { name: 'Home',      url: '/' },
+  { name: 'Equipment', url: '/equipment' },
+  { name: cat.title,   url: `/equipment/${cat.slug}` },
+  { name: loc.city,    url: `/equipment/${cat.slug}/${loc.slug}` },
+];
+
+const schemas = [
+  ...(isLocal ? [localBusinessSchema()] : []),
+  breadcrumbSchema(crumbs),
+  faqSchema(cat.faqs),
+  productCategorySchema({
+    name: pageH1,
+    description: metaDescription,
+    url: `/equipment/${cat.slug}/${loc.slug}`,
+    keywords: [...cat.keywords, `${cat.title} ${loc.city}`, `${cat.title} ${loc.state}`],
+  }),
+];
+---
+
+<Layout
+  title={metaTitle}
+  description={metaDescription}
+  canonical={`/equipment/${cat.slug}/${loc.slug}`}
+  schemas={schemas}
+>
+  <Breadcrumb crumbs={crumbs} />
+
+  <!-- ═══ HERO ══════════════════════════════════ -->
+  <section class={`eq-loc-hero${optimizedHero ? ' eq-loc-hero-has-image' : ''}`}>
+    {optimizedHero && (
+      <div
+        class="eq-loc-hero-bg"
+        style={`background-image: url('${optimizedHero.src}')`}
+        aria-hidden="true"
+      ></div>
+    )}
+    <div class="container eq-loc-hero-inner">
+      <span class="eyebrow">{cat.title} · {loc.city}, {loc.stateAbbr}</span>
+      <h1>{pageH1}</h1>
+      <p class="eq-loc-hero-intro">
+        Beverage Equipment Traders ships new and used {cat.title.toLowerCase()} to {loc.city} and nationwide from our 40,000 sq ft facility in San Marcos, CA. Every piece photographed, documented, and priced. Rigging and installation available at destination.
+      </p>
+      <div class="eq-loc-hero-ctas">
+        <a href={cat.shopifyCollectionUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+          Browse {cat.title} Inventory
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/contact" class="btn btn-outline btn-lg">Contact Trade Desk</a>
+      </div>
+      <div class="eq-loc-trust-chips" aria-label="Service highlights">
+        {['Ships Nationwide', isLocal ? '1–2 Week Local Turnaround' : 'Rigging at Destination', 'Prior Brewery Owners', 'San Marcos, CA'].map((chip) => (
+          <span class="trust-chip">{chip}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StatBar />
+
+  <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
+  <section class="eq-loc-body section-y" aria-labelledby="eq-loc-heading">
+    <div class="container eq-loc-content-inner">
+      <div class="prose">
+        <h2 id="eq-loc-heading">{cat.title} Shipping to {loc.city} — What to Know</h2>
+        {cat.bodyContent.split('\n\n').filter(Boolean).map((para) => (
+          <p>{para}</p>
+        ))}
+        <p>
+          {isLocal
+            ? `For ${loc.city} area buyers, in-person inspection of equipment at our San Marcos facility is available by appointment. Local rigging and installation jobs typically turn around within 1 to 2 weeks.`
+            : `Freight to ${loc.city} from our San Marcos, CA facility typically runs 2 to 4 business days depending on equipment size and carrier routing. Rigging and installation at destination available on all purchases.`
+          }
+        </p>
+        <p>
+          Beverage Equipment Traders ships to all 50 states and serves buyers across North America. The {loc.city} market is one of many active markets we work in — contact us regardless of your location and we will advise on current inventory and freight timing.
+        </p>
+      </div>
+      <aside class="eq-loc-sidebar">
+        <div class="eq-loc-sidebar-card">
+          <h3>Ship {cat.title} to {loc.city}</h3>
+          <p>Our trade desk responds within one business day. Provide your requirements and we will return current inventory and a freight quote to {loc.city}.</p>
+          <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Request a Quote
+          </a>
+          <a href={`tel:${NAP.phonePlain}`} class="eq-loc-phone">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            {NAP.phone}
+          </a>
+        </div>
+        <div class="eq-loc-sidebar-links">
+          <p class="eq-loc-sidebar-label">Other Equipment in {loc.city}</p>
+          <ul>
+            {EQUIPMENT_CATEGORIES.filter((c) => c.slug !== cat.slug).slice(0, 5).map((c) => (
+              <li><a href={`/equipment/${c.slug}/${loc.slug}`}>{c.title} — {loc.city}</a></li>
+            ))}
+            <li><a href={`/equipment/${cat.slug}`}>All {cat.title} Inventory</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <TrustBar />
+
+  <!-- ═══ FEATURED INVENTORY ═════════════════════ -->
+  {resolvedItems.length > 0 && (
+    <section class="section-y eq-loc-inventory" aria-labelledby="eq-loc-inventory-heading">
+      <div class="container">
+        <div class="eq-loc-section-header">
+          <div>
+            <span class="eyebrow">Currently In Stock</span>
+            <h2 id="eq-loc-inventory-heading">Featured {cat.title} — Ships to {loc.city}</h2>
+          </div>
+          <a href={cat.shopifyCollectionUrl} class="eq-loc-section-link" target="_blank" rel="noopener noreferrer">
+            View All {cat.title}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="eq-loc-cards-grid">
+          {resolvedItems.map((item) => (
+            <EquipmentCard
+              name={item.name}
+              price={item.price}
+              condition={item.condition}
+              category={item.category}
+              image={item.imageAsset}
+              href={cat.shopifyCollectionUrl}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ═══ FAQ ════════════════════════════════════ -->
+  <FAQ
+    items={cat.faqs}
+    heading={`${cat.title} ${loc.city} — Frequently Asked Questions`}
+  />
+
+  <CtaStrip
+    heading={`Sourcing ${cat.title} in ${loc.city}?`}
+    subtext={`We ship from San Marcos, CA. Every piece photographed and condition-documented. Rigging and installation available in ${loc.city} and nationwide.`}
+    primaryLabel="Request a Quote"
+    primaryHref="/contact"
+    secondaryLabel={`View All ${cat.title}`}
+    secondaryHref={cat.shopifyCollectionUrl}
+  />
+</Layout>
+
+<style>
+  .eq-loc-hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .eq-loc-hero-has-image {
+    padding: clamp(4rem, 8vw, 7rem) 0 clamp(3.5rem, 6vw, 6rem);
+  }
+
+  .eq-loc-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 40%;
+    pointer-events: none;
+  }
+
+  .eq-loc-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      var(--hero-overlay-right),
+      var(--hero-overlay-bottom);
+  }
+
+  .eq-loc-hero-inner  { position: relative; z-index: 1; }
+  .eq-loc-hero h1     { max-width: 26ch; margin: 0.5rem 0 1rem; }
+  .eq-loc-hero-intro  { max-width: 60ch; font-size: 1.0625rem; margin-bottom: 2rem; }
+  .eq-loc-hero-ctas   { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+
+  .eq-loc-trust-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+  .trust-chip {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .eq-loc-body { background: var(--color-bg-2); border-bottom: 1px solid var(--color-border); }
+
+  .eq-loc-content-inner {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .eq-loc-sidebar-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-gold);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-card-rest);
+  }
+
+  .eq-loc-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-heading); margin: 0 0 0.5rem; }
+  .eq-loc-sidebar-card p  { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
+
+  .eq-loc-phone {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: color var(--transition-base);
+  }
+
+  .eq-loc-phone:hover { color: var(--color-gold-light); }
+
+  .eq-loc-sidebar-links {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card-rest);
+  }
+
+  .eq-loc-sidebar-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.75rem;
+  }
+
+  .eq-loc-sidebar-links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .eq-loc-sidebar-links a  { font-size: 0.875rem; color: var(--color-text-muted); text-decoration: none; transition: color var(--transition-base); }
+  .eq-loc-sidebar-links a:hover { color: var(--color-teal); }
+
+  .eq-loc-inventory { background: var(--color-bg); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+
+  .eq-loc-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .eq-loc-section-header h2 { margin: 0.375rem 0 0; }
+
+  .eq-loc-section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color var(--transition-base), gap var(--transition-base);
+  }
+
+  .eq-loc-section-link:hover { color: var(--color-gold); gap: 0.55rem; }
+
+  .eq-loc-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    .eq-loc-content-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .eq-loc-sidebar { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .eq-loc-sidebar-card,
+    .eq-loc-sidebar-links { flex: 1; min-width: 240px; }
+    .eq-loc-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .eq-loc-hero-ctas  { flex-direction: column; }
+    .eq-loc-cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
