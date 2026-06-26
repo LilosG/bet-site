@@ -157,14 +157,16 @@ const schemas = [breadcrumbSchema(crumbs)];
     text-decoration: none;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
 
   .cat-card:hover {
     border-color: var(--color-border-gold);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
   }
 
   .cat-card-inner {

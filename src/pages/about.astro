@@ -394,12 +394,13 @@ const schemas = [
   .what-item {
     padding: 1.75rem;
     border: 1px solid var(--color-border-gold);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     background: var(--color-bg-card);
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
 
-  .what-item:hover { border-color: var(--color-gold); transform: translateY(-2px); }
+  .what-item:hover { border-color: var(--color-gold); transform: translateY(-2px); box-shadow: var(--shadow-card); }
 
   .what-label {
     font-family: var(--font-display);

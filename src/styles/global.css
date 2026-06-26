@@ -82,6 +82,7 @@
     /* ── Shadows ── */
     --shadow-text:  0 2px 20px rgba(0,0,0,0.4);
     --shadow-card:  0 8px 32px rgba(0,0,0,0.35);
+    --shadow-card-rest: 0 2px 12px rgba(0,0,0,0.22);
     --shadow-teal:  0 4px 16px rgba(13,148,136,0.3);
     --shadow-input: 0 0 0 3px rgba(13,148,136,0.12);
 
@@ -357,8 +358,9 @@
   .card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     overflow: hidden;
+    box-shadow: var(--shadow-card-rest);
     transition:
       border-color var(--transition-smooth),
       transform var(--transition-smooth),
