@@ -8,6 +8,7 @@ import Layout from '../../../layouts/Layout.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../../components/ui/CtaStrip.astro';
 import TrustBar from '../../../components/ui/TrustBar.astro';
+import StatBar from '../../../components/ui/StatBar.astro';
 import { NATIONAL_LOCATIONS } from '../../../data/locations';
 import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
 import { SERVICES } from '../../../data/services';
@@ -80,6 +81,8 @@ const schemas = [breadcrumbSchema(crumbs)];
       </div>
     </div>
   </section>
+
+  <StatBar />
 
   <TrustBar />
 
@@ -231,7 +234,7 @@ const schemas = [breadcrumbSchema(crumbs)];
     margin-bottom: 1.25rem;
   }
 
-  .nat-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-white); margin: 0 0 0.5rem; }
+  .nat-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-heading); margin: 0 0 0.5rem; }
   .nat-sidebar-card p  { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1.25rem; }
 
   .nat-phone {
@@ -279,7 +282,7 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   /* ─── Equipment grid ─────────────────────────── */
   .nat-eq-band {
-    background: var(--color-bg-2);
+    background: var(--color-bg);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
@@ -302,7 +305,7 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   .nat-cat-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .nat-cat-name { font-family: var(--font-ui); font-size: 0.9375rem; font-weight: 700; color: var(--color-white); transition: color var(--transition-base); }
+  .nat-cat-name { font-family: var(--font-ui); font-size: 0.9375rem; font-weight: 700; color: var(--color-heading); transition: color var(--transition-base); }
   .nat-cat-item:hover .nat-cat-name { color: var(--color-gold); }
   .nat-cat-desc { font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.5; flex: 1; }
 
@@ -336,7 +339,7 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   .nat-svc-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .nat-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-white); margin: 0 0 0.5rem; transition: color var(--transition-base); }
+  .nat-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-heading); margin: 0 0 0.5rem; transition: color var(--transition-base); }
   .nat-svc-item:hover .nat-svc-title { color: var(--color-gold); }
   .nat-svc-desc  { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 1rem; line-height: 1.6; flex: 1; }
 
