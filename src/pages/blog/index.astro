@@ -11,6 +11,8 @@ import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
+import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import { breadcrumbSchema } from '../../lib/schema';
 
 // ─── Hero image ───────────────────────────────
@@ -78,7 +80,7 @@ const topics = [
     </div>
   </section>
 
-  <hr class="section-rule" />
+  <StatBar />
 
   <!-- ═══ POSTS ════════════════════════════════ -->
   {posts.length > 0 && (
@@ -132,6 +134,8 @@ const topics = [
       </div>
     </div>
   </section>
+
+  <TrustBar />
 
   <CtaStrip
     heading="Questions our articles don't answer?"
@@ -207,7 +211,7 @@ const topics = [
     font-family: var(--font-display);
     font-size: clamp(1.125rem, 2vw, 1.375rem);
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     line-height: 1.25;
     margin: 0 0 0.75rem;
     transition: color var(--transition-base);

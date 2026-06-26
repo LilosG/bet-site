@@ -67,12 +67,7 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ═══ STATS BAND ════════════════════════════ -->
-  <div class="stats-band">
-    <div class="container">
-      <StatBar />
-    </div>
-  </div>
+  <StatBar />
 
   <!-- ═══ ORIGIN STORY ═════════════════════════ -->
   <section class="section-y" aria-labelledby="story-heading">
@@ -265,13 +260,7 @@ const schemas = [
   .about-hero h1 { max-width: 22ch; margin: 0.5rem 0 1rem; }
   .about-hero-intro { max-width: 64ch; font-size: 1.0625rem; }
 
-  /* ─── Stats ──────────────────────────────────── */
-  .stats-band {
-    background: var(--color-bg-2);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 3rem 0;
-  }
+
 
   /* ─── Story ──────────────────────────────────── */
   .story-inner {
@@ -335,9 +324,10 @@ const schemas = [
   .story-address-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-lg);
     padding: 1.25rem;
     margin-top: 1rem;
+    box-shadow: var(--shadow-card-rest);
   }
 
   .story-address-label {
@@ -394,18 +384,19 @@ const schemas = [
   .what-item {
     padding: 1.75rem;
     border: 1px solid var(--color-border-gold);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     background: var(--color-bg-card);
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
 
-  .what-item:hover { border-color: var(--color-gold); transform: translateY(-2px); }
+  .what-item:hover { border-color: var(--color-gold); transform: translateY(-2px); box-shadow: var(--shadow-card); }
 
   .what-label {
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.625rem;
     transition: color var(--transition-base);
   }
@@ -448,7 +439,7 @@ const schemas = [
 
   .visit-hour-row { display: flex; justify-content: space-between; font-size: 0.875rem; }
   .visit-day  { color: var(--color-text-muted); }
-  .visit-time { color: var(--color-white); font-weight: 500; }
+  .visit-time { color: var(--color-heading); font-weight: 500; }
 
   .visit-directions-btn { margin-top: 1.5rem; }
 

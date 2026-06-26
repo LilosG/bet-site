@@ -8,6 +8,8 @@ import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
+import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema } from '../../lib/schema';
 
@@ -63,7 +65,7 @@ const schemas = [breadcrumbSchema(crumbs)];
     </div>
   </section>
 
-  <hr class="section-rule" />
+  <StatBar />
 
   <section class="section-y" aria-labelledby="categories-heading">
     <div class="container">
@@ -98,6 +100,8 @@ const schemas = [breadcrumbSchema(crumbs)];
       </div>
     </div>
   </section>
+
+  <TrustBar />
 
   <CtaStrip
     heading="Ready to source equipment?"
@@ -153,14 +157,18 @@ const schemas = [breadcrumbSchema(crumbs)];
     text-decoration: none;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 4px;
+    border-top: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), border-top-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
 
   .cat-card:hover {
     border-color: var(--color-border-gold);
+    border-top-color: var(--color-gold);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
   }
 
   .cat-card-inner {
@@ -193,7 +201,7 @@ const schemas = [breadcrumbSchema(crumbs)];
   .cat-card-title {
     font-size: clamp(1.25rem, 2vw, 1.625rem);
     margin: 0;
-    color: var(--color-white);
+    color: var(--color-heading);
     transition: color var(--transition-base);
   }
 

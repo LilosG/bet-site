@@ -8,7 +8,9 @@ import Layout from '../../../layouts/Layout.astro';
 import Breadcrumb from '../../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../../components/ui/CtaStrip.astro';
 import TrustBar from '../../../components/ui/TrustBar.astro';
+import StatBar from '../../../components/ui/StatBar.astro';
 import { LOCAL_LOCATIONS } from '../../../data/locations';
+import { NAP } from '../../../data/site';
 import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
 import { SERVICES } from '../../../data/services';
 import { breadcrumbSchema, localBusinessSchema } from '../../../lib/schema';
@@ -80,6 +82,8 @@ const schemas = [
     </div>
   </section>
 
+  <StatBar />
+
   <TrustBar />
 
   <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
@@ -95,15 +99,15 @@ const schemas = [
         <div class="loc-sidebar-card">
           <h3>Visit Our Facility</h3>
           <address class="loc-address" itemscope itemtype="https://schema.org/PostalAddress">
-            <span itemprop="streetAddress">1520 E Barham Dr</span><br />
-            <span itemprop="addressLocality">San Marcos</span>,
-            <span itemprop="addressRegion">CA</span>
-            <span itemprop="postalCode">92078</span>
+            <span itemprop="streetAddress">{NAP.street}</span><br />
+            <span itemprop="addressLocality">{NAP.city}</span>,
+            <span itemprop="addressRegion">{NAP.state}</span>
+            <span itemprop="postalCode">{NAP.zip}</span>
           </address>
           <p class="loc-hours-note">Mon–Thu: 10AM–4PM · Fri: 10AM–3PM<br />Sat: By Appointment</p>
-          <a href="tel:+19498882739" class="loc-phone">
+          <a href={`tel:${NAP.phonePlain}`} class="loc-phone">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            (949) 888-2739
+            {NAP.phone}
           </a>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=1520+E+Barham+Dr,+San+Marcos,+CA+92078"
@@ -126,7 +130,7 @@ const schemas = [
       <h2 id="loc-eq-heading">Browse by Category</h2>
       <div class="loc-cat-grid">
         {EQUIPMENT_CATEGORIES.map((cat) => (
-          <a href={`/equipment/${cat.slug}`} class="loc-cat-item">
+          <a href={`/equipment/${cat.slug}/${loc.slug}`} class="loc-cat-item">
             <span class="loc-cat-title">{cat.title}</span>
             <span class="loc-cat-link">
               Browse
@@ -145,7 +149,7 @@ const schemas = [
       <h2 id="loc-svc-heading">What We Handle in {loc.state}</h2>
       <div class="loc-svc-grid">
         {SERVICES.map((svc) => (
-          <a href={`/services/${svc.slug}`} class="loc-svc-item">
+          <a href={`/services/${svc.slug}/${loc.slug}`} class="loc-svc-item">
             <p class="loc-svc-title">{svc.title}</p>
             <p class="loc-svc-desc">{svc.intro}</p>
             <span class="loc-svc-link">
@@ -216,11 +220,12 @@ const schemas = [
   .loc-sidebar-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border-gold);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
+    box-shadow: var(--shadow-card-rest);
   }
 
-  .loc-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-white); margin: 0 0 0.75rem; }
+  .loc-sidebar-card h3 { font-size: 1.0625rem; color: var(--color-heading); margin: 0 0 0.75rem; }
 
   .loc-address {
     font-style: normal;
@@ -248,7 +253,7 @@ const schemas = [
 
   /* ─── Equipment grid ─────────────────────────── */
   .loc-eq-band {
-    background: var(--color-bg-2);
+    background: var(--color-bg);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
@@ -285,7 +290,7 @@ const schemas = [
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--color-white);
+    color: var(--color-heading);
     display: block;
     margin-bottom: 0.75rem;
     transition: color var(--transition-base);
@@ -322,7 +327,7 @@ const schemas = [
 
   .loc-svc-item:hover { border-color: var(--color-border-gold); transform: translateY(-2px); }
 
-  .loc-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-white); margin: 0 0 0.5rem; transition: color var(--transition-base); }
+  .loc-svc-title { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-heading); margin: 0 0 0.5rem; transition: color var(--transition-base); }
   .loc-svc-item:hover .loc-svc-title { color: var(--color-gold); }
   .loc-svc-desc  { font-size: 0.875rem; color: var(--color-text-muted); margin: 0 0 1rem; line-height: 1.6; flex: 1; }
 

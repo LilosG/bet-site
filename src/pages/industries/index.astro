@@ -8,6 +8,8 @@ import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
+import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import { INDUSTRIES } from '../../data/industries';
 import { breadcrumbSchema } from '../../lib/schema';
 
@@ -63,7 +65,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     </div>
   </section>
 
-  <hr class="section-rule" />
+  <StatBar />
 
   <section class="section-y" aria-labelledby="bev-heading">
     <div class="container">
@@ -95,9 +97,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     </div>
   </section>
 
-  <hr class="section-rule" />
-
-  <section class="section-y" aria-labelledby="ind-heading">
+  <section class="section-y ind-industrial-band" aria-labelledby="ind-heading">
     <div class="container">
       <span class="eyebrow">Industrial & Processing</span>
       <h2 id="ind-heading">Beyond the Brewery Floor</h2>
@@ -169,6 +169,8 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     </div>
   </section>
 
+  <TrustBar />
+
   <CtaStrip
     heading="Not sure if we serve your industry?"
     subtext="Describe your application and equipment requirements. We will tell you what we have and whether it fits."
@@ -213,6 +215,12 @@ const industrialIndustries = INDUSTRIES.filter(i =>
   .ind-hub-intro      { max-width: 64ch; font-size: 1.0625rem; }
   .ind-group-intro    { max-width: 60ch; margin: 0.5rem 0 2rem; }
 
+  .ind-industrial-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .ind-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -226,14 +234,18 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     text-decoration: none;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-top: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), border-top-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
 
   .ind-card:hover {
     border-color: var(--color-border-gold);
+    border-top-color: var(--color-gold);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
   }
 
   .ind-card-inner {
@@ -248,7 +260,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0;
     line-height: 1.2;
     transition: color var(--transition-base);
@@ -293,7 +305,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
   .ind-card:hover .ind-card-cta { color: var(--color-gold); gap: 0.5rem; }
 
   .ind-why {
-    background: var(--color-bg-2);
+    background: var(--color-bg);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
@@ -335,7 +347,7 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.2rem;
   }
 

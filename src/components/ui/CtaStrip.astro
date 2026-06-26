@@ -43,6 +43,24 @@ const {
     padding: 2.5rem 0;
   }
 
+  /* ── Buttons on teal strip — always dark bg, always white text ──
+     CtaStrip sits on teal regardless of theme. btn-dark inherits
+     --color-bg-card which is cream on theme-c. Force correct values
+     here, scoped to this component. Zero impact on btn-dark elsewhere.
+     ─────────────────────────────────────────────────────────────── */
+  .cta-strip .btn-dark {
+    background: rgba(0, 0, 0, 0.28);
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .cta-strip .btn-dark:hover {
+    background: rgba(0, 0, 0, 0.42);
+    border-color: rgba(255, 255, 255, 0.55);
+    color: var(--color-white);
+    transform: translateY(-1px);
+  }
+
   .cta-strip-inner {
     display: flex;
     align-items: center;

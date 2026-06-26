@@ -67,7 +67,7 @@ const {
 <style>
   /* ─── Section backgrounds ────────────────────── */
   .scenarios-dark {
-    background: var(--color-bg);
+    background: var(--color-bg-2);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
   }
@@ -107,6 +107,17 @@ const {
     flex-shrink: 0;
   }
 
+  .scenarios-dark .scenarios-header-cta {
+    color: var(--color-heading);
+    border-color: var(--color-border-subtle);
+  }
+
+  .scenarios-dark .scenarios-header-cta:hover {
+    color: var(--color-gold);
+    border-color: var(--color-border-gold);
+    background: var(--color-bg-overlay);
+  }
+
   /* ─── Cards ──────────────────────────────────── */
   .scenarios-grid {
     display: grid;
@@ -117,14 +128,16 @@ const {
   .scenario-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
 
   .scenario-card:hover {
     border-color: var(--color-border-gold);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
   }
 
   .scenarios-light .scenario-card {
