@@ -13,6 +13,7 @@ import TrustBar from '../../components/ui/TrustBar.astro';
 import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { INDUSTRIES } from '../../data/industries';
+import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { NAP } from '../../data/site';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { SERVICES } from '../../data/services';
@@ -55,6 +56,12 @@ const crumbs = [
   { name: 'Industries',  url: '/industries' },
   { name: industry.name, url: `/industries/${industry.slug}` },
 ];
+
+const formatEquipmentLabel = (slug: string) =>
+  slug
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 
 const schemas = [
   breadcrumbSchema(crumbs),
@@ -149,7 +156,7 @@ const schemas = [
         <h2 id="ind-eq-heading">Browse Equipment by Category</h2>
         <div class="ind-eq-grid">
           {relatedEquipment.map((cat) => (
-            <a href={`/equipment/${cat.slug}`} class="ind-eq-card">
+            <a href={`/equipment/${cat.slug}/${LOCAL_LOCATIONS[0].slug}`} class="ind-eq-card">
               <h3 class="ind-eq-title">{cat.title}</h3>
               <p class="ind-eq-desc">{cat.description}</p>
               <span class="ind-eq-cta">
@@ -189,6 +196,47 @@ const schemas = [
       </div>
     </section>
   )}
+
+  <!-- ═══ SHOP BY LOCATION ══════════════════════ -->
+  <section class="section-y ind-locations-band" aria-labelledby="ind-locations-heading">
+    <div class="container">
+      <span class="eyebrow">Shop by Location</span>
+      <h2 id="ind-locations-heading">{industry.shortName} Equipment Near You</h2>
+      <p class="ind-locations-intro">We ship {industry.shortName.toLowerCase()} equipment to all 50 states from our San Marcos, CA facility. Select your area for local availability and freight timing.</p>
+      <div class="ind-locations-grid">
+        <div class="ind-locations-col">
+          <p class="ind-locations-group-label">Local — Southern California</p>
+          <ul class="ind-locations-list">
+            {industry.relevantEquipment.slice(0, 3).flatMap((equipSlug) =>
+              LOCAL_LOCATIONS.map((loc) => (
+                <li>
+                  <a href={`/equipment/${equipSlug}/${loc.slug}`} class="ind-location-link">
+                    {formatEquipmentLabel(equipSlug)} — {loc.city}, {loc.stateAbbr}
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
+        <div class="ind-locations-col">
+          <p class="ind-locations-group-label">National Markets</p>
+          <ul class="ind-locations-list">
+            {industry.relevantEquipment.slice(0, 3).flatMap((equipSlug) =>
+              NATIONAL_LOCATIONS.map((loc) => (
+                <li>
+                  <a href={`/equipment/${equipSlug}/${loc.slug}`} class="ind-location-link">
+                    {formatEquipmentLabel(equipSlug)} — {loc.city}, {loc.stateAbbr}
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══ FAQ ════════════════════════════════════ -->
   {industry.faqs?.length > 0 && (
@@ -424,5 +472,66 @@ const schemas = [
     .ind-hero-ctas { flex-direction: column; }
     .ind-eq-grid   { grid-template-columns: 1fr 1fr; }
     .ind-svc-grid  { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Location links ─────────────────────────── */
+  .ind-locations-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ind-locations-band h2 { margin: 0.4rem 0 0.5rem; }
+
+  .ind-locations-intro {
+    max-width: 60ch;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .ind-locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .ind-locations-group-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.875rem;
+  }
+
+  .ind-locations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ind-location-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-base), padding-left var(--transition-base);
+  }
+
+  .ind-location-link:hover {
+    color: var(--color-teal);
+    padding-left: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .ind-locations-grid { grid-template-columns: 1fr; gap: 2rem; }
   }
 </style>
