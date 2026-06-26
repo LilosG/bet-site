@@ -15,6 +15,7 @@ import BestFitScenarios from '../../components/ui/BestFitScenarios.astro';
 import StatBar from '../../components/ui/StatBar.astro';
 import TrustBar from '../../components/ui/TrustBar.astro';
 import { SERVICES } from '../../data/services';
+import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '../../lib/schema';
 import { NAP } from '../../data/site';
@@ -203,6 +204,43 @@ const schemas = [
       </div>
     </section>
   )}
+
+  <!-- ═══ SERVICE BY LOCATION ═══════════════════ -->
+  <section class="section-y svc-locations-band" aria-labelledby="svc-locations-heading">
+    <div class="container">
+      <span class="eyebrow">Service Areas</span>
+      <h2 id="svc-locations-heading">{service.title} — Available Nationwide</h2>
+      <p class="svc-locations-intro">We provide {service.shortTitle.toLowerCase()} services throughout North America. Select your market for local availability and pricing.</p>
+      <div class="svc-locations-grid">
+        <div class="svc-locations-col">
+          <p class="svc-locations-group-label">Local — Southern California</p>
+          <ul class="svc-locations-list">
+            {LOCAL_LOCATIONS.map((loc) => (
+              <li>
+                <a href={`/services/${service.slug}/${loc.slug}`} class="svc-location-link">
+                  {service.shortTitle} — {loc.city}, {loc.stateAbbr}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="svc-locations-col">
+          <p class="svc-locations-group-label">National Markets</p>
+          <ul class="svc-locations-list">
+            {NATIONAL_LOCATIONS.map((loc) => (
+              <li>
+                <a href={`/services/${service.slug}/${loc.slug}`} class="svc-location-link">
+                  {service.shortTitle} — {loc.city}, {loc.stateAbbr}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══ FAQ ════════════════════════════════════ -->
   <FAQ
@@ -445,5 +483,67 @@ const schemas = [
   @media (max-width: 640px) {
     .svc-hero-ctas   { flex-direction: column; }
     .related-eq-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Location links ─────────────────────────── */
+  .svc-locations-band {
+    background: var(--color-bg-2);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .svc-locations-band h2 { margin: 0.4rem 0 0.5rem; }
+
+  .svc-locations-intro {
+    max-width: 60ch;
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .svc-locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .svc-locations-group-label {
+    font-family: var(--font-ui);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0 0 0.875rem;
+  }
+
+  .svc-locations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .svc-location-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-base), padding-left var(--transition-base);
+  }
+
+  .svc-location-link:hover {
+    color: var(--color-teal);
+    padding-left: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .svc-locations-grid { grid-template-columns: 1fr; gap: 2rem; }
   }
 </style>
