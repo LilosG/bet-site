@@ -531,7 +531,9 @@
 .contact-hero h1,
 .svc-hero h1,
 .ind-hero h1,
-.eq-hero h1 {
+.eq-hero h1,
+.eq-loc-hero h1,
+.svc-loc-hero h1 {
   color: var(--color-white);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -545,7 +547,9 @@
 .blog-hero-intro,
 .loc-intro,
 .nat-intro,
-.post-hero-desc {
+.post-hero-desc,
+.eq-loc-hero-intro,
+.svc-loc-hero-intro {
   color: rgba(255, 255, 255, 0.85);
 }
 
