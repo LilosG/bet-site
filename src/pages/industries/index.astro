@@ -230,14 +230,16 @@ const industrialIndustries = INDUSTRIES.filter(i =>
     text-decoration: none;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    box-shadow: var(--shadow-card-rest);
+    transition: border-color var(--transition-smooth), transform var(--transition-smooth), box-shadow var(--transition-smooth);
   }
 
   .ind-card:hover {
     border-color: var(--color-border-gold);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
   }
 
   .ind-card-inner {
