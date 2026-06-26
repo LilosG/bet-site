@@ -8,6 +8,8 @@ import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import BuyerNeeds from '../../components/ui/BuyerNeeds.astro';
+import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import { INDUSTRIES } from '../../data/industries';
@@ -90,6 +92,8 @@ const schemas = [
     </div>
   </section>
 
+  <StatBar />
+
   <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
   <section class="ind-body-band section-y" aria-labelledby="ind-content-heading">
     <div class="container ind-content-inner">
@@ -133,6 +137,8 @@ const schemas = [
       eyebrow="Common Needs"
     />
   )}
+
+  <TrustBar />
 
   <!-- ═══ EQUIPMENT CATEGORIES ══════════════════ -->
   {relatedEquipment.length > 0 && (

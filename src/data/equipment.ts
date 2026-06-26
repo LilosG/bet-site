@@ -73,6 +73,14 @@ Whether you are scaling a production facility, outfitting a new build, or sourci
         q: 'Can I inspect a brewhouse before purchasing?',
         a: 'Yes. Our facility in San Marcos, CA is open for in-person inspection by appointment. We strongly encourage buyers to inspect high-value systems prior to purchase.',
       },
+      {
+        q: 'What manufacturers do you typically carry?',
+        a: 'Our brewhouse inventory includes systems from Marks Design and Metalworks, Specific Mechanical Systems, Premier Stainless, DME Brewing, and others sourced from working brewery liquidations and upgrades.',
+      },
+      {
+        q: 'Can you help me sell my current brewhouse when I upgrade?',
+        a: 'Yes. We handle consignment and direct purchase of outgoing brewhouses when you upgrade. Many buyers run both transactions through us — sourcing the new system and liquidating the old one in a single coordinated process.',
+      },
     ],
     priority: 'P0',
     heroImage: 'brewhouse-hero.webp',
@@ -114,6 +122,9 @@ All fermentation vessels can be shipped nationwide. Rigging and installation ser
     faqs: [
       { q: 'What fermenter sizes do you typically carry?', a: 'We carry fermenters from small pilot sizes up to large production vessels. Inventory changes regularly — reach out for current availability on specific volumes.' },
       { q: 'Do you sell brite tanks separately from fermenters?', a: 'Yes. Brite tanks, unitanks, and conical fermenters are all available independently. We can also help source matched sets if you are building out a cellaring program.' },
+      { q: 'What stainless grades do your fermenters typically come in?', a: 'Most production brewery fermenters are 304 stainless. 316L vessels appear in our inventory and are noted in listings. If you require 316L for your application, contact us and we will source accordingly.' },
+      { q: 'Can you source matched sets of fermenters for a new cellar build?', a: 'Yes. For new cellar builds we source matched vessel sets — same manufacturer, same volume, same jacket configuration — at significantly below-new cost. Contact us with your cellar spec and we will advise on current availability.' },
+      { q: 'Do you carry fermenters for distillery or cidery applications?', a: 'Yes. Standard conical fermenters and jacketed tanks from brewery production are appropriate for distillery wash fermentation and cider production. The same inventory serves all fermentation applications.' },
     ],
     priority: 'P0',
     heroImage: 'hero-fermenters.webp',
@@ -155,6 +166,9 @@ All equipment ships nationwide. Rigging, installation, and commissioning service
     faqs: [
       { q: 'What is the difference between a crowler machine and a full canning line?', a: 'A crowler machine seals individual crowler cans at taproom volumes — typically 5–20 cans per minute. A full canning line is designed for packaging production runs, with fill speeds of 30–120+ CPM and inline seaming, date coding, and sometimes shrink sleeves.' },
       { q: 'Do you carry Wild Goose canning lines?', a: 'Yes, Wild Goose systems appear in our inventory regularly. Contact us for current availability on specific models.' },
+      { q: 'Can you help with installation and commissioning of a canning line?', a: 'Yes. Our rigging team handles delivery, installation, utility connections, and commissioning runs for all canning line purchases. We do not leave until the line runs clean.' },
+      { q: 'Do you carry shrink sleeve applicators and labeling equipment?', a: 'Yes. Shrink sleeve applicators and inline labeling systems appear in our inventory alongside canning lines. The TriPack LSA 160 and similar mid-volume systems are available for craft and beverage production lines.' },
+      { q: 'What is the process for buying a used canning line from BET?', a: 'Contact our trade desk with your required CPM, can format, and budget. We advise on current inventory, provide condition documentation, and quote rigging and installation as a bundled scope if needed.' },
     ],
     priority: 'P1',
     heroImage: 'hero-canning.webp',
@@ -196,6 +210,9 @@ Contact us for current glycol chiller inventory. We can also source specific ton
     faqs: [
       { q: 'How do I know what size glycol chiller I need?', a: 'Sizing depends on total fermentation volume, cellar vessel count, ambient temperature, and whether you are cooling packaging equipment as well. Our team can help you work through the calculation before you purchase.' },
       { q: 'Do you carry G&D and Pro Refrigeration units?', a: 'Yes, both brands appear in our inventory regularly. Contact us for current availability.' },
+      { q: 'Can glycol chillers be used for distillery or cidery fermentation?', a: 'Yes. Glycol chilling applies equally to distillery wash fermentation and cider production. The same chiller systems that serve brewery cellars are appropriate for all fermentation applications.' },
+      { q: 'Do you offer installation services for glycol chillers?', a: 'Yes. Chiller installation involves glycol loop connection, electrical hookup, and commissioning. Our team coordinates delivery and can advise on installation requirements and qualified local contractors.' },
+      { q: 'What happens if the chiller I need is not currently in inventory?', a: 'Contact us with your required tonnage and configuration. We source specific equipment on request and can typically locate the right chiller within our dealer network within a few weeks.' },
     ],
     priority: 'P1',
     heroImage: 'chiller-glycol-unit-1.webp',
@@ -237,6 +254,9 @@ Contact us for current distillery equipment availability. We can also assist wit
     faqs: [
       { q: 'Do you sell complete distillery setups?', a: 'We carry individual stills as well as supporting equipment. Complete multi-vessel distillery configurations are available depending on current inventory.' },
       { q: 'Can distilling equipment be used for food processing?', a: 'Yes. Many still configurations have applications beyond spirits — essential oil extraction, food processing, and industrial uses. Contact us to discuss your specific requirements.' },
+      { q: 'Do you carry column stills as well as pot stills?', a: 'Yes. Both copper pot stills and column stills appear in our inventory. Current inventory includes a 300-gallon copper pot still and a Barison continuous column still. Contact us for current availability on specific configurations.' },
+      { q: 'Can you help with TTB compliance documentation for still purchases?', a: 'We provide available manufacturer documentation and specifications with every still purchase. TTB permit requirements are the buyer responsibility — we recommend consulting with a TTB compliance specialist before purchasing.' },
+      { q: 'Do you buy distillery equipment from operations that are closing?', a: 'Yes. We handle consignment, direct purchase, and auction of distillery equipment from closing operations. Contact us to discuss your equipment set and which liquidation approach best fits your timeline.' },
     ],
     priority: 'P1',
     heroImage: 'hero-distilling.webp',
@@ -275,6 +295,9 @@ Used kegs from our inventory are sourced from production breweries and arrive wi
     keywords: ['cask kegs for sale', 'used kegs brewery', 'half barrel kegs', '1/6 bbl keg', 'firkin kegs', 'pin cask kegs', 'brewery kegs for sale'],
     faqs: [
       { q: 'Do you sell cask kegs for real ale production?', a: 'Yes. Pin casks and firkins are available for real ale and cask-conditioned production. Contact us for current inventory.' },
+      { q: 'Do you offer volume pricing on bulk keg purchases?', a: 'Yes. Pallet and full-truckload quantities are available with volume pricing. Contact us with your required quantity and format for a bulk quote.' },
+      { q: 'Are your used kegs pressure-tested before sale?', a: 'Used kegs in our inventory are sourced from production breweries with documented maintenance history. We recommend buyers pressure-test and valve-inspect all used kegs before putting them into service.' },
+      { q: 'What keg valve types do you typically carry?', a: 'Sanke D is the US standard and the most common format in our inventory. European Sanke A, S, and G valves appear occasionally. Valve type is noted in listings — confirm compatibility with your accounts before purchasing.' },
     ],
     priority: 'P1',
     heroImage: 'kegs-pallet-stack.webp',
@@ -313,6 +336,9 @@ Used boilers in our inventory are sourced from working production facilities. Co
     keywords: ['commercial boiler brewery', 'Rite boiler for sale', 'Lattner boiler', 'Sussman electric boiler', 'steam boiler brewery', 'used boiler for sale'],
     faqs: [
       { q: 'Do I need a licensed installer for a commercial boiler?', a: 'Yes. Commercial steam boilers are pressure vessels subject to state and local codes. Installation must be performed by licensed professionals. We can provide referrals to qualified installers.' },
+      { q: 'What boiler size do I need for my brewhouse?', a: 'Boiler sizing depends on your brewhouse heating requirements and brew schedule. Most brewhouse manufacturers specify minimum BTU requirements — confirm with your system manufacturer before purchasing a boiler.' },
+      { q: 'Do you carry electric boilers as an alternative to gas?', a: 'Yes. Sussman electric boilers are available and represent a code-simpler installation for facilities where natural gas is constrained or unavailable. Higher operating cost than gas but lower installation complexity.' },
+      { q: 'Can boilers from brewery liquidations be relocated and reinstalled?', a: 'Yes. Used boilers can be relocated with proper permitting and licensed installation. We coordinate rigging and transport — buyers are responsible for local permits and licensed installation at the new facility.' },
     ],
     priority: 'P2',
     heroImage: 'hero-boilers.webp',
@@ -351,6 +377,9 @@ Used cold room panels and refrigeration units from our inventory are typically s
     keywords: ['cold room brewery', 'walk-in cooler brewery', 'cold box for brewing', 'used walk-in cooler', 'brewing cold storage', 'beverage cold room'],
     faqs: [
       { q: 'Can you configure a cold room to specific dimensions?', a: 'Panel-based cold rooms can often be reconfigured to different dimensions. Contact us with your floor plan and we can advise on what is possible with available inventory.' },
+      { q: 'What temperature ranges do your cold rooms support?', a: 'Most cold rooms in our inventory are configured for 34 to 38 degrees F — standard bright beer and serving temperature. Units supporting wider ranges including crash cooling to 32 degrees F are noted in listings.' },
+      { q: 'Do you handle delivery and installation of cold rooms?', a: 'Yes. Cold room installation involves floor preparation, electrical, and often drain work. Our team coordinates delivery and can advise on installation requirements and qualified local contractors.' },
+      { q: 'Can cold rooms from brewery liquidations be used for food storage?', a: 'Yes. Walk-in coolers from brewery and beverage liquidations are food-grade and appropriate for produce, dairy, and food storage applications. Panel construction and refrigeration type are noted in all listings.' },
     ],
     priority: 'P1',
     heroImage: 'cold-room-walkin-3.webp',

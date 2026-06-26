@@ -90,6 +90,10 @@ We also provide full-service rigging and installation for equipment moves, new b
         q: 'Do you buy brewery equipment outright or only on consignment?',
         a: 'Both. Direct purchase, consignment, and auction are all available depending on your timeline and recovery goals. Contact us to discuss which approach fits your situation.',
       },
+      {
+        q: 'How far in advance should I contact you before a new brewery build?',
+        a: 'As early as possible. Equipment sourcing, rigging coordination, and installation scheduling all benefit from lead time. For full brewery builds we recommend engaging us 3 to 6 months before your target open date.',
+      },
     ],
     keywords: [
       'brewery equipment for sale', 'craft brewery equipment', 'used brewery equipment',
@@ -153,6 +157,14 @@ For distilleries selling equipment — upgrading stills, liquidating after a clo
         q: 'Do you ship distillery equipment nationwide?',
         a: 'Yes. All distillery equipment in our inventory ships nationwide. Rigging and installation services available for larger still installations.',
       },
+      {
+        q: 'Do you carry proofing tanks and bottling equipment for distilleries?',
+        a: 'Proofing tanks, bottling systems, and supporting distillery equipment appear in our inventory alongside stills. Availability varies — contact us for current stock on specific items.',
+      },
+      {
+        q: 'Can you help source a complete distillery equipment package?',
+        a: 'Yes. For new distillery builds we can help spec and source a complete equipment package — still, fermenters, proofing tanks, and supporting systems — from a combination of new and used inventory.',
+      },
     ],
     keywords: [
       'distillery equipment for sale', 'copper still for sale', 'craft distillery equipment',
@@ -209,6 +221,14 @@ For cideries and meaderies looking to sell equipment — upgrading packaging cap
       {
         q: 'Do you serve small-scale cidery operations?',
         a: 'Yes. Our inventory includes both taproom-scale and production-scale equipment. We advise on what makes sense for your volume and capital structure.',
+      },
+      {
+        q: 'Do you carry canning lines suited for cider packaging?',
+        a: 'Yes. The same canning lines used in craft brewing are appropriate for cider and mead packaging. We carry equipment from taproom crowler volume through full production canning lines.',
+      },
+      {
+        q: 'Can you help a cidery sell surplus equipment?',
+        a: 'Yes. Our consignment and auction programs serve cidery and meadery operations the same way they serve breweries. Our buyer network spans the full craft beverage production community.',
       },
     ],
     keywords: [
@@ -267,6 +287,14 @@ National buyer demand in beverage manufacturing has grown significantly as the f
         q: 'Are brewery fermenters food-grade for beverage production?',
         a: 'Production brewery fermenters are typically food-grade 304 or 316L stainless steel, appropriate for many beverage production applications. We note stainless grade and construction in our listings.',
       },
+      {
+        q: 'Do you carry heat exchangers and pasteurization equipment?',
+        a: 'Plate heat exchangers from brewery and beverage production appear in our inventory regularly. Contact us for current availability on specific configurations.',
+      },
+      {
+        q: 'Can you source equipment for a non-alcoholic beverage startup?',
+        a: 'Yes. We advise non-alcoholic beverage producers on equipment sourcing the same way we advise brewery clients — starting with your production volume, package format, and capital structure.',
+      },
     ],
     keywords: [
       'beverage manufacturing equipment', 'beverage production equipment',
@@ -319,6 +347,14 @@ Our inventory is updated regularly and reflects current secondary market availab
         q: 'Are you seeing more hard seltzer equipment on the secondary market?',
         a: 'Yes. Category consolidation has added significant production-scale equipment to the secondary market — particularly large fermenters and high-speed canning lines. Contact us for current availability.',
       },
+      {
+        q: 'Do you handle auction or consignment of hard seltzer production assets?',
+        a: 'Yes. Auction is often the right approach for hard seltzer operations liquidating production-scale assets on a defined timeline. Contact us to discuss your equipment set and timeline.',
+      },
+      {
+        q: 'What canning line speeds are available for high-volume RTD production?',
+        a: 'We carry production canning lines capable of 50 CPM and above. High-speed lines from the secondary market — including systems from hard seltzer and RTD operations — appear in our inventory regularly.',
+      },
     ],
     keywords: [
       'hard seltzer equipment', 'RTD production equipment', 'seltzer canning line',
@@ -349,6 +385,8 @@ Beverage Equipment Traders maintains inventory of food-grade stainless equipment
     faqs: [
       { q: 'Is brewery equipment food-grade for food processing applications?', a: 'Production brewery equipment is typically food-grade 304 or 316L stainless steel, appropriate for many food processing applications.' },
       { q: 'Do you carry CIP systems and sanitary pumps?', a: 'Yes. CIP systems and sanitary pumps from brewery and beverage production appear in our inventory regularly. Contact us for current availability.' },
+      { q: 'Do you ship food processing equipment nationwide?', a: 'Yes. All equipment ships nationwide from our San Marcos, CA facility. Rigging and installation services are available for larger equipment sets.' },
+      { q: 'Can you source specific food-grade stainless configurations on request?', a: 'Yes. If we do not have a specific vessel size or configuration in current inventory, we can source it through our network. Contact us with your specifications and timeline.' },
     ],
     keywords: ['food processing equipment', 'food grade stainless tanks', 'CIP equipment for sale', 'food manufacturing equipment', 'sanitary pumps for sale'],
   },
@@ -375,6 +413,9 @@ Beverage Equipment Traders serves dairy processors with the same food-grade stai
     featuredEquipmentTypes: ['Jacketed Tanks', 'Heat Exchangers', 'Cold Storage', 'CIP Systems'],
     faqs: [
       { q: 'Can brewery fermenters be used for dairy processing?', a: 'Many brewery fermenters are food-grade stainless appropriate for dairy applications. We can advise on specifications based on your requirements.' },
+      { q: 'Do you carry plate heat exchangers for pasteurization?', a: 'Plate heat exchangers from brewery and beverage production appear in our inventory regularly and are appropriate for dairy pasteurization applications. Contact us for current availability.' },
+      { q: 'Do you ship dairy processing equipment nationwide?', a: 'Yes. All equipment ships nationwide from our San Marcos, CA facility. Rigging and installation coordination available for larger equipment moves.' },
+      { q: 'Can you source jacketed tanks to specific volume requirements?', a: 'Yes. If we do not have your required vessel volume in current inventory, we can source it through our network. Contact us with specifications and timeline.' },
     ],
     keywords: ['dairy processing equipment', 'dairy tanks for sale', 'cheese making equipment', 'yogurt processing equipment', 'food grade tanks dairy'],
   },
@@ -402,6 +443,8 @@ We provide complete specification documentation and can source equipment to spec
     faqs: [
       { q: 'Do you carry 316L stainless equipment?', a: 'Yes. We specify stainless grade in our listings. Contact us for current inventory on specific configurations.' },
       { q: 'Can you provide material documentation?', a: 'Where available we provide manufacturer documentation and material certificates. High-spec equipment is listed with available documentation noted.' },
+      { q: 'Do you ship pharmaceutical-grade equipment nationwide?', a: 'Yes. All equipment ships nationwide from our San Marcos, CA facility. White-glove crating and rigging coordination available for sensitive equipment.' },
+      { q: 'Can you source equipment to specific surface finish requirements?', a: 'For pharmaceutical applications requiring specific Ra surface finishes or electropolishing, we note available specifications in listings and can source to requirement on request.' },
     ],
     keywords: ['pharmaceutical processing equipment', 'biotech stainless tanks', '316L stainless tanks for sale', 'pharma grade fermenters', 'stainless vessels pharmaceutical'],
   },

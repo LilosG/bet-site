@@ -12,6 +12,8 @@ import FAQ from '../../components/ui/FAQ.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
 import ProcessSteps from '../../components/ui/ProcessSteps.astro';
 import BestFitScenarios from '../../components/ui/BestFitScenarios.astro';
+import StatBar from '../../components/ui/StatBar.astro';
+import TrustBar from '../../components/ui/TrustBar.astro';
 import { SERVICES } from '../../data/services';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '../../lib/schema';
@@ -106,6 +108,8 @@ const schemas = [
     </div>
   </section>
 
+  <StatBar />
+
   <!-- ═══ BODY CONTENT + SIDEBAR ════════════════ -->
   <section class="svc-body-band section-y" aria-labelledby="svc-content-heading">
     <div class="container svc-content-inner">
@@ -156,6 +160,8 @@ const schemas = [
       eyebrow="The Process"
     />
   )}
+
+  <TrustBar />
 
   <!-- ═══ BEST FIT SCENARIOS ═════════════════════ -->
   {service.bestFitScenarios.length > 0 && (
