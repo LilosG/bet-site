@@ -522,7 +522,17 @@
 .contact-hero-intro,
 .hub-intro,
 .services-hero-intro,
-.blog-hero-intro {
+.blog-hero-intro,
+.loc-intro,
+.nat-intro,
+.post-hero-desc {
   color: rgba(255, 255, 255, 0.85);
+}
+
+/* Hero h1 — missing slug contexts added to match global.css hero block */
+.post-hero h1 {
+  color: var(--color-white);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
