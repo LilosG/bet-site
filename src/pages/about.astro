@@ -67,12 +67,7 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ═══ STATS BAND ════════════════════════════ -->
-  <div class="stats-band">
-    <div class="container">
-      <StatBar />
-    </div>
-  </div>
+  <StatBar />
 
   <!-- ═══ ORIGIN STORY ═════════════════════════ -->
   <section class="section-y" aria-labelledby="story-heading">
@@ -265,13 +260,7 @@ const schemas = [
   .about-hero h1 { max-width: 22ch; margin: 0.5rem 0 1rem; }
   .about-hero-intro { max-width: 64ch; font-size: 1.0625rem; }
 
-  /* ─── Stats ──────────────────────────────────── */
-  .stats-band {
-    background: var(--color-bg-2);
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-    padding: 3rem 0;
-  }
+
 
   /* ─── Story ──────────────────────────────────── */
   .story-inner {
@@ -335,9 +324,10 @@ const schemas = [
   .story-address-card {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-lg);
     padding: 1.25rem;
     margin-top: 1rem;
+    box-shadow: var(--shadow-card-rest);
   }
 
   .story-address-label {
