@@ -11,8 +11,11 @@ import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import CtaStrip from '../../components/ui/CtaStrip.astro';
-import { SITE } from '../../data/site';
 import { breadcrumbSchema } from '../../lib/schema';
+import { cms } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
+
+const content = cms.pages.blog;
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => {
@@ -29,20 +32,15 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 // ─── Hero image ───────────────────────────────
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
-
-const heroFilename = post.data.heroImage ?? 'hero-equipment.webp';
-const heroAsset    = allImages[`../../assets/images/${heroFilename}`]?.default;
+const heroFilename = post.data.heroImage ?? content.hero.image;
+const heroAsset = resolveCmsImage(heroFilename);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, format: 'webp', quality: 80 })
   : null;
 
 const crumbs = [
-  { name: 'Home', url: '/' },
-  { name: 'Blog', url: '/blog' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/blog' },
   { name: post.data.title, url: `/blog/${post.id}` },
 ];
 
@@ -88,7 +86,7 @@ const updatedDate = post.data.updatedDate
         {updatedDate && (
           <>
             <span class="post-meta-sep" aria-hidden="true">·</span>
-            <span class="post-updated">Updated {updatedDate}</span>
+            <span class="post-updated">{content.postLabels.updatedPrefix} {updatedDate}</span>
           </>
         )}
       </div>
@@ -107,13 +105,13 @@ const updatedDate = post.data.updatedDate
       <!-- Sidebar -->
       <aside class="post-sidebar">
         <div class="sidebar-card">
-          <p class="sidebar-label">Category</p>
+          <p class="sidebar-label">{content.postLabels.category}</p>
           <span class="tag tag-gold">{post.data.category}</span>
         </div>
 
         {post.data.tags.length > 0 && (
           <div class="sidebar-card">
-            <p class="sidebar-label">Topics</p>
+            <p class="sidebar-label">{content.postLabels.topics}</p>
             <div class="sidebar-tags">
               {post.data.tags.map((tag) => (
                 <span class="tag tag-dark">{tag}</span>
@@ -123,10 +121,10 @@ const updatedDate = post.data.updatedDate
         )}
 
         <div class="sidebar-card sidebar-cta">
-          <p class="sidebar-cta-heading">Ready to source equipment?</p>
-          <p class="sidebar-cta-body">Our trade desk responds within one business day.</p>
-          <a href="/contact" class="btn btn-primary btn-sm">Contact Trade Desk</a>
-          <a href="/equipment" class="btn btn-dark btn-sm">Browse Equipment</a>
+          <p class="sidebar-cta-heading">{content.postLabels.sidebarHeading}</p>
+          <p class="sidebar-cta-body">{content.postLabels.sidebarBody}</p>
+          <a href="/contact" class="btn btn-primary btn-sm">{content.postLabels.contactLabel}</a>
+          <a href="/equipment" class="btn btn-dark btn-sm">{content.postLabels.equipmentLabel}</a>
         </div>
       </aside>
 
@@ -138,18 +136,18 @@ const updatedDate = post.data.updatedDate
     <div class="container">
       <a href="/blog" class="back-link">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back to Blog
+        {content.postLabels.backLabel}
       </a>
     </div>
   </div>
 
   <CtaStrip
-    heading="Questions about buying brewery equipment?"
-    subtext="Our trade desk handles sourcing, rigging, and equipment consulting. Responds within one business day."
-    primaryLabel="Contact the Trade Desk"
-    primaryHref="/contact"
-    secondaryLabel="Browse Equipment"
-    secondaryHref="/equipment"
+    heading={content.postFinalCta.heading}
+    subtext={content.postFinalCta.body}
+    primaryLabel={content.postFinalCta.primaryCta.label}
+    primaryHref={content.postFinalCta.primaryCta.href}
+    secondaryLabel={content.postFinalCta.secondaryCta.label}
+    secondaryHref={content.postFinalCta.secondaryCta.href}
   />
 </Layout>
 

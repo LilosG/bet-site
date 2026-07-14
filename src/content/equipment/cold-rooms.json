@@ -1,0 +1,166 @@
+{
+  "slug": "cold-rooms",
+  "title": "Cold Rooms",
+  "h1": "Cold Rooms and Cold Boxes For Brewing",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/cold-box",
+  "metaTitle": "Cold Rooms & Cold Boxes For Sale — Brewing & Beverage | Beverage Equipment Traders",
+  "metaDescription": "Used and new cold rooms, walk-in coolers, and cold boxes for brewing and beverage operations. In stock in San Marcos, CA. Ships nationwide.",
+  "description": "Walk-in coolers, cold rooms, and cold boxes for temperature-controlled storage in brewing and beverage production facilities.",
+  "bodyContent": "Cold storage for breweries, beverage producers, and food processing operations. Walk-in coolers, cold rooms, and modular cold boxes in various configurations — from compact taproom cold storage through large-format production coolers for high-volume packaging facilities.\n\nCold room configuration involves floor dimensions, door placement, refrigeration unit type (remote vs. self-contained), and target temperature range. Brewery cold storage typically operates between 34°F and 38°F for bright beer storage and lagering. Fermentation cold rooms require broader temperature control ranges including crash cooling capability.\n\nUsed cold room panels and refrigeration units from our inventory are typically sourced from food and beverage facility liquidations. Condition includes panel integrity, gasket condition, and refrigeration unit operational status. Contact us for current cold room inventory and custom configuration options.",
+  "keywords": [
+    "cold room brewery",
+    "walk-in cooler brewery",
+    "cold box for brewing",
+    "used walk-in cooler",
+    "brewing cold storage",
+    "beverage cold room"
+  ],
+  "faqs": [
+    {
+      "q": "Can you configure a cold room to specific dimensions?",
+      "a": "Panel-based cold rooms can often be reconfigured to different dimensions. Contact us with your floor plan and we can advise on what is possible with available inventory."
+    },
+    {
+      "q": "What temperature ranges do your cold rooms support?",
+      "a": "Most cold rooms in our inventory are configured for 34 to 38 degrees F — standard bright beer and serving temperature. Units supporting wider ranges including crash cooling to 32 degrees F are noted in listings."
+    },
+    {
+      "q": "Do you handle delivery and installation of cold rooms?",
+      "a": "Yes. Cold room installation involves floor preparation, electrical, and often drain work. Our team coordinates delivery and can advise on installation requirements and qualified local contractors."
+    },
+    {
+      "q": "Can cold rooms from brewery liquidations be used for food storage?",
+      "a": "Yes. Walk-in coolers from brewery and beverage liquidations are food-grade and appropriate for produce, dairy, and food storage applications. Panel construction and refrigeration type are noted in all listings."
+    }
+  ],
+  "priority": "P1",
+  "heroImage": "cold-room-walkin-3.webp",
+  "featuredItems": [
+    {
+      "name": "Walk-In Cold Room — Taproom Size",
+      "price": "$8,500",
+      "condition": "Used",
+      "category": "COLD ROOM",
+      "image": "cold-room-walkin-1.webp",
+      "imageAlt": "Walk-In Cold Room — Taproom Size — Used COLD ROOM"
+    },
+    {
+      "name": "Production Walk-In Cooler",
+      "price": "$18,000",
+      "condition": "Used",
+      "category": "COLD ROOM",
+      "image": "cold-room-walkin-2.webp",
+      "imageAlt": "Production Walk-In Cooler — Used COLD ROOM"
+    },
+    {
+      "name": "Large-Format Cold Room — Distribution",
+      "price": "$32,000",
+      "condition": "Used",
+      "category": "COLD ROOM",
+      "image": "cold-room-walkin-3.webp",
+      "imageAlt": "Large-Format Cold Room — Distribution — Used COLD ROOM"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Define Temperature Range",
+      "description": "Bright beer and serving cold rooms operate at 34-38°F. Fermentation rooms require wider range including crash cooling to 32°F. Confirm your temperature requirements before sizing refrigeration."
+    },
+    {
+      "step": 2,
+      "title": "Calculate Square Footage",
+      "description": "Size cold room to your peak package inventory — typically 2-3 weeks of production for distribution operations. Add 20% margin for operational flexibility."
+    },
+    {
+      "step": 3,
+      "title": "Choose Refrigeration Type",
+      "description": "Self-contained units are simpler to install. Remote condensing units are quieter and more efficient for larger rooms. Confirm your facility layout accommodates your choice."
+    },
+    {
+      "step": 4,
+      "title": "Review Panel Condition",
+      "description": "Insulated panels should be free of moisture infiltration and structural damage. Gaskets and door hardware are wear items — confirm their condition in our listings."
+    },
+    {
+      "step": 5,
+      "title": "Plan Installation",
+      "description": "Cold room installation requires floor preparation, electrical, and often drain work. Our team can advise on installation requirements and coordinate delivery."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "Taproom Cold Storage",
+      "description": "Adding cold storage to a taproom operation for keg and package inventory? Compact walk-in units sized for taproom volume.",
+      "icon": "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+    },
+    {
+      "title": "Production Brewery",
+      "description": "Scaling production and need larger cold storage for bright beer and packaged product? Production-scale cold rooms from brewery liquidations.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Distribution Operation",
+      "description": "Building out distribution cold storage for packaged product inventory? Large-format cold rooms sized for distribution volume.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Food Processing",
+      "description": "Cold rooms from brewery and beverage liquidations serve food processing, dairy, and produce storage applications. Same panel systems, different contents.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    }
+  ],
+  "order": 7,
+  "heroImageAlt": "Cold Rooms",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "Cold Rooms and Cold Boxes For Brewing — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

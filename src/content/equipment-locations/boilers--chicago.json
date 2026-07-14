@@ -1,0 +1,43 @@
+{
+  "slug": "boilers--chicago",
+  "categorySlug": "boilers",
+  "locationSlug": "chicago",
+  "metaTitle": "Boilers For Sale Chicago, IL | Beverage Equipment Traders",
+  "metaDescription": "New and used boilers shipping to Chicago, Illinois. Commercial steam boilers for brewery and beverage operations, including Rite, Lattner, and Sussman m. Ships from San Marcos, CA. Rigging and installation available.",
+  "h1": "Boilers For Sale — Chicago, IL",
+  "heroEyebrow": "Boilers · Chicago, IL",
+  "heroBody": "Beverage Equipment Traders ships new and used boilers to Chicago and nationwide from our 40,000 sq ft facility in San Marcos, CA. Every piece photographed, documented, and priced. Rigging and installation available at destination.",
+  "heroImage": "hero-boilers.webp",
+  "heroImageAlt": "Boilers — Chicago, IL",
+  "browseLabel": "Browse Boilers Inventory",
+  "contactLabel": "Contact Trade Desk",
+  "trustChips": [
+    "Ships Nationwide",
+    "Rigging at Destination",
+    "Prior Brewery Owners",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Boilers Shipping to Chicago — What to Know",
+  "locationParagraph": "Freight to Chicago from our San Marcos, CA facility typically runs 2 to 4 business days depending on equipment size and carrier routing. Rigging and installation at destination available on all purchases.",
+  "marketParagraph": "Beverage Equipment Traders ships to all 50 states and serves buyers across North America. The Chicago market is one of many active markets we work in — contact us regardless of your location and we will advise on current inventory and freight timing.",
+  "sidebarHeading": "Ship Boilers to Chicago",
+  "sidebarBody": "Our trade desk responds within one business day. Provide your requirements and we will return current inventory and a freight quote to Chicago.",
+  "sidebarCtaLabel": "Request a Quote",
+  "relatedLabel": "Other Equipment in Chicago",
+  "allInventoryLabel": "All Boilers Inventory",
+  "inventoryEyebrow": "Currently In Stock",
+  "inventoryHeading": "Featured Boilers — Ships to Chicago",
+  "viewAllLabel": "View All Boilers",
+  "faqHeading": "Boilers Chicago — Frequently Asked Questions",
+  "finalCtaHeading": "Sourcing Boilers in Chicago?",
+  "finalCtaBody": "We ship from San Marcos, CA. Every piece photographed and condition-documented. Rigging and installation available in Chicago and nationwide.",
+  "primaryCta": {
+    "label": "Request a Quote",
+    "href": "/contact"
+  },
+  "secondaryCta": {
+    "label": "View All Boilers",
+    "href": "https://beverageequipmenttraders.com/collections/boilers"
+  },
+  "serviceHighlightsAriaLabel": "Service highlights"
+}

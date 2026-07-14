@@ -1,0 +1,52 @@
+{
+  "tagline": "New and used brewery, distillery, and beverage production equipment. Bought, sold, rigged, and shipped nationwide from San Marcos, CA.",
+  "equipmentHeading": "Equipment",
+  "inventoryLink": {
+    "label": "View All Inventory",
+    "href": "https://beverageequipmenttraders.com/collections/all"
+  },
+  "servicesHeading": "Services",
+  "companyHeading": "Company",
+  "companyLinks": [
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Service Areas",
+      "href": "/locations"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "contactHeading": "Visit / Call",
+  "hoursHeading": "Hours",
+  "saturdayShortLabel": "By Appt",
+  "copyrightSuffix": "Inc. All rights reserved.",
+  "legalNavigationAriaLabel": "Footer legal links",
+  "legalLinks": [
+    {
+      "label": "Privacy Policy",
+      "href": "/privacy"
+    },
+    {
+      "label": "Terms of Sale",
+      "href": "/terms"
+    },
+    {
+      "label": "Sitemap",
+      "href": "/sitemap.xml"
+    }
+  ],
+  "socialLabels": {
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn"
+  }
+}

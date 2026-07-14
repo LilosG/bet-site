@@ -1,0 +1,32 @@
+{
+  "slug": "consignment--austin",
+  "serviceSlug": "consignment",
+  "locationSlug": "austin",
+  "metaTitle": "Consignment Austin, TX | Beverage Equipment Traders",
+  "metaDescription": "Quietly liquidate idle assets. We handle photography, listings, vetting, and payout. Serving Austin, Texas and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "Consignment — Austin, TX",
+  "heroEyebrow": "Consignment · Austin, TX",
+  "heroBody": "Quietly liquidate idle assets. We handle photography, listings, vetting, and payout. Available in Austin and nationwide.",
+  "heroImage": "hero-equipment.webp",
+  "heroImageAlt": "Consignment — Austin, TX",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Consignment in Austin — What to Know",
+  "locationParagraph": "We handle consignment in Austin and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Austin market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Austin.",
+  "relatedServicesLabel": "Related Services in Austin",
+  "processEyebrow": "The Process",
+  "processHeading": "How Consignment Works in Austin",
+  "faqHeading": "Consignment Austin — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Austin?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

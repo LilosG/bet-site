@@ -1,0 +1,32 @@
+{
+  "slug": "consignment--seattle",
+  "serviceSlug": "consignment",
+  "locationSlug": "seattle",
+  "metaTitle": "Consignment Seattle, WA | Beverage Equipment Traders",
+  "metaDescription": "Quietly liquidate idle assets. We handle photography, listings, vetting, and payout. Serving Seattle, Washington and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "Consignment — Seattle, WA",
+  "heroEyebrow": "Consignment · Seattle, WA",
+  "heroBody": "Quietly liquidate idle assets. We handle photography, listings, vetting, and payout. Available in Seattle and nationwide.",
+  "heroImage": "hero-equipment.webp",
+  "heroImageAlt": "Consignment — Seattle, WA",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Consignment in Seattle — What to Know",
+  "locationParagraph": "We handle consignment in Seattle and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Seattle market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Seattle.",
+  "relatedServicesLabel": "Related Services in Seattle",
+  "processEyebrow": "The Process",
+  "processHeading": "How Consignment Works in Seattle",
+  "faqHeading": "Consignment Seattle — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Seattle?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

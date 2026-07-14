@@ -6,20 +6,24 @@ export interface Props {
   crumbs: ({ name: string; url?: string } | { label: string; href?: string })[];
 }
 
+import { cms } from '../../lib/cms';
+
+const labels = cms.globalCtas;
+
 const { crumbs } = Astro.props;
 
 // Normalize to { label, href } and strip any Home entry (component adds it)
 const items = crumbs
   .map((c: any) => ({ label: c.label ?? c.name, href: c.href ?? c.url }))
-  .filter((c) => c.label.toLowerCase() !== 'home');
+  .filter((c) => c.label.toLowerCase() !== labels.breadcrumbHomeLabel.toLowerCase());
 ---
 
 <div class="breadcrumb-wrap">
   <div class="container">
-    <nav aria-label="Breadcrumb">
+    <nav aria-label={labels.breadcrumbAriaLabel}>
       <ol class="breadcrumb-list" role="list">
         <li class="breadcrumb-item">
-          <a href="/" class="breadcrumb-link">Home</a>
+          <a href="/" class="breadcrumb-link">{labels.breadcrumbHomeLabel}</a>
         </li>
         {items.map((item, i) => (
           <li class="breadcrumb-item">

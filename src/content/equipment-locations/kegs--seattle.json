@@ -1,0 +1,43 @@
+{
+  "slug": "kegs--seattle",
+  "categorySlug": "kegs",
+  "locationSlug": "seattle",
+  "metaTitle": "Kegs & Casks For Sale Seattle, WA | Beverage Equipment Traders",
+  "metaDescription": "New and used kegs & casks shipping to Seattle, Washington. Half barrel kegs, sixth barrel kegs, cask kegs, and real ales containers. Multiple sizes in stock wi. Ships from San Marcos, CA. Rigging and installation available.",
+  "h1": "Kegs & Casks For Sale — Seattle, WA",
+  "heroEyebrow": "Kegs & Casks · Seattle, WA",
+  "heroBody": "Beverage Equipment Traders ships new and used kegs & casks to Seattle and nationwide from our 40,000 sq ft facility in San Marcos, CA. Every piece photographed, documented, and priced. Rigging and installation available at destination.",
+  "heroImage": "kegs-pallet-stack.webp",
+  "heroImageAlt": "Kegs & Casks — Seattle, WA",
+  "browseLabel": "Browse Kegs & Casks Inventory",
+  "contactLabel": "Contact Trade Desk",
+  "trustChips": [
+    "Ships Nationwide",
+    "Rigging at Destination",
+    "Prior Brewery Owners",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Kegs & Casks Shipping to Seattle — What to Know",
+  "locationParagraph": "Freight to Seattle from our San Marcos, CA facility typically runs 2 to 4 business days depending on equipment size and carrier routing. Rigging and installation at destination available on all purchases.",
+  "marketParagraph": "Beverage Equipment Traders ships to all 50 states and serves buyers across North America. The Seattle market is one of many active markets we work in — contact us regardless of your location and we will advise on current inventory and freight timing.",
+  "sidebarHeading": "Ship Kegs & Casks to Seattle",
+  "sidebarBody": "Our trade desk responds within one business day. Provide your requirements and we will return current inventory and a freight quote to Seattle.",
+  "sidebarCtaLabel": "Request a Quote",
+  "relatedLabel": "Other Equipment in Seattle",
+  "allInventoryLabel": "All Kegs & Casks Inventory",
+  "inventoryEyebrow": "Currently In Stock",
+  "inventoryHeading": "Featured Kegs & Casks — Ships to Seattle",
+  "viewAllLabel": "View All Kegs & Casks",
+  "faqHeading": "Kegs & Casks Seattle — Frequently Asked Questions",
+  "finalCtaHeading": "Sourcing Kegs & Casks in Seattle?",
+  "finalCtaBody": "We ship from San Marcos, CA. Every piece photographed and condition-documented. Rigging and installation available in Seattle and nationwide.",
+  "primaryCta": {
+    "label": "Request a Quote",
+    "href": "/contact"
+  },
+  "secondaryCta": {
+    "label": "View All Kegs & Casks",
+    "href": "https://beverageequipmenttraders.com/collections/casks"
+  },
+  "serviceHighlightsAriaLabel": "Service highlights"
+}

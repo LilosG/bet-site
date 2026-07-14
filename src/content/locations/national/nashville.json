@@ -1,0 +1,62 @@
+{
+  "slug": "nashville",
+  "city": "Nashville",
+  "state": "Tennessee",
+  "stateAbbr": "TN",
+  "type": "national",
+  "heroImage": "hero-equipment.webp",
+  "h1": "Used Brewery Equipment Nashville, Tennessee",
+  "metaTitle": "Used Brewery Equipment Nashville TN | Beverage Equipment Traders",
+  "metaDescription": "New and used brewery equipment shipping to Nashville, TN. Brewhouses, fermenters, canning lines, and rigging from San Marcos, CA.",
+  "intro": "Shipping brewery equipment to Nashville and the Southeast from our San Marcos, CA facility.",
+  "bodyContent": "Nashville's craft brewing scene has grown consistently as the city's broader hospitality and food industry has expanded. Beverage Equipment Traders ships to Nashville and Southeast markets from our San Marcos, CA facility. Freight to Nashville typically runs 3 to 4 business days. Contact us for current inventory and shipping quotes.",
+  "keywords": [
+    "used brewery equipment Nashville",
+    "brewery equipment Tennessee",
+    "used brewhouse Nashville TN",
+    "brewery equipment Southeast"
+  ],
+  "order": 5,
+  "heroImageAlt": "Nashville, Tennessee",
+  "labels": {
+    "heroEyebrow": "{city}, {stateAbbr} · National Shipping",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Inventory",
+      "href": "/equipment"
+    },
+    "shippingNote": "Shipping from San Marcos, CA to {city}. Rigging and installation available.",
+    "bodyHeading": "Used Brewery Equipment Shipped to {city}",
+    "sidebarHeading": "Ship to {city}",
+    "sidebarBody": "We ship anywhere in the US. Bonded freight, crated or pad-wrapped. Rigging at destination available.",
+    "sidebarCtaLabel": "Request a Shipping Quote",
+    "factsLabel": "Shipping Facts",
+    "facts": [
+      "Bonded freight to all 50 states",
+      "Crated or pad-wrapped based on equipment",
+      "Crane-in and millwright available",
+      "Single quote covers freight + rigging",
+      "Lead times confirmed at time of purchase"
+    ],
+    "equipmentEyebrow": "Inventory Available for Shipping to {city}",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services Available in {city}",
+    "servicesHeading": "What We Handle Nationally",
+    "servicesCtaLabel": "Learn More",
+    "finalCtaHeading": "Sourcing equipment in {city}?",
+    "finalCtaBody": "We ship from San Marcos, CA. Every piece is photographed and condition-documented before it leaves our yard.",
+    "finalPrimaryCta": {
+      "label": "Request a Quote",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "View Full Inventory",
+      "href": "https://beverageequipmenttraders.com/collections/all"
+    },
+    "heroImageAlt": "{city}, {state}"
+  }
+}

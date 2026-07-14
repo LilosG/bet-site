@@ -1,0 +1,32 @@
+{
+  "slug": "new-equipment--denver",
+  "serviceSlug": "new-equipment",
+  "locationSlug": "denver",
+  "metaTitle": "New Equipment Denver, CO | Beverage Equipment Traders",
+  "metaDescription": "Factory-new systems from trusted manufacturers, custom spec to your capacity and budget. Serving Denver, Colorado and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "New Equipment — Denver, CO",
+  "heroEyebrow": "New Equipment · Denver, CO",
+  "heroBody": "Factory-new systems from trusted manufacturers, custom spec to your capacity and budget. Available in Denver and nationwide.",
+  "heroImage": "brewhouse-hero.webp",
+  "heroImageAlt": "New Equipment — Denver, CO",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "New Equipment in Denver — What to Know",
+  "locationParagraph": "We handle new equipment in Denver and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Denver market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Denver.",
+  "relatedServicesLabel": "Related Services in Denver",
+  "processEyebrow": "The Process",
+  "processHeading": "How New Equipment Works in Denver",
+  "faqHeading": "New Equipment Denver — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Denver?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

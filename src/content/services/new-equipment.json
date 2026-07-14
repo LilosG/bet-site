@@ -1,0 +1,145 @@
+{
+  "slug": "new-equipment",
+  "title": "New Equipment",
+  "shortTitle": "New Equipment",
+  "h1": "New Brewery Equipment — Custom and In-Stock",
+  "icon": "M12 4v16m8-8H4",
+  "metaTitle": "New Brewery Equipment For Sale | Beverage Equipment Traders",
+  "metaDescription": "New brewery equipment from Marks Design and Metalworks, Specific Mechanical, and select manufacturers. Custom brewhouse configurations and in-stock new equipment. San Marcos, CA.",
+  "intro": "Factory-new systems from trusted manufacturers, custom spec to your capacity and budget.",
+  "bodyContent": "Beverage Equipment Traders represents select manufacturers of new brewery and beverage production equipment, offering buyers access to factory-new systems with full warranty coverage and manufacturer support alongside our used equipment inventory.\n\nManufacturer relationships include Marks Design and Metalworks, Specific Mechanical Systems, and others offering custom-fabricated and in-stock configurations. New brewhouse systems are available in custom configurations, with lead times and pricing dependent on specification.\n\nFor buyers deciding between new and used, we can provide honest context: a well-maintained used brewhouse from a production facility typically offers significantly better value per barrel of capacity than a new system at the same price point, but new equipment provides warranty coverage, known operational history, and consistent lead times. Both have appropriate use cases depending on your capital structure and timeline.\n\nContact us to discuss your new equipment requirements. We can help with specification, pricing, and lead time estimates from our manufacturer relationships.",
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Requirements Discussion",
+      "description": "We start with your volume targets, facility constraints, utility infrastructure, and budget. From that we spec a system that actually fits — not the largest one we can sell you."
+    },
+    {
+      "step": 2,
+      "title": "Manufacturer Selection",
+      "description": "We match your requirements to our manufacturer relationships — Marks, Specific Mechanical, and others — and provide honest comparisons on lead time, warranty, and long-term support."
+    },
+    {
+      "step": 3,
+      "title": "Spec & Pricing",
+      "description": "Final equipment specification, confirmed pricing, and lead time commitment from the manufacturer. No surprises after deposit."
+    },
+    {
+      "step": 4,
+      "title": "Production & Delivery",
+      "description": "We track production, coordinate shipping, and manage delivery logistics. You are not dealing with an overseas manufacturer's fulfillment team directly."
+    },
+    {
+      "step": 5,
+      "title": "Installation",
+      "description": "Our rigging team handles delivery, set, level, and commissioning. New equipment installation is included as an option with every new equipment order."
+    }
+  ],
+  "bestFitScenarios": [
+    {
+      "title": "New Brewery Build",
+      "description": "Starting from scratch with a defined production volume and timeline? New equipment provides warranty coverage and known lead times that used equipment cannot guarantee.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Warranty Required",
+      "description": "Investor or lender requirements for new equipment warranty? We source factory-new systems with manufacturer documentation for capital-backed brewery builds.",
+      "icon": "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+    },
+    {
+      "title": "Custom Configuration",
+      "description": "Need a non-standard vessel size, unusual utility configuration, or specific fabrication detail? Custom-spec new equipment is the right path when used inventory cannot match your requirements.",
+      "icon": "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+    },
+    {
+      "title": "Phased Expansion",
+      "description": "Adding a second brewhouse or canning line to an existing facility? We can spec new equipment to match your existing utility infrastructure and production workflow.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do you offer custom brewhouse configurations?",
+      "a": "Yes, through our manufacturer relationships we can spec and source custom brewhouse configurations based on your volume requirements, utility infrastructure, and facility layout."
+    },
+    {
+      "q": "What is the lead time on new equipment?",
+      "a": "Lead times vary by manufacturer and configuration. Custom fabricated systems from Marks or Specific Mechanical typically run 12 to 24 weeks depending on queue and specification complexity."
+    },
+    {
+      "q": "How does new equipment pricing compare to used?",
+      "a": "New equipment carries a significant premium over comparable used systems. In most cases, a well-maintained used brewhouse from a working brewery offers better value per barrel of capacity. We provide honest guidance on the tradeoffs based on your specific situation."
+    },
+    {
+      "q": "Do you source new fermenters and canning lines in addition to brewhouses?",
+      "a": "Yes. Through our manufacturer relationships we can source new fermentation vessels, canning lines, and supporting equipment in addition to complete brewhouse systems. Contact us with your specific requirements."
+    },
+    {
+      "q": "Can you work with manufacturers outside of Marks and Specific Mechanical?",
+      "a": "Yes. Marks and Specific Mechanical are our primary relationships, but we work with other manufacturers based on your requirements, timeline, and budget. We source what fits the project, not what we have on the shelf."
+    }
+  ],
+  "cta": {
+    "label": "Inquire About New Equipment",
+    "href": "/contact?type=new-equipment"
+  },
+  "relatedServices": [
+    "consulting",
+    "rigging"
+  ],
+  "relatedEquipment": [
+    "brewhouses",
+    "fermenters",
+    "canning"
+  ],
+  "industries": [
+    "craft-brewery",
+    "distillery",
+    "cidery",
+    "beverage-production",
+    "hard-seltzer"
+  ],
+  "keywords": [
+    "new brewhouse for sale",
+    "custom brewery equipment",
+    "new brewery equipment California",
+    "Marks brewery equipment",
+    "Specific Mechanical brewhouse",
+    "new brewery system"
+  ],
+  "heroImage": "brewhouse-hero.webp",
+  "order": 4,
+  "heroImageAlt": "New Equipment",
+  "labels": {
+    "heroEyebrow": "Service",
+    "callPrefix": "Call",
+    "trustChips": [
+      "All 50 States",
+      "One Quote — Full Scope",
+      "Prior Brewery Operators",
+      "San Marcos, CA"
+    ],
+    "bodyHeadingSuffix": "— What to Know",
+    "sidebarBody": "Our trade desk responds within one business day. Provide details and we will return a complete scope and price.",
+    "relatedServicesLabel": "Other Services",
+    "processEyebrow": "The Process",
+    "processHeading": "How {shortTitle} Works",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "When {shortTitle} Is the Right Choice",
+    "relatedEquipmentEyebrow": "Related Equipment",
+    "relatedEquipmentHeading": "Equipment We Work With",
+    "locationsEyebrow": "Service Areas",
+    "locationsHeading": "{title} — Available Nationwide",
+    "locationsBody": "We provide {shortTitleLower} services throughout North America. Select your market for local availability and pricing.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to get started?",
+    "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+    "finalSecondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{title}"
+  }
+}

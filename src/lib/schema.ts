@@ -3,7 +3,10 @@
 //  All structured data generated here, injected per page.
 // ─────────────────────────────────────────────
 
-import { SITE, NAP, HOURS, SOCIAL, SAME_AS, GEO } from '../data/site';
+import { SITE, NAP, HOURS, SAME_AS, GEO } from '../data/site';
+import { requireCmsImage } from './images';
+
+const logo = requireCmsImage(SITE.logo);
 
 // ─── LocalBusiness (homepage and contact) ────
 export function localBusinessSchema() {
@@ -36,7 +39,7 @@ export function localBusinessSchema() {
     })),
     sameAs: [...SAME_AS],
     hasMap: `https://www.google.com/maps/place/${encodeURIComponent(NAP.address)}`,
-    image: `${SITE.url}/images/og-default.jpg`,
+    image: `${SITE.url}${SITE.defaultOgImage}`,
     priceRange: '$$',
     areaServed: [
       { '@type': 'State', name: 'California' },
@@ -53,7 +56,7 @@ export function organizationSchema() {
     '@id': `${SITE.url}/#organization`,
     name: SITE.name,
     url: SITE.url,
-    logo: `${SITE.url}/images/logo.svg`,
+    logo: `${SITE.url}${logo.src}`,
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: NAP.phonePlain,

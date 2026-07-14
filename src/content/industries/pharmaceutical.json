@@ -1,0 +1,106 @@
+{
+  "slug": "pharmaceutical",
+  "heroImage": "hero-equipment.webp",
+  "name": "Pharmaceutical & Biotech",
+  "shortName": "Pharma & Biotech",
+  "h1": "Stainless Processing Equipment for Pharmaceutical and Biotech Operations",
+  "metaTitle": "Pharmaceutical Processing Equipment | Beverage Equipment Traders",
+  "metaDescription": "Stainless steel tanks, fermenters, CIP systems, and processing equipment for pharmaceutical and biotech operations. New and used from San Marcos, CA.",
+  "intro": "Stainless fermentation vessels, processing tanks, and clean-room compatible equipment for pharma and biotech applications.",
+  "bodyContent": "Pharmaceutical and biotech operations increasingly source stainless processing equipment from the food and beverage secondary market. Jacketed stainless tanks, fermentation vessels, and CIP systems from brewery production are often appropriate for pharmaceutical applications at significantly below-new cost.\n\nWe provide complete specification documentation and can source equipment to specific material and finish requirements. Contact us to discuss your application.",
+  "relevantEquipment": [
+    "fermenters",
+    "chillers",
+    "cold-rooms"
+  ],
+  "relevantServices": [
+    "consulting",
+    "rigging"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "316L Stainless Vessels",
+      "description": "High-spec jacketed tanks with 316L construction for pharmaceutical applications."
+    },
+    {
+      "title": "Documented Equipment",
+      "description": "Equipment with manufacturer data, material certificates, and specification documentation."
+    },
+    {
+      "title": "CIP Compatible Systems",
+      "description": "Sanitary processing equipment compatible with CIP and SIP requirements."
+    },
+    {
+      "title": "Below-New Cost Sourcing",
+      "description": "Production-grade stainless at significant discount to new — appropriate for R&D through production scale."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "316L Stainless Tanks",
+    "Fermentation Vessels",
+    "CIP Systems"
+  ],
+  "faqs": [
+    {
+      "q": "Do you carry 316L stainless equipment?",
+      "a": "Yes. We specify stainless grade in our listings. Contact us for current inventory on specific configurations."
+    },
+    {
+      "q": "Can you provide material documentation?",
+      "a": "Where available we provide manufacturer documentation and material certificates. High-spec equipment is listed with available documentation noted."
+    },
+    {
+      "q": "Do you ship pharmaceutical-grade equipment nationwide?",
+      "a": "Yes. All equipment ships nationwide from our San Marcos, CA facility. White-glove crating and rigging coordination available for sensitive equipment."
+    },
+    {
+      "q": "Can you source equipment to specific surface finish requirements?",
+      "a": "For pharmaceutical applications requiring specific Ra surface finishes or electropolishing, we note available specifications in listings and can source to requirement on request."
+    }
+  ],
+  "keywords": [
+    "pharmaceutical processing equipment",
+    "biotech stainless tanks",
+    "316L stainless tanks for sale",
+    "pharma grade fermenters",
+    "stainless vessels pharmaceutical"
+  ],
+  "order": 7,
+  "heroImageAlt": "Pharmaceutical & Biotech",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

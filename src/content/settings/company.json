@@ -1,0 +1,81 @@
+{
+  "name": "Beverage Equipment Traders",
+  "shortName": "BET",
+  "tagline": "New and Used Brewery Equipment For Sale",
+  "description": "San Marcos, CA brewery and beverage equipment dealer. New and used brewhouses, fermenters, canning lines, kegs, and more. Rigging, consignment, and auction services. Shipping nationwide.",
+  "url": "https://beverageequipmenttraders.com",
+  "nap": {
+    "street": "1520 E Barham Dr",
+    "city": "San Marcos",
+    "state": "CA",
+    "zip": "92078",
+    "phone": "(949) 888-2739",
+    "phonePlain": "+19498882739",
+    "email": "sales@beverageequipmenttraders.com",
+    "address": "1520 E Barham Dr, San Marcos, CA 92078",
+    "cityStateZip": "San Marcos, CA 92078"
+  },
+  "hours": [
+    {
+      "day": "Monday",
+      "open": "10:00",
+      "close": "16:00",
+      "label": "10AM – 4PM"
+    },
+    {
+      "day": "Tuesday",
+      "open": "10:00",
+      "close": "16:00",
+      "label": "10AM – 4PM"
+    },
+    {
+      "day": "Wednesday",
+      "open": "10:00",
+      "close": "16:00",
+      "label": "10AM – 4PM"
+    },
+    {
+      "day": "Thursday",
+      "open": "10:00",
+      "close": "16:00",
+      "label": "10AM – 4PM"
+    },
+    {
+      "day": "Friday",
+      "open": "10:00",
+      "close": "15:00",
+      "label": "10AM – 3PM"
+    },
+    {
+      "day": "Saturday",
+      "open": null,
+      "close": null,
+      "label": "By Appointment"
+    },
+    {
+      "day": "Sunday",
+      "open": null,
+      "close": null,
+      "label": "Closed"
+    }
+  ],
+  "social": {
+    "instagram": "https://www.instagram.com/beverageequipmenttraders",
+    "facebook": "https://www.facebook.com/beverageequipmenttraders",
+    "linkedin": "https://www.linkedin.com/company/beverage-equipment-traders"
+  },
+  "geo": {
+    "lat": 33.1434,
+    "lng": -117.1662,
+    "placeId": "ChIJVVUFwSn124ARobkQHYWH_vo"
+  },
+  "sameAs": [
+    "https://www.instagram.com/beverageequipmenttraders",
+    "https://www.facebook.com/beverageequipmenttraders",
+    "https://www.linkedin.com/company/beverage-equipment-traders",
+    "https://probrewer.com"
+  ],
+  "defaultOgImage": "/images/og-default.jpg",
+  "logo": "logo.avif",
+  "logoAlt": "Beverage Equipment Traders"
+}

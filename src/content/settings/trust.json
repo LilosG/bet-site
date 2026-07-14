@@ -1,0 +1,49 @@
+{
+  "heading": "Trusted by leading craft producers",
+  "rosterAriaLabel": "Client roster",
+  "statistics": [
+    {
+      "value": "15+",
+      "label": "Years Industry Experience"
+    },
+    {
+      "value": "600+",
+      "label": "Equipment Placements"
+    },
+    {
+      "value": "50",
+      "label": "States Covered"
+    },
+    {
+      "value": "225+",
+      "label": "Items In Stock"
+    }
+  ],
+  "clients": [
+    {
+      "name": "Karl Strauss Brewing",
+      "image": "karl-strauss-logo.png",
+      "imageAlt": "Karl Strauss Brewing"
+    },
+    {
+      "name": "AleSmith Brewing Co.",
+      "image": "alesmith-logo.png",
+      "imageAlt": "AleSmith Brewing Co."
+    },
+    {
+      "name": "Societe Brewing Co.",
+      "image": "societe-logo.png",
+      "imageAlt": "Societe Brewing Co."
+    },
+    {
+      "name": "Thorn Brewing Co.",
+      "image": "thorn-logo.png",
+      "imageAlt": "Thorn Brewing Co."
+    },
+    {
+      "name": "The Bronx Brewery",
+      "image": "bronx-brewery-logo.png",
+      "imageAlt": "The Bronx Brewery"
+    }
+  ]
+}

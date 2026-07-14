@@ -1,58 +1,35 @@
 ---
-/**
- * TrustBar — Client logo strip.
- * Renders actual logo images via astro:assets.
- * Dark theme: logos rendered at low opacity, white filter for dark-on-dark inversion.
- * Light theme: logos rendered at low opacity, no filter needed for dark logos.
- * All content from site.ts — zero hardcoding.
- */
 import { Image } from 'astro:assets';
+import { cms } from '../../lib/cms';
+import { requireCmsImage } from '../../lib/images';
 
 export interface Props {
   heading?: string;
   light?: boolean;
 }
 
-const { heading = 'Trusted by leading craft producers', light = false } = Astro.props;
-
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/images/*.png',
-  { eager: true }
-);
-
-const clients = [
-  { name: 'Karl Strauss Brewing',   file: 'karl-strauss-logo.png' },
-  { name: 'AleSmith Brewing Co.',   file: 'alesmith-logo.png' },
-  { name: 'Societe Brewing Co.',    file: 'societe-logo.png' },
-  { name: 'Thorn Brewing Co.',      file: 'thorn-logo.png' },
-  { name: 'The Bronx Brewery',      file: 'bronx-brewery-logo.png' },
-];
-
-const resolved = clients.map((c) => ({
-  ...c,
-  image: allImages[`../assets/images/${c.file}`]?.default,
+const { heading = cms.trustProof.heading, light = false } = Astro.props;
+const clients = cms.trustProof.clients.map(client => ({
+  ...client,
+  imageAsset: requireCmsImage(client.image),
 }));
 ---
 
 <div class={`trust-bar${light ? ' trust-bar-light' : ''}`} aria-label={heading}>
   <div class="container trust-bar-inner">
     <p class="trust-bar-label">{heading}</p>
-    <ul class="trust-bar-logos" role="list" aria-label="Client roster">
-      {resolved.map((client) => (
+    <ul class="trust-bar-logos" role="list" aria-label={cms.trustProof.rosterAriaLabel}>
+      {clients.map((client) => (
         <li class="trust-logo-item">
-          {client.image ? (
-            <Image
-              src={client.image}
-              alt={client.name}
-              class="trust-logo-img"
-              height={32}
-              width={120}
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span class="trust-logo-fallback">{client.name}</span>
-          )}
+          <Image
+            src={client.imageAsset}
+            alt={client.imageAlt}
+            class="trust-logo-img"
+            height={32}
+            width={120}
+            loading="lazy"
+            decoding="async"
+          />
         </li>
       ))}
     </ul>
@@ -66,87 +43,19 @@ const resolved = clients.map((c) => ({
     border-bottom: 1px solid var(--color-border);
     padding: 1.25rem 0;
   }
-
-  .trust-bar-light {
-    background: var(--color-bg-light-2);
-    border-color: rgba(0,0,0,0.08);
-  }
-
-  .trust-bar-inner {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .trust-bar-label {
-    font-family: var(--font-ui);
-    font-size: 0.625rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-subtle);
-    white-space: nowrap;
-    margin: 0;
-    flex-shrink: 0;
-  }
-
-  .trust-bar-light .trust-bar-label {
-    color: var(--color-text-muted);
-  }
-
-  .trust-bar-logos {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
-  }
-
+  .trust-bar-light { background: var(--color-bg-light-2); border-color: rgba(0,0,0,0.08); }
+  .trust-bar-inner { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+  .trust-bar-label { font-family: var(--font-ui); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-subtle); white-space: nowrap; margin: 0; flex-shrink: 0; }
+  .trust-bar-light .trust-bar-label { color: var(--color-text-muted); }
+  .trust-bar-logos { display: flex; align-items: center; gap: 2.5rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
   .trust-logo-item { flex-shrink: 0; }
-
-  /* Dark theme — invert dark logos to white, reduce opacity for subtlety */
-  .trust-logo-img {
-    height: 28px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-    filter: invert(1) brightness(1) opacity(0.45);
-    transition: opacity var(--transition-base), filter var(--transition-base);
-  }
-
-  .trust-logo-item:hover .trust-logo-img {
-    filter: invert(1) brightness(1) opacity(0.75);
-  }
-
-  /* Light theme — dark logos render naturally, just reduce opacity */
-  .trust-bar-light .trust-logo-img {
-    filter: brightness(0) opacity(0.35);
-  }
-
-  .trust-bar-light .trust-logo-item:hover .trust-logo-img {
-    filter: brightness(0) opacity(0.6);
-  }
-
-  /* Fallback text if image missing */
-  .trust-logo-fallback {
-    font-family: var(--font-display);
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--color-text-subtle);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
+  .trust-logo-img { height: 28px; width: auto; object-fit: contain; display: block; filter: invert(1) brightness(1) opacity(0.45); transition: opacity var(--transition-base), filter var(--transition-base); }
+  .trust-logo-item:hover .trust-logo-img { filter: invert(1) brightness(1) opacity(0.75); }
+  .trust-bar-light .trust-logo-img { filter: brightness(0) opacity(0.35); }
+  .trust-bar-light .trust-logo-item:hover .trust-logo-img { filter: brightness(0) opacity(0.6); }
   @media (max-width: 768px) {
-    .trust-bar-inner {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
+    .trust-bar-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
     .trust-bar-logos { gap: 1.5rem; }
-    .trust-logo-img  { height: 24px; }
+    .trust-logo-img { height: 24px; }
   }
 </style>

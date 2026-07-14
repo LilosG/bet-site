@@ -18,10 +18,12 @@ export interface Props {
   light?: boolean;
 }
 
+import { cms } from '../../lib/cms';
+
 const {
   steps,
-  heading = 'How It Works',
-  eyebrow = 'The Process',
+  heading = cms.globalCtas.defaultProcessHeading,
+  eyebrow = cms.globalCtas.defaultProcessEyebrow,
   light = false,
 } = Astro.props;
 ---

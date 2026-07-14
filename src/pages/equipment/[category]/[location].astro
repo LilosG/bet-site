@@ -17,48 +17,41 @@ import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
 import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../../data/locations';
 import { NAP } from '../../../data/site';
 import { breadcrumbSchema, faqSchema, productCategorySchema, localBusinessSchema } from '../../../lib/schema';
-
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../../assets/images/*.webp',
-  { eager: true }
-);
-
-function getAsset(filename: string | undefined): ImageMetadata | undefined {
-  if (!filename) return undefined;
-  return allImages[`../../../assets/images/${filename}`]?.default;
-}
+import { cms, equipmentLocations } from '../../../lib/cms';
+import { resolveCmsImage } from '../../../lib/images';
 
 export async function getStaticPaths() {
   const allLocations = [...LOCAL_LOCATIONS, ...NATIONAL_LOCATIONS];
-  return EQUIPMENT_CATEGORIES.flatMap((cat) =>
-    allLocations.map((loc) => ({
-      params: { category: cat.slug, location: loc.slug },
-      props: { cat, loc },
-    }))
-  );
+  return equipmentLocations.map((page) => {
+    const cat = EQUIPMENT_CATEGORIES.find(record => record.slug === page.categorySlug);
+    const loc = allLocations.find(record => record.slug === page.locationSlug);
+    if (!cat || !loc) throw new Error(`Invalid equipment-location CMS references: ${page.slug}`);
+    return { params: { category: cat.slug, location: loc.slug }, props: { cat, loc, page } };
+  });
 }
 
-const { cat, loc } = Astro.props;
+const { cat, loc, page } = Astro.props;
 
-const heroAsset = getAsset(cat.heroImage);
+const heroAsset = resolveCmsImage(page.heroImage);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const resolvedItems = cat.featuredItems?.map((item) => ({
   ...item,
-  imageAsset: getAsset(item.image),
+  condition: item.condition as 'Used' | 'New',
+  imageAsset: resolveCmsImage(item.image),
 })) ?? [];
 
 const isLocal = loc.type === 'local';
 
-const pageH1 = `${cat.title} For Sale — ${loc.city}, ${loc.stateAbbr}`;
-const metaTitle = `${cat.title} For Sale ${loc.city}, ${loc.stateAbbr} | Beverage Equipment Traders`;
-const metaDescription = `New and used ${cat.title.toLowerCase()} shipping to ${loc.city}, ${loc.state}. ${cat.description.slice(0, 100)}. Ships from San Marcos, CA. Rigging and installation available.`;
+const pageH1 = page.h1;
+const metaTitle = page.metaTitle;
+const metaDescription = page.metaDescription;
 
 const crumbs = [
-  { name: 'Home',      url: '/' },
-  { name: 'Equipment', url: '/equipment' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: cms.pages.equipment.breadcrumbLabel, url: '/equipment' },
   { name: cat.title,   url: `/equipment/${cat.slug}` },
   { name: loc.city,    url: `/equipment/${cat.slug}/${loc.slug}` },
 ];
@@ -94,20 +87,18 @@ const schemas = [
       ></div>
     )}
     <div class="container eq-loc-hero-inner">
-      <span class="eyebrow">{cat.title} · {loc.city}, {loc.stateAbbr}</span>
+      <span class="eyebrow">{page.heroEyebrow}</span>
       <h1>{pageH1}</h1>
-      <p class="eq-loc-hero-intro">
-        Beverage Equipment Traders ships new and used {cat.title.toLowerCase()} to {loc.city} and nationwide from our 40,000 sq ft facility in San Marcos, CA. Every piece photographed, documented, and priced. Rigging and installation available at destination.
-      </p>
+      <p class="eq-loc-hero-intro">{page.heroBody}</p>
       <div class="eq-loc-hero-ctas">
         <a href={cat.shopifyCollectionUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
-          Browse {cat.title} Inventory
+          {page.browseLabel}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="/contact" class="btn btn-outline btn-lg">Contact Trade Desk</a>
+        <a href="/contact" class="btn btn-outline btn-lg">{page.contactLabel}</a>
       </div>
-      <div class="eq-loc-trust-chips" aria-label="Service highlights">
-        {['Ships Nationwide', isLocal ? '1–2 Week Local Turnaround' : 'Rigging at Destination', 'Prior Brewery Owners', 'San Marcos, CA'].map((chip) => (
+      <div class="eq-loc-trust-chips" aria-label={page.serviceHighlightsAriaLabel}>
+        {page.trustChips.map((chip) => (
           <span class="trust-chip">{chip}</span>
         ))}
       </div>
@@ -120,26 +111,19 @@ const schemas = [
   <section class="eq-loc-body section-y" aria-labelledby="eq-loc-heading">
     <div class="container eq-loc-content-inner">
       <div class="prose">
-        <h2 id="eq-loc-heading">{cat.title} Shipping to {loc.city} — What to Know</h2>
+        <h2 id="eq-loc-heading">{page.bodyHeading}</h2>
         {cat.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
-        <p>
-          {isLocal
-            ? `For ${loc.city} area buyers, in-person inspection of equipment at our San Marcos facility is available by appointment. Local rigging and installation jobs typically turn around within 1 to 2 weeks.`
-            : `Freight to ${loc.city} from our San Marcos, CA facility typically runs 2 to 4 business days depending on equipment size and carrier routing. Rigging and installation at destination available on all purchases.`
-          }
-        </p>
-        <p>
-          Beverage Equipment Traders ships to all 50 states and serves buyers across North America. The {loc.city} market is one of many active markets we work in — contact us regardless of your location and we will advise on current inventory and freight timing.
-        </p>
+        <p>{page.locationParagraph}</p>
+        <p>{page.marketParagraph}</p>
       </div>
       <aside class="eq-loc-sidebar">
         <div class="eq-loc-sidebar-card">
-          <h3>Ship {cat.title} to {loc.city}</h3>
-          <p>Our trade desk responds within one business day. Provide your requirements and we will return current inventory and a freight quote to {loc.city}.</p>
+          <h3>{page.sidebarHeading}</h3>
+          <p>{page.sidebarBody}</p>
           <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;">
-            Request a Quote
+            {page.sidebarCtaLabel}
           </a>
           <a href={`tel:${NAP.phonePlain}`} class="eq-loc-phone">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -147,12 +131,12 @@ const schemas = [
           </a>
         </div>
         <div class="eq-loc-sidebar-links">
-          <p class="eq-loc-sidebar-label">Other Equipment in {loc.city}</p>
+          <p class="eq-loc-sidebar-label">{page.relatedLabel}</p>
           <ul>
             {EQUIPMENT_CATEGORIES.filter((c) => c.slug !== cat.slug).slice(0, 5).map((c) => (
               <li><a href={`/equipment/${c.slug}/${loc.slug}`}>{c.title} — {loc.city}</a></li>
             ))}
-            <li><a href={`/equipment/${cat.slug}`}>All {cat.title} Inventory</a></li>
+            <li><a href={`/equipment/${cat.slug}`}>{page.allInventoryLabel}</a></li>
           </ul>
         </div>
       </aside>
@@ -167,11 +151,11 @@ const schemas = [
       <div class="container">
         <div class="eq-loc-section-header">
           <div>
-            <span class="eyebrow">Currently In Stock</span>
-            <h2 id="eq-loc-inventory-heading">Featured {cat.title} — Ships to {loc.city}</h2>
+            <span class="eyebrow">{page.inventoryEyebrow}</span>
+            <h2 id="eq-loc-inventory-heading">{page.inventoryHeading}</h2>
           </div>
           <a href={cat.shopifyCollectionUrl} class="eq-loc-section-link" target="_blank" rel="noopener noreferrer">
-            View All {cat.title}
+            {page.viewAllLabel}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -183,6 +167,7 @@ const schemas = [
               condition={item.condition}
               category={item.category}
               image={item.imageAsset}
+              imageAlt={item.imageAlt}
               href={cat.shopifyCollectionUrl}
             />
           ))}
@@ -194,16 +179,16 @@ const schemas = [
   <!-- ═══ FAQ ════════════════════════════════════ -->
   <FAQ
     items={cat.faqs}
-    heading={`${cat.title} ${loc.city} — Frequently Asked Questions`}
+    heading={page.faqHeading}
   />
 
   <CtaStrip
-    heading={`Sourcing ${cat.title} in ${loc.city}?`}
-    subtext={`We ship from San Marcos, CA. Every piece photographed and condition-documented. Rigging and installation available in ${loc.city} and nationwide.`}
-    primaryLabel="Request a Quote"
-    primaryHref="/contact"
-    secondaryLabel={`View All ${cat.title}`}
-    secondaryHref={cat.shopifyCollectionUrl}
+    heading={page.finalCtaHeading}
+    subtext={page.finalCtaBody}
+    primaryLabel={page.primaryCta.label}
+    primaryHref={page.primaryCta.href}
+    secondaryLabel={page.secondaryCta.label}
+    secondaryHref={page.secondaryCta.href}
   />
 </Layout>
 

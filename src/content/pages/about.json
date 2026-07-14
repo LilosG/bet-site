@@ -1,0 +1,105 @@
+{
+  "seo": {
+    "title": "About Beverage Equipment Traders — Built by Operators, For Operators",
+    "description": "Beverage Equipment Traders was founded by former brewery owners who spent 15+ years on the production floor. Based in San Marcos, CA. 225+ items in stock. 600+ equipment placements."
+  },
+  "breadcrumbLabel": "About",
+  "hero": {
+    "image": "hero-equipment.webp",
+    "imageAlt": "Beverage Equipment Traders equipment facility",
+    "eyebrow": "About BET",
+    "heading": "Built by Operators, For Operators.",
+    "body": "Beverage Equipment Traders was founded by former brewery owners who spent fifteen years on the production floor before pivoting to equipment trading. We know what failure at installation looks like. We know what a half-percent efficiency gap costs at scale. We built this company because we needed it and it didn't exist."
+  },
+  "story": {
+    "image": "brewhouse-hero.webp",
+    "imageAlt": "Commercial brewhouse — Beverage Equipment Traders facility, San Marcos CA",
+    "badgeTop": "EST. 2009",
+    "badgeBottom": "San Marcos, California",
+    "addressLabel": "Headquarters",
+    "eyebrow": "The Story",
+    "heading": "Before we brokered a single tank, we ran a brewhouse.",
+    "paragraphs": [
+      "Most equipment dealers have never brewed a batch. They learned equipment pricing from a spreadsheet and condition grading from a checklist. We did not. We troubleshot glycol loops at 2 a.m. We welded back together packaging lines that vendors had written off as scrap. We commissioned brewhouses in facilities that were not built to spec. That context is the reason our clients refer us to other breweries.",
+      "Beverage Equipment Traders started because there was no single operator we trusted to handle the full scope of an equipment transaction — sourcing, moving, installing, and commissioning — without losing accountability somewhere in the middle. We built the company we needed. It now serves breweries, cideries, distilleries, and beverage producers across all 50 states.",
+      "Our 40,000 sq ft facility in San Marcos, CA houses 225+ items at any given time. Every piece is photographed and listed with condition documentation. We do not sell sight-unseen from a blurry listing. Buyers are encouraged to inspect in person. Our team can walk you through every piece in our yard and give you the operator's take on what it's actually worth."
+    ],
+    "primaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "secondaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    }
+  },
+  "lifecycle": {
+    "eyebrow": "What We Do",
+    "heading": "The Full Capital Equipment Lifecycle",
+    "items": [
+      {
+        "title": "Buy and Sell",
+        "description": "225+ items in our yard at any time. Brewhouses, fermenters, canning lines, chillers, distilling equipment, kegs, boilers, and cold rooms. Every piece photographed and documented."
+      },
+      {
+        "title": "Rig and Install",
+        "description": "Millwright crews, crane operation, bonded freight, and commissioning. All 50 states. One quote covers the full scope."
+      },
+      {
+        "title": "Consign",
+        "description": "Managed listing, valuation, marketing, and payout for equipment you need to move. No upfront cost."
+      },
+      {
+        "title": "Auction",
+        "description": "Full-facility liquidations and competitive online auction events for distressed and surplus assets."
+      },
+      {
+        "title": "Consult",
+        "description": "Pre-purchase audits, capacity planning, and commissioning support from licensed brewery engineers."
+      },
+      {
+        "title": "Source New",
+        "description": "Manufacturer relationships for custom new equipment builds when the right used piece is not available."
+      }
+    ]
+  },
+  "trustHeading": "Clients we have worked with",
+  "visit": {
+    "eyebrow": "Visit",
+    "heading": "Our Facility in San Marcos, CA",
+    "body": "Our 40,000 sq ft facility is open for in-person inspection by appointment. Most buyers evaluating high-value equipment prefer to see it in person before committing. We encourage it.",
+    "hours": [
+      {
+        "day": "Monday – Thursday",
+        "label": "10:00 AM – 4:00 PM"
+      },
+      {
+        "day": "Friday",
+        "label": "10:00 AM – 3:00 PM"
+      },
+      {
+        "day": "Saturday",
+        "label": "By Appointment"
+      },
+      {
+        "day": "Sunday",
+        "label": "Closed"
+      }
+    ],
+    "directionsLabel": "Get Directions",
+    "mapTitle": "Beverage Equipment Traders — San Marcos, CA facility location",
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.086988947924!2d-117.1302703243225!3d33.133079173516876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dbf529c1055555%3A0xfafe87851d10b9a1!2sBeverage%20Equipment%20Traders!5e0!3m2!1sen!2sus!4v1780601003641!5m2!1sen!2sus"
+  },
+  "finalCta": {
+    "heading": "Ready to talk equipment?",
+    "body": "Our trade desk responds within one business day. Provide the equipment you need and we will find it or source it.",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Inventory",
+      "href": "/equipment"
+    }
+  }
+}

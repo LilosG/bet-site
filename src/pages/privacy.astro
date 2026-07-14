@@ -3,41 +3,37 @@ import Layout from '../layouts/Layout.astro';
 import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import { SITE, NAP } from '../data/site';
 import { breadcrumbSchema } from '../lib/schema';
+import { cms } from '../lib/cms';
+
+const content = cms.pages.privacy;
+const [introBeforeUrl, introAfterUrl] = content.intro.split('{siteUrl}');
+const [contactBeforeEmail, contactAfterEmail] = content.contactBody.split('{email}');
+const [contactBetween, contactAfterAddress] = contactAfterEmail.split('{address}');
 
 const crumbs = [
-  { name: 'Home',    url: '/' },
-  { name: 'Privacy', url: '/privacy' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/privacy' },
 ];
 ---
 
 <Layout
-  title="Privacy Policy | Beverage Equipment Traders"
-  description="Privacy policy for beverageequipmenttraders.com and Beverage Equipment Traders."
+  title={content.seo.title}
+  description={content.seo.description}
   noindex={true}
   schemas={[breadcrumbSchema(crumbs)]}
 >
   <Breadcrumb crumbs={crumbs} />
   <section class="legal-section">
     <div class="container legal-inner">
-      <h1>Privacy Policy</h1>
-      <p class="legal-updated">Last updated: May 2026</p>
+      <h1>{content.heading}</h1>
+      <p class="legal-updated">{content.updated}</p>
 
-      <p>Beverage Equipment Traders ("we", "us", or "our") operates <strong>{SITE.url}</strong>. This page informs you of our policies regarding the collection, use, and disclosure of personal information when you use our site.</p>
+      <p>{introBeforeUrl}<strong>{SITE.url}</strong>{introAfterUrl}</p>
 
-      <h2>Information We Collect</h2>
-      <p>We collect information you provide directly when submitting a contact form: name, email address, phone number, company name, and the content of your inquiry. We do not sell, trade, or rent this information to third parties.</p>
+      {content.sections.map(section => <><h2>{section.heading}</h2><p>{section.body}</p></>)}
 
-      <h2>How We Use Your Information</h2>
-      <p>We use the information you submit to respond to your inquiry and to provide the services you have requested. We may use your email address to follow up on open inquiries.</p>
-
-      <h2>Cookies and Analytics</h2>
-      <p>We may use standard analytics tools to understand how visitors use our site. These tools may set cookies. You can control cookie settings in your browser. We do not use advertising or tracking cookies.</p>
-
-      <h2>Third-Party Services</h2>
-      <p>Our site links to an external Shopify store operated by Beverage Equipment Traders. Shopify's own privacy policy governs any information you provide on their platform.</p>
-
-      <h2>Contact</h2>
-      <p>Questions about this policy can be directed to: <a href={`mailto:${NAP.email}`}>{NAP.email}</a> or by mail to {NAP.address}.</p>
+      <h2>{content.contactHeading}</h2>
+      <p>{contactBeforeEmail}<a href={`mailto:${NAP.email}`}>{NAP.email}</a>{contactBetween}{NAP.address}{contactAfterAddress}</p>
     </div>
   </section>
 </Layout>

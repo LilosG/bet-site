@@ -19,16 +19,8 @@ import { NAP } from '../../data/site';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { SERVICES } from '../../data/services';
 import { breadcrumbSchema, faqSchema } from '../../lib/schema';
-
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
-
-function getAsset(filename: string | undefined): ImageMetadata | undefined {
-  if (!filename) return undefined;
-  return allImages[`../../assets/images/${filename}`]?.default;
-}
+import { cms, interpolate } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
 
 export async function getStaticPaths() {
   return INDUSTRIES.map((industry) => ({
@@ -39,30 +31,26 @@ export async function getStaticPaths() {
 
 const { industry } = Astro.props;
 
-const heroAsset = getAsset(industry.heroImage);
+const heroAsset = resolveCmsImage(industry.heroImage);
+const labels = industry.labels;
+const labelValues = { name: industry.name, shortName: industry.shortName };
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const relatedEquipment = industry.relevantEquipment
   .map((slug) => EQUIPMENT_CATEGORIES.find((c) => c.slug === slug))
-  .filter(Boolean);
+  .filter((record): record is NonNullable<typeof record> => record !== undefined);
 
 const relatedServices = industry.relevantServices
   .map((slug) => SERVICES.find((s) => s.slug === slug))
-  .filter(Boolean);
+  .filter((record): record is NonNullable<typeof record> => record !== undefined);
 
 const crumbs = [
-  { name: 'Home',        url: '/' },
-  { name: 'Industries',  url: '/industries' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: cms.pages.industries.breadcrumbLabel, url: '/industries' },
   { name: industry.name, url: `/industries/${industry.slug}` },
 ];
-
-const formatEquipmentLabel = (slug: string) =>
-  slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
 
 const schemas = [
   breadcrumbSchema(crumbs),
@@ -88,15 +76,15 @@ const schemas = [
       ></div>
     )}
     <div class="container ind-hero-inner">
-      <span class="eyebrow">Industry</span>
+      <span class="eyebrow">{labels.heroEyebrow}</span>
       <h1>{industry.h1}</h1>
       <p class="ind-hero-intro">{industry.intro}</p>
       <div class="ind-hero-ctas">
-        <a href="/contact" class="btn btn-primary btn-lg">
-          Contact the Trade Desk
+        <a href={labels.primaryCta.href} class="btn btn-primary btn-lg">
+          {labels.primaryCta.label}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="/equipment" class="btn btn-outline btn-lg">Browse Equipment</a>
+        <a href={labels.secondaryCta.href} class="btn btn-outline btn-lg">{labels.secondaryCta.label}</a>
       </div>
     </div>
   </section>
@@ -107,17 +95,17 @@ const schemas = [
   <section class="ind-body-band section-y" aria-labelledby="ind-content-heading">
     <div class="container ind-content-inner">
       <div class="prose">
-        <h2 id="ind-content-heading">{industry.name} — Equipment Overview</h2>
+        <h2 id="ind-content-heading">{interpolate(labels.bodyHeading, labelValues)}</h2>
         {industry.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
       </div>
       <aside class="ind-sidebar">
         <div class="ind-sidebar-card">
-          <h3>Talk to Our Team</h3>
-          <p>Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.</p>
+          <h3>{labels.sidebarHeading}</h3>
+          <p>{labels.sidebarBody}</p>
           <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;">
-            Contact Trade Desk
+            {labels.sidebarCtaLabel}
           </a>
           <a href={`tel:${NAP.phonePlain}`} class="ind-phone">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -126,7 +114,7 @@ const schemas = [
         </div>
         {industry.featuredEquipmentTypes?.length > 0 && (
           <div class="ind-sidebar-types">
-            <p class="ind-sidebar-label">Common Equipment Types</p>
+            <p class="ind-sidebar-label">{labels.equipmentTypesLabel}</p>
             <ul>
               {industry.featuredEquipmentTypes.map((type) => (
                 <li>{type}</li>
@@ -142,8 +130,8 @@ const schemas = [
   {industry.buyerNeeds?.length > 0 && (
     <BuyerNeeds
       needs={industry.buyerNeeds}
-      heading={`What ${industry.shortName} Operations Typically Source`}
-      eyebrow="Common Needs"
+      heading={interpolate(labels.buyerNeedsHeading, labelValues)}
+      eyebrow={labels.buyerNeedsEyebrow}
     />
   )}
 
@@ -153,15 +141,15 @@ const schemas = [
   {relatedEquipment.length > 0 && (
     <section class="ind-eq-band section-y" aria-labelledby="ind-eq-heading">
       <div class="container">
-        <span class="eyebrow">Equipment Available</span>
-        <h2 id="ind-eq-heading">Browse Equipment by Category</h2>
+        <span class="eyebrow">{labels.equipmentEyebrow}</span>
+        <h2 id="ind-eq-heading">{labels.equipmentHeading}</h2>
         <div class="ind-eq-grid">
           {relatedEquipment.map((cat) => (
             <a href={`/equipment/${cat.slug}/${LOCAL_LOCATIONS[0].slug}`} class="ind-eq-card">
               <h3 class="ind-eq-title">{cat.title}</h3>
               <p class="ind-eq-desc">{cat.description}</p>
               <span class="ind-eq-cta">
-                Browse {cat.title}
+                {labels.equipmentCtaPrefix} {cat.title}
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </a>
@@ -175,8 +163,8 @@ const schemas = [
   {relatedServices.length > 0 && (
     <section class="ind-svc-band section-y" aria-labelledby="ind-svc-heading">
       <div class="container">
-        <span class="eyebrow">Services</span>
-        <h2 id="ind-svc-heading">Services Available for {industry.shortName} Operations</h2>
+        <span class="eyebrow">{labels.servicesEyebrow}</span>
+        <h2 id="ind-svc-heading">{interpolate(labels.servicesHeading, labelValues)}</h2>
         <div class="ind-svc-grid">
           {relatedServices.map((svc) => (
             <a href={`/services/${svc.slug}`} class="ind-svc-card">
@@ -188,7 +176,7 @@ const schemas = [
               <h3 class="ind-svc-title">{svc.title}</h3>
               <p class="ind-svc-desc">{svc.intro}</p>
               <span class="ind-svc-cta">
-                Learn More
+                {labels.servicesCtaLabel}
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </a>
@@ -204,18 +192,18 @@ const schemas = [
   {industry.faqs?.length > 0 && (
     <FAQ
       items={industry.faqs}
-      heading={`${industry.name} — Frequently Asked Questions`}
+      heading={interpolate(labels.faqHeading, labelValues)}
     />
   )}
 
   <!-- ═══ CTA ════════════════════════════════════ -->
   <CtaStrip
-    heading={`Ready to source equipment for your ${industry.shortName} operation?`}
-    subtext="Our trade desk responds within one business day."
-    primaryLabel="Contact Trade Desk"
-    primaryHref="/contact"
-    secondaryLabel="Browse All Equipment"
-    secondaryHref="/equipment"
+    heading={interpolate(labels.finalCtaHeading, labelValues)}
+    subtext={labels.finalCtaBody}
+    primaryLabel={labels.finalPrimaryCta.label}
+    primaryHref={labels.finalPrimaryCta.href}
+    secondaryLabel={labels.finalSecondaryCta.label}
+    secondaryHref={labels.finalSecondaryCta.href}
   />
 </Layout>
 

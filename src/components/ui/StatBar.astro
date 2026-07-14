@@ -6,6 +6,7 @@
  * All content from data layer — zero hardcoding.
  */
 import { STATS } from '../../data/site';
+import { cms } from '../../lib/cms';
 
 export interface Props {
   stats?: readonly { value: string; label: string }[];
@@ -17,7 +18,7 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
 ---
 
 {standalone ? (
-  <div class={`stat-bar${light ? ' stat-bar-light' : ''}`} aria-label="Key statistics">
+  <div class={`stat-bar${light ? ' stat-bar-light' : ''}`} aria-label={cms.globalCtas.statAriaLabel}>
     <div class="container stat-bar-inner">
       {stats.map((stat) => (
         <div class="stat-item">
@@ -28,7 +29,7 @@ const { stats = STATS, light = false, standalone = true } = Astro.props;
     </div>
   </div>
 ) : (
-  <div class={`stat-bar-inline${light ? ' stat-bar-light' : ''}`} aria-label="Key statistics">
+  <div class={`stat-bar-inline${light ? ' stat-bar-light' : ''}`} aria-label={cms.globalCtas.statAriaLabel}>
     {stats.map((stat) => (
       <div class="stat-item">
         <span class="stat-value">{stat.value}</span>

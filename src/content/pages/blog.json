@@ -1,0 +1,83 @@
+{
+  "seo": {
+    "title": "Brewery Equipment Blog — Buyer Guides, News & Resources | Beverage Equipment Traders",
+    "description": "Expert guides on buying used brewery equipment, rigging and installation, consignment, and more. Written by former brewery operators. Beverage Equipment Traders, San Marcos, CA."
+  },
+  "breadcrumbLabel": "Blog",
+  "hero": {
+    "image": "hero-equipment.webp",
+    "imageAlt": "Brewery equipment resources",
+    "eyebrow": "Resources",
+    "heading": "Brewery Equipment:\nThe Operator's Perspective.",
+    "body": "Practical guides on buying, moving, and selling brewery and beverage equipment. Written by people who have actually run production facilities."
+  },
+  "posts": {
+    "eyebrow": "Latest Articles",
+    "heading": "From the Trade Desk",
+    "readMoreLabel": "Read More"
+  },
+  "topics": {
+    "eyebrow": "Content Categories",
+    "heading": "What We Write About",
+    "items": [
+      {
+        "title": "Buyer Guides",
+        "description": "How to evaluate, size, and purchase used brewing equipment."
+      },
+      {
+        "title": "Equipment Types",
+        "description": "What each piece of equipment does and how it fits your operation."
+      },
+      {
+        "title": "Industry News",
+        "description": "Auction announcements, market trends, and inventory updates."
+      },
+      {
+        "title": "Rigging & Install",
+        "description": "What rigging and installation actually involves and what to budget."
+      },
+      {
+        "title": "Consignment",
+        "description": "How to liquidate equipment intelligently."
+      },
+      {
+        "title": "Brewery Start-Up",
+        "description": "Capacity planning, equipment sourcing strategy, and timeline."
+      }
+    ]
+  },
+  "postLabels": {
+    "updatedPrefix": "Updated",
+    "category": "Category",
+    "topics": "Topics",
+    "sidebarHeading": "Ready to source equipment?",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "contactLabel": "Contact Trade Desk",
+    "equipmentLabel": "Browse Equipment",
+    "backLabel": "Back to Blog"
+  },
+  "finalCta": {
+    "heading": "Questions our articles don't answer?",
+    "body": "Our trade desk is available by phone or email. We respond within one business day.",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    }
+  },
+  "postFinalCta": {
+    "heading": "Questions about buying brewery equipment?",
+    "body": "Our trade desk handles sourcing, rigging, and equipment consulting. Responds within one business day.",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    }
+  }
+}

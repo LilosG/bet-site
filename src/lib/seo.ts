@@ -2,7 +2,7 @@
 //  SEO META UTILITY
 // ─────────────────────────────────────────────
 
-import { SITE, NAP } from '../data/site';
+import { SITE } from '../data/site';
 
 export interface SeoProps {
   title: string;
@@ -23,4 +23,4 @@ export function buildCanonical(path: string): string {
   return `${SITE.url}${clean}`;
 }
 
-export const DEFAULT_OG_IMAGE = '/images/og-default.jpg';
+export const DEFAULT_OG_IMAGE = SITE.defaultOgImage;

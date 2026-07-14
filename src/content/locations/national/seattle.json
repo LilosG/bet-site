@@ -1,0 +1,62 @@
+{
+  "slug": "seattle",
+  "city": "Seattle",
+  "state": "Washington",
+  "stateAbbr": "WA",
+  "type": "national",
+  "heroImage": "hero-equipment.webp",
+  "h1": "Used Brewery Equipment Seattle, Washington",
+  "metaTitle": "Used Brewery Equipment Seattle WA | Beverage Equipment Traders",
+  "metaDescription": "New and used brewery equipment shipping to Seattle, WA. Brewhouses, fermenters, canning lines, rigging, and installation from San Marcos, CA.",
+  "intro": "Shipping brewery equipment to Seattle and the Pacific Northwest from San Marcos, CA.",
+  "bodyContent": "Seattle and the greater Puget Sound region support a large and active craft brewery market. Beverage Equipment Traders ships equipment to Seattle from our San Marcos, CA facility. Freight to Seattle typically runs 3 to 4 business days. Rigging and installation services available on request. Contact us for current inventory and freight quotes.",
+  "keywords": [
+    "used brewery equipment Seattle",
+    "brewery equipment Washington state",
+    "used brewhouse Seattle WA",
+    "brewery rigging Seattle"
+  ],
+  "order": 4,
+  "heroImageAlt": "Seattle, Washington",
+  "labels": {
+    "heroEyebrow": "{city}, {stateAbbr} · National Shipping",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Inventory",
+      "href": "/equipment"
+    },
+    "shippingNote": "Shipping from San Marcos, CA to {city}. Rigging and installation available.",
+    "bodyHeading": "Used Brewery Equipment Shipped to {city}",
+    "sidebarHeading": "Ship to {city}",
+    "sidebarBody": "We ship anywhere in the US. Bonded freight, crated or pad-wrapped. Rigging at destination available.",
+    "sidebarCtaLabel": "Request a Shipping Quote",
+    "factsLabel": "Shipping Facts",
+    "facts": [
+      "Bonded freight to all 50 states",
+      "Crated or pad-wrapped based on equipment",
+      "Crane-in and millwright available",
+      "Single quote covers freight + rigging",
+      "Lead times confirmed at time of purchase"
+    ],
+    "equipmentEyebrow": "Inventory Available for Shipping to {city}",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services Available in {city}",
+    "servicesHeading": "What We Handle Nationally",
+    "servicesCtaLabel": "Learn More",
+    "finalCtaHeading": "Sourcing equipment in {city}?",
+    "finalCtaBody": "We ship from San Marcos, CA. Every piece is photographed and condition-documented before it leaves our yard.",
+    "finalPrimaryCta": {
+      "label": "Request a Quote",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "View Full Inventory",
+      "href": "https://beverageequipmenttraders.com/collections/all"
+    },
+    "heroImageAlt": "{city}, {state}"
+  }
+}

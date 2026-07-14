@@ -1,0 +1,71 @@
+{
+  "seo": {
+    "title": "Industries We Serve | Beverage Equipment Traders",
+    "description": "Brewery, distillery, cidery, food processing, dairy, and pharmaceutical equipment. BET serves production operations across industries with the same food-grade stainless inventory."
+  },
+  "breadcrumbLabel": "Industries",
+  "hero": {
+    "image": "hero-industries.webp",
+    "imageAlt": "Production equipment for beverage and processing industries",
+    "eyebrow": "Industries",
+    "heading": "Equipment Built for Production.\nIndustries Beyond Brewing.",
+    "body": "Beverage Equipment Traders started in craft brewing. The food-grade stainless equipment, processing systems, and industrial infrastructure we carry serves production operations well beyond the brewery floor — distilleries, cideries, food processors, dairy operations, and pharmaceutical facilities all source from the same equipment pool."
+  },
+  "beverage": {
+    "eyebrow": "Beverage Production",
+    "heading": "Craft Beverage Operations",
+    "body": "Our core market. Brewhouses, fermenters, canning lines, glycol systems, and full equipment lifecycle services for craft beverage producers at every scale."
+  },
+  "industrial": {
+    "eyebrow": "Industrial & Processing",
+    "heading": "Beyond the Brewery Floor",
+    "body": "Food-grade stainless tanks, CIP systems, heat exchangers, pumps, and processing infrastructure have applications across food manufacturing, dairy, and pharmaceutical operations. The same equipment pool, different production contexts."
+  },
+  "cardCtaLabel": "View Equipment & Services",
+  "why": {
+    "eyebrow": "Why BET",
+    "heading": "One inventory. Every production context.",
+    "paragraphs": [
+      "Food-grade 304 and 316L stainless steel does not know what industry it is in. A jacketed fermenter from a brewery liquidation serves a craft brewery, a kombucha producer, a dairy processor, and a pharmaceutical operation equally well — the specifications are what matter, not the prior use.",
+      "Beverage Equipment Traders provides honest specification data, condition documentation, and operator context across every piece in our inventory. Whatever your production application, we advise on what equipment actually meets your requirements."
+    ],
+    "cta": {
+      "label": "Talk to Our Team",
+      "href": "/contact"
+    },
+    "items": [
+      {
+        "title": "Food-Grade Stainless",
+        "description": "304 and 316L specified on all listings."
+      },
+      {
+        "title": "Nationwide Shipping",
+        "description": "All 50 states from our San Marcos facility."
+      },
+      {
+        "title": "Operator Documentation",
+        "description": "Condition notes, specs, and photos on every piece."
+      },
+      {
+        "title": "Rigging & Installation",
+        "description": "Full-service moves for any production application."
+      },
+      {
+        "title": "Honest Guidance",
+        "description": "We tell you if something fits your application."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Not sure if we serve your industry?",
+    "body": "Describe your application and equipment requirements. We will tell you what we have and whether it fits.",
+    "primaryCta": {
+      "label": "Contact Our Team",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    }
+  }
+}

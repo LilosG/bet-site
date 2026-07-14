@@ -19,10 +19,12 @@ export interface Props {
   light?: boolean;
 }
 
+import { cms } from '../../lib/cms';
+
 const {
   scenarios,
-  heading = 'Is This Right for You?',
-  eyebrow = 'Best Fit',
+  heading = cms.globalCtas.defaultBestFitHeading,
+  eyebrow = cms.globalCtas.defaultBestFitEyebrow,
   cta,
   light = false,
 } = Astro.props;

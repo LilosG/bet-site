@@ -1,0 +1,172 @@
+{
+  "slug": "fermenters",
+  "title": "Fermenters & Tanks",
+  "h1": "Used Fermenters and Fermentation Tanks For Sale",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/fermenters-manual",
+  "metaTitle": "Used Fermenters & Fermentation Tanks For Sale | Beverage Equipment Traders",
+  "metaDescription": "New and used fermenters, unitanks, brite tanks, and fermentation vessels. Multiple sizes and manufacturers in stock. Nationwide shipping from San Marcos, CA.",
+  "description": "Our fermenter inventory spans conical fermenters, jacketed unitanks, and brite tanks across a wide range of volumes from multiple manufacturers.",
+  "bodyContent": "Fermenters are among the most searched pieces of brewery capital equipment, and our inventory reflects genuine depth. Conical fermenters, jacketed unitanks, brite tanks, and open fermentation vessels across volumes from pilot-scale to full production. Manufacturers represented include JV Northwest, Premier Stainless, Specific Mechanical, and others.\n\nKey specs buyers evaluate include vessel volume, cone angle, CIP compatibility, jacket configuration, stainless grade (304 vs 316L), and inlet/outlet sizing. Our listings include specification data alongside condition notes and photography. For unitanks handling both fermentation and conditioning, we note tank history where available.\n\nBrite tanks in our inventory are typically sourced from production breweries upgrading volume, meaning they arrive with documented brewing history, legitimate usage context, and often at significantly below-replacement cost.\n\nAll fermentation vessels can be shipped nationwide. Rigging and installation services are available for multi-vessel moves and facility builds. Contact us for current availability and lead times.",
+  "keywords": [
+    "used fermenters for sale",
+    "used unitanks brewery",
+    "brite tanks for sale",
+    "fermentation tanks brewery",
+    "jacketed fermenter",
+    "conical fermenter used",
+    "JV Northwest fermenter",
+    "brewery tanks for sale"
+  ],
+  "faqs": [
+    {
+      "q": "What fermenter sizes do you typically carry?",
+      "a": "We carry fermenters from small pilot sizes up to large production vessels. Inventory changes regularly — reach out for current availability on specific volumes."
+    },
+    {
+      "q": "Do you sell brite tanks separately from fermenters?",
+      "a": "Yes. Brite tanks, unitanks, and conical fermenters are all available independently. We can also help source matched sets if you are building out a cellaring program."
+    },
+    {
+      "q": "What stainless grades do your fermenters typically come in?",
+      "a": "Most production brewery fermenters are 304 stainless. 316L vessels appear in our inventory and are noted in listings. If you require 316L for your application, contact us and we will source accordingly."
+    },
+    {
+      "q": "Can you source matched sets of fermenters for a new cellar build?",
+      "a": "Yes. For new cellar builds we source matched vessel sets — same manufacturer, same volume, same jacket configuration — at significantly below-new cost. Contact us with your cellar spec and we will advise on current availability."
+    },
+    {
+      "q": "Do you carry fermenters for distillery or cidery applications?",
+      "a": "Yes. Standard conical fermenters and jacketed tanks from brewery production are appropriate for distillery wash fermentation and cider production. The same inventory serves all fermentation applications."
+    }
+  ],
+  "priority": "P0",
+  "heroImage": "hero-fermenters.webp",
+  "featuredItems": [
+    {
+      "name": "60 BBL Jacketed Unitank",
+      "price": "$24,900",
+      "condition": "Used",
+      "category": "FERMENTER",
+      "image": "fermenters-60bbl-pano.webp",
+      "imageAlt": "60 BBL Jacketed Unitank — Used FERMENTER"
+    },
+    {
+      "name": "30 BBL Conical Fermenter",
+      "price": "$18,500",
+      "condition": "Used",
+      "category": "FERMENTER",
+      "image": "fermenters-carbonation-skid.webp",
+      "imageAlt": "30 BBL Conical Fermenter — Used FERMENTER"
+    },
+    {
+      "name": "15 BBL Brite Tank",
+      "price": "$9,800",
+      "condition": "Used",
+      "category": "BRITE TANK",
+      "image": "fermenters-cip-cart.webp",
+      "imageAlt": "15 BBL Brite Tank — Used BRITE TANK"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Calculate Cellar Volume",
+      "description": "Match fermenter volume to your brewhouse output and desired fermentation time. A 15 BBL brewhouse typically needs 3-4x fermentation capacity to maintain steady production."
+    },
+    {
+      "step": 2,
+      "title": "Choose Vessel Type",
+      "description": "Unitanks ferment and condition in one vessel. Dedicated fermenters plus brite tanks give more flexibility but require more space. Confirm your cellar layout before purchasing."
+    },
+    {
+      "step": 3,
+      "title": "Review Specifications",
+      "description": "Confirm cone angle, jacket configuration, CIP spray ball positioning, and inlet/outlet sizes match your existing plumbing and glycol system."
+    },
+    {
+      "step": 4,
+      "title": "Confirm Glycol Compatibility",
+      "description": "Verify your glycol chiller has sufficient capacity for the additional vessels. Adding fermentation volume without increasing chilling capacity creates production bottlenecks."
+    },
+    {
+      "step": 5,
+      "title": "Schedule Delivery",
+      "description": "Multi-vessel moves require coordinated rigging. We handle delivery, set, level, and CIP connection as part of our installation service."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "Expanding Cellar Capacity",
+      "description": "Adding fermentation volume to keep up with brewhouse output? We source matched vessels to your existing cellar configuration.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Building a New Cellar",
+      "description": "Outfitting a new facility from scratch? We can source a full matched set of fermenters and brite tanks at significantly below-new cost.",
+      "icon": "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+    },
+    {
+      "title": "Upgrading to Larger Vessels",
+      "description": "Moving from smaller fermenters to production-scale vessels as you scale? We handle consignment of outgoing tanks and sourcing of replacements.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Cidery or Distillery Build",
+      "description": "Fermentation vessels for cider, spirits, kombucha, and beverage production require the same stainless equipment. Our inventory serves all these applications.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    }
+  ],
+  "order": 1,
+  "heroImageAlt": "Fermenters & Tanks",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "Used Fermenters and Fermentation Tanks — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

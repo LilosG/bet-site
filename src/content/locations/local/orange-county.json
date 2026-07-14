@@ -1,0 +1,53 @@
+{
+  "slug": "orange-county",
+  "city": "Orange County",
+  "state": "California",
+  "stateAbbr": "CA",
+  "type": "local",
+  "heroImage": "hero-locations.webp",
+  "h1": "Brewery Equipment Orange County, CA",
+  "metaTitle": "Brewery Equipment Orange County CA | Beverage Equipment Traders",
+  "metaDescription": "Brewery equipment serving Orange County, CA. Used brewhouses, fermenters, canning lines, and rigging from our San Marcos facility. (949) 888-2739.",
+  "intro": "Equipment and services for Orange County's growing craft beverage scene.",
+  "bodyContent": "Orange County's craft brewery market has expanded substantially over the past decade. Beverage Equipment Traders serves OC breweries from our San Marcos facility, approximately 45 minutes south via the I-5 or SR-78/241.\n\nFor Orange County buyers, in-person inspection trips to our San Marcos facility are practical and encouraged for high-value equipment. We can also arrange equipment viewing appointments and provide detailed video walk-throughs for buyers evaluating remotely.\n\nRigging and installation services extend to Orange County with crew availability typically within 1 to 2 weeks for local jobs. Equipment freight to Orange County is typically overnight or same-day depending on truck availability.\n\nContact us for current inventory and to discuss your equipment needs.",
+  "keywords": [
+    "brewery equipment Orange County",
+    "used brewery equipment OC",
+    "beer equipment dealer Orange County",
+    "brewery rigging Orange County"
+  ],
+  "order": 3,
+  "heroImageAlt": "Orange County, California",
+  "labels": {
+    "heroEyebrow": "{city}, {stateAbbr} · Local Service Area",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "Brewery Equipment Near {city}",
+    "sidebarHeading": "Visit Our Facility",
+    "hoursNote": "Mon–Thu: 10AM–4PM · Fri: 10AM–3PM\nSat: By Appointment",
+    "directionsLabel": "Get Directions",
+    "equipmentEyebrow": "Equipment Available Near {city}",
+    "equipmentHeading": "Browse by Category",
+    "equipmentCtaLabel": "Browse",
+    "servicesEyebrow": "Services in {city}",
+    "servicesHeading": "What We Handle in {state}",
+    "servicesCtaLabel": "Learn More",
+    "finalCtaHeading": "Ready to source or move equipment in {city}?",
+    "finalCtaBody": "One call, one quote. Available for in-person inspection at our San Marcos facility.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "heroImageAlt": "{city}, {state}"
+  }
+}

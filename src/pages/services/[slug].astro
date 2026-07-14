@@ -19,16 +19,8 @@ import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '../../lib/schema';
 import { NAP } from '../../data/site';
-
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
-
-function getAsset(filename: string | undefined): ImageMetadata | undefined {
-  if (!filename) return undefined;
-  return allImages[`../../assets/images/${filename}`]?.default;
-}
+import { cms, interpolate } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
 
 export async function getStaticPaths() {
   return SERVICES.map((service) => ({
@@ -39,23 +31,25 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 
-const heroAsset = getAsset(service.heroImage);
+const heroAsset = resolveCmsImage(service.heroImage);
+const labels = service.labels;
+const labelValues = { title: service.title, shortTitle: service.shortTitle, shortTitleLower: service.shortTitle.toLowerCase() };
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const related = service.relatedServices
   .map((slug) => SERVICES.find((s) => s.slug === slug))
-  .filter(Boolean);
+  .filter((record): record is NonNullable<typeof record> => record !== undefined);
 
 const relatedEquipment = service.relatedEquipment
   .map((slug) => EQUIPMENT_CATEGORIES.find((c) => c.slug === slug))
-  .filter(Boolean)
+  .filter((record): record is NonNullable<typeof record> => record !== undefined)
   .slice(0, 4);
 
 const crumbs = [
-  { name: 'Home',        url: '/' },
-  { name: 'Services',    url: '/services' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: cms.pages.services.breadcrumbLabel, url: '/services' },
   { name: service.title, url: `/services/${service.slug}` },
 ];
 
@@ -89,7 +83,7 @@ const schemas = [
       ></div>
     )}
     <div class="container svc-hero-inner">
-      <span class="eyebrow">Service</span>
+      <span class="eyebrow">{labels.heroEyebrow}</span>
       <h1>{service.h1}</h1>
       <p class="svc-hero-intro">{service.intro}</p>
       <div class="svc-hero-ctas">
@@ -98,11 +92,11 @@ const schemas = [
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href={`tel:${NAP.phonePlain}`} class="btn btn-outline btn-lg">
-          Call {NAP.phone}
+          {labels.callPrefix} {NAP.phone}
         </a>
       </div>
       <div class="svc-trust-chips">
-        {['All 50 States', 'One Quote — Full Scope', 'Prior Brewery Operators', 'San Marcos, CA'].map((chip) => (
+        {labels.trustChips.map((chip) => (
           <span class="trust-chip">{chip}</span>
         ))}
       </div>
@@ -115,7 +109,7 @@ const schemas = [
   <section class="svc-body-band section-y" aria-labelledby="svc-content-heading">
     <div class="container svc-content-inner">
       <div class="prose svc-prose">
-        <h2 id="svc-content-heading">{service.title} — What to Know</h2>
+        <h2 id="svc-content-heading">{service.title} {labels.bodyHeadingSuffix}</h2>
         {service.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
@@ -123,7 +117,7 @@ const schemas = [
       <aside class="svc-sidebar">
         <div class="svc-sidebar-card">
           <h3>{service.cta.label}</h3>
-          <p>Our trade desk responds within one business day. Provide details and we will return a complete scope and price.</p>
+          <p>{labels.sidebarBody}</p>
           <a href={service.cta.href} class="btn btn-primary" style="width:100%;justify-content:center;">
             {service.cta.label}
           </a>
@@ -136,7 +130,7 @@ const schemas = [
         </div>
         {related.length > 0 && (
           <div class="svc-related">
-            <p class="svc-related-label">Other Services</p>
+            <p class="svc-related-label">{labels.relatedServicesLabel}</p>
             <ul>
               {related.map((s) => (
                 <li>
@@ -157,8 +151,8 @@ const schemas = [
   {service.processSteps.length > 0 && (
     <ProcessSteps
       steps={service.processSteps}
-      heading={`How ${service.shortTitle} Works`}
-      eyebrow="The Process"
+      heading={interpolate(labels.processHeading, labelValues)}
+      eyebrow={labels.processEyebrow}
     />
   )}
 
@@ -168,8 +162,8 @@ const schemas = [
   {service.bestFitScenarios.length > 0 && (
     <BestFitScenarios
       scenarios={service.bestFitScenarios}
-      heading={`When ${service.shortTitle} Is the Right Choice`}
-      eyebrow="Best Fit"
+      heading={interpolate(labels.bestFitHeading, labelValues)}
+      eyebrow={labels.bestFitEyebrow}
       cta={service.cta}
     />
   )}
@@ -179,8 +173,8 @@ const schemas = [
     <section class="svc-related-eq-band section-y" aria-labelledby="related-eq-heading">
       <div class="container">
         <div class="related-eq-header">
-          <span class="eyebrow">Related Equipment</span>
-          <h2 id="related-eq-heading">Equipment We Work With</h2>
+          <span class="eyebrow">{labels.relatedEquipmentEyebrow}</span>
+          <h2 id="related-eq-heading">{labels.relatedEquipmentHeading}</h2>
         </div>
         <div class="related-eq-grid">
           {relatedEquipment.map((cat) => (
@@ -208,12 +202,12 @@ const schemas = [
   <!-- ═══ SERVICE BY LOCATION ═══════════════════ -->
   <section class="section-y svc-locations-band" aria-labelledby="svc-locations-heading">
     <div class="container">
-      <span class="eyebrow">Service Areas</span>
-      <h2 id="svc-locations-heading">{service.title} — Available Nationwide</h2>
-      <p class="svc-locations-intro">We provide {service.shortTitle.toLowerCase()} services throughout North America. Select your market for local availability and pricing.</p>
+      <span class="eyebrow">{labels.locationsEyebrow}</span>
+      <h2 id="svc-locations-heading">{interpolate(labels.locationsHeading, labelValues)}</h2>
+      <p class="svc-locations-intro">{interpolate(labels.locationsBody, labelValues)}</p>
       <div class="svc-locations-grid">
         <div class="svc-locations-col">
-          <p class="svc-locations-group-label">Local — Southern California</p>
+          <p class="svc-locations-group-label">{labels.localGroupLabel}</p>
           <ul class="svc-locations-list">
             {LOCAL_LOCATIONS.map((loc) => (
               <li>
@@ -226,7 +220,7 @@ const schemas = [
           </ul>
         </div>
         <div class="svc-locations-col">
-          <p class="svc-locations-group-label">National Markets</p>
+          <p class="svc-locations-group-label">{labels.nationalGroupLabel}</p>
           <ul class="svc-locations-list">
             {NATIONAL_LOCATIONS.map((loc) => (
               <li>
@@ -245,17 +239,17 @@ const schemas = [
   <!-- ═══ FAQ ════════════════════════════════════ -->
   <FAQ
     items={service.faqs}
-    heading={`${service.title} — Frequently Asked Questions`}
+    heading={interpolate(labels.faqHeading, labelValues)}
   />
 
   <!-- ═══ FINAL CTA ══════════════════════════════ -->
   <CtaStrip
-    heading="Ready to get started?"
-    subtext="One call, one quote. Our trade desk handles everything from scope to scheduling."
+    heading={labels.finalCtaHeading}
+    subtext={labels.finalCtaBody}
     primaryLabel={service.cta.label}
     primaryHref={service.cta.href}
-    secondaryLabel="Browse Equipment"
-    secondaryHref="/equipment"
+    secondaryLabel={labels.finalSecondaryCta.label}
+    secondaryHref={labels.finalSecondaryCta.href}
   />
 </Layout>
 
