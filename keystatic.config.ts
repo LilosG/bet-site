@@ -489,7 +489,7 @@ function fieldForValue(
         ? fields.object(
             schemaForObject(sample as Record<string, unknown>, childContext),
             {
-              layout: [12],
+              layout: Object.keys(sample).map(() => 12),
             },
           )
         : typeof sample === "number"
@@ -526,7 +526,10 @@ function fieldForValue(
     return fields.object(schemaForObject(objectValue, childContext), {
       label: objectLabels[key] ?? label,
       description,
-      layout: Object.keys(objectValue).length === 2 ? [6, 6] : [12],
+      layout:
+        Object.keys(objectValue).length === 2
+          ? [6, 6]
+          : Object.keys(objectValue).map(() => 12),
     });
   }
 
