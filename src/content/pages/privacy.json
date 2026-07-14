@@ -1,0 +1,30 @@
+{
+  "seo": {
+    "title": "Privacy Policy | Beverage Equipment Traders",
+    "description": "Privacy policy for beverageequipmenttraders.com and Beverage Equipment Traders."
+  },
+  "breadcrumbLabel": "Privacy",
+  "heading": "Privacy Policy",
+  "updated": "Last updated: May 2026",
+  "intro": "Beverage Equipment Traders (\"we\", \"us\", or \"our\") operates {siteUrl}. This page informs you of our policies regarding the collection, use, and disclosure of personal information when you use our site.",
+  "sections": [
+    {
+      "heading": "Information We Collect",
+      "body": "We collect information you provide directly when submitting a contact form: name, email address, phone number, company name, and the content of your inquiry. We do not sell, trade, or rent this information to third parties."
+    },
+    {
+      "heading": "How We Use Your Information",
+      "body": "We use the information you submit to respond to your inquiry and to provide the services you have requested. We may use your email address to follow up on open inquiries."
+    },
+    {
+      "heading": "Cookies and Analytics",
+      "body": "We may use standard analytics tools to understand how visitors use our site. These tools may set cookies. You can control cookie settings in your browser. We do not use advertising or tracking cookies."
+    },
+    {
+      "heading": "Third-Party Services",
+      "body": "Our site links to an external Shopify store operated by Beverage Equipment Traders. Shopify's own privacy policy governs any information you provide on their platform."
+    }
+  ],
+  "contactHeading": "Contact",
+  "contactBody": "Questions about this policy can be directed to: {email} or by mail to {address}."
+}

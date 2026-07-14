@@ -1,0 +1,53 @@
+{
+  "slug": "riverside",
+  "city": "Riverside",
+  "state": "California",
+  "stateAbbr": "CA",
+  "type": "local",
+  "heroImage": "hero-locations.webp",
+  "h1": "Brewery Equipment Riverside, CA",
+  "metaTitle": "Brewery Equipment Riverside CA | Beverage Equipment Traders",
+  "metaDescription": "Brewery equipment serving Riverside County, CA. Used and new brewhouses, tanks, canning lines, and rigging from our San Marcos facility.",
+  "intro": "Serving Riverside County breweries and beverage producers from our San Marcos facility.",
+  "bodyContent": "Beverage Equipment Traders serves Riverside County from our San Marcos, CA facility. The Inland Empire has a growing craft beverage production community, and our equipment inventory suits both startup and production-scale operations.\n\nWe ship to Riverside County regularly, and our rigging crews are available for local installations and equipment moves throughout the region. Contact us for current inventory, freight quotes, and rigging estimates for your Riverside County location.",
+  "keywords": [
+    "brewery equipment Riverside CA",
+    "used brewery equipment Inland Empire",
+    "beer equipment dealer Riverside",
+    "brewery rigging Riverside County"
+  ],
+  "order": 4,
+  "heroImageAlt": "Riverside, California",
+  "labels": {
+    "heroEyebrow": "{city}, {stateAbbr} · Local Service Area",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "Brewery Equipment Near {city}",
+    "sidebarHeading": "Visit Our Facility",
+    "hoursNote": "Mon–Thu: 10AM–4PM · Fri: 10AM–3PM\nSat: By Appointment",
+    "directionsLabel": "Get Directions",
+    "equipmentEyebrow": "Equipment Available Near {city}",
+    "equipmentHeading": "Browse by Category",
+    "equipmentCtaLabel": "Browse",
+    "servicesEyebrow": "Services in {city}",
+    "servicesHeading": "What We Handle in {state}",
+    "servicesCtaLabel": "Learn More",
+    "finalCtaHeading": "Ready to source or move equipment in {city}?",
+    "finalCtaBody": "One call, one quote. Available for in-person inspection at our San Marcos facility.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "heroImageAlt": "{city}, {state}"
+  }
+}

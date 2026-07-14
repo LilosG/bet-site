@@ -1,0 +1,55 @@
+{
+  "slug": "san-diego",
+  "city": "San Diego",
+  "state": "California",
+  "stateAbbr": "CA",
+  "type": "local",
+  "heroImage": "hero-locations.webp",
+  "h1": "Brewery Equipment San Diego — New and Used Equipment Dealer",
+  "metaTitle": "Brewery Equipment San Diego | Beverage Equipment Traders — San Marcos, CA",
+  "metaDescription": "New and used brewery equipment serving San Diego, CA. Brewhouses, fermenters, canning lines, and more. Rigging and installation available. 30 minutes from downtown San Diego.",
+  "intro": "Serving San Diego's craft brewery community from our facility in San Marcos — the region's largest concentration of craft producers.",
+  "bodyContent": "San Diego has one of the highest concentrations of craft breweries per capita in the United States. Beverage Equipment Traders is based in San Marcos, approximately 30 minutes north of downtown San Diego, making us the nearest full-service brewery equipment dealer to most San Diego County breweries.\n\nFor San Diego area buyers, in-person inspection of high-value equipment is available by appointment at our 40,000 sq ft facility. Rigging and installation for San Diego County jobs typically turn around within 1 to 2 weeks.\n\nWe have worked with San Diego-area craft producers including Karl Strauss, AleSmith, Societe Brewing, and Thorn Brewing. Our equipment inventory reflects the scale of operations common in this market — systems sized for production breweries, not just startup operations.\n\nSan Diego buyers benefit from the proximity: shorter freight leads times, local rigging crew availability, and the ability to walk our facility and inspect equipment firsthand before committing.",
+  "keywords": [
+    "brewery equipment San Diego",
+    "used brewing equipment San Diego",
+    "beer equipment dealer San Diego",
+    "brewery equipment dealer Southern California",
+    "brewery rigging San Diego",
+    "used fermenters San Diego"
+  ],
+  "order": 0,
+  "heroImageAlt": "San Diego, California",
+  "labels": {
+    "heroEyebrow": "{city}, {stateAbbr} · Local Service Area",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "Brewery Equipment Near {city}",
+    "sidebarHeading": "Visit Our Facility",
+    "hoursNote": "Mon–Thu: 10AM–4PM · Fri: 10AM–3PM\nSat: By Appointment",
+    "directionsLabel": "Get Directions",
+    "equipmentEyebrow": "Equipment Available Near {city}",
+    "equipmentHeading": "Browse by Category",
+    "equipmentCtaLabel": "Browse",
+    "servicesEyebrow": "Services in {city}",
+    "servicesHeading": "What We Handle in {state}",
+    "servicesCtaLabel": "Learn More",
+    "finalCtaHeading": "Ready to source or move equipment in {city}?",
+    "finalCtaBody": "One call, one quote. Available for in-person inspection at our San Marcos facility.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "heroImageAlt": "{city}, {state}"
+  }
+}

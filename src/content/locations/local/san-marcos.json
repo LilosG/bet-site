@@ -1,0 +1,53 @@
+{
+  "slug": "san-marcos",
+  "city": "San Marcos",
+  "state": "California",
+  "stateAbbr": "CA",
+  "type": "local",
+  "heroImage": "hero-locations.webp",
+  "h1": "Brewery Equipment Dealer San Marcos, CA — Beverage Equipment Traders",
+  "metaTitle": "Brewery Equipment Dealer San Marcos CA | Beverage Equipment Traders",
+  "metaDescription": "Beverage Equipment Traders is based in San Marcos, CA. 40,000 sq ft facility with 225+ items in stock. New and used brewhouses, fermenters, canning lines, and more. Visit by appointment.",
+  "intro": "Our home base. 40,000 square feet of photographed, documented brewery and beverage equipment in San Marcos, CA.",
+  "bodyContent": "Beverage Equipment Traders is headquartered at 1520 E Barham Dr, San Marcos, CA 92078. Our 40,000 sq ft consolidation facility houses 225+ items across the full spectrum of brewery and beverage production equipment: brewhouses, fermenters, canning lines, glycol chillers, kegs, boilers, distilling equipment, cold boxes, and supporting systems.\n\nAll equipment in our facility has been photographed and listed with condition details before being offered for sale. We are a dealer, not an aggregator — every piece in our yard has been evaluated by someone who has personally run production equipment.\n\nIn-person inspection is available by appointment. Many buyers prefer to evaluate high-value equipment on-site before committing, and we encourage it. Our team is available to walk you through equipment, discuss specifications, and answer technical questions from an operator's perspective.\n\nHours: Monday through Thursday 10AM to 4PM, Friday 10AM to 3PM, Saturday by appointment. Located off SR-78 in the San Marcos Business Park area.",
+  "keywords": [
+    "brewery equipment San Marcos CA",
+    "beverage equipment dealer San Marcos",
+    "used brewery equipment San Marcos",
+    "brewery equipment North County San Diego"
+  ],
+  "order": 1,
+  "heroImageAlt": "San Marcos, California",
+  "labels": {
+    "heroEyebrow": "{city}, {stateAbbr} · Local Service Area",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "Brewery Equipment Near {city}",
+    "sidebarHeading": "Visit Our Facility",
+    "hoursNote": "Mon–Thu: 10AM–4PM · Fri: 10AM–3PM\nSat: By Appointment",
+    "directionsLabel": "Get Directions",
+    "equipmentEyebrow": "Equipment Available Near {city}",
+    "equipmentHeading": "Browse by Category",
+    "equipmentCtaLabel": "Browse",
+    "servicesEyebrow": "Services in {city}",
+    "servicesHeading": "What We Handle in {state}",
+    "servicesCtaLabel": "Learn More",
+    "finalCtaHeading": "Ready to source or move equipment in {city}?",
+    "finalCtaBody": "One call, one quote. Available for in-person inspection at our San Marcos facility.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "heroImageAlt": "{city}, {state}"
+  }
+}

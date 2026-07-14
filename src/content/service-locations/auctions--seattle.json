@@ -1,0 +1,32 @@
+{
+  "slug": "auctions--seattle",
+  "serviceSlug": "auctions",
+  "locationSlug": "seattle",
+  "metaTitle": "Commercial Auctions Seattle, WA | Beverage Equipment Traders",
+  "metaDescription": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Serving Seattle, Washington and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "Commercial Auctions — Seattle, WA",
+  "heroEyebrow": "Auctions · Seattle, WA",
+  "heroBody": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Available in Seattle and nationwide.",
+  "heroImage": "hero-fermenters.webp",
+  "heroImageAlt": "Commercial Auctions — Seattle, WA",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Commercial Auctions in Seattle — What to Know",
+  "locationParagraph": "We handle auctions in Seattle and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Seattle market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Seattle.",
+  "relatedServicesLabel": "Related Services in Seattle",
+  "processEyebrow": "The Process",
+  "processHeading": "How Auctions Works in Seattle",
+  "faqHeading": "Commercial Auctions Seattle — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Seattle?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "slug": "consignment",
+  "title": "Consignment",
+  "shortTitle": "Consignment",
+  "h1": "Sell Your Brewery Equipment on Consignment",
+  "icon": "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0",
+  "metaTitle": "Sell Brewery Equipment on Consignment | Beverage Equipment Traders",
+  "metaDescription": "Consign your used brewery equipment with BET. We handle photography, listing, marketing, and sale. Serving breweries upgrading, downsizing, or closing. Call (949) 888-2739.",
+  "intro": "Quietly liquidate idle assets. We handle photography, listings, vetting, and payout.",
+  "bodyContent": "Consignment is the right choice when you need to recover maximum value from equipment without devoting internal resources to the sale. Beverage Equipment Traders handles every step: on-site photography, detailed listing creation, buyer qualification, pricing strategy, and final sale coordination.\n\nOur buyer network spans the full spectrum of craft beverage producers — new breweries sourcing first equipment, established operations expanding capacity, and distilleries and cideries entering adjacent markets. Equipment listed with us reaches qualified buyers who are actively searching, not casual browsers.\n\nThe consignment process starts with an equipment assessment — we review what you have, advise on realistic market pricing, and provide a timeline estimate based on current inventory movement. Commission structure is transparent. We do not charge listing fees or upfront costs.\n\nConsignment is appropriate for: breweries upgrading to larger systems, facilities reducing footprint, partnership dissolutions, and full brewery liquidations. Contact us to discuss your specific situation.",
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Equipment Assessment",
+      "description": "We review your equipment list, advise on realistic market pricing based on current demand, and provide an honest timeline estimate. No upfront fees."
+    },
+    {
+      "step": 2,
+      "title": "Photography & Documentation",
+      "description": "On-site photography, video walkthroughs, and full condition documentation. High-quality visual presentation is one of the largest drivers of sale price and speed."
+    },
+    {
+      "step": 3,
+      "title": "Listing & Marketing",
+      "description": "Equipment is listed on our site, in our buyer network, and across relevant industry platforms. We target qualified buyers — production operators who know what they're purchasing."
+    },
+    {
+      "step": 4,
+      "title": "Buyer Qualification",
+      "description": "We vet buyers, handle inquiries, and manage negotiations on your behalf. You are not fielding calls from unqualified tire-kickers."
+    },
+    {
+      "step": 5,
+      "title": "Sale & Settlement",
+      "description": "Once sold, we coordinate logistics and handle final settlement. Payout is straightforward and transparent per the agreed commission structure."
+    }
+  ],
+  "bestFitScenarios": [
+    {
+      "title": "Capacity Upgrade",
+      "description": "Replacing a 15 BBL brewhouse with a 30 BBL system? Consign the outgoing equipment to offset the capital cost of the upgrade.",
+      "icon": "M5 3l14 9-14 9V3z"
+    },
+    {
+      "title": "Facility Downsizing",
+      "description": "Reducing production capacity or consolidating operations? Consignment recovers value from equipment you no longer need without a fire-sale timeline.",
+      "icon": "M19 14l-7 7m0 0l-7-7m7 7V3"
+    },
+    {
+      "title": "Partnership Dissolution",
+      "description": "Splitting brewery assets as part of a business separation? Consignment provides a structured, documented sale process with transparent proceeds.",
+      "icon": "M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"
+    },
+    {
+      "title": "Full Brewery Liquidation",
+      "description": "Closing your brewery? Consignment handles the full asset set methodically, maximizing recovery on each piece rather than bundling everything at a discount.",
+      "icon": "M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is your consignment commission rate?",
+      "a": "Commission rate varies by equipment type and estimated sale price. We discuss this upfront during the equipment assessment. There are no listing fees or upfront costs."
+    },
+    {
+      "q": "How long does equipment typically take to sell on consignment?",
+      "a": "Timeline depends on equipment type, condition, and pricing. Brewhouses and complete canning lines with competitive pricing typically move within 30 to 90 days."
+    },
+    {
+      "q": "Do you handle full brewery liquidations?",
+      "a": "Yes. Full-facility liquidations can be handled on consignment, via direct purchase, or through our auction program. Contact us to discuss which approach best fits your timeline and goals."
+    },
+    {
+      "q": "Do you pick up equipment or does the seller deliver?",
+      "a": "We can coordinate pickup via our rigging team for larger equipment sets. For full facility liquidations, we typically come to the site. Contact us to discuss logistics for your specific situation."
+    }
+  ],
+  "cta": {
+    "label": "Discuss Consignment",
+    "href": "/contact?type=consignment"
+  },
+  "relatedServices": [
+    "auctions",
+    "rigging"
+  ],
+  "relatedEquipment": [
+    "brewhouses",
+    "fermenters",
+    "canning",
+    "chillers"
+  ],
+  "industries": [
+    "craft-brewery",
+    "distillery",
+    "cidery",
+    "beverage-production"
+  ],
+  "keywords": [
+    "sell brewery equipment",
+    "brewery consignment California",
+    "brewery equipment consignment",
+    "sell used brewery equipment",
+    "brewery liquidation consignment",
+    "used brewery equipment seller"
+  ],
+  "heroImage": "hero-equipment.webp",
+  "order": 1,
+  "heroImageAlt": "Consignment",
+  "labels": {
+    "heroEyebrow": "Service",
+    "callPrefix": "Call",
+    "trustChips": [
+      "All 50 States",
+      "One Quote — Full Scope",
+      "Prior Brewery Operators",
+      "San Marcos, CA"
+    ],
+    "bodyHeadingSuffix": "— What to Know",
+    "sidebarBody": "Our trade desk responds within one business day. Provide details and we will return a complete scope and price.",
+    "relatedServicesLabel": "Other Services",
+    "processEyebrow": "The Process",
+    "processHeading": "How {shortTitle} Works",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "When {shortTitle} Is the Right Choice",
+    "relatedEquipmentEyebrow": "Related Equipment",
+    "relatedEquipmentHeading": "Equipment We Work With",
+    "locationsEyebrow": "Service Areas",
+    "locationsHeading": "{title} — Available Nationwide",
+    "locationsBody": "We provide {shortTitleLower} services throughout North America. Select your market for local availability and pricing.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to get started?",
+    "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+    "finalSecondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{title}"
+  }
+}

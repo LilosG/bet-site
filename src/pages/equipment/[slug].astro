@@ -4,7 +4,7 @@
  * Uses astro:assets for all images via import.meta.glob.
  * Adding a new image = add file + update data. Zero template changes.
  */
-import { getImage, Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/ui/Breadcrumb.astro';
 import EquipmentCard from '../../components/ui/EquipmentCard.astro';
@@ -16,18 +16,10 @@ import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { NAP } from '../../data/site';
 import { breadcrumbSchema, faqSchema, productCategorySchema } from '../../lib/schema';
+import { cms, interpolate } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
 
 // Glob all images at build time — resolves filename strings from data to ImageMetadata
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
-
-function getAsset(filename: string | undefined): ImageMetadata | undefined {
-  if (!filename) return undefined;
-  return allImages[`../../assets/images/${filename}`]?.default;
-}
-
 export async function getStaticPaths() {
   return EQUIPMENT_CATEGORIES.map((cat) => ({
     params: { slug: cat.slug },
@@ -38,7 +30,9 @@ export async function getStaticPaths() {
 const { cat } = Astro.props;
 
 // Resolve hero image
-const heroAsset = getAsset(cat.heroImage);
+const heroAsset = resolveCmsImage(cat.heroImage);
+const labels = cat.labels;
+const labelValues = { title: cat.title, titleLower: cat.title.toLowerCase() };
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
@@ -46,12 +40,13 @@ const optimizedHero = heroAsset
 // Resolve featured item images
 const resolvedItems = cat.featuredItems?.map((item) => ({
   ...item,
-  imageAsset: getAsset(item.image),
+  condition: item.condition as 'Used' | 'New',
+  imageAsset: resolveCmsImage(item.image),
 })) ?? [];
 
 const crumbs = [
-  { name: 'Home',      url: '/' },
-  { name: 'Equipment', url: '/equipment' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: cms.pages.equipment.breadcrumbLabel, url: '/equipment' },
   { name: cat.title,   url: `/equipment/${cat.slug}` },
 ];
 
@@ -82,18 +77,18 @@ const schemas = [
   >
     {optimizedHero && <div class="eq-hero-bg" aria-hidden="true"></div>}
     <div class="container eq-hero-inner">
-      <span class="eyebrow">Equipment Category</span>
+      <span class="eyebrow">{labels.heroEyebrow}</span>
       <h1>{cat.h1}</h1>
       <p class="eq-hero-intro">{cat.description}</p>
       <div class="eq-hero-ctas">
         <a href={cat.shopifyCollectionUrl} class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
-          Browse Full {cat.title} Catalog
+          {interpolate(labels.catalogLabel, labelValues)}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="/contact?type=rigging" class="btn btn-outline btn-lg">Get a Rigging Quote</a>
+        <a href={labels.riggingHref} class="btn btn-outline btn-lg">{labels.riggingLabel}</a>
       </div>
-      <div class="eq-trust-chips" aria-label="Service highlights">
-        {['Ships Nationwide', 'Rigging Available', 'Prior Brewery Owners', 'San Marcos, CA'].map((chip) => (
+      <div class="eq-trust-chips" aria-label={labels.serviceHighlightsAriaLabel}>
+        {labels.trustChips.map((chip) => (
           <span class="trust-chip">{chip}</span>
         ))}
       </div>
@@ -104,28 +99,28 @@ const schemas = [
   <section class="eq-body-band section-y" aria-labelledby="eq-content-heading">
     <div class="container eq-content-inner">
       <div class="prose eq-prose">
-        <h2 id="eq-content-heading">{cat.h1.replace('For Sale', '').trim()} — Operator Perspective</h2>
+        <h2 id="eq-content-heading">{interpolate(labels.bodyHeading, labelValues)}</h2>
         {cat.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
       </div>
       <aside class="eq-sidebar">
         <div class="eq-sidebar-card">
-          <h3>Quick Contact</h3>
-          <p>Our trade desk responds within one business day.</p>
-          <a href="/contact" class="btn btn-primary" style="width:100%;justify-content:center;">Contact Trade Desk</a>
+          <h3>{labels.sidebarHeading}</h3>
+          <p>{labels.sidebarBody}</p>
+          <a href={labels.sidebarCta.href} class="btn btn-primary" style="width:100%;justify-content:center;">{labels.sidebarCta.label}</a>
           <a href={`tel:${NAP.phonePlain}`} class="eq-phone-link">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             {NAP.phone}
           </a>
         </div>
         <div class="eq-sidebar-links">
-          <p class="eq-sidebar-label">Related Categories</p>
+          <p class="eq-sidebar-label">{labels.relatedLabel}</p>
           <ul>
             {EQUIPMENT_CATEGORIES.filter((c) => c.slug !== cat.slug).slice(0, 4).map((c) => (
               <li><a href={`/equipment/${c.slug}`}>{c.title}</a></li>
             ))}
-            <li><a href="/equipment">All Equipment</a></li>
+            <li><a href="/equipment">{labels.allEquipmentLabel}</a></li>
           </ul>
         </div>
       </aside>
@@ -136,8 +131,8 @@ const schemas = [
   {cat.buyerGuide && cat.buyerGuide.length > 0 && (
     <ProcessSteps
       steps={cat.buyerGuide}
-      heading={`How to Buy ${cat.title}`}
-      eyebrow="Buyer Guide"
+      heading={interpolate(labels.buyerGuideHeading, labelValues)}
+      eyebrow={labels.buyerGuideEyebrow}
     />
   )}
 
@@ -145,9 +140,9 @@ const schemas = [
   {cat.bestFitBuyers && cat.bestFitBuyers.length > 0 && (
     <BestFitScenarios
       scenarios={cat.bestFitBuyers}
-      heading={`Who Should Buy ${cat.title}`}
-      eyebrow="Best Fit"
-      cta={{ label: 'Contact the Trade Desk', href: '/contact' }}
+      heading={interpolate(labels.bestFitHeading, labelValues)}
+      eyebrow={labels.bestFitEyebrow}
+      cta={labels.bestFitCta}
     />
   )}
 
@@ -157,11 +152,11 @@ const schemas = [
       <div class="container">
         <div class="eq-section-header">
           <div>
-            <span class="eyebrow">Currently In Stock</span>
-            <h2 id="featured-eq-heading">Featured {cat.title}</h2>
+            <span class="eyebrow">{labels.inventoryEyebrow}</span>
+            <h2 id="featured-eq-heading">{interpolate(labels.inventoryHeading, labelValues)}</h2>
           </div>
           <a href={cat.shopifyCollectionUrl} class="section-link" target="_blank" rel="noopener noreferrer">
-            View All {cat.title}
+            {interpolate(labels.viewAllLabel, labelValues)}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -173,13 +168,14 @@ const schemas = [
               condition={item.condition}
               category={item.category}
               image={item.imageAsset}
+              imageAlt={item.imageAlt}
               href={cat.shopifyCollectionUrl}
             />
           ))}
         </div>
         <div class="eq-catalog-cta">
           <a href={cat.shopifyCollectionUrl} class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            View Complete {cat.title} Catalog
+            {interpolate(labels.completeCatalogLabel, labelValues)}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -189,23 +185,23 @@ const schemas = [
 
   <!-- ═══ RIGGING CTA ════════════════════════════ -->
   <CtaStrip
-    heading="Need it moved, installed, and commissioned?"
-    subtext="We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational."
-    primaryLabel="Get a Rigging Quote"
-    primaryHref="/contact?type=rigging"
-    secondaryLabel="Learn About Rigging"
-    secondaryHref="/services/rigging"
+    heading={labels.riggingCtaHeading}
+    subtext={labels.riggingCtaBody}
+    primaryLabel={labels.riggingPrimary.label}
+    primaryHref={labels.riggingPrimary.href}
+    secondaryLabel={labels.riggingSecondary.label}
+    secondaryHref={labels.riggingSecondary.href}
   />
 
   <!-- ═══ SHOP BY LOCATION ══════════════════════ -->
   <section class="section-y eq-locations-band" aria-labelledby="eq-locations-heading">
     <div class="container">
-      <span class="eyebrow">Shop by Location</span>
-      <h2 id="eq-locations-heading">{cat.title} Available Near You</h2>
-      <p class="eq-locations-intro">We ship {cat.title.toLowerCase()} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.</p>
+      <span class="eyebrow">{labels.locationsEyebrow}</span>
+      <h2 id="eq-locations-heading">{interpolate(labels.locationsHeading, labelValues)}</h2>
+      <p class="eq-locations-intro">{interpolate(labels.locationsBody, labelValues)}</p>
       <div class="eq-locations-grid">
         <div class="eq-locations-col">
-          <p class="eq-locations-group-label">Local — Southern California</p>
+          <p class="eq-locations-group-label">{labels.localGroupLabel}</p>
           <ul class="eq-locations-list">
             {LOCAL_LOCATIONS.map((loc) => (
               <li>
@@ -218,7 +214,7 @@ const schemas = [
           </ul>
         </div>
         <div class="eq-locations-col">
-          <p class="eq-locations-group-label">National Markets</p>
+          <p class="eq-locations-group-label">{labels.nationalGroupLabel}</p>
           <ul class="eq-locations-list">
             {NATIONAL_LOCATIONS.map((loc) => (
               <li>
@@ -237,7 +233,7 @@ const schemas = [
   <!-- ═══ FAQ ════════════════════════════════════ -->
   <FAQ
     items={cat.faqs}
-    heading={`${cat.title} — Frequently Asked Questions`}
+    heading={interpolate(labels.faqHeading, labelValues)}
   />
 
 </Layout>

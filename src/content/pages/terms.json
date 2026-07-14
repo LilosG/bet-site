@@ -1,0 +1,30 @@
+{
+  "seo": {
+    "title": "Terms of Service | Beverage Equipment Traders",
+    "description": "Terms of service for beverageequipmenttraders.com and Beverage Equipment Traders."
+  },
+  "breadcrumbLabel": "Terms",
+  "heading": "Terms of Service",
+  "updated": "Last updated: May 2026",
+  "intro": "By accessing or using {siteUrl} you agree to be bound by these terms. If you do not agree, please do not use the site.",
+  "sections": [
+    {
+      "heading": "Use of Site",
+      "body": "This website is provided for informational and inquiry purposes. The site links to an external Shopify store for product transactions. All sales and transactions on the Shopify store are subject to those platform's separate terms and conditions."
+    },
+    {
+      "heading": "Accuracy of Information",
+      "body": "We make reasonable efforts to ensure that equipment listings and pricing information on this site are accurate. Equipment availability, pricing, and condition may change. All information should be confirmed with our trade desk prior to any purchase decision."
+    },
+    {
+      "heading": "Intellectual Property",
+      "body": "All content on this site, including text, photographs, and design, is the property of Beverage Equipment Traders. You may not reproduce or use any content from this site without written permission."
+    },
+    {
+      "heading": "Limitation of Liability",
+      "body": "Beverage Equipment Traders is not liable for any indirect, incidental, or consequential damages arising from the use of, or inability to use, this website or the information it contains."
+    }
+  ],
+  "contactHeading": "Contact",
+  "contactBody": "Questions regarding these terms: {email}"
+}

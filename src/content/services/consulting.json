@@ -1,0 +1,145 @@
+{
+  "slug": "consulting",
+  "title": "Engineering Consulting",
+  "shortTitle": "Consulting",
+  "h1": "Brewery and Beverage Equipment Consulting Services",
+  "icon": "M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 0v10",
+  "metaTitle": "Brewery & Beverage Equipment Consulting | Beverage Equipment Traders",
+  "metaDescription": "Process layout, capacity planning, and commissioning support from prior brewery operators. Equipment sourcing strategy and brewery startup consulting. San Marcos, CA.",
+  "intro": "Pre-purchase audits, capacity planning, and brewery layout from people who have run the gear.",
+  "bodyContent": "Our consulting services are grounded in one credential that most equipment dealers cannot claim: we operated a brewery before we started trading equipment. We have sized brewhouses, designed fermentation programs, troubleshot glycol loops at 2 a.m., and rebuilt canning lines that vendors said were dead.\n\nThat operating experience translates directly into useful consulting for buyers making capital decisions. We can help you evaluate whether a specific piece of used equipment is priced correctly, whether a proposed facility layout will function efficiently at scale, and whether a new brewery build is being sourced at the right capacity for the projected volume.\n\nConsulting engagements range from single-session equipment evaluations through full brewery design and equipment sourcing projects. We work with new brewery builders, existing operations expanding capacity, investors conducting due diligence on brewery acquisitions, and lenders evaluating brewery asset values.\n\nContact us to describe your situation and we will advise on what consulting engagement structure makes sense.",
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Situation Review",
+      "description": "We start with a conversation — what you are building, buying, or evaluating. No intake form. A direct call with someone who has actually operated production equipment."
+    },
+    {
+      "step": 2,
+      "title": "Equipment Evaluation",
+      "description": "For purchase decisions: on-site or remote equipment assessment with condition opinion, pricing context, and operational considerations the seller's listing won't tell you."
+    },
+    {
+      "step": 3,
+      "title": "Capacity & Layout Planning",
+      "description": "For new builds or expansions: capacity modeling, equipment specification, and facility layout review to catch bottlenecks before they become expensive change orders."
+    },
+    {
+      "step": 4,
+      "title": "Sourcing Strategy",
+      "description": "New vs. used analysis, manufacturer options, lead time planning, and sequencing the procurement process to keep your build timeline on track."
+    },
+    {
+      "step": 5,
+      "title": "Commissioning Support",
+      "description": "On-site or remote support through startup and commissioning. We do not disappear after the sale — we make sure the equipment works."
+    }
+  ],
+  "bestFitScenarios": [
+    {
+      "title": "New Brewery Build",
+      "description": "Planning your first brewery from scratch? We help spec the right equipment for your volume, layout, and capital structure — before you commit to anything.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Capacity Expansion",
+      "description": "Adding fermenters, upgrading your brewhouse, or building out a second location? We model capacity requirements and identify the right equipment additions.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Acquisition Due Diligence",
+      "description": "Buying an existing brewery? We provide independent equipment valuation and condition assessment for investors and lenders evaluating asset quality.",
+      "icon": "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+    },
+    {
+      "title": "Used Equipment Assessment",
+      "description": "Evaluating a specific piece of used equipment from another seller? We provide an independent opinion on condition, pricing, and operational fit before you commit.",
+      "icon": "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Do you consult on new brewery builds from scratch?",
+      "a": "Yes. We can help with equipment specification, capacity planning, facility layout, sourcing strategy, and sequencing the equipment procurement process from initial planning through installation."
+    },
+    {
+      "q": "Can you help with brewery acquisition due diligence?",
+      "a": "Yes. We provide equipment valuation and condition assessments for investors and lenders evaluating brewery acquisitions or securing equipment as collateral."
+    },
+    {
+      "q": "Do you only consult on brewery equipment?",
+      "a": "Our primary expertise is brewery and craft beverage production equipment. We also have context on distillery, cidery, and kombucha/beverage production equipment from similar systems and manufacturers."
+    },
+    {
+      "q": "What does a consulting engagement typically cost?",
+      "a": "Scope and cost depend on the engagement type. A single-session equipment evaluation is priced differently from a multi-week new brewery build project. We discuss scope and structure upfront before any commitment."
+    },
+    {
+      "q": "Can you provide independent equipment valuations for lenders or investors?",
+      "a": "Yes. We provide independent equipment condition assessments and valuations for investors and lenders evaluating brewery acquisitions or using equipment as loan collateral. Contact us to discuss your specific situation."
+    }
+  ],
+  "cta": {
+    "label": "Schedule a Consultation",
+    "href": "/contact?type=consulting"
+  },
+  "relatedServices": [
+    "new-equipment",
+    "rigging"
+  ],
+  "relatedEquipment": [
+    "brewhouses",
+    "fermenters",
+    "chillers"
+  ],
+  "industries": [
+    "craft-brewery",
+    "distillery",
+    "cidery",
+    "beverage-production",
+    "cold-brew"
+  ],
+  "keywords": [
+    "brewery consulting services",
+    "brewery startup equipment planning",
+    "brewery build consultant California",
+    "brewery equipment consultant",
+    "capacity planning brewery",
+    "brewery facility design"
+  ],
+  "heroImage": "hero-brewhouse.webp",
+  "order": 3,
+  "heroImageAlt": "Engineering Consulting",
+  "labels": {
+    "heroEyebrow": "Service",
+    "callPrefix": "Call",
+    "trustChips": [
+      "All 50 States",
+      "One Quote — Full Scope",
+      "Prior Brewery Operators",
+      "San Marcos, CA"
+    ],
+    "bodyHeadingSuffix": "— What to Know",
+    "sidebarBody": "Our trade desk responds within one business day. Provide details and we will return a complete scope and price.",
+    "relatedServicesLabel": "Other Services",
+    "processEyebrow": "The Process",
+    "processHeading": "How {shortTitle} Works",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "When {shortTitle} Is the Right Choice",
+    "relatedEquipmentEyebrow": "Related Equipment",
+    "relatedEquipmentHeading": "Equipment We Work With",
+    "locationsEyebrow": "Service Areas",
+    "locationsHeading": "{title} — Available Nationwide",
+    "locationsBody": "We provide {shortTitleLower} services throughout North America. Select your market for local availability and pricing.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to get started?",
+    "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+    "finalSecondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{title}"
+  }
+}

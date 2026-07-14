@@ -12,21 +12,20 @@ import Breadcrumb from '../components/ui/Breadcrumb.astro';
 import { NAP, HOURS } from '../data/site';
 import StatBar from '../components/ui/StatBar.astro';
 import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
+import { cms } from '../lib/cms';
+import { resolveCmsImage } from '../lib/images';
+
+const content = cms.pages.contact;
 
 // ─── Hero image ───────────────────────────────
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/images/*.webp',
-  { eager: true }
-);
-
-const heroAsset = allImages['../assets/images/hero-services.webp']?.default;
+const heroAsset = resolveCmsImage(content.hero.image);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, format: 'webp', quality: 80 })
   : null;
 
 const crumbs = [
-  { name: 'Home',    url: '/' },
-  { name: 'Contact', url: '/contact' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/contact' },
 ];
 
 const schemas = [
@@ -34,20 +33,12 @@ const schemas = [
   breadcrumbSchema(crumbs),
 ];
 
-const inquiryTypes = [
-  { value: 'buying',        label: 'Buying Equipment' },
-  { value: 'rigging',       label: 'Rigging & Installation' },
-  { value: 'consignment',   label: 'Consigning Equipment' },
-  { value: 'auction',       label: 'Auction Inquiry' },
-  { value: 'consulting',    label: 'Technical Consulting' },
-  { value: 'new-equipment', label: 'New Equipment' },
-  { value: 'general',       label: 'General Question' },
-];
+const inquiryTypes = content.form.inquiryTypes;
 ---
 
 <Layout
-  title="Contact Beverage Equipment Traders | Trade Desk — San Marcos, CA"
-  description="Contact our trade desk for equipment sourcing, rigging quotes, consignment, auctions, or consulting. Responds within one business day. Call (949) 888-2739."
+  title={content.seo.title}
+  description={content.seo.description}
   schemas={schemas}
 >
   <Breadcrumb crumbs={crumbs} />
@@ -62,12 +53,9 @@ const inquiryTypes = [
       ></div>
     )}
     <div class="container contact-hero-inner">
-      <span class="eyebrow">Contact</span>
-      <h1>Talk to the Trade Desk.</h1>
-      <p class="contact-hero-intro">
-        Our team responds within one business day. Provide the equipment you need, your inquiry type,
-        and what you are trying to accomplish — we will return a clear answer and next steps.
-      </p>
+      <span class="eyebrow">{content.hero.eyebrow}</span>
+      <h1>{content.hero.heading}</h1>
+      <p class="contact-hero-intro">{content.hero.body}</p>
     </div>
   </section>
 
@@ -79,8 +67,8 @@ const inquiryTypes = [
 
       <!-- Form -->
       <div class="contact-form-wrap">
-        <h2 id="contact-form-heading">Send an Inquiry</h2>
-        <p class="form-subhead">All fields marked with * are required.</p>
+        <h2 id="contact-form-heading">{content.form.heading}</h2>
+        <p class="form-subhead">{content.form.requiredNote}</p>
 
         <!--
           Form backend: pending client decision.
@@ -96,43 +84,43 @@ const inquiryTypes = [
         >
           <!-- Honeypot — anti-spam, hidden from users -->
           <div class="form-honeypot" aria-hidden="true">
-            <label>Skip this field <input name="bot-field" /></label>
+            <label>{content.form.honeypotLabel} <input name="bot-field" /></label>
           </div>
 
           <div class="form-row form-row-2">
             <div class="form-field">
-              <label class="label" for="first-name">First Name *</label>
+              <label class="label" for="first-name">{content.form.firstNameLabel}</label>
               <input class="input" type="text" id="first-name" name="first_name" required autocomplete="given-name" />
             </div>
             <div class="form-field">
-              <label class="label" for="last-name">Last Name *</label>
+              <label class="label" for="last-name">{content.form.lastNameLabel}</label>
               <input class="input" type="text" id="last-name" name="last_name" required autocomplete="family-name" />
             </div>
           </div>
 
           <div class="form-row form-row-2">
             <div class="form-field">
-              <label class="label" for="email">Email *</label>
+              <label class="label" for="email">{content.form.emailLabel}</label>
               <input class="input" type="email" id="email" name="email" required autocomplete="email" />
             </div>
             <div class="form-field">
-              <label class="label" for="phone">Phone</label>
+              <label class="label" for="phone">{content.form.phoneLabel}</label>
               <input class="input" type="tel" id="phone" name="phone" autocomplete="tel" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
-              <label class="label" for="company">Company / Brewery Name</label>
+              <label class="label" for="company">{content.form.companyLabel}</label>
               <input class="input" type="text" id="company" name="company" autocomplete="organization" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-field">
-              <label class="label" for="inquiry-type">Inquiry Type *</label>
+              <label class="label" for="inquiry-type">{content.form.inquiryTypeLabel}</label>
               <select class="input" id="inquiry-type" name="inquiry_type" required>
-                <option value="" disabled selected>Select inquiry type</option>
+                <option value="" disabled selected>{content.form.inquiryPlaceholder}</option>
                 {inquiryTypes.map((t) => (
                   <option value={t.value}>{t.label}</option>
                 ))}
@@ -142,20 +130,20 @@ const inquiryTypes = [
 
           <div class="form-row">
             <div class="form-field">
-              <label class="label" for="message">Tell us what you need *</label>
+              <label class="label" for="message">{content.form.messageLabel}</label>
               <textarea
                 class="input"
                 id="message"
                 name="message"
                 rows="5"
                 required
-                placeholder="Describe the equipment, service, or question. Include quantities, size ranges, or location if relevant."
+                placeholder={content.form.messagePlaceholder}
               ></textarea>
             </div>
           </div>
 
           <button type="submit" class="btn btn-primary btn-lg submit-btn">
-            Send Inquiry
+            {content.form.submitLabel}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </form>
@@ -166,28 +154,28 @@ const inquiryTypes = [
 
         <!-- Direct Contact -->
         <div class="contact-info-card">
-          <h3>Direct Contact</h3>
+          <h3>{content.sidebar.directHeading}</h3>
           <div class="contact-detail">
-            <span class="contact-detail-label">Phone</span>
-            <a href="tel:+19498882739" class="contact-detail-value contact-phone">
+            <span class="contact-detail-label">{content.sidebar.phoneLabel}</span>
+            <a href={`tel:${NAP.phonePlain}`} class="contact-detail-value contact-phone">
               {NAP.phone}
             </a>
           </div>
           <div class="contact-detail">
-            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-label">{content.sidebar.emailLabel}</span>
             <a href={`mailto:${NAP.email}`} class="contact-detail-value">
               {NAP.email}
             </a>
           </div>
           <div class="contact-detail">
-            <span class="contact-detail-label">Response time</span>
-            <span class="contact-detail-value">Within 1 business day</span>
+            <span class="contact-detail-label">{content.sidebar.responseLabel}</span>
+            <span class="contact-detail-value">{content.sidebar.responseValue}</span>
           </div>
         </div>
 
         <!-- Address -->
         <div class="contact-info-card">
-          <h3>Facility</h3>
+          <h3>{content.sidebar.facilityHeading}</h3>
           <address itemscope itemtype="https://schema.org/PostalAddress" style="font-style:normal;">
             <span class="contact-detail-value">
               <span itemprop="streetAddress">{NAP.street}</span><br />
@@ -197,20 +185,20 @@ const inquiryTypes = [
             </span>
           </address>
           <a
-            href={`https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJVVUFwSn124ARobkQHYWH_vo`}
+            href={`https://www.google.com/maps/dir/?api=1&destination_place_id=${cms.company.geo.placeId}`}
             class="contact-map-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Get Directions
+            {content.sidebar.directionsLabel}
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
 
         <!-- Hours -->
         <div class="contact-info-card">
-          <h3>Hours</h3>
-          <table class="hours-table" aria-label="Business hours">
+          <h3>{content.sidebar.hoursHeading}</h3>
+          <table class="hours-table" aria-label={content.sidebar.hoursAriaLabel}>
             <tbody>
               {HOURS.map((h) => (
                 <tr>

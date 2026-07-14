@@ -1,0 +1,32 @@
+{
+  "slug": "consulting--portland",
+  "serviceSlug": "consulting",
+  "locationSlug": "portland",
+  "metaTitle": "Engineering Consulting Portland, OR | Beverage Equipment Traders",
+  "metaDescription": "Pre-purchase audits, capacity planning, and brewery layout from people who have run the gear. Serving Portland, Oregon and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "Engineering Consulting — Portland, OR",
+  "heroEyebrow": "Consulting · Portland, OR",
+  "heroBody": "Pre-purchase audits, capacity planning, and brewery layout from people who have run the gear. Available in Portland and nationwide.",
+  "heroImage": "hero-brewhouse.webp",
+  "heroImageAlt": "Engineering Consulting — Portland, OR",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Engineering Consulting in Portland — What to Know",
+  "locationParagraph": "We handle consulting in Portland and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Portland market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Portland.",
+  "relatedServicesLabel": "Related Services in Portland",
+  "processEyebrow": "The Process",
+  "processHeading": "How Consulting Works in Portland",
+  "faqHeading": "Engineering Consulting Portland — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Portland?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

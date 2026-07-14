@@ -1,0 +1,141 @@
+{
+  "slug": "auctions",
+  "title": "Commercial Auctions",
+  "shortTitle": "Auctions",
+  "h1": "Brewery Equipment Auctions — Live and Online",
+  "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0",
+  "metaTitle": "Brewery Equipment Auctions — Live & Online | Beverage Equipment Traders",
+  "metaDescription": "Full-facility brewery equipment auctions. Fast, transparent, and marketed to a vetted buyer network. BET manages the entire process from listing through final settlement.",
+  "intro": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network.",
+  "bodyContent": "Brewery equipment auctions provide the fastest path to full-facility liquidation when timeline is the primary constraint. Beverage Equipment Traders manages the entire auction lifecycle: equipment inventory and photography, lot creation, online listing across our buyer network and third-party platforms, live or timed bidding, buyer qualification, and post-sale settlement including rigging coordination.\n\nOur auction buyer network is active and qualified. We market directly to production breweries, cideries, distilleries, and processing facilities that are actively looking to acquire equipment. This is not a generalist auction platform — it is an industry-specific network where buyers understand what they are purchasing.\n\nAuctions are appropriate for: full brewery or beverage facility closures, large estate sales, partial facility liquidations where consignment would take too long, and investors or lenders recovering assets on a defined timeline.\n\nContact us to discuss your facility, timeline, and goals. We will advise whether auction, consignment, or direct purchase best serves your situation.",
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Facility & Asset Review",
+      "description": "We assess the full equipment set, provide a realistic reserve and gross estimate, and advise on whether auction, consignment, or direct purchase best fits your timeline."
+    },
+    {
+      "step": 2,
+      "title": "Inventory & Documentation",
+      "description": "Complete equipment photography, video, lot creation, and condition documentation. Every lot is presented to maximize buyer confidence and bid value."
+    },
+    {
+      "step": 3,
+      "title": "Buyer Marketing",
+      "description": "Active marketing to our qualified buyer network — production operators, not general auctioneers. Cross-listed on industry platforms for maximum reach."
+    },
+    {
+      "step": 4,
+      "title": "Bidding & Sale",
+      "description": "Live or timed online bidding with buyer qualification. We manage the full bidding process, answer buyer questions, and handle all sale administration."
+    },
+    {
+      "step": 5,
+      "title": "Removal & Settlement",
+      "description": "Post-sale rigging coordination, equipment removal scheduling, and final settlement to the seller. Everything handled under one roof."
+    }
+  ],
+  "bestFitScenarios": [
+    {
+      "title": "Brewery Closure",
+      "description": "Closing your operation and need to recover assets quickly? Auction is the fastest path from full facility to cleared building and settled proceeds.",
+      "icon": "M6 18L18 6M6 6l12 12"
+    },
+    {
+      "title": "Facility Consolidation",
+      "description": "Merging two production locations into one? Auction the surplus equipment set efficiently without absorbing the timeline risk of consignment.",
+      "icon": "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+    },
+    {
+      "title": "Production Line Upgrade",
+      "description": "Replacing an entire canning line or brewhouse system? Auction the outgoing equipment as a lot for faster recovery than piece-by-piece consignment.",
+      "icon": "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+    },
+    {
+      "title": "Lender or Investor Recovery",
+      "description": "Recovering brewery assets as a lender or investor on a defined legal timeline? Auction provides documented, transparent asset liquidation with clear settlement.",
+      "icon": "M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How long does the auction process take?",
+      "a": "From engagement to final settlement, most auctions complete within 30 to 60 days depending on the scope of the facility and any logistical requirements."
+    },
+    {
+      "q": "Can I participate as a buyer in BET auctions?",
+      "a": "Yes. Contact us to register as a buyer and receive advance notice of upcoming events."
+    },
+    {
+      "q": "Do you handle auctions outside California?",
+      "a": "Yes. We have facilitated brewery equipment auctions in multiple states. Contact us to discuss a specific location."
+    },
+    {
+      "q": "How is auction different from consignment?",
+      "a": "Consignment targets maximum recovery over a longer timeline. Auction prioritizes speed — full facility cleared and settled within 30 to 60 days. We advise which approach fits your situation after reviewing the equipment set."
+    }
+  ],
+  "cta": {
+    "label": "Discuss Auction Services",
+    "href": "/contact?type=auction"
+  },
+  "relatedServices": [
+    "consignment",
+    "rigging"
+  ],
+  "relatedEquipment": [
+    "brewhouses",
+    "fermenters",
+    "canning",
+    "chillers"
+  ],
+  "industries": [
+    "craft-brewery",
+    "distillery",
+    "cidery",
+    "beverage-production"
+  ],
+  "keywords": [
+    "brewery equipment auction",
+    "brewery auction California",
+    "brewery equipment auction nationwide",
+    "sell brewery equipment auction",
+    "brewery liquidation auction",
+    "beverage equipment auction"
+  ],
+  "heroImage": "hero-fermenters.webp",
+  "order": 2,
+  "heroImageAlt": "Commercial Auctions",
+  "labels": {
+    "heroEyebrow": "Service",
+    "callPrefix": "Call",
+    "trustChips": [
+      "All 50 States",
+      "One Quote — Full Scope",
+      "Prior Brewery Operators",
+      "San Marcos, CA"
+    ],
+    "bodyHeadingSuffix": "— What to Know",
+    "sidebarBody": "Our trade desk responds within one business day. Provide details and we will return a complete scope and price.",
+    "relatedServicesLabel": "Other Services",
+    "processEyebrow": "The Process",
+    "processHeading": "How {shortTitle} Works",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "When {shortTitle} Is the Right Choice",
+    "relatedEquipmentEyebrow": "Related Equipment",
+    "relatedEquipmentHeading": "Equipment We Work With",
+    "locationsEyebrow": "Service Areas",
+    "locationsHeading": "{title} — Available Nationwide",
+    "locationsBody": "We provide {shortTitleLower} services throughout North America. Select your market for local availability and pricing.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to get started?",
+    "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+    "finalSecondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{title}"
+  }
+}

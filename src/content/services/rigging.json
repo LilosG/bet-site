@@ -1,0 +1,142 @@
+{
+  "slug": "rigging",
+  "title": "Rigging & Installation",
+  "shortTitle": "Rigging",
+  "h1": "Brewery Equipment Rigging and Installation Services",
+  "icon": "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+  "metaTitle": "Brewery Equipment Rigging & Installation | Beverage Equipment Traders — San Marcos, CA",
+  "metaDescription": "Full-service brewery equipment rigging, de-installation, transportation, and installation nationwide. Crane operation, millwright crews, bonded freight. Call (949) 888-2739.",
+  "intro": "One crew, one quote, one accountable partner — from your loading dock to your new facility floor, coast to coast.",
+  "bodyContent": "Rigging is not an afterthought. A $78,000 brewhouse is a $78,000 liability until it is installed, level, connected, and commissioned. Beverage Equipment Traders handles every step: de-installation at the source, rigging and load-out, bonded freight, delivery, set and level, utilities connection, and startup commissioning.\n\nOur crews are experienced with brewhouse systems, large fermentation vessels, canning lines, and full facility builds. We handle crane-in operations for large systems, multi-level installations, and urban sites with constrained access. No general contractor trying to figure it out as they go.\n\nService geography covers all 50 states. Local San Diego and Southern California jobs typically turn around within 1 to 2 weeks. National installations are scheduled based on crew availability and freight routing. We provide a single quote covering all phases — no surprise add-ons after the equipment is already in transit.\n\nFor buyers purchasing equipment from our inventory, rigging and installation can be quoted together with the purchase, simplifying the overall project scope and providing a single point of accountability from purchase through operational startup.",
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Scope & Quote",
+      "description": "Provide equipment list, origin address, and destination. We return a complete scope and fixed price within one business day — no open-ended estimates."
+    },
+    {
+      "step": 2,
+      "title": "De-Installation",
+      "description": "Our crew de-installs at the source facility: disconnecting utilities, draining vessels, and preparing equipment for safe load-out with full documentation."
+    },
+    {
+      "step": 3,
+      "title": "Load-Out & Freight",
+      "description": "Bonded freight and rigging load-out. Equipment is secured, documented, and shipped under our direct coordination — not handed off to a third-party broker."
+    },
+    {
+      "step": 4,
+      "title": "Set & Level",
+      "description": "Installation at the destination. We set, level, and position every vessel to spec. Crane operations, forklift work, and constrained-access installations all handled in-house."
+    },
+    {
+      "step": 5,
+      "title": "Utilities & Commissioning",
+      "description": "Utilities connection and startup commissioning. We do not leave until the equipment runs. Every installation includes a commissioning walkthrough with your team."
+    }
+  ],
+  "bestFitScenarios": [
+    {
+      "title": "Brewery Expansion",
+      "description": "Purchasing additional fermenters, a larger brewhouse, or a canning line? We handle the move from source facility through commissioned installation at your expanded space.",
+      "icon": "M12 2v20M2 12h20"
+    },
+    {
+      "title": "Facility Relocation",
+      "description": "Moving your entire operation to a new building? Full facility de-install, transport, and reinstall under a single crew and contract.",
+      "icon": "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+    },
+    {
+      "title": "Equipment Purchase",
+      "description": "Buying used equipment from our inventory or another source? Bundle rigging and installation with the purchase for a single accountable scope.",
+      "icon": "M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"
+    },
+    {
+      "title": "Consignment Pickup",
+      "description": "Selling equipment on consignment through us? We handle de-installation and transport to our San Marcos facility as part of the consignment process.",
+      "icon": "M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What types of equipment do you rig and install?",
+      "a": "We handle complete brewhouses, fermentation vessels, canning and packaging lines, glycol chilling systems, boilers, and full facility builds. If it is production-grade beverage equipment, we have moved it."
+    },
+    {
+      "q": "Do you handle de-installation as well as installation?",
+      "a": "Yes. Full-service means we can de-install at the originating facility, load and transport, and install at the destination. We also handle consignment pickups for sellers liquidating equipment."
+    },
+    {
+      "q": "Do you work outside California?",
+      "a": "Yes. We handle rigging and installation in all 50 states. National jobs are quoted and scheduled individually."
+    },
+    {
+      "q": "How quickly can you provide a quote?",
+      "a": "Our trade desk responds within one business day. Provide the equipment list, origin address, and destination address and we will return a complete scope and price."
+    }
+  ],
+  "cta": {
+    "label": "Get a Rigging Quote",
+    "href": "/contact?type=rigging"
+  },
+  "relatedServices": [
+    "consignment",
+    "new-equipment"
+  ],
+  "relatedEquipment": [
+    "brewhouses",
+    "fermenters",
+    "canning",
+    "chillers"
+  ],
+  "industries": [
+    "craft-brewery",
+    "distillery",
+    "cidery",
+    "beverage-production"
+  ],
+  "keywords": [
+    "brewery equipment rigging",
+    "brewery equipment installation",
+    "brewery equipment movers California",
+    "rigging and installation San Diego",
+    "brewery equipment rigging nationwide",
+    "brewhouse installation service",
+    "millwright brewery"
+  ],
+  "heroImage": "rigging-loaded-truck.webp",
+  "order": 0,
+  "heroImageAlt": "Rigging & Installation",
+  "labels": {
+    "heroEyebrow": "Service",
+    "callPrefix": "Call",
+    "trustChips": [
+      "All 50 States",
+      "One Quote — Full Scope",
+      "Prior Brewery Operators",
+      "San Marcos, CA"
+    ],
+    "bodyHeadingSuffix": "— What to Know",
+    "sidebarBody": "Our trade desk responds within one business day. Provide details and we will return a complete scope and price.",
+    "relatedServicesLabel": "Other Services",
+    "processEyebrow": "The Process",
+    "processHeading": "How {shortTitle} Works",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "When {shortTitle} Is the Right Choice",
+    "relatedEquipmentEyebrow": "Related Equipment",
+    "relatedEquipmentHeading": "Equipment We Work With",
+    "locationsEyebrow": "Service Areas",
+    "locationsHeading": "{title} — Available Nationwide",
+    "locationsBody": "We provide {shortTitleLower} services throughout North America. Select your market for local availability and pricing.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to get started?",
+    "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+    "finalSecondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{title}"
+  }
+}

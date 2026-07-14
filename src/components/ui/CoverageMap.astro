@@ -4,30 +4,30 @@
  * D3.js hub-and-spoke visualization. Self-contained, no props required.
  * Used on: industries/[slug].astro, locations/index.astro
  */
+import { cms } from '../../lib/cms';
+
+const content = cms.coverageMap;
 ---
 
 <section class="cvg-section section-y" aria-labelledby="cvg-heading">
   <div class="container">
     <div class="cvg-header">
-      <span class="eyebrow">Service Coverage</span>
-      <h2 id="cvg-heading">Services all 50 states and internationally.</h2>
-      <p class="cvg-intro">
-        Every piece ships nationwide and internationally from our San Marcos, CA facility —
-        bonded freight, rigging at destination, one point of contact regardless of where you are.
-      </p>
+      <span class="eyebrow">{content.eyebrow}</span>
+      <h2 id="cvg-heading">{content.heading}</h2>
+      <p class="cvg-intro">{content.paragraph}</p>
     </div>
     <div class="cvg-map-wrap">
-      <p class="cvg-loading">Loading map...</p>
-      <svg class="cvg-svg" viewBox="0 0 960 580" role="img" aria-label="Service coverage map — all 50 states and internationally from San Marcos CA"></svg>
+      <p class="cvg-loading">{content.loadingText}</p>
+      <svg class="cvg-svg" viewBox="0 0 960 580" role="img" aria-label={content.accessibilityLabel}></svg>
     </div>
     <div class="cvg-legend" aria-hidden="true">
       <div class="cvg-legend-item">
         <span class="cvg-dot cvg-dot-hq"></span>
-        <span>HQ — San Marcos, CA</span>
+        <span>{content.headquartersLegend}</span>
       </div>
       <div class="cvg-legend-item">
         <span class="cvg-dot cvg-dot-market"></span>
-        <span>Services all 50 states and internationally</span>
+        <span>{content.marketLegend}</span>
       </div>
     </div>
   </div>

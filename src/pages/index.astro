@@ -12,57 +12,48 @@ import TrustBar from '../components/ui/TrustBar.astro';
 import StatBar from '../components/ui/StatBar.astro';
 import EquipmentCard from '../components/ui/EquipmentCard.astro';
 import ServiceCard from '../components/ui/ServiceCard.astro';
-import CtaStrip from '../components/ui/CtaStrip.astro';
-import { SITE, NAP } from '../data/site';
+import { NAP } from '../data/site';
 import { EQUIPMENT_CATEGORIES } from '../data/equipment';
 import { SERVICES } from '../data/services';
 import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
+import { cms } from '../lib/cms';
+import { resolveCmsImage } from '../lib/images';
 
-// ─── Glob all images at build time ───────────
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/images/*.webp',
-  { eager: true }
-);
-
-function getAsset(filename: string): ImageMetadata | undefined {
-  return allImages[`../assets/images/${filename}`]?.default;
-}
+const content = cms.pages.home;
 
 // ─── Hero background ─────────────────────────
-const heroAsset = getAsset('hero-brewhouse.webp');
+const heroAsset = resolveCmsImage(content.hero.image);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1920, height: 1080, format: 'webp', quality: 80 })
   : null;
 
 // ─── Why BET image ────────────────────────────
-const whyAsset = getAsset('hero-brewhouse.webp');
+const whyAsset = resolveCmsImage(content.why.image);
 
 // ─── Rigging images ───────────────────────────
-const riggingTruck      = getAsset('rigging-loaded-truck.webp');
-const riggingFermenters = getAsset('rigging-fermenters-transport.webp');
-const riggingForklift   = getAsset('rigging-forklift-install.webp');
+const riggingImages = content.rigging.images.map(item => ({ ...item, asset: resolveCmsImage(item.image) }));
 
 // ─── Featured inventory ───────────────────────
-const featuredItems = [
-  { name: '30 BBL 4-Vessel Marks Brewhouse', price: '$78,500', condition: 'Used' as const, category: 'BREWHOUSE', imageFile: 'brewhouse-30bbl-marks.webp', href: 'https://beverageequipmenttraders.com/collections/brewhouses' },
-  { name: '60 BBL Jacketed Unitank',          price: '$24,900', condition: 'Used' as const, category: 'FERMENTER',  imageFile: 'fermenters-60bbl-pano.webp',  href: 'https://beverageequipmenttraders.com/collections/fermenters-manual' },
-  { name: '15 BBL Brewhouse with HLT',        price: '$52,000', condition: 'Used' as const, category: 'BREWHOUSE', imageFile: 'brewhouse-15bbl-hlt.webp',      href: 'https://beverageequipmenttraders.com/collections/brewhouses' },
-].map((item) => ({ ...item, imageAsset: getAsset(item.imageFile) }));
+const featuredItems = content.featured.items.map(item => ({
+  ...item,
+  condition: item.condition as 'Used' | 'New',
+  imageAsset: resolveCmsImage(item.image),
+}));
 
 const schemas = [
   localBusinessSchema(),
-  breadcrumbSchema([{ name: 'Home', url: '/' }]),
+  breadcrumbSchema([{ name: cms.globalCtas.breadcrumbHomeLabel, url: '/' }]),
 ];
 ---
 
 <Layout
-  title="New and Used Brewery Equipment For Sale | Beverage Equipment Traders"
-  description={SITE.description}
+  title={content.seo.title}
+  description={content.seo.description}
   schemas={schemas}
 >
 
   <!-- ═══ HERO ═══════════════════════════════════ -->
-  <section class="hero" aria-label="Hero">
+  <section class="hero" aria-label={content.hero.ariaLabel}>
     {optimizedHero && (
       <div
         class="hero-bg"
@@ -74,42 +65,27 @@ const schemas = [
       <div class="hero-content">
         <div class="hero-badge animate-fade-up">
           <span class="hero-badge-dot" aria-hidden="true"></span>
-          <span>Live Inventory</span>
+          <span>{content.hero.badgeLabels[0]}</span>
           <span class="hero-sep" aria-hidden="true">·</span>
-          <span>San Marcos, CA</span>
+          <span>{content.hero.badgeLabels[1]}</span>
           <span class="hero-sep" aria-hidden="true">·</span>
-          <span>Updated Daily</span>
+          <span>{content.hero.badgeLabels[2]}</span>
         </div>
         <h1 class="hero-h1 animate-fade-up delay-100">
-          New and Used Brewery<br />Equipment For Sale.
+          {content.hero.heading.split('\n').map((line, index) => <>{index > 0 && <br />}{line}</>)}
         </h1>
         <p class="hero-sub animate-fade-up delay-200">
-          Operating from a 40,000 sq ft consolidation facility in San Marcos, California.
-          Every asset is photographed and listed with full condition documentation.
-          Nationwide rigging, freight, and installation on every transaction.
+          {content.hero.body}
         </p>
         <div class="hero-ctas animate-fade-up delay-300">
-          <a href="https://beverageequipmenttraders.com/collections/all" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
-            Browse Live Inventory
+          <a href={content.hero.primaryCta.href} class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
+            {content.hero.primaryCta.label}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="/contact?type=rigging" class="btn btn-outline btn-lg">Schedule a Technical Call</a>
+          <a href={content.hero.secondaryCta.href} class="btn btn-outline btn-lg">{content.hero.secondaryCta.label}</a>
         </div>
-        <div class="hero-stats animate-fade-up delay-400" aria-label="Key statistics">
-          <div class="hero-stat">
-            <span class="hero-stat-val">40K</span>
-            <span class="hero-stat-label">Sq Ft Facility</span>
-          </div>
-          <span class="hero-stat-div" aria-hidden="true"></span>
-          <div class="hero-stat">
-            <span class="hero-stat-val">50</span>
-            <span class="hero-stat-label">States Served</span>
-          </div>
-          <span class="hero-stat-div" aria-hidden="true"></span>
-          <div class="hero-stat">
-            <span class="hero-stat-val">600+</span>
-            <span class="hero-stat-label">Placements</span>
-          </div>
+        <div class="hero-stats animate-fade-up delay-400" aria-label={cms.globalCtas.statAriaLabel}>
+          {content.hero.statistics.map((stat, index) => <>{index > 0 && <span class="hero-stat-div" aria-hidden="true"></span>}<div class="hero-stat"><span class="hero-stat-val">{stat.value}</span><span class="hero-stat-label">{stat.label}</span></div></>)}
         </div>
       </div>
     </div>
@@ -122,11 +98,11 @@ const schemas = [
     <div class="container">
       <div class="section-header">
         <div>
-          <span class="eyebrow">01 · Featured Inventory</span>
-          <h2 id="featured-heading">High-ticket procurement,<br />production-sourced.</h2>
+          <span class="eyebrow">{content.featured.eyebrow}</span>
+          <h2 id="featured-heading">{content.featured.heading.split('\n').map((line, index) => <>{index > 0 && <br />}{line}</>)}</h2>
         </div>
-        <a href="https://beverageequipmenttraders.com/collections/all" class="section-link" target="_blank" rel="noopener noreferrer">
-          View Full Catalog
+        <a href={content.featured.link.href} class="section-link" target="_blank" rel="noopener noreferrer">
+          {content.featured.link.label}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -138,11 +114,12 @@ const schemas = [
             condition={item.condition}
             category={item.category}
             image={item.imageAsset}
+            imageAlt={item.imageAlt}
             href={item.href}
           />
         ))}
       </div>
-      <div class="category-pills" aria-label="Browse by equipment category">
+      <div class="category-pills" aria-label={content.featured.categoryAriaLabel}>
         {EQUIPMENT_CATEGORIES.map((cat) => (
           <a href={`/equipment/${cat.slug}`} class="category-pill">{cat.title}</a>
         ))}
@@ -155,11 +132,11 @@ const schemas = [
     <div class="container">
       <div class="section-header">
         <div>
-          <span class="eyebrow">02 · One Partner</span>
-          <h2 id="services-heading">From sourcing to start-up.</h2>
+          <span class="eyebrow">{content.services.eyebrow}</span>
+          <h2 id="services-heading">{content.services.heading}</h2>
         </div>
-        <a href="/services" class="section-link">
-          All Services
+        <a href={content.services.link.href} class="section-link">
+          {content.services.link.label}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
@@ -185,7 +162,7 @@ const schemas = [
           {whyAsset && (
             <Image
               src={whyAsset}
-              alt="BET brewhouse facility — San Marcos, CA"
+              alt={content.why.imageAlt}
               class="why-img"
               width={600}
               height={750}
@@ -194,23 +171,22 @@ const schemas = [
             />
           )}
           <div class="why-img-badge">
-            <span class="why-est">EST. 2009</span>
-            <span class="why-loc">San Marcos, California</span>
+            <span class="why-est">{content.why.badgeTop}</span>
+            <span class="why-loc">{content.why.badgeBottom}</span>
           </div>
         </div>
       </div>
       <div class="why-content">
-        <span class="eyebrow">03 · The Operator</span>
+        <span class="eyebrow">{content.why.eyebrow}</span>
         <h2 id="why-heading">
-          Built by Operators,<br />
-          <em class="text-gradient-gold">For Operators.</em>
+          {content.why.heading}<br />
+          <em class="text-gradient-gold">{content.why.headingAccent}</em>
         </h2>
-        <p>Beverage Equipment Traders was founded by former brewery owners who spent fifteen years on the production floor. We know the difference a half percent of efficiency makes on your line — and we know what failure on install day costs.</p>
-        <p>Before we brokered a single tank, we ran our own brewhouse — troubleshooting glycol loops at 2 a.m., welding back together packaging lines that vendors said were dead. Every piece in our yard has been pressure-tested by people who've actually used it in production.</p>
+        {content.why.paragraphs.map(paragraph => <p>{paragraph}</p>)}
         <StatBar standalone={false} />
         <div class="why-ctas">
-          <a href="/about" class="btn btn-outline">Our Story</a>
-          <a href="/contact" class="btn btn-gold">Start a Conversation</a>
+          <a href={content.why.primaryCta.href} class="btn btn-outline">{content.why.primaryCta.label}</a>
+          <a href={content.why.secondaryCta.href} class="btn btn-gold">{content.why.secondaryCta.label}</a>
         </div>
       </div>
     </div>
@@ -221,40 +197,21 @@ const schemas = [
     <div class="container">
       <div class="section-header">
         <div>
-          <span class="eyebrow">04 · Nationwide Rigging</span>
-          <h2 id="rigging-heading">One crew, coast to coast.</h2>
+          <span class="eyebrow">{content.rigging.eyebrow}</span>
+          <h2 id="rigging-heading">{content.rigging.heading}</h2>
         </div>
-        <a href="/services/rigging" class="section-link">
-          Learn About Rigging
+        <a href={content.rigging.link.href} class="section-link">
+          {content.rigging.link.label}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
       <div class="rigging-grid">
-        {riggingTruck && (
-          <div class="rigging-img-wrap">
-            <Image src={riggingTruck} alt="Brewery tanks loaded on flatbed truck for transport" class="rigging-img" width={800} height={500} loading="lazy" decoding="async" />
-          </div>
-        )}
-        {riggingFermenters && (
-          <div class="rigging-img-wrap">
-            <Image src={riggingFermenters} alt="Fermentation vessels being transported" class="rigging-img" width={800} height={500} loading="lazy" decoding="async" />
-          </div>
-        )}
-        {riggingForklift && (
-          <div class="rigging-img-wrap">
-            <Image src={riggingForklift} alt="Forklift rigging a fermenter during installation" class="rigging-img" width={800} height={500} loading="lazy" decoding="async" />
-          </div>
-        )}
+        {riggingImages.map(item => item.asset && <div class="rigging-img-wrap"><Image src={item.asset} alt={item.alt} class="rigging-img" width={800} height={500} loading="lazy" decoding="async" /></div>)}
       </div>
       <div class="rigging-proof-strip">
-        {[
-          { val: 'All 50 States',  detail: 'Bonded freight nationwide' },
-          { val: 'One Quote',      detail: 'Equipment + freight + install' },
-          { val: '1–2 Week',       detail: 'Local SoCal turnaround' },
-          { val: 'Operator Crews', detail: 'Prior brewery experience' },
-        ].map((item) => (
+        {content.rigging.proof.map((item) => (
           <div class="rigging-proof-item">
-            <span class="rigging-proof-val">{item.val}</span>
+            <span class="rigging-proof-val">{item.value}</span>
             <span class="rigging-proof-detail">{item.detail}</span>
           </div>
         ))}
@@ -266,21 +223,21 @@ const schemas = [
   <section class="national-band" aria-labelledby="national-heading">
     <div class="container national-inner">
       <div class="national-content">
-        <span class="eyebrow">Shipping Nationwide</span>
+        <span class="eyebrow">{content.national.eyebrow}</span>
         <h2 id="national-heading" class="national-h2">
-          Your buyer in Chicago is as real as<br class="hide-mobile" /> the one in San Diego.
+          {content.national.heading.split('\n').map((line, index) => <>{index > 0 && <br class="hide-mobile" />}{line}</>)}
         </h2>
-        <p>BET ships to all 50 states. The majority of high-intent equipment searches carry no geographic modifier. Our content, pricing, and logistics infrastructure serve the national buyer as directly as the local one.</p>
+        <p>{content.national.body}</p>
         <div class="national-cities">
-          {['Denver', 'Portland', 'Chicago', 'Austin', 'Seattle', 'Nashville'].map((city) => (
+          {content.national.cities.map((city) => (
             <a href={`/locations/national/${city.toLowerCase()}`} class="national-city">{city}</a>
           ))}
         </div>
       </div>
       <div class="national-stat-col" aria-hidden="true">
         <div class="national-circle">
-          <span class="national-circle-num">50</span>
-          <span class="national-circle-label">States</span>
+          <span class="national-circle-num">{content.national.statisticValue}</span>
+          <span class="national-circle-label">{content.national.statisticLabel}</span>
         </div>
       </div>
     </div>
@@ -289,12 +246,12 @@ const schemas = [
   <!-- ═══ FINAL CTA ════════════════════════════════ -->
   <section class="section-y final-cta-section" aria-labelledby="final-cta-heading">
     <div class="container final-cta">
-      <span class="eyebrow eyebrow-center">Ready to Move Fast</span>
-      <h2 id="final-cta-heading">Get a verified quote in 24 hours.</h2>
-      <p>Operator inspection, rigging, and freight quoted in a single thread.<br />Our trade desk responds within one business day.</p>
+      <span class="eyebrow eyebrow-center">{content.finalCta.eyebrow}</span>
+      <h2 id="final-cta-heading">{content.finalCta.heading}</h2>
+      <p>{content.finalCta.body.split('\n').map((line, index) => <>{index > 0 && <br />}{line}</>)}</p>
       <div class="final-cta-actions">
-        <a href="/contact?type=rigging" class="btn btn-primary btn-lg">
-          Request Asset Quote
+        <a href={content.finalCta.primaryCta.href} class="btn btn-primary btn-lg">
+          {content.finalCta.primaryCta.label}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href={`tel:${NAP.phonePlain}`} class="btn btn-outline btn-lg">{NAP.phone}</a>

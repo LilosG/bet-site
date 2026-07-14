@@ -14,16 +14,8 @@ import { NAP } from '../../../data/site';
 import { EQUIPMENT_CATEGORIES } from '../../../data/equipment';
 import { SERVICES } from '../../../data/services';
 import { breadcrumbSchema, localBusinessSchema } from '../../../lib/schema';
-
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../../assets/images/*.webp',
-  { eager: true }
-);
-
-function getAsset(filename: string | undefined): ImageMetadata | undefined {
-  if (!filename) return undefined;
-  return allImages[`../../../assets/images/${filename}`]?.default;
-}
+import { cms, interpolate } from '../../../lib/cms';
+import { resolveCmsImage } from '../../../lib/images';
 
 export async function getStaticPaths() {
   return LOCAL_LOCATIONS.map((loc) => ({
@@ -34,14 +26,16 @@ export async function getStaticPaths() {
 
 const { loc } = Astro.props;
 
-const heroAsset = getAsset(loc.heroImage);
+const heroAsset = resolveCmsImage(loc.heroImage);
+const labels = loc.labels;
+const labelValues = { city: loc.city, state: loc.state, stateAbbr: loc.stateAbbr };
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const crumbs = [
-  { name: 'Home',          url: '/' },
-  { name: 'Service Areas', url: '/locations' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: cms.pages.locations.breadcrumbLabel, url: '/locations' },
   { name: loc.city,        url: `/locations/local/${loc.slug}` },
 ];
 
@@ -69,15 +63,15 @@ const schemas = [
       ></div>
     )}
     <div class="container loc-hero-inner">
-      <span class="eyebrow">{loc.city}, {loc.stateAbbr} · Local Service Area</span>
+      <span class="eyebrow">{interpolate(labels.heroEyebrow, labelValues)}</span>
       <h1>{loc.h1}</h1>
       <p class="loc-intro">{loc.intro}</p>
       <div class="loc-hero-ctas">
-        <a href="/contact" class="btn btn-primary btn-lg">
-          Contact the Trade Desk
+        <a href={labels.primaryCta.href} class="btn btn-primary btn-lg">
+          {labels.primaryCta.label}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="/equipment" class="btn btn-outline btn-lg">Browse Equipment</a>
+        <a href={labels.secondaryCta.href} class="btn btn-outline btn-lg">{labels.secondaryCta.label}</a>
       </div>
     </div>
   </section>
@@ -90,33 +84,33 @@ const schemas = [
   <section class="loc-body-band section-y" aria-labelledby="loc-content-heading">
     <div class="container loc-content-inner">
       <div class="prose">
-        <h2 id="loc-content-heading">Brewery Equipment Near {loc.city}</h2>
+        <h2 id="loc-content-heading">{interpolate(labels.bodyHeading, labelValues)}</h2>
         {loc.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
       </div>
       <aside class="loc-sidebar">
         <div class="loc-sidebar-card">
-          <h3>Visit Our Facility</h3>
+          <h3>{labels.sidebarHeading}</h3>
           <address class="loc-address" itemscope itemtype="https://schema.org/PostalAddress">
             <span itemprop="streetAddress">{NAP.street}</span><br />
             <span itemprop="addressLocality">{NAP.city}</span>,
             <span itemprop="addressRegion">{NAP.state}</span>
             <span itemprop="postalCode">{NAP.zip}</span>
           </address>
-          <p class="loc-hours-note">Mon–Thu: 10AM–4PM · Fri: 10AM–3PM<br />Sat: By Appointment</p>
+          <p class="loc-hours-note">{labels.hoursNote.split('\n').map((line, index) => <>{index > 0 && <br />}{line}</>)}</p>
           <a href={`tel:${NAP.phonePlain}`} class="loc-phone">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 9.82 19.79 19.79 0 011.63 1.17 2 2 0 013.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             {NAP.phone}
           </a>
           <a
-            href="https://www.google.com/maps/dir/?api=1&destination=1520+E+Barham+Dr,+San+Marcos,+CA+92078"
+            href={`https://www.google.com/maps/dir/?api=1&destination_place_id=${cms.company.geo.placeId}`}
             class="btn btn-outline"
             style="width:100%;justify-content:center;margin-top:1rem;"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Get Directions
+            {labels.directionsLabel}
           </a>
         </div>
       </aside>
@@ -126,14 +120,14 @@ const schemas = [
   <!-- ═══ EQUIPMENT CATEGORIES ══════════════════ -->
   <section class="section-y loc-eq-band" aria-labelledby="loc-eq-heading">
     <div class="container">
-      <span class="eyebrow">Equipment Available Near {loc.city}</span>
-      <h2 id="loc-eq-heading">Browse by Category</h2>
+      <span class="eyebrow">{interpolate(labels.equipmentEyebrow, labelValues)}</span>
+      <h2 id="loc-eq-heading">{labels.equipmentHeading}</h2>
       <div class="loc-cat-grid">
         {EQUIPMENT_CATEGORIES.map((cat) => (
           <a href={`/equipment/${cat.slug}/${loc.slug}`} class="loc-cat-item">
             <span class="loc-cat-title">{cat.title}</span>
             <span class="loc-cat-link">
-              Browse
+              {labels.equipmentCtaLabel}
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
@@ -145,15 +139,15 @@ const schemas = [
   <!-- ═══ SERVICES ══════════════════════════════ -->
   <section class="section-y" aria-labelledby="loc-svc-heading">
     <div class="container">
-      <span class="eyebrow">Services in {loc.city}</span>
-      <h2 id="loc-svc-heading">What We Handle in {loc.state}</h2>
+      <span class="eyebrow">{interpolate(labels.servicesEyebrow, labelValues)}</span>
+      <h2 id="loc-svc-heading">{interpolate(labels.servicesHeading, labelValues)}</h2>
       <div class="loc-svc-grid">
         {SERVICES.map((svc) => (
           <a href={`/services/${svc.slug}/${loc.slug}`} class="loc-svc-item">
             <p class="loc-svc-title">{svc.title}</p>
             <p class="loc-svc-desc">{svc.intro}</p>
             <span class="loc-svc-link">
-              Learn More
+              {labels.servicesCtaLabel}
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
@@ -163,12 +157,12 @@ const schemas = [
   </section>
 
   <CtaStrip
-    heading={`Ready to source or move equipment in ${loc.city}?`}
-    subtext="One call, one quote. Available for in-person inspection at our San Marcos facility."
-    primaryLabel="Contact Trade Desk"
-    primaryHref="/contact"
-    secondaryLabel="Get a Rigging Quote"
-    secondaryHref="/contact?type=rigging"
+    heading={interpolate(labels.finalCtaHeading, labelValues)}
+    subtext={labels.finalCtaBody}
+    primaryLabel={labels.finalPrimaryCta.label}
+    primaryHref={labels.finalPrimaryCta.href}
+    secondaryLabel={labels.finalSecondaryCta.label}
+    secondaryHref={labels.finalSecondaryCta.href}
   />
 </Layout>
 

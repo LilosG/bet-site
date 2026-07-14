@@ -13,20 +13,19 @@ import StatBar from '../../components/ui/StatBar.astro';
 import TrustBar from '../../components/ui/TrustBar.astro';
 import { SERVICES } from '../../data/services';
 import { breadcrumbSchema, serviceSchema } from '../../lib/schema';
+import { cms } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
 
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
+const content = cms.pages.services;
 
-const heroAsset = allImages['../../assets/images/hero-services.webp']?.default;
+const heroAsset = resolveCmsImage(content.hero.image);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const crumbs = [
-  { name: 'Home',     url: '/' },
-  { name: 'Services', url: '/services' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/services' },
 ];
 
 const schemas = [
@@ -43,8 +42,8 @@ const schemas = [
 ---
 
 <Layout
-  title="Brewery Equipment Services — Rigging, Consignment, Auctions & More | Beverage Equipment Traders"
-  description="Full-service brewery equipment solutions: rigging and installation, consignment, auctions, technical consulting, and new equipment sourcing. One partner from sourcing to start-up."
+  title={content.seo.title}
+  description={content.seo.description}
   schemas={schemas}
 >
   <Breadcrumb crumbs={crumbs} />
@@ -58,18 +57,15 @@ const schemas = [
       ></div>
     )}
     <div class="container services-hero-inner">
-      <span class="eyebrow">Services</span>
-      <h1>One Partner, Every Step of the Lifecycle.</h1>
-      <p class="services-hero-intro">
-        Beverage Equipment Traders handles the full capital equipment lifecycle — sourcing, moving, selling,
-        and commissioning. Whether you are building out, scaling up, or winding down, we have handled it before.
-      </p>
+      <span class="eyebrow">{content.hero.eyebrow}</span>
+      <h1>{content.hero.heading}</h1>
+      <p class="services-hero-intro">{content.hero.body}</p>
     </div>
   </section>
 
   <section class="section-y" aria-labelledby="services-list-heading">
     <div class="container">
-      <h2 id="services-list-heading" class="sr-only">Our Services</h2>
+      <h2 id="services-list-heading" class="sr-only">{content.servicesHeading}</h2>
       <div class="services-grid">
         {SERVICES.map((service, i) => (
           <ServiceCard
@@ -89,36 +85,21 @@ const schemas = [
   <section class="section-y" aria-labelledby="why-one-heading">
     <div class="container why-one-inner">
       <div>
-        <span class="eyebrow">Why It Matters</span>
-        <h2 id="why-one-heading">The advantage of one accountable partner.</h2>
-        <p>
-          Most equipment transactions involve three separate vendors: a broker who finds it, a rigger who moves it,
-          and a contractor who installs it. Each one hands off liability to the next. When something goes wrong at
-          installation, no one owns it.
-        </p>
-        <p>
-          At Beverage Equipment Traders, every step is in-house. We source the equipment, rig and transport it,
-          and install and commission it. One quote covers the full scope. One phone number answers for all of it.
-          That is what 600+ equipment placements looks like in practice.
-        </p>
-        <a href="/contact" class="btn btn-primary">
-          Talk to the Trade Desk
+        <span class="eyebrow">{content.why.eyebrow}</span>
+        <h2 id="why-one-heading">{content.why.heading}</h2>
+        {content.why.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+        <a href={content.why.cta.href} class="btn btn-primary">
+          {content.why.cta.label}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
       <div class="why-one-list">
-        {[
-          { label: 'Rigging & Installation', detail: 'All 50 states. Crane-in capable. Single quote.' },
-          { label: 'Consignment',            detail: 'Managed listing, valuation, and payout.' },
-          { label: 'Auctions',               detail: 'Full-facility liquidations and competitive events.' },
-          { label: 'Consulting',             detail: 'Pre-purchase audits and capacity planning.' },
-          { label: 'New Equipment',          detail: 'Manufacturer relationships for new builds.' },
-        ].map((item, i) => (
+        {content.why.items.map((item, i) => (
           <div class="why-one-item">
             <span class="why-one-num">{String(i + 1).padStart(2, '0')}</span>
             <div>
-              <p class="why-one-label">{item.label}</p>
-              <p class="why-one-detail">{item.detail}</p>
+              <p class="why-one-label">{item.title}</p>
+              <p class="why-one-detail">{item.description}</p>
             </div>
           </div>
         ))}
@@ -129,12 +110,12 @@ const schemas = [
   <TrustBar />
 
   <CtaStrip
-    heading="Not sure which service fits your situation?"
-    subtext="Describe what you have or what you need. We will tell you what makes sense and what it costs."
-    primaryLabel="Get in Touch"
-    primaryHref="/contact"
-    secondaryLabel="Browse Equipment"
-    secondaryHref="/equipment"
+    heading={content.finalCta.heading}
+    subtext={content.finalCta.body}
+    primaryLabel={content.finalCta.primaryCta.label}
+    primaryHref={content.finalCta.primaryCta.href}
+    secondaryLabel={content.finalCta.secondaryCta.label}
+    secondaryHref={content.finalCta.secondaryCta.href}
   />
 </Layout>
 

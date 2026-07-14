@@ -1,0 +1,105 @@
+{
+  "slug": "hard-seltzer",
+  "heroImage": "hero-canning.webp",
+  "name": "Hard Seltzer Producers",
+  "shortName": "Hard Seltzer",
+  "h1": "Equipment for Hard Seltzer and RTD Producers",
+  "metaTitle": "Hard Seltzer Production Equipment | Beverage Equipment Traders",
+  "metaDescription": "Fermentation tanks, canning lines, glycol systems, and cold storage for hard seltzer and RTD beverage producers. New and used equipment from San Marcos, CA.",
+  "intro": "Fermentation, packaging, and cold-side equipment for hard seltzer and ready-to-drink beverage production.",
+  "bodyContent": "Hard seltzer and ready-to-drink beverage production uses the same core equipment as craft brewing — fermentation vessels, glycol chilling, canning lines, and cold storage — with some production-specific differences in vessel sizing, carbonation, and packaging line configuration.\n\nBeverage Equipment Traders serves hard seltzer producers with the same equipment inventory we maintain for craft brewery clients. The rapid growth and subsequent consolidation in the hard seltzer category has created a significant secondary market for production-scale equipment — fermenters, canning lines, and processing systems from operations that scaled quickly and later adjusted capacity.\n\nOur inventory is updated regularly and reflects current secondary market availability. For hard seltzer producers acquiring equipment or liquidating surplus capacity, we provide the same full-service approach: equipment assessment, photography, marketing to qualified buyers, and logistics coordination.",
+  "relevantEquipment": [
+    "fermenters",
+    "canning",
+    "chillers",
+    "cold-rooms"
+  ],
+  "relevantServices": [
+    "rigging",
+    "consignment",
+    "auctions"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "Production Fermentation",
+      "description": "Large-format fermentation vessels for high-volume seltzer production. Used production-scale fermenters from the secondary market offer significant value."
+    },
+    {
+      "title": "High-Speed Canning",
+      "description": "Canning lines capable of 50+ CPM for high-volume RTD packaging. Production-scale canning systems from the secondary market as the category consolidates."
+    },
+    {
+      "title": "Surplus Liquidation",
+      "description": "Hard seltzer category consolidation has created significant surplus equipment. Our auction and consignment programs handle structured liquidation of production-scale assets."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "Fermenters & Tanks",
+    "Canning Lines",
+    "Glycol Chillers"
+  ],
+  "faqs": [
+    {
+      "q": "Do you carry large-format fermenters for high-volume seltzer production?",
+      "a": "Our fermenter inventory includes production-scale vessels suited for high-volume operations. Contact us for current availability on specific volumes."
+    },
+    {
+      "q": "Are you seeing more hard seltzer equipment on the secondary market?",
+      "a": "Yes. Category consolidation has added significant production-scale equipment to the secondary market — particularly large fermenters and high-speed canning lines. Contact us for current availability."
+    },
+    {
+      "q": "Do you handle auction or consignment of hard seltzer production assets?",
+      "a": "Yes. Auction is often the right approach for hard seltzer operations liquidating production-scale assets on a defined timeline. Contact us to discuss your equipment set and timeline."
+    },
+    {
+      "q": "What canning line speeds are available for high-volume RTD production?",
+      "a": "We carry production canning lines capable of 50 CPM and above. High-speed lines from the secondary market — including systems from hard seltzer and RTD operations — appear in our inventory regularly."
+    }
+  ],
+  "keywords": [
+    "hard seltzer equipment",
+    "RTD production equipment",
+    "seltzer canning line",
+    "hard seltzer fermenters",
+    "RTD beverage equipment",
+    "seltzer production tanks"
+  ],
+  "order": 4,
+  "heroImageAlt": "Hard Seltzer Producers",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

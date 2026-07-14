@@ -14,24 +14,23 @@ import TrustBar from '../components/ui/TrustBar.astro';
 import CtaStrip from '../components/ui/CtaStrip.astro';
 import { NAP, GEO } from '../data/site';
 import { localBusinessSchema, breadcrumbSchema } from '../lib/schema';
+import { cms } from '../lib/cms';
+import { resolveCmsImage } from '../lib/images';
+
+const content = cms.pages.about;
 
 // ─── Hero image ───────────────────────────────
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/images/*.webp',
-  { eager: true }
-);
-
-const heroAsset = allImages['../assets/images/hero-equipment.webp']?.default;
+const heroAsset = resolveCmsImage(content.hero.image);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, format: 'webp', quality: 80 })
   : null;
 
 // ─── Story image ──────────────────────────────
-const storyImage = allImages['../assets/images/brewhouse-hero.webp']?.default;
+const storyImage = resolveCmsImage(content.story.image);
 
 const crumbs = [
-  { name: 'Home',  url: '/' },
-  { name: 'About', url: '/about' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/about' },
 ];
 
 const schemas = [
@@ -41,8 +40,8 @@ const schemas = [
 ---
 
 <Layout
-  title="About Beverage Equipment Traders — Built by Operators, For Operators"
-  description="Beverage Equipment Traders was founded by former brewery owners who spent 15+ years on the production floor. Based in San Marcos, CA. 225+ items in stock. 600+ equipment placements."
+  title={content.seo.title}
+  description={content.seo.description}
   schemas={schemas}
 >
   <Breadcrumb crumbs={crumbs} />
@@ -57,13 +56,9 @@ const schemas = [
       ></div>
     )}
     <div class="container about-hero-inner">
-      <span class="eyebrow">About BET</span>
-      <h1>Built by Operators, For Operators.</h1>
-      <p class="about-hero-intro">
-        Beverage Equipment Traders was founded by former brewery owners who spent fifteen years on the production
-        floor before pivoting to equipment trading. We know what failure at installation looks like.
-        We know what a half-percent efficiency gap costs at scale. We built this company because we needed it and it didn't exist.
-      </p>
+      <span class="eyebrow">{content.hero.eyebrow}</span>
+      <h1>{content.hero.heading}</h1>
+      <p class="about-hero-intro">{content.hero.body}</p>
     </div>
   </section>
 
@@ -77,7 +72,7 @@ const schemas = [
           {storyImage && (
             <Image
               src={storyImage}
-              alt="Commercial brewhouse — Beverage Equipment Traders facility, San Marcos CA"
+              alt={content.story.imageAlt}
               class="story-img"
               width={480}
               height={640}
@@ -85,46 +80,28 @@ const schemas = [
               decoding="async"
             />
           )}
-          <span class="story-est">EST. 2009</span>
-          <span class="story-city">San Marcos, California</span>
+          <span class="story-est">{content.story.badgeTop}</span>
+          <span class="story-city">{content.story.badgeBottom}</span>
         </div>
         <div class="story-address-card">
-          <p class="story-address-label">Headquarters</p>
+          <p class="story-address-label">{content.story.addressLabel}</p>
           <address itemscope itemtype="https://schema.org/PostalAddress">
             <span itemprop="streetAddress">{NAP.street}</span><br />
             <span itemprop="addressLocality">{NAP.city}</span>,
             <span itemprop="addressRegion">{NAP.state}</span>
             <span itemprop="postalCode">{NAP.zip}</span>
           </address>
-          <a href="tel:+19498882739" class="story-phone">{NAP.phone}</a>
+          <a href={`tel:${NAP.phonePlain}`} class="story-phone">{NAP.phone}</a>
         </div>
       </div>
 
       <div class="story-content">
-        <span class="eyebrow">The Story</span>
-        <h2 id="story-heading">Before we brokered a single tank, we ran a brewhouse.</h2>
-        <p>
-          Most equipment dealers have never brewed a batch. They learned equipment pricing from a spreadsheet
-          and condition grading from a checklist. We did not. We troubleshot glycol loops at 2 a.m. We welded
-          back together packaging lines that vendors had written off as scrap. We commissioned brewhouses in
-          facilities that were not built to spec. That context is the reason our clients refer us to other
-          breweries.
-        </p>
-        <p>
-          Beverage Equipment Traders started because there was no single operator we trusted to handle the full
-          scope of an equipment transaction — sourcing, moving, installing, and commissioning — without losing
-          accountability somewhere in the middle. We built the company we needed. It now serves breweries,
-          cideries, distilleries, and beverage producers across all 50 states.
-        </p>
-        <p>
-          Our 40,000 sq ft facility in San Marcos, CA houses 225+ items at any given time. Every piece is
-          photographed and listed with condition documentation. We do not sell sight-unseen from a
-          blurry listing. Buyers are encouraged to inspect in person. Our team can walk you through every piece
-          in our yard and give you the operator's take on what it's actually worth.
-        </p>
+        <span class="eyebrow">{content.story.eyebrow}</span>
+        <h2 id="story-heading">{content.story.heading}</h2>
+        {content.story.paragraphs.map(paragraph => <p>{paragraph}</p>)}
         <div class="story-ctas">
-          <a href="/equipment" class="btn btn-primary">Browse Equipment</a>
-          <a href="/contact" class="btn btn-outline">Contact the Trade Desk</a>
+          <a href={content.story.primaryCta.href} class="btn btn-primary">{content.story.primaryCta.label}</a>
+          <a href={content.story.secondaryCta.href} class="btn btn-outline">{content.story.secondaryCta.label}</a>
         </div>
       </div>
     </div>
@@ -133,20 +110,13 @@ const schemas = [
   <!-- ═══ WHAT WE DO ════════════════════════════ -->
   <section class="section-y what-we-do-band" aria-labelledby="what-we-do-heading">
     <div class="container">
-      <span class="eyebrow">What We Do</span>
-      <h2 id="what-we-do-heading">The Full Capital Equipment Lifecycle</h2>
+      <span class="eyebrow">{content.lifecycle.eyebrow}</span>
+      <h2 id="what-we-do-heading">{content.lifecycle.heading}</h2>
       <div class="what-grid">
-        {[
-          { label: 'Buy and Sell',  detail: '225+ items in our yard at any time. Brewhouses, fermenters, canning lines, chillers, distilling equipment, kegs, boilers, and cold rooms. Every piece photographed and documented.' },
-          { label: 'Rig and Install', detail: 'Millwright crews, crane operation, bonded freight, and commissioning. All 50 states. One quote covers the full scope.' },
-          { label: 'Consign',       detail: 'Managed listing, valuation, marketing, and payout for equipment you need to move. No upfront cost.' },
-          { label: 'Auction',       detail: 'Full-facility liquidations and competitive online auction events for distressed and surplus assets.' },
-          { label: 'Consult',       detail: 'Pre-purchase audits, capacity planning, and commissioning support from licensed brewery engineers.' },
-          { label: 'Source New',    detail: 'Manufacturer relationships for custom new equipment builds when the right used piece is not available.' },
-        ].map((item) => (
+        {content.lifecycle.items.map((item) => (
           <div class="what-item">
-            <h3 class="what-label">{item.label}</h3>
-            <p class="what-detail">{item.detail}</p>
+            <h3 class="what-label">{item.title}</h3>
+            <p class="what-detail">{item.description}</p>
           </div>
         ))}
       </div>
@@ -154,35 +124,27 @@ const schemas = [
   </section>
 
   <!-- ═══ CLIENT ROSTER ════════════════════════ -->
-  <TrustBar heading="Clients we have worked with" />
+  <TrustBar heading={content.trustHeading} />
 
   <!-- ═══ VISIT ════════════════════════════════ -->
   <section class="section-y" aria-labelledby="visit-heading">
     <div class="container visit-inner">
       <div>
-        <span class="eyebrow">Visit</span>
-        <h2 id="visit-heading">Our Facility in San Marcos, CA</h2>
-        <p>
-          Our 40,000 sq ft facility is open for in-person inspection by appointment. Most buyers evaluating
-          high-value equipment prefer to see it in person before committing. We encourage it.
-        </p>
+        <span class="eyebrow">{content.visit.eyebrow}</span>
+        <h2 id="visit-heading">{content.visit.heading}</h2>
+        <p>{content.visit.body}</p>
         <address class="visit-address" itemscope itemtype="https://schema.org/PostalAddress">
           <span itemprop="streetAddress">{NAP.street}</span><br />
           <span itemprop="addressLocality">{NAP.city}</span>,
           <span itemprop="addressRegion">{NAP.state}</span>
           <span itemprop="postalCode">{NAP.zip}</span>
         </address>
-        <a href="tel:+19498882739" class="visit-phone">{NAP.phone}</a>
+        <a href={`tel:${NAP.phonePlain}`} class="visit-phone">{NAP.phone}</a>
         <div class="visit-hours">
-          {[
-            ['Monday – Thursday', '10:00 AM – 4:00 PM'],
-            ['Friday',            '10:00 AM – 3:00 PM'],
-            ['Saturday',          'By Appointment'],
-            ['Sunday',            'Closed'],
-          ].map(([day, hours]) => (
+          {content.visit.hours.map(item => (
             <div class="visit-hour-row">
-              <span class="visit-day">{day}</span>
-              <span class="visit-time">{hours}</span>
+              <span class="visit-day">{item.day}</span>
+              <span class="visit-time">{item.label}</span>
             </div>
           ))}
         </div>
@@ -192,7 +154,7 @@ const schemas = [
           target="_blank"
           rel="noopener noreferrer"
         >
-          Get Directions
+          {content.visit.directionsLabel}
         </a>
       </div>
 
@@ -200,8 +162,8 @@ const schemas = [
       <div class="visit-map-wrap">
         <iframe
           class="visit-map"
-          title="Beverage Equipment Traders — San Marcos, CA facility location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.086988947924!2d-117.1302703243225!3d33.133079173516876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dbf529c1055555%3A0xfafe87851d10b9a1!2sBeverage%20Equipment%20Traders!5e0!3m2!1sen!2sus!4v1780601003641!5m2!1sen!2sus"
+          title={content.visit.mapTitle}
+          src={content.visit.mapUrl}
           width="100%"
           height="400"
           allowfullscreen
@@ -213,12 +175,12 @@ const schemas = [
   </section>
 
   <CtaStrip
-    heading="Ready to talk equipment?"
-    subtext="Our trade desk responds within one business day. Provide the equipment you need and we will find it or source it."
-    primaryLabel="Contact the Trade Desk"
-    primaryHref="/contact"
-    secondaryLabel="Browse Inventory"
-    secondaryHref="/equipment"
+    heading={content.finalCta.heading}
+    subtext={content.finalCta.body}
+    primaryLabel={content.finalCta.primaryCta.label}
+    primaryHref={content.finalCta.primaryCta.href}
+    secondaryLabel={content.finalCta.secondaryCta.label}
+    secondaryHref={content.finalCta.secondaryCta.href}
   />
 
 </Layout>

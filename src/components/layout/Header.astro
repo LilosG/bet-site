@@ -5,7 +5,13 @@
  * When children have a `group` field, the dropdown renders
  * a section label before the first child in each group.
  */
+import { Image } from 'astro:assets';
 import { NAV, NAP, SITE } from '../../data/site';
+import { cms } from '../../lib/cms';
+import { requireCmsImage } from '../../lib/images';
+
+const content = cms.header;
+const logo = requireCmsImage(SITE.logo);
 
 const currentPath = Astro.url.pathname;
 function isActive(href: string) {
@@ -18,10 +24,10 @@ function isActive(href: string) {
   <div class="header-inner container">
 
     <!-- Logo -->
-    <a href="/" class="header-logo" aria-label={`${SITE.name} — Home`}>
-      <img
-        src="/images/logo.avif"
-        alt="Beverage Equipment Traders"
+    <a href="/" class="header-logo" aria-label={content.logoAriaLabel}>
+      <Image
+        src={logo}
+        alt={SITE.logoAlt}
         class="header-logo-img"
         width="148"
         height="44"
@@ -31,7 +37,7 @@ function isActive(href: string) {
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="header-nav" aria-label="Primary navigation">
+    <nav class="header-nav" aria-label={content.primaryNavigationAriaLabel}>
       <ul class="nav-list" role="list">
         {NAV.primary.map((item) => (
           <li class={`nav-item${item.children ? ' has-dropdown' : ''}`}>
@@ -104,7 +110,7 @@ function isActive(href: string) {
     <button
       class="mobile-toggle"
       id="mobile-toggle"
-      aria-label="Open navigation menu"
+      aria-label={content.mobileMenuOpenLabel}
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
@@ -115,7 +121,7 @@ function isActive(href: string) {
   </div>
 
   <!-- Mobile Nav Drawer -->
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+  <nav class="mobile-nav" id="mobile-nav" aria-label={content.mobileNavigationAriaLabel} aria-hidden="true">
     <ul class="mobile-nav-list" role="list">
       {NAV.primary.map((item) => (
         <li class="mobile-nav-item">

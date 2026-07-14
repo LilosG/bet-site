@@ -1,0 +1,171 @@
+{
+  "slug": "canning",
+  "title": "Canning & Packaging",
+  "h1": "Canning Equipment and Canning Lines For Sale",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/canning",
+  "metaTitle": "Canning Equipment & Canning Lines For Sale | Beverage Equipment Traders",
+  "metaDescription": "Used and new canning machines, crowlers, shrink sleeve applicators, and complete canning lines. Ships nationwide from San Marcos, CA.",
+  "description": "Commercial canning machines, crowler fillers, Wild Goose canning lines, and full packaging systems for craft producers across all volume tiers.",
+  "bodyContent": "Canning and packaging equipment for craft beverage producers at every scale. Our inventory covers everything from crowler machines for taproom-volume operations through full automated canning lines capable of 50+ CPM. Wild Goose canning systems, manual and semi-automatic crowlers, shrink sleeve applicators, and inline date coders.\n\nCanning line selection depends on your production volume, package format, and how the line integrates with your existing cellar. The most common mistake buyers make is under-sizing — selecting a line to current volume rather than projected growth. We are happy to walk through what your operation actually needs.\n\nShrink sleeve applicators and labeling equipment also available. The TriPack LSA 160 and similar mid-volume systems are suited for production lines running 20 to 100+ cases per hour, appropriate for craft producers and non-alcoholic beverage facilities.\n\nAll equipment ships nationwide. Rigging, installation, and commissioning services available. Contact us to confirm current canning inventory and lead times.",
+  "keywords": [
+    "canning machine for sale",
+    "used canning line brewery",
+    "crowler machine",
+    "Wild Goose canning line",
+    "shrink sleeve applicator brewery",
+    "commercial canning equipment",
+    "brewery packaging equipment"
+  ],
+  "faqs": [
+    {
+      "q": "What is the difference between a crowler machine and a full canning line?",
+      "a": "A crowler machine seals individual crowler cans at taproom volumes — typically 5–20 cans per minute. A full canning line is designed for packaging production runs, with fill speeds of 30–120+ CPM and inline seaming, date coding, and sometimes shrink sleeves."
+    },
+    {
+      "q": "Do you carry Wild Goose canning lines?",
+      "a": "Yes, Wild Goose systems appear in our inventory regularly. Contact us for current availability on specific models."
+    },
+    {
+      "q": "Can you help with installation and commissioning of a canning line?",
+      "a": "Yes. Our rigging team handles delivery, installation, utility connections, and commissioning runs for all canning line purchases. We do not leave until the line runs clean."
+    },
+    {
+      "q": "Do you carry shrink sleeve applicators and labeling equipment?",
+      "a": "Yes. Shrink sleeve applicators and inline labeling systems appear in our inventory alongside canning lines. The TriPack LSA 160 and similar mid-volume systems are available for craft and beverage production lines."
+    },
+    {
+      "q": "What is the process for buying a used canning line from BET?",
+      "a": "Contact our trade desk with your required CPM, can format, and budget. We advise on current inventory, provide condition documentation, and quote rigging and installation as a bundled scope if needed."
+    }
+  ],
+  "priority": "P1",
+  "heroImage": "hero-canning.webp",
+  "featuredItems": [
+    {
+      "name": "Wild Goose WGC-250 Canning Line",
+      "price": "$112,000",
+      "condition": "New",
+      "category": "CANNING LINE",
+      "image": "canning-wild-goose-filler.webp",
+      "imageAlt": "Wild Goose WGC-250 Canning Line — New CANNING LINE"
+    },
+    {
+      "name": "GAI Counter-Pressure Can Filler",
+      "price": "$38,000",
+      "condition": "Used",
+      "category": "CANNING LINE",
+      "image": "canning-gai-counter-pressure.webp",
+      "imageAlt": "GAI Counter-Pressure Can Filler — Used CANNING LINE"
+    },
+    {
+      "name": "TriPack LSA 160 Shrink Sleeve Applicator",
+      "price": "$14,000",
+      "condition": "Used",
+      "category": "PACKAGING",
+      "image": "canning-khs-innofill.webp",
+      "imageAlt": "TriPack LSA 160 Shrink Sleeve Applicator — Used PACKAGING"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Determine Required Speed",
+      "description": "Calculate cans per minute needed to package your weekly volume in your available packaging days. This is the single most important spec when selecting a line."
+    },
+    {
+      "step": 2,
+      "title": "Confirm Can Format",
+      "description": "Standard 12oz, 16oz, and 19.2oz formats are most common. Confirm the line supports your can format and whether it can be converted if your format changes."
+    },
+    {
+      "step": 3,
+      "title": "Evaluate Integration",
+      "description": "How does the line connect to your bright tank? What conveyance, depalletizer, and date coding do you need? Full-line integration planning prevents costly post-purchase additions."
+    },
+    {
+      "step": 4,
+      "title": "Review Condition and History",
+      "description": "Canning lines have high-wear components — seamer heads, fill valves, conveyor belts. Our condition documentation covers operational status and known wear items."
+    },
+    {
+      "step": 5,
+      "title": "Plan Installation",
+      "description": "Canning line installation requires floor space planning, utility connections, and often electrical work. Our team coordinates full installation including commissioning runs."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "Entering Can Packaging",
+      "description": "Moving from draft-only to packaged product? A used semi-auto line at 20-30 CPM is the right starting point for most craft operations entering cans.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Scaling Packaging Volume",
+      "description": "Your current line is the bottleneck. Upgrading to a higher-speed system to match brewhouse and fermentation output.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Taproom Crowler Program",
+      "description": "Adding a crowler program to your taproom? Semi-auto and manual crowler machines provide a low-cost entry point for on-premise can sales.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    },
+    {
+      "title": "Contract Packaging",
+      "description": "Building a contract packaging operation? Production-scale lines at used prices make the economics of contract canning viable at lower contract volumes.",
+      "icon": "M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"
+    }
+  ],
+  "order": 2,
+  "heroImageAlt": "Canning & Packaging",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "Canning Equipment and Canning Lines — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

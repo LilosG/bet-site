@@ -1,0 +1,109 @@
+{
+  "slug": "dairy-processing",
+  "heroImage": "hero-fermenters.webp",
+  "name": "Dairy Processors",
+  "shortName": "Dairy",
+  "h1": "Processing Equipment for Dairy Operations",
+  "metaTitle": "Dairy Processing Equipment | Beverage Equipment Traders",
+  "metaDescription": "Jacketed tanks, heat exchangers, pumps, CIP systems, and cold storage for dairy processing operations. New and used from San Marcos, CA.",
+  "intro": "Jacketed tanks, heat exchangers, CIP systems, and cold storage for dairy processing and specialty dairy production.",
+  "bodyContent": "Dairy processing operations use equipment that overlaps significantly with craft beverage production. Jacketed stainless tanks, plate heat exchangers, CIP cleaning systems, and cold storage are core to both industries.\n\nBeverage Equipment Traders serves dairy processors with the same food-grade stainless inventory we maintain for beverage clients. All equipment ships nationwide.",
+  "relevantEquipment": [
+    "fermenters",
+    "chillers",
+    "cold-rooms",
+    "boilers"
+  ],
+  "relevantServices": [
+    "rigging",
+    "consignment",
+    "consulting"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "Jacketed Processing Tanks",
+      "description": "Temperature-controlled stainless tanks for pasteurization, culturing, and storage."
+    },
+    {
+      "title": "Heat Exchangers",
+      "description": "Plate heat exchangers for pasteurization and temperature management."
+    },
+    {
+      "title": "Cold Storage",
+      "description": "Walk-in coolers and refrigeration for dairy product storage and aging."
+    },
+    {
+      "title": "CIP and Sanitation",
+      "description": "Clean-in-place systems for sanitary dairy processing operations."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "Jacketed Tanks",
+    "Heat Exchangers",
+    "Cold Storage",
+    "CIP Systems"
+  ],
+  "faqs": [
+    {
+      "q": "Can brewery fermenters be used for dairy processing?",
+      "a": "Many brewery fermenters are food-grade stainless appropriate for dairy applications. We can advise on specifications based on your requirements."
+    },
+    {
+      "q": "Do you carry plate heat exchangers for pasteurization?",
+      "a": "Plate heat exchangers from brewery and beverage production appear in our inventory regularly and are appropriate for dairy pasteurization applications. Contact us for current availability."
+    },
+    {
+      "q": "Do you ship dairy processing equipment nationwide?",
+      "a": "Yes. All equipment ships nationwide from our San Marcos, CA facility. Rigging and installation coordination available for larger equipment moves."
+    },
+    {
+      "q": "Can you source jacketed tanks to specific volume requirements?",
+      "a": "Yes. If we do not have your required vessel volume in current inventory, we can source it through our network. Contact us with specifications and timeline."
+    }
+  ],
+  "keywords": [
+    "dairy processing equipment",
+    "dairy tanks for sale",
+    "cheese making equipment",
+    "yogurt processing equipment",
+    "food grade tanks dairy"
+  ],
+  "order": 6,
+  "heroImageAlt": "Dairy Processors",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

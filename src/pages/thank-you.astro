@@ -1,17 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CtaStrip from '../components/ui/CtaStrip.astro';
 import { breadcrumbSchema } from '../lib/schema';
+import { NAP } from '../data/site';
+import { cms } from '../lib/cms';
+
+const content = cms.pages.thankYou;
+const [bodyBeforePhone, bodyAfterPhone] = content.body.split('{phone}');
 
 const crumbs = [
-  { name: 'Home',       url: '/' },
-  { name: 'Thank You',  url: '/thank-you' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/thank-you' },
 ];
 ---
 
 <Layout
-  title="Inquiry Received — Beverage Equipment Traders"
-  description="Your inquiry has been received. Our trade desk will respond within one business day."
+  title={content.seo.title}
+  description={content.seo.description}
   noindex={true}
   schemas={[breadcrumbSchema(crumbs)]}
 >
@@ -20,14 +24,11 @@ const crumbs = [
       <div class="ty-icon" aria-hidden="true">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
       </div>
-      <h1>Inquiry Received.</h1>
-      <p>
-        Your message has been sent to our trade desk. We respond within one business day. If you have
-        an urgent need, call us directly at <a href="tel:+19498882739">(949) 888-2739</a>.
-      </p>
+      <h1>{content.heading}</h1>
+      <p>{bodyBeforePhone}<a href={`tel:${NAP.phonePlain}`}>{NAP.phone}</a>{bodyAfterPhone}</p>
       <div class="ty-actions">
-        <a href="/equipment" class="btn btn-primary">Browse Equipment</a>
-        <a href="/" class="btn btn-outline">Back to Home</a>
+        <a href={content.primaryCta.href} class="btn btn-primary">{content.primaryCta.label}</a>
+        <a href={content.secondaryCta.href} class="btn btn-outline">{content.secondaryCta.label}</a>
       </div>
     </div>
   </section>

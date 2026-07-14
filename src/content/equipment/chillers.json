@@ -1,0 +1,171 @@
+{
+  "slug": "chillers",
+  "title": "Glycol Chillers",
+  "h1": "Glycol Chillers and Cooling Systems For Brewing",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/chillers",
+  "metaTitle": "Glycol Chillers & Cooling Systems For Brewing | Beverage Equipment Traders",
+  "metaDescription": "New and used glycol chillers for brewing. G&D Chillers, Pro Refrigeration, and more. In stock in San Marcos, CA. Ships nationwide.",
+  "description": "Glycol chillers and complete cooling systems from G&D Chillers, Pro Refrigeration, and other leading manufacturers, sized for production breweries.",
+  "bodyContent": "Glycol chilling systems are critical infrastructure for any fermentation program. We carry chillers from G&D Chillers, Pro Refrigeration, Glycool, and other manufacturers in tonnage ranges suited for both smaller craft operations and large production facilities.\n\nChiller sizing depends on total fermentation volume, cellar design, ambient facility temperatures, and whether the system is serving fermenters only or also cold-side packaging equipment. Undersizing a chiller creates production bottlenecks that are expensive to correct post-installation. We can help buyers evaluate sizing requirements before purchase.\n\nUsed chillers from working breweries are a value-strong option for producers who need proven, heavy-duty cooling capacity at significantly below-replacement cost. Our used chillers are photographed and listed with condition documentation.\n\nContact us for current glycol chiller inventory. We can also source specific tonnage ranges on request.",
+  "keywords": [
+    "glycol chiller brewery",
+    "used glycol chiller",
+    "G&D chillers",
+    "Pro Refrigeration chiller",
+    "brewery cooling system",
+    "fermentation chiller",
+    "glycol cooling system brewing"
+  ],
+  "faqs": [
+    {
+      "q": "How do I know what size glycol chiller I need?",
+      "a": "Sizing depends on total fermentation volume, cellar vessel count, ambient temperature, and whether you are cooling packaging equipment as well. Our team can help you work through the calculation before you purchase."
+    },
+    {
+      "q": "Do you carry G&D and Pro Refrigeration units?",
+      "a": "Yes, both brands appear in our inventory regularly. Contact us for current availability."
+    },
+    {
+      "q": "Can glycol chillers be used for distillery or cidery fermentation?",
+      "a": "Yes. Glycol chilling applies equally to distillery wash fermentation and cider production. The same chiller systems that serve brewery cellars are appropriate for all fermentation applications."
+    },
+    {
+      "q": "Do you offer installation services for glycol chillers?",
+      "a": "Yes. Chiller installation involves glycol loop connection, electrical hookup, and commissioning. Our team coordinates delivery and can advise on installation requirements and qualified local contractors."
+    },
+    {
+      "q": "What happens if the chiller I need is not currently in inventory?",
+      "a": "Contact us with your required tonnage and configuration. We source specific equipment on request and can typically locate the right chiller within our dealer network within a few weeks."
+    }
+  ],
+  "priority": "P1",
+  "heroImage": "chiller-glycol-unit-1.webp",
+  "featuredItems": [
+    {
+      "name": "G&D Glycol Chiller — 3 Ton",
+      "price": "$8,500",
+      "condition": "Used",
+      "category": "CHILLER",
+      "image": "chiller-glycol-unit-1.webp",
+      "imageAlt": "G&D Glycol Chiller — 3 Ton — Used CHILLER"
+    },
+    {
+      "name": "Pro Refrigeration Chiller — 5 Ton",
+      "price": "$14,200",
+      "condition": "Used",
+      "category": "CHILLER",
+      "image": "chiller-glycol-unit-2.webp",
+      "imageAlt": "Pro Refrigeration Chiller — 5 Ton — Used CHILLER"
+    },
+    {
+      "name": "Glycol Chiller Unit — 10 Ton",
+      "price": "$22,000",
+      "condition": "Used",
+      "category": "CHILLER",
+      "image": "chiller-glycol-unit-3.webp",
+      "imageAlt": "Glycol Chiller Unit — 10 Ton — Used CHILLER"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Calculate Heat Load",
+      "description": "Total heat load depends on fermentation vessel volume, ambient temperature, and crash cooling frequency. Undersizing by even 20% creates production constraints."
+    },
+    {
+      "step": 2,
+      "title": "Confirm Tonnage Range",
+      "description": "Match chiller tonnage to your calculated heat load with a 20-30% safety margin. Account for future cellar expansion when sizing."
+    },
+    {
+      "step": 3,
+      "title": "Review Glycol Loop Design",
+      "description": "Confirm the chiller output temperature, flow rate, and glycol concentration match your vessel jacket specifications and existing piping."
+    },
+    {
+      "step": 4,
+      "title": "Check Electrical Requirements",
+      "description": "Large chillers require 3-phase electrical service. Confirm your facility electrical infrastructure before purchasing."
+    },
+    {
+      "step": 5,
+      "title": "Plan Installation",
+      "description": "Chiller location, condensing unit placement, and glycol loop routing all require planning before the unit arrives. Our team can advise on installation requirements."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "New Cellar Build",
+      "description": "Building out fermentation capacity and need a chiller sized to your full planned vessel count? We source units to your spec.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Existing Chiller Replacement",
+      "description": "Current chiller failing or undersized for expanded cellar volume? Used production chillers offer immediate availability at below-new cost.",
+      "icon": "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+    },
+    {
+      "title": "Cellar Expansion",
+      "description": "Adding fermentation volume and your current chiller is at capacity? We source supplemental units sized to your additional load.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Distillery or Cidery",
+      "description": "Glycol chilling applies equally to distillery fermentation and cider production. Our inventory serves all beverage fermentation applications.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    }
+  ],
+  "order": 3,
+  "heroImageAlt": "Glycol Chillers",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "Glycol Chillers and Cooling Systems For Brewing — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

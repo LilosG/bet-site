@@ -1,0 +1,32 @@
+{
+  "slug": "auctions--denver",
+  "serviceSlug": "auctions",
+  "locationSlug": "denver",
+  "metaTitle": "Commercial Auctions Denver, CO | Beverage Equipment Traders",
+  "metaDescription": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Serving Denver, Colorado and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "Commercial Auctions — Denver, CO",
+  "heroEyebrow": "Auctions · Denver, CO",
+  "heroBody": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Available in Denver and nationwide.",
+  "heroImage": "hero-fermenters.webp",
+  "heroImageAlt": "Commercial Auctions — Denver, CO",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Commercial Auctions in Denver — What to Know",
+  "locationParagraph": "We handle auctions in Denver and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Denver market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Denver.",
+  "relatedServicesLabel": "Related Services in Denver",
+  "processEyebrow": "The Process",
+  "processHeading": "How Auctions Works in Denver",
+  "faqHeading": "Commercial Auctions Denver — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Denver?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

@@ -1,11 +1,11 @@
-import siteData from '../content/data/site.json';
+import { cms } from '../lib/cms';
 
-export const SITE = siteData.SITE;
-export const NAP = siteData.NAP;
-export const HOURS = siteData.HOURS;
-export const SOCIAL = siteData.SOCIAL;
-export const GEO = siteData.GEO;
-export const NAV = siteData.NAV;
-export const STATS = siteData.STATS;
-export const CLIENTS = siteData.CLIENTS;
-export const SAME_AS = siteData.SAME_AS;
+export const SITE = cms.company;
+export const NAP = cms.company.nap;
+export const HOURS = cms.company.hours;
+export const SOCIAL = cms.company.social;
+export const GEO = cms.company.geo;
+export const NAV = { primary: cms.header.navigation, cta: cms.header.cta };
+export const STATS = cms.trustProof.statistics;
+export const CLIENTS = cms.trustProof.clients;
+export const SAME_AS = cms.company.sameAs;
