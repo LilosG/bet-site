@@ -1,0 +1,32 @@
+{
+  "slug": "auctions--chicago",
+  "serviceSlug": "auctions",
+  "locationSlug": "chicago",
+  "metaTitle": "Commercial Auctions Chicago, IL | Beverage Equipment Traders",
+  "metaDescription": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Serving Chicago, Illinois and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "Commercial Auctions — Chicago, IL",
+  "heroEyebrow": "Auctions · Chicago, IL",
+  "heroBody": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Available in Chicago and nationwide.",
+  "heroImage": "hero-fermenters.webp",
+  "heroImageAlt": "Commercial Auctions — Chicago, IL",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Commercial Auctions in Chicago — What to Know",
+  "locationParagraph": "We handle auctions in Chicago and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Chicago market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Chicago.",
+  "relatedServicesLabel": "Related Services in Chicago",
+  "processEyebrow": "The Process",
+  "processHeading": "How Auctions Works in Chicago",
+  "faqHeading": "Commercial Auctions Chicago — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Chicago?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

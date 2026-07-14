@@ -1,0 +1,17 @@
+{
+  "seo": {
+    "title": "Inquiry Received — Beverage Equipment Traders",
+    "description": "Your inquiry has been received. Our trade desk will respond within one business day."
+  },
+  "breadcrumbLabel": "Thank You",
+  "heading": "Inquiry Received.",
+  "body": "Your message has been sent to our trade desk. We respond within one business day. If you have an urgent need, call us directly at {phone}.",
+  "primaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  },
+  "secondaryCta": {
+    "label": "Back to Home",
+    "href": "/"
+  }
+}

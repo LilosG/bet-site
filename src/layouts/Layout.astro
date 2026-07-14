@@ -6,7 +6,7 @@
  */
 import type { SeoProps } from '../lib/seo';
 import { buildTitle, buildCanonical, DEFAULT_OG_IMAGE } from '../lib/seo';
-import { SITE, NAP, SOCIAL } from '../data/site';
+import { SITE, NAP, GEO } from '../data/site';
 import { organizationSchema, schemaToScript } from '../lib/schema';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -74,8 +74,8 @@ const allSchemas = [organizationSchema(), ...schemas];
     <!-- Business Contact -->
     <meta name="geo.region"    content="US-CA" />
     <meta name="geo.placename" content={`${NAP.city}, ${NAP.state}`} />
-    <meta name="geo.position"  content="33.1434;-117.1662" />
-    <meta name="ICBM"          content="33.1434, -117.1662" />
+    <meta name="geo.position"  content={`${GEO.lat};${GEO.lng}`} />
+    <meta name="ICBM"          content={`${GEO.lat}, ${GEO.lng}`} />
 
     <!-- Schema.org JSON-LD -->
     {allSchemas.map((schema) => (

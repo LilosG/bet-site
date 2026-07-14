@@ -1,0 +1,171 @@
+{
+  "slug": "distilling",
+  "title": "Distilling Equipment",
+  "h1": "Distilling Equipment For Sale: Stills and Systems",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/still-distillate",
+  "metaTitle": "Distilling Equipment For Sale — Stills & Systems | Beverage Equipment Traders",
+  "metaDescription": "New and used distilling equipment including copper pot stills, column stills, and complete distillery systems. Ships nationwide from San Marcos, CA.",
+  "description": "Copper pot stills, column stills, and complete distillery systems for craft spirits producers. Current inventory includes a 300-gallon copper pot still.",
+  "bodyContent": "Craft distillery equipment for producers at every stage — from startup operations sourcing first-generation stills through established distilleries liquidating or upgrading. Our inventory includes copper pot stills, column stills, and supporting equipment including proofing tanks, fermenters, and bottling systems suited for spirits production.\n\nThe distillery equipment market extends well beyond the craft beverage industry. Food-grade processing, essential oil extraction, water distillation, and industrial applications all use similar still configurations. Our buyer base for distillery equipment is geographically distributed across all 50 states.\n\nCurrent inventory includes a 300-gallon copper pot still at $75,000 — a standout piece for a craft distillery building out a small-batch program or looking to expand capacity. Pricing reflects current market conditions, equipment condition, manufacturer, and configuration.\n\nContact us for current distillery equipment availability. We can also assist with sourcing specific still configurations on request.",
+  "keywords": [
+    "distilling equipment for sale",
+    "copper still for sale",
+    "used distillery equipment",
+    "pot still for sale",
+    "column still brewery",
+    "craft distillery equipment",
+    "300 gallon copper still"
+  ],
+  "faqs": [
+    {
+      "q": "Do you sell complete distillery setups?",
+      "a": "We carry individual stills as well as supporting equipment. Complete multi-vessel distillery configurations are available depending on current inventory."
+    },
+    {
+      "q": "Can distilling equipment be used for food processing?",
+      "a": "Yes. Many still configurations have applications beyond spirits — essential oil extraction, food processing, and industrial uses. Contact us to discuss your specific requirements."
+    },
+    {
+      "q": "Do you carry column stills as well as pot stills?",
+      "a": "Yes. Both copper pot stills and column stills appear in our inventory. Current inventory includes a 300-gallon copper pot still and a Barison continuous column still. Contact us for current availability on specific configurations."
+    },
+    {
+      "q": "Can you help with TTB compliance documentation for still purchases?",
+      "a": "We provide available manufacturer documentation and specifications with every still purchase. TTB permit requirements are the buyer responsibility — we recommend consulting with a TTB compliance specialist before purchasing."
+    },
+    {
+      "q": "Do you buy distillery equipment from operations that are closing?",
+      "a": "Yes. We handle consignment, direct purchase, and auction of distillery equipment from closing operations. Contact us to discuss your equipment set and which liquidation approach best fits your timeline."
+    }
+  ],
+  "priority": "P1",
+  "heroImage": "hero-distilling.webp",
+  "featuredItems": [
+    {
+      "name": "300 Gallon Copper Pot Still",
+      "price": "$75,000",
+      "condition": "Used",
+      "category": "STILL",
+      "image": "distilling-copper-still.webp",
+      "imageAlt": "300 Gallon Copper Pot Still — Used STILL"
+    },
+    {
+      "name": "Barison Continuous Column & 2,000L Batch Still",
+      "price": "$95,000",
+      "condition": "Used",
+      "category": "STILL",
+      "image": "distilling-barison-column.webp",
+      "imageAlt": "Barison Continuous Column & 2,000L Batch Still — Used STILL"
+    },
+    {
+      "name": "Specific Mechanical Distilling Mash Tun",
+      "price": "$28,500",
+      "condition": "Used",
+      "category": "DISTILLERY",
+      "image": "hero-distilling.webp",
+      "imageAlt": "Specific Mechanical Distilling Mash Tun — Used DISTILLERY"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Define Still Type",
+      "description": "Pot stills produce heavier, more flavorful spirits suited for whiskey and rum. Column stills produce higher-proof neutral spirits. Hybrid stills offer flexibility across both styles."
+    },
+    {
+      "step": 2,
+      "title": "Determine Capacity",
+      "description": "Still capacity is measured in gallons of wash per run. Match still size to your fermentation vessel output and target production volume."
+    },
+    {
+      "step": 3,
+      "title": "Review Regulatory Requirements",
+      "description": "Distillery equipment requires TTB approval and state licensing. Confirm your permit allows the still configuration you are purchasing before committing."
+    },
+    {
+      "step": 4,
+      "title": "Confirm Utility Requirements",
+      "description": "Stills require heat source (steam, direct fire, or electric), cooling water, and condensate handling. Verify your facility infrastructure matches the still requirements."
+    },
+    {
+      "step": 5,
+      "title": "Plan Installation",
+      "description": "Still installation involves utility connections, drainage, and often structural considerations. Our team coordinates delivery and can advise on installation requirements."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "Craft Distillery Startup",
+      "description": "Launching a craft spirits program and sourcing your first still? Used production stills offer proven performance at significantly below-new cost.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Capacity Expansion",
+      "description": "Current still is the production bottleneck? Adding a second still or upgrading to larger capacity to meet demand.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Brewery Adding Spirits",
+      "description": "Craft brewery expanding into spirits production? We source stills sized for craft production programs that complement existing brewing infrastructure.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    },
+    {
+      "title": "Industrial Applications",
+      "description": "Food processing, essential oil extraction, and industrial distillation applications use similar equipment. We source stills for non-spirits applications as well.",
+      "icon": "M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"
+    }
+  ],
+  "order": 4,
+  "heroImageAlt": "Distilling Equipment",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "Distilling Equipment: Stills and Systems — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

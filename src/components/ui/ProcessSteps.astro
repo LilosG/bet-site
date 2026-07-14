@@ -18,10 +18,12 @@ export interface Props {
   light?: boolean;
 }
 
+import { cms } from '../../lib/cms';
+
 const {
   steps,
-  heading = 'How It Works',
-  eyebrow = 'The Process',
+  heading = cms.globalCtas.defaultProcessHeading,
+  eyebrow = cms.globalCtas.defaultProcessEyebrow,
   light = false,
 } = Astro.props;
 ---
@@ -168,7 +170,7 @@ const {
     font-family: var(--font-display);
     font-size: 1.0625rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.5rem;
     line-height: 1.3;
   }

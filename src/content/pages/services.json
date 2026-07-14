@@ -1,0 +1,61 @@
+{
+  "seo": {
+    "title": "Brewery Equipment Services — Rigging, Consignment, Auctions & More | Beverage Equipment Traders",
+    "description": "Full-service brewery equipment solutions: rigging and installation, consignment, auctions, technical consulting, and new equipment sourcing. One partner from sourcing to start-up."
+  },
+  "breadcrumbLabel": "Services",
+  "hero": {
+    "image": "hero-services.webp",
+    "imageAlt": "Brewery equipment services",
+    "eyebrow": "Services",
+    "heading": "One Partner, Every Step of the Lifecycle.",
+    "body": "Beverage Equipment Traders handles the full capital equipment lifecycle — sourcing, moving, selling, and commissioning. Whether you are building out, scaling up, or winding down, we have handled it before."
+  },
+  "servicesHeading": "Our Services",
+  "why": {
+    "eyebrow": "Why It Matters",
+    "heading": "The advantage of one accountable partner.",
+    "paragraphs": [
+      "Most equipment transactions involve three separate vendors: a broker who finds it, a rigger who moves it, and a contractor who installs it. Each one hands off liability to the next. When something goes wrong at installation, no one owns it.",
+      "At Beverage Equipment Traders, every step is in-house. We source the equipment, rig and transport it, and install and commission it. One quote covers the full scope. One phone number answers for all of it. That is what 600+ equipment placements looks like in practice."
+    ],
+    "cta": {
+      "label": "Talk to the Trade Desk",
+      "href": "/contact"
+    },
+    "items": [
+      {
+        "title": "Rigging & Installation",
+        "description": "All 50 states. Crane-in capable. Single quote."
+      },
+      {
+        "title": "Consignment",
+        "description": "Managed listing, valuation, and payout."
+      },
+      {
+        "title": "Auctions",
+        "description": "Full-facility liquidations and competitive events."
+      },
+      {
+        "title": "Consulting",
+        "description": "Pre-purchase audits and capacity planning."
+      },
+      {
+        "title": "New Equipment",
+        "description": "Manufacturer relationships for new builds."
+      }
+    ]
+  },
+  "finalCta": {
+    "heading": "Not sure which service fits your situation?",
+    "body": "Describe what you have or what you need. We will tell you what makes sense and what it costs.",
+    "primaryCta": {
+      "label": "Get in Touch",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    }
+  }
+}

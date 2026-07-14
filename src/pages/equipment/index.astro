@@ -12,28 +12,27 @@ import StatBar from '../../components/ui/StatBar.astro';
 import TrustBar from '../../components/ui/TrustBar.astro';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { breadcrumbSchema } from '../../lib/schema';
+import { cms } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
 
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
+const content = cms.pages.equipment;
 
-const heroAsset = allImages['../../assets/images/hero-equipment.webp']?.default;
+const heroAsset = resolveCmsImage(content.hero.image);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const crumbs = [
-  { name: 'Home',      url: '/' },
-  { name: 'Equipment', url: '/equipment' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/equipment' },
 ];
 
 const schemas = [breadcrumbSchema(crumbs)];
 ---
 
 <Layout
-  title="New and Used Brewery Equipment For Sale | Shop by Category"
-  description="Browse new and used brewery and beverage production equipment by category. Brewhouses, fermenters, canning lines, chillers, distilling equipment, and more. Nationwide shipping from San Marcos, CA."
+  title={content.seo.title}
+  description={content.seo.description}
   schemas={schemas}
 >
   <Breadcrumb crumbs={crumbs} />
@@ -47,19 +46,16 @@ const schemas = [breadcrumbSchema(crumbs)];
       ></div>
     )}
     <div class="container equipment-hub-hero-inner">
-      <span class="eyebrow">Shop Equipment</span>
-      <h1>New and Used Brewery Equipment For Sale</h1>
-      <p class="hub-intro">
-        225+ items in stock across 8 equipment categories. Every piece photographed, documented,
-        and priced. Ships nationwide from our 40,000 sq ft facility in San Marcos, CA.
-      </p>
+      <span class="eyebrow">{content.hero.eyebrow}</span>
+      <h1>{content.hero.heading}</h1>
+      <p class="hub-intro">{content.hero.body}</p>
       <a
-        href="https://beverageequipmenttraders.com/collections/all"
+        href={content.hero.cta.href}
         class="btn btn-primary btn-lg"
         target="_blank"
         rel="noopener noreferrer"
       >
-        View Full Inventory
+        {content.hero.cta.label}
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -69,19 +65,19 @@ const schemas = [breadcrumbSchema(crumbs)];
 
   <section class="section-y" aria-labelledby="categories-heading">
     <div class="container">
-      <h2 id="categories-heading" class="sr-only">Equipment Categories</h2>
+      <h2 id="categories-heading" class="sr-only">{content.labels.categoriesHeading}</h2>
       <div class="category-grid">
         {EQUIPMENT_CATEGORIES.map((cat) => (
           <a href={`/equipment/${cat.slug}`} class="cat-card" aria-label={`Browse ${cat.title}`}>
             <div class="cat-card-inner">
               <span class="cat-priority-badge" data-priority={cat.priority}>
-                {cat.priority === 'P0' ? 'High Availability' : 'In Stock'}
+                {cat.priority === 'P0' ? content.labels.highAvailability : content.labels.inStock}
               </span>
               <h2 class="cat-card-title">{cat.h1}</h2>
               <p class="cat-card-desc">{cat.description}</p>
               <div class="cat-card-footer">
                 <span class="cat-card-cta">
-                  Browse Category
+                  {content.labels.browseCategory}
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
                 <a
@@ -91,7 +87,7 @@ const schemas = [breadcrumbSchema(crumbs)];
                   rel="noopener noreferrer"
                   onclick="event.stopPropagation()"
                 >
-                  Live Inventory ↗
+                  {content.labels.liveInventory}
                 </a>
               </div>
             </div>
@@ -104,12 +100,12 @@ const schemas = [breadcrumbSchema(crumbs)];
   <TrustBar />
 
   <CtaStrip
-    heading="Ready to source equipment?"
-    subtext="Our trade desk responds within one business day. Provide the equipment you need and we'll match you to current inventory or source it."
-    primaryLabel="Contact the Trade Desk"
-    primaryHref="/contact"
-    secondaryLabel="Get a Rigging Quote"
-    secondaryHref="/contact?type=rigging"
+    heading={content.finalCta.heading}
+    subtext={content.finalCta.body}
+    primaryLabel={content.finalCta.primaryCta.label}
+    primaryHref={content.finalCta.primaryCta.href}
+    secondaryLabel={content.finalCta.secondaryCta.label}
+    secondaryHref={content.finalCta.secondaryCta.href}
   />
 </Layout>
 

@@ -10,7 +10,9 @@ export interface Props {
   light?: boolean;
 }
 
-const { items, heading = 'Frequently Asked Questions', light = false } = Astro.props;
+import { cms } from '../../lib/cms';
+
+const { items, heading = cms.globalCtas.defaultFaqHeading, light = false } = Astro.props;
 ---
 
 <section
@@ -19,7 +21,7 @@ const { items, heading = 'Frequently Asked Questions', light = false } = Astro.p
 >
   <div class="container faq-inner">
     <div class="faq-header">
-      <span class="eyebrow">FAQ</span>
+      <span class="eyebrow">{cms.globalCtas.faqEyebrow}</span>
       <h2 id="faq-heading">{heading}</h2>
     </div>
 

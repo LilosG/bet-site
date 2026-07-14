@@ -1,0 +1,113 @@
+{
+  "slug": "cidery",
+  "heroImage": "hero-fermenters.webp",
+  "name": "Cideries & Meaderies",
+  "shortName": "Cideries",
+  "h1": "Equipment for Cideries, Meaderies, and Fermented Beverage Producers",
+  "metaTitle": "Cidery & Meadery Equipment | Beverage Equipment Traders",
+  "metaDescription": "Fermentation tanks, brite tanks, canning lines, and cold storage for cideries and meaderies. New and used equipment from San Marcos, CA. Ships nationwide.",
+  "intro": "Fermentation vessels, canning and packaging systems, and cold storage for cider and mead producers at every scale.",
+  "bodyContent": "Cideries and meaderies share most of their core equipment requirements with craft breweries — fermentation vessels, brite tanks, glycol chilling, canning and packaging systems, and cold storage. Beverage Equipment Traders serves cidery and meadery operations from our San Marcos facility with the same equipment inventory we maintain for brewery clients.\n\nThe crossover between craft brewing and cider/mead production is high. Many operations run fermentation programs that include both beer and cider or mead production, and the equipment requirements overlap significantly. We can help source vessels, packaging equipment, and cold storage appropriate for fermented beverage production beyond brewing.\n\nFor cideries and meaderies looking to sell equipment — upgrading packaging capacity, downsizing production, or closing — our consignment program handles the full process with access to our qualified beverage producer buyer network.",
+  "relevantEquipment": [
+    "fermenters",
+    "canning",
+    "chillers",
+    "cold-rooms",
+    "kegs"
+  ],
+  "relevantServices": [
+    "rigging",
+    "consignment",
+    "consulting"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "Fermentation Capacity",
+      "description": "Conical fermenters, jacketed tanks, and brite tanks appropriate for cider and mead fermentation programs at taproom through production scale."
+    },
+    {
+      "title": "Canning and Packaging",
+      "description": "Canning lines and crowler machines for taproom and retail packaging of cider and mead products."
+    },
+    {
+      "title": "Cold Storage",
+      "description": "Walk-in coolers and cold rooms for product conditioning and finished goods storage."
+    },
+    {
+      "title": "Selling Equipment",
+      "description": "Cidery and meadery equipment sells to our broad beverage producer network — the same buyers sourcing brewery equipment."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "Fermenters & Tanks",
+    "Canning Lines",
+    "Glycol Chillers",
+    "Cold Rooms"
+  ],
+  "faqs": [
+    {
+      "q": "Can brewery fermenters be used for cider or mead fermentation?",
+      "a": "Yes. Standard conical fermenters and jacketed tanks from brewery production are appropriate for cider and mead fermentation. We can advise on vessel configuration and sizing for your production program."
+    },
+    {
+      "q": "Do you serve small-scale cidery operations?",
+      "a": "Yes. Our inventory includes both taproom-scale and production-scale equipment. We advise on what makes sense for your volume and capital structure."
+    },
+    {
+      "q": "Do you carry canning lines suited for cider packaging?",
+      "a": "Yes. The same canning lines used in craft brewing are appropriate for cider and mead packaging. We carry equipment from taproom crowler volume through full production canning lines."
+    },
+    {
+      "q": "Can you help a cidery sell surplus equipment?",
+      "a": "Yes. Our consignment and auction programs serve cidery and meadery operations the same way they serve breweries. Our buyer network spans the full craft beverage production community."
+    }
+  ],
+  "keywords": [
+    "cidery equipment",
+    "meadery equipment",
+    "cider production equipment",
+    "fermenters for cidery",
+    "canning line cidery",
+    "cold storage cidery",
+    "used cidery equipment",
+    "fermented beverage equipment"
+  ],
+  "order": 2,
+  "heroImageAlt": "Cideries & Meaderies",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "slug": "boilers",
+  "title": "Boilers",
+  "h1": "Commercial Boilers For Sale: Brewery and Beverage",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/boilers",
+  "metaTitle": "Commercial Boilers For Sale — Brewery & Beverage | Beverage Equipment Traders",
+  "metaDescription": "New and used commercial boilers for brewing. Rite boilers, Lattner boilers, Sussman electric boilers in stock. Ships nationwide.",
+  "description": "Commercial steam boilers for brewery and beverage operations, including Rite, Lattner, and Sussman models in various BTU ratings.",
+  "bodyContent": "Commercial steam boilers for brewery, distillery, and beverage production. We carry steam boilers from Rite Engineering, Lattner Boiler Company, Sussman Electric Boilers, and other manufacturers suited for direct-steam brewhouse systems and process heating applications.\n\nBoiler selection depends on your steam demand, facility utility infrastructure, and whether you are running a direct-fire or steam-heated brewhouse. Steam boilers require licensed installation and are subject to local utility and pressure vessel regulations — we recommend buyers verify local requirements before purchase.\n\nUsed boilers in our inventory are sourced from working production facilities. Condition documentation, nameplate specs, and operational history are provided where available. New Sussman electric boilers represent a code-compliant, lower-installation-complexity option for facilities where natural gas or steam systems are constrained.",
+  "keywords": [
+    "commercial boiler brewery",
+    "Rite boiler for sale",
+    "Lattner boiler",
+    "Sussman electric boiler",
+    "steam boiler brewery",
+    "used boiler for sale"
+  ],
+  "faqs": [
+    {
+      "q": "Do I need a licensed installer for a commercial boiler?",
+      "a": "Yes. Commercial steam boilers are pressure vessels subject to state and local codes. Installation must be performed by licensed professionals. We can provide referrals to qualified installers."
+    },
+    {
+      "q": "What boiler size do I need for my brewhouse?",
+      "a": "Boiler sizing depends on your brewhouse heating requirements and brew schedule. Most brewhouse manufacturers specify minimum BTU requirements — confirm with your system manufacturer before purchasing a boiler."
+    },
+    {
+      "q": "Do you carry electric boilers as an alternative to gas?",
+      "a": "Yes. Sussman electric boilers are available and represent a code-simpler installation for facilities where natural gas is constrained or unavailable. Higher operating cost than gas but lower installation complexity."
+    },
+    {
+      "q": "Can boilers from brewery liquidations be relocated and reinstalled?",
+      "a": "Yes. Used boilers can be relocated with proper permitting and licensed installation. We coordinate rigging and transport — buyers are responsible for local permits and licensed installation at the new facility."
+    }
+  ],
+  "priority": "P2",
+  "heroImage": "hero-boilers.webp",
+  "featuredItems": [
+    {
+      "name": "Commercial Steam Boiler — 15 BHP",
+      "price": "$6,500",
+      "condition": "Used",
+      "category": "BOILER",
+      "image": "boiler-commercial-1.webp",
+      "imageAlt": "Commercial Steam Boiler — 15 BHP — Used BOILER"
+    },
+    {
+      "name": "Commercial Steam Boiler — 30 BHP",
+      "price": "$11,000",
+      "condition": "Used",
+      "category": "BOILER",
+      "image": "boiler-commercial-2.webp",
+      "imageAlt": "Commercial Steam Boiler — 30 BHP — Used BOILER"
+    },
+    {
+      "name": "Commercial Steam Boiler — 50 BHP",
+      "price": "$18,500",
+      "condition": "Used",
+      "category": "BOILER",
+      "image": "boiler-commercial-3.webp",
+      "imageAlt": "Commercial Steam Boiler — 50 BHP — Used BOILER"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Calculate Steam Demand",
+      "description": "Steam demand is driven by brewhouse heating requirements and process timing. Work with your brewhouse manufacturer or an engineer to confirm BTU requirements."
+    },
+    {
+      "step": 2,
+      "title": "Choose Fuel Type",
+      "description": "Natural gas is standard for most facilities. Electric boilers (Sussman) are code-simpler but higher operating cost. Confirm your facility utility availability."
+    },
+    {
+      "step": 3,
+      "title": "Verify Local Codes",
+      "description": "Pressure vessel installation requires permits and licensed installers in most jurisdictions. Verify local requirements before purchasing."
+    },
+    {
+      "step": 4,
+      "title": "Review Condition Documentation",
+      "description": "Used boilers should have current inspection certification and maintenance records. Our listings include available documentation on condition and service history."
+    },
+    {
+      "step": 5,
+      "title": "Coordinate Licensed Installation",
+      "description": "Boiler installation requires licensed plumbers and engineers. We can provide referrals to qualified installers familiar with brewery applications."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "Steam-Heated Brewhouse",
+      "description": "Running or building a steam-heated brewhouse and need a matched boiler? We source boilers to your BTU requirements.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Boiler Replacement",
+      "description": "Existing boiler failing or at end of service life? Used production boilers offer immediate availability at below-replacement cost.",
+      "icon": "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+    },
+    {
+      "title": "Distillery Steam System",
+      "description": "Steam-heated stills and process equipment require the same boiler infrastructure as brewhouses. We source boilers for distillery applications.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    },
+    {
+      "title": "Food Processing",
+      "description": "Commercial steam boilers serve food processing, dairy, and beverage production applications beyond brewing. Contact us to discuss your specific requirements.",
+      "icon": "M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"
+    }
+  ],
+  "order": 6,
+  "heroImageAlt": "Boilers",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "Commercial Boilers: Brewery and Beverage — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

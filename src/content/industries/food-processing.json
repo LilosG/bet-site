@@ -1,0 +1,109 @@
+{
+  "slug": "food-processing",
+  "heroImage": "hero-food-processing.webp",
+  "name": "Food Processing Facilities",
+  "shortName": "Food Processing",
+  "h1": "Processing Equipment for Food Manufacturers",
+  "metaTitle": "Food Processing Equipment | Beverage Equipment Traders",
+  "metaDescription": "Stainless tanks, CIP systems, pumps, compressors, and processing equipment for food manufacturing facilities. New and used from San Marcos, CA. Ships nationwide.",
+  "intro": "Stainless processing tanks, CIP systems, pumps, and industrial equipment for food manufacturing operations.",
+  "bodyContent": "Food processing facilities share significant equipment overlap with craft beverage production. The stainless steel tanks, CIP cleaning systems, pumps, heat exchangers, compressors, and material handling equipment used in brewery and beverage production have direct applications across food manufacturing, dairy processing, sauce and condiment production, and specialty food operations.\n\nBeverage Equipment Traders maintains inventory of food-grade stainless equipment that serves food processing buyers alongside our beverage industry clients. All equipment ships nationwide from our San Marcos, CA facility.",
+  "relevantEquipment": [
+    "fermenters",
+    "chillers",
+    "boilers",
+    "cold-rooms"
+  ],
+  "relevantServices": [
+    "rigging",
+    "consignment",
+    "consulting"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "Processing Tanks",
+      "description": "Jacketed stainless tanks for mixing, blending, heating, and storage in food manufacturing."
+    },
+    {
+      "title": "CIP Systems",
+      "description": "Clean-in-place systems for sanitary processing operations."
+    },
+    {
+      "title": "Pumps and Transfer Equipment",
+      "description": "Centrifugal and positive displacement pumps for product transfer in food-grade applications."
+    },
+    {
+      "title": "Cold Storage",
+      "description": "Walk-in coolers and refrigeration for temperature-controlled food storage."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "Processing Tanks",
+    "CIP Systems",
+    "Pumps",
+    "Cold Storage"
+  ],
+  "faqs": [
+    {
+      "q": "Is brewery equipment food-grade for food processing applications?",
+      "a": "Production brewery equipment is typically food-grade 304 or 316L stainless steel, appropriate for many food processing applications."
+    },
+    {
+      "q": "Do you carry CIP systems and sanitary pumps?",
+      "a": "Yes. CIP systems and sanitary pumps from brewery and beverage production appear in our inventory regularly. Contact us for current availability."
+    },
+    {
+      "q": "Do you ship food processing equipment nationwide?",
+      "a": "Yes. All equipment ships nationwide from our San Marcos, CA facility. Rigging and installation services are available for larger equipment sets."
+    },
+    {
+      "q": "Can you source specific food-grade stainless configurations on request?",
+      "a": "Yes. If we do not have a specific vessel size or configuration in current inventory, we can source it through our network. Contact us with your specifications and timeline."
+    }
+  ],
+  "keywords": [
+    "food processing equipment",
+    "food grade stainless tanks",
+    "CIP equipment for sale",
+    "food manufacturing equipment",
+    "sanitary pumps for sale"
+  ],
+  "order": 5,
+  "heroImageAlt": "Food Processing Facilities",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

@@ -14,14 +14,13 @@ import CtaStrip from '../../components/ui/CtaStrip.astro';
 import StatBar from '../../components/ui/StatBar.astro';
 import TrustBar from '../../components/ui/TrustBar.astro';
 import { breadcrumbSchema } from '../../lib/schema';
+import { cms } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
+
+const content = cms.pages.blog;
 
 // ─── Hero image ───────────────────────────────
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
-
-const heroAsset = allImages['../../assets/images/hero-equipment.webp']?.default;
+const heroAsset = resolveCmsImage(content.hero.image);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, format: 'webp', quality: 80 })
   : null;
@@ -38,25 +37,18 @@ const posts = allPosts.sort(
 );
 
 const crumbs = [
-  { name: 'Home', url: '/' },
-  { name: 'Blog', url: '/blog' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/blog' },
 ];
 
 const schemas = [breadcrumbSchema(crumbs)];
 
-const topics = [
-  { label: 'Buyer Guides',      desc: 'How to evaluate, size, and purchase used brewing equipment.' },
-  { label: 'Equipment Types',   desc: 'What each piece of equipment does and how it fits your operation.' },
-  { label: 'Industry News',     desc: 'Auction announcements, market trends, and inventory updates.' },
-  { label: 'Rigging & Install', desc: 'What rigging and installation actually involves and what to budget.' },
-  { label: 'Consignment',       desc: 'How to liquidate equipment intelligently.' },
-  { label: 'Brewery Start-Up',  desc: 'Capacity planning, equipment sourcing strategy, and timeline.' },
-];
+const topics = content.topics.items;
 ---
 
 <Layout
-  title="Brewery Equipment Blog — Buyer Guides, News & Resources | Beverage Equipment Traders"
-  description="Expert guides on buying used brewery equipment, rigging and installation, consignment, and more. Written by former brewery operators. Beverage Equipment Traders, San Marcos, CA."
+  title={content.seo.title}
+  description={content.seo.description}
   schemas={schemas}
 >
   <Breadcrumb crumbs={crumbs} />
@@ -71,12 +63,9 @@ const topics = [
       ></div>
     )}
     <div class="container blog-hero-inner">
-      <span class="eyebrow">Resources</span>
-      <h1>Brewery Equipment:<br />The Operator's Perspective.</h1>
-      <p class="blog-intro">
-        Practical guides on buying, moving, and selling brewery and beverage equipment.
-        Written by people who have actually run production facilities.
-      </p>
+      <span class="eyebrow">{content.hero.eyebrow}</span>
+      <h1>{content.hero.heading.split('\n').map((line, index) => <>{index > 0 && <br />}{line}</>)}</h1>
+      <p class="blog-intro">{content.hero.body}</p>
     </div>
   </section>
 
@@ -86,8 +75,8 @@ const topics = [
   {posts.length > 0 && (
     <section class="section-y" aria-labelledby="posts-heading">
       <div class="container">
-        <span class="eyebrow">Latest Articles</span>
-        <h2 id="posts-heading">From the Trade Desk</h2>
+        <span class="eyebrow">{content.posts.eyebrow}</span>
+        <h2 id="posts-heading">{content.posts.heading}</h2>
         <div class="posts-grid">
           {posts.map((post) => (
             <a href={`/blog/${post.id}`} class="post-card card">
@@ -107,7 +96,7 @@ const topics = [
                     })}
                   </time>
                   <span class="post-read-more">
-                    Read More
+                    {content.posts.readMoreLabel}
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </span>
                 </div>
@@ -122,13 +111,13 @@ const topics = [
   <!-- ═══ TOPICS ═══════════════════════════════ -->
   <section class="section-y topics-band" aria-labelledby="topics-heading">
     <div class="container">
-      <span class="eyebrow">Content Categories</span>
-      <h2 id="topics-heading">What We Write About</h2>
+      <span class="eyebrow">{content.topics.eyebrow}</span>
+      <h2 id="topics-heading">{content.topics.heading}</h2>
       <div class="topics-grid">
         {topics.map((topic) => (
           <div class="topic-card">
-            <h3 class="topic-label">{topic.label}</h3>
-            <p class="topic-desc">{topic.desc}</p>
+            <h3 class="topic-label">{topic.title}</h3>
+            <p class="topic-desc">{topic.description}</p>
           </div>
         ))}
       </div>
@@ -138,12 +127,12 @@ const topics = [
   <TrustBar />
 
   <CtaStrip
-    heading="Questions our articles don't answer?"
-    subtext="Our trade desk is available by phone or email. We respond within one business day."
-    primaryLabel="Contact the Trade Desk"
-    primaryHref="/contact"
-    secondaryLabel="Browse Equipment"
-    secondaryHref="/equipment"
+    heading={content.finalCta.heading}
+    subtext={content.finalCta.body}
+    primaryLabel={content.finalCta.primaryCta.label}
+    primaryHref={content.finalCta.primaryCta.href}
+    secondaryLabel={content.finalCta.secondaryCta.label}
+    secondaryHref={content.finalCta.secondaryCta.href}
   />
 </Layout>
 

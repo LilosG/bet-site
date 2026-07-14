@@ -1,0 +1,63 @@
+{
+  "slug": "chicago",
+  "city": "Chicago",
+  "state": "Illinois",
+  "stateAbbr": "IL",
+  "type": "national",
+  "heroImage": "hero-equipment.webp",
+  "h1": "Used Brewery Equipment Chicago, Illinois",
+  "metaTitle": "Used Brewery Equipment Chicago IL | Beverage Equipment Traders",
+  "metaDescription": "New and used brewery equipment shipping to Chicago, IL. Brewhouses, fermenters, canning lines, rigging, and installation. Ships from San Marcos, CA.",
+  "intro": "Shipping brewery and beverage equipment to Chicago and the Midwest from our San Marcos, CA facility.",
+  "bodyContent": "Chicago is a major hub for craft brewery production in the Midwest, with a dense operator community and significant equipment demand for both new builds and capacity expansions. Beverage Equipment Traders ships equipment to Chicago and surrounding Midwest markets from our San Marcos facility.\n\nFreight to Chicago typically runs 3 to 4 business days. For large systems and full facility installations, our rigging crews travel to the Chicago market. Contact us for current inventory, freight quotes, and rigging availability for your Chicago location.",
+  "keywords": [
+    "used brewery equipment Chicago",
+    "brewery equipment Illinois",
+    "brewery equipment Midwest",
+    "used brewhouse Chicago",
+    "brewery rigging Chicago IL"
+  ],
+  "order": 2,
+  "heroImageAlt": "Chicago, Illinois",
+  "labels": {
+    "heroEyebrow": "{city}, {stateAbbr} · National Shipping",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Inventory",
+      "href": "/equipment"
+    },
+    "shippingNote": "Shipping from San Marcos, CA to {city}. Rigging and installation available.",
+    "bodyHeading": "Used Brewery Equipment Shipped to {city}",
+    "sidebarHeading": "Ship to {city}",
+    "sidebarBody": "We ship anywhere in the US. Bonded freight, crated or pad-wrapped. Rigging at destination available.",
+    "sidebarCtaLabel": "Request a Shipping Quote",
+    "factsLabel": "Shipping Facts",
+    "facts": [
+      "Bonded freight to all 50 states",
+      "Crated or pad-wrapped based on equipment",
+      "Crane-in and millwright available",
+      "Single quote covers freight + rigging",
+      "Lead times confirmed at time of purchase"
+    ],
+    "equipmentEyebrow": "Inventory Available for Shipping to {city}",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services Available in {city}",
+    "servicesHeading": "What We Handle Nationally",
+    "servicesCtaLabel": "Learn More",
+    "finalCtaHeading": "Sourcing equipment in {city}?",
+    "finalCtaBody": "We ship from San Marcos, CA. Every piece is photographed and condition-documented before it leaves our yard.",
+    "finalPrimaryCta": {
+      "label": "Request a Quote",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "View Full Inventory",
+      "href": "https://beverageequipmenttraders.com/collections/all"
+    },
+    "heroImageAlt": "{city}, {state}"
+  }
+}

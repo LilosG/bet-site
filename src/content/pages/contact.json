@@ -1,0 +1,70 @@
+{
+  "seo": {
+    "title": "Contact Beverage Equipment Traders | Trade Desk — San Marcos, CA",
+    "description": "Contact our trade desk for equipment sourcing, rigging quotes, consignment, auctions, or consulting. Responds within one business day. Call (949) 888-2739."
+  },
+  "breadcrumbLabel": "Contact",
+  "hero": {
+    "image": "hero-services.webp",
+    "imageAlt": "Contact Beverage Equipment Traders",
+    "eyebrow": "Contact",
+    "heading": "Talk to the Trade Desk.",
+    "body": "Our team responds within one business day. Provide the equipment you need, your inquiry type, and what you are trying to accomplish — we will return a clear answer and next steps."
+  },
+  "form": {
+    "heading": "Send an Inquiry",
+    "requiredNote": "All fields marked with * are required.",
+    "honeypotLabel": "Skip this field",
+    "firstNameLabel": "First Name *",
+    "lastNameLabel": "Last Name *",
+    "emailLabel": "Email *",
+    "phoneLabel": "Phone",
+    "companyLabel": "Company / Brewery Name",
+    "inquiryTypeLabel": "Inquiry Type *",
+    "inquiryPlaceholder": "Select inquiry type",
+    "messageLabel": "Tell us what you need *",
+    "messagePlaceholder": "Describe the equipment, service, or question. Include quantities, size ranges, or location if relevant.",
+    "submitLabel": "Send Inquiry",
+    "inquiryTypes": [
+      {
+        "value": "buying",
+        "label": "Buying Equipment"
+      },
+      {
+        "value": "rigging",
+        "label": "Rigging & Installation"
+      },
+      {
+        "value": "consignment",
+        "label": "Consigning Equipment"
+      },
+      {
+        "value": "auction",
+        "label": "Auction Inquiry"
+      },
+      {
+        "value": "consulting",
+        "label": "Technical Consulting"
+      },
+      {
+        "value": "new-equipment",
+        "label": "New Equipment"
+      },
+      {
+        "value": "general",
+        "label": "General Question"
+      }
+    ]
+  },
+  "sidebar": {
+    "directHeading": "Direct Contact",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "responseLabel": "Response time",
+    "responseValue": "Within 1 business day",
+    "facilityHeading": "Facility",
+    "directionsLabel": "Get Directions",
+    "hoursHeading": "Hours",
+    "hoursAriaLabel": "Business hours"
+  }
+}

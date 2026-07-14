@@ -1,0 +1,117 @@
+{
+  "slug": "distillery",
+  "heroImage": "hero-distilling.webp",
+  "name": "Craft Distilleries",
+  "shortName": "Distilleries",
+  "h1": "Distillery Equipment for Craft Spirits Producers",
+  "metaTitle": "Distillery Equipment for Craft Spirits | Beverage Equipment Traders",
+  "metaDescription": "New and used distillery equipment including copper pot stills, column stills, fermenters, and complete distillery systems. Nationwide shipping from San Marcos, CA.",
+  "intro": "Copper pot stills, column stills, fermenters, and supporting systems for craft spirits producers at every scale.",
+  "bodyContent": "The craft distillery market shares significant equipment overlap with craft brewing, and Beverage Equipment Traders serves both communities from our San Marcos facility. Our distillery equipment inventory includes copper pot stills, column stills, proofing tanks, fermenters suited for spirits production, and supporting equipment including bottling systems and cold storage.\n\nThe distillery equipment buyer base extends well beyond California. Craft spirits production is growing in every state, and the national buyer searching for a specific still configuration or proofing tank is as qualified a buyer as a local one. We ship nationwide and have worked with distillery operations from startup single-still operations through multi-still production facilities.\n\nOur current distillery inventory includes a 300-gallon copper pot still at $75,000 — a standout piece for a craft distillery building out or expanding a small-batch program. Inventory changes regularly; contact us for current availability on specific configurations.\n\nFor distilleries selling equipment — upgrading stills, liquidating after a closure, or selling surplus fermenters from a production program — our consignment and auction programs handle the full process from photography through buyer settlement.",
+  "relevantEquipment": [
+    "distilling",
+    "fermenters",
+    "cold-rooms",
+    "boilers"
+  ],
+  "relevantServices": [
+    "rigging",
+    "consignment",
+    "auctions",
+    "consulting"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "Starting a Distillery",
+      "description": "First still and supporting equipment for a new craft spirits operation. We advise on used vs. new and help spec supporting equipment for your production program."
+    },
+    {
+      "title": "Expanding Still Capacity",
+      "description": "Adding a second still, upgrading to a larger pot or column, or adding proofing and fermentation capacity to match production growth."
+    },
+    {
+      "title": "Sourcing Fermentation Equipment",
+      "description": "Distillery fermentation uses similar vessels to brewery fermentation. Our fermenter inventory is relevant to spirits producers needing wash fermenters."
+    },
+    {
+      "title": "Selling Distillery Assets",
+      "description": "Liquidating a distillery, upgrading equipment, or selling surplus assets. Consignment and auction programs available for all distillery equipment types."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "Copper Pot Stills",
+    "Column Stills",
+    "Fermenters",
+    "Cold Rooms"
+  ],
+  "faqs": [
+    {
+      "q": "Do you carry copper pot stills?",
+      "a": "Yes. Current inventory includes a 300-gallon copper pot still. Distillery equipment availability changes regularly — contact us for current stock on specific configurations."
+    },
+    {
+      "q": "Can brewery fermenters be used for distillery wash fermentation?",
+      "a": "Yes. Many standard brewery fermenters are appropriate for distillery wash fermentation, depending on vessel configuration and your production program. We can advise on what specifications to look for."
+    },
+    {
+      "q": "Do you ship distillery equipment nationwide?",
+      "a": "Yes. All distillery equipment in our inventory ships nationwide. Rigging and installation services available for larger still installations."
+    },
+    {
+      "q": "Do you carry proofing tanks and bottling equipment for distilleries?",
+      "a": "Proofing tanks, bottling systems, and supporting distillery equipment appear in our inventory alongside stills. Availability varies — contact us for current stock on specific items."
+    },
+    {
+      "q": "Can you help source a complete distillery equipment package?",
+      "a": "Yes. For new distillery builds we can help spec and source a complete equipment package — still, fermenters, proofing tanks, and supporting systems — from a combination of new and used inventory."
+    }
+  ],
+  "keywords": [
+    "distillery equipment for sale",
+    "copper still for sale",
+    "craft distillery equipment",
+    "used distillery equipment",
+    "distillery equipment dealer",
+    "pot still for sale",
+    "column still for sale",
+    "craft spirits equipment"
+  ],
+  "order": 1,
+  "heroImageAlt": "Craft Distilleries",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

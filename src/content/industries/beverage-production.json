@@ -1,0 +1,112 @@
+{
+  "slug": "beverage-production",
+  "heroImage": "hero-canning.webp",
+  "name": "Beverage Manufacturers",
+  "shortName": "Beverage Production",
+  "h1": "Equipment for Beverage Manufacturers and Producers",
+  "metaTitle": "Beverage Manufacturing Equipment | Beverage Equipment Traders",
+  "metaDescription": "Tanks, processing equipment, canning lines, cold storage, and packaging systems for beverage manufacturers. New and used equipment from San Marcos, CA. Ships nationwide.",
+  "intro": "Processing tanks, canning and packaging lines, cold storage, and production systems for non-alcoholic and specialty beverage manufacturers.",
+  "bodyContent": "Beverage Equipment Traders serves the broader beverage manufacturing industry beyond craft alcohol production. The processing equipment used in craft brewing — stainless tanks, heat exchangers, canning systems, cold storage, and packaging lines — has direct applications in kombucha production, cold brew coffee, sparkling water, energy drinks, functional beverages, and other non-alcoholic beverage categories.\n\nOur inventory of food-grade stainless tanks, canning and packaging equipment, glycol chilling systems, and cold storage is relevant to beverage manufacturers across these categories. The same fermentation vessels, brite tanks, and canning lines that serve a craft brewery are appropriate capital equipment for many non-alcoholic production operations.\n\nNational buyer demand in beverage manufacturing has grown significantly as the functional and specialty beverage category has expanded. A non-alcoholic beverage producer in Chicago or Austin sourcing processing tanks is in the same buyer pool as a craft brewery — and we serve both from our San Marcos facility.",
+  "relevantEquipment": [
+    "fermenters",
+    "canning",
+    "chillers",
+    "cold-rooms",
+    "boilers"
+  ],
+  "relevantServices": [
+    "rigging",
+    "consignment",
+    "consulting"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "Processing Tanks",
+      "description": "Stainless jacketed tanks for mixing, blending, fermentation, and storage in non-alcoholic beverage production."
+    },
+    {
+      "title": "Canning and Packaging",
+      "description": "Canning lines and packaging equipment for non-alcoholic beverages — same systems used in craft brewing, applicable across beverage categories."
+    },
+    {
+      "title": "Cold Storage",
+      "description": "Walk-in coolers and refrigeration for finished goods storage and temperature-controlled processing."
+    },
+    {
+      "title": "Process Heat",
+      "description": "Commercial boilers and heat exchangers for pasteurization, hot fill, and process heating applications in beverage manufacturing."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "Processing Tanks",
+    "Canning Lines",
+    "Cold Storage",
+    "Boilers"
+  ],
+  "faqs": [
+    {
+      "q": "Do you serve non-alcoholic beverage producers?",
+      "a": "Yes. Our stainless processing equipment, canning lines, and cold storage are appropriate for many non-alcoholic beverage categories including kombucha, cold brew, sparkling water, and functional beverages."
+    },
+    {
+      "q": "Are brewery fermenters food-grade for beverage production?",
+      "a": "Production brewery fermenters are typically food-grade 304 or 316L stainless steel, appropriate for many beverage production applications. We note stainless grade and construction in our listings."
+    },
+    {
+      "q": "Do you carry heat exchangers and pasteurization equipment?",
+      "a": "Plate heat exchangers from brewery and beverage production appear in our inventory regularly. Contact us for current availability on specific configurations."
+    },
+    {
+      "q": "Can you source equipment for a non-alcoholic beverage startup?",
+      "a": "Yes. We advise non-alcoholic beverage producers on equipment sourcing the same way we advise brewery clients — starting with your production volume, package format, and capital structure."
+    }
+  ],
+  "keywords": [
+    "beverage manufacturing equipment",
+    "beverage production equipment",
+    "kombucha equipment",
+    "cold brew equipment",
+    "beverage processing tanks",
+    "canning equipment beverage",
+    "non-alcoholic beverage equipment"
+  ],
+  "order": 3,
+  "heroImageAlt": "Beverage Manufacturers",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

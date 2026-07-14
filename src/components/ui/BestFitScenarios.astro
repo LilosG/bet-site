@@ -19,10 +19,12 @@ export interface Props {
   light?: boolean;
 }
 
+import { cms } from '../../lib/cms';
+
 const {
   scenarios,
-  heading = 'Is This Right for You?',
-  eyebrow = 'Best Fit',
+  heading = cms.globalCtas.defaultBestFitHeading,
+  eyebrow = cms.globalCtas.defaultBestFitEyebrow,
   cta,
   light = false,
 } = Astro.props;
@@ -179,7 +181,7 @@ const {
     font-family: var(--font-display);
     font-size: 1.125rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     margin: 0 0 0.625rem;
     line-height: 1.25;
     transition: color var(--transition-base);

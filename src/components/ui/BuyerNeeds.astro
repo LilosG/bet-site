@@ -17,10 +17,12 @@ export interface Props {
   eyebrow?: string;
 }
 
+import { cms } from '../../lib/cms';
+
 const {
   needs,
-  heading = 'What Operations Typically Source',
-  eyebrow = 'Common Needs',
+  heading = cms.globalCtas.defaultBuyerNeedsHeading,
+  eyebrow = cms.globalCtas.defaultBuyerNeedsEyebrow,
 } = Astro.props;
 ---
 

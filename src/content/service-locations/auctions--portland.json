@@ -1,0 +1,32 @@
+{
+  "slug": "auctions--portland",
+  "serviceSlug": "auctions",
+  "locationSlug": "portland",
+  "metaTitle": "Commercial Auctions Portland, OR | Beverage Equipment Traders",
+  "metaDescription": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Serving Portland, Oregon and nationwide from San Marcos, CA. One quote covers full scope.",
+  "h1": "Commercial Auctions — Portland, OR",
+  "heroEyebrow": "Auctions · Portland, OR",
+  "heroBody": "Full-facility liquidation with rapid asset recovery. Marketed to a vetted operator network. Available in Portland and nationwide.",
+  "heroImage": "hero-fermenters.webp",
+  "heroImageAlt": "Commercial Auctions — Portland, OR",
+  "trustChips": [
+    "All 50 States",
+    "One Quote — Full Scope",
+    "Prior Brewery Operators",
+    "San Marcos, CA"
+  ],
+  "bodyHeading": "Commercial Auctions in Portland — What to Know",
+  "locationParagraph": "We handle auctions in Portland and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.",
+  "marketParagraph": "Beverage Equipment Traders serves buyers and sellers throughout North America. The Portland market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.",
+  "sidebarBody": "Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for Portland.",
+  "relatedServicesLabel": "Related Services in Portland",
+  "processEyebrow": "The Process",
+  "processHeading": "How Auctions Works in Portland",
+  "faqHeading": "Commercial Auctions Portland — Frequently Asked Questions",
+  "finalCtaHeading": "Ready to get started in Portland?",
+  "finalCtaBody": "One call, one quote. Our trade desk handles everything from scope to scheduling.",
+  "secondaryCta": {
+    "label": "Browse Equipment",
+    "href": "/equipment"
+  }
+}

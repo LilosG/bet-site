@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "Brewery Equipment Service Areas — Local & National | Beverage Equipment Traders",
+    "description": "Beverage Equipment Traders ships brewery and beverage production equipment to all 50 states. Local service and rigging throughout Southern California from our San Marcos, CA facility."
+  },
+  "breadcrumbLabel": "Service Areas",
+  "hero": {
+    "image": "hero-locations.webp",
+    "imageAlt": "Beverage equipment service areas",
+    "eyebrow": "Service Areas",
+    "heading": "San Marcos, CA\nto All 50 States.",
+    "body": "Local buyers get in-person inspection at our 40,000 sq ft facility and rigging crews that turn around in 1–2 weeks. National buyers get the same photographed, documented inventory with bonded freight to any destination. One team, one phone number, coast to coast.",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    }
+  },
+  "statistics": [
+    {
+      "value": "50",
+      "label": "States Served"
+    },
+    {
+      "value": "1–2",
+      "label": "Week Local Rigging Turnaround"
+    },
+    {
+      "value": "40K",
+      "label": "Sq Ft Facility"
+    },
+    {
+      "value": "600+",
+      "label": "Equipment Placements"
+    }
+  ],
+  "local": {
+    "eyebrow": "Southern California",
+    "heading": "Local Service Areas",
+    "body": "In-person inspection available at our {street} facility in {city}. Local rigging and installation typically turns around in 1–2 weeks. 30 minutes from downtown San Diego.",
+    "facilityLabel": "Our Facility",
+    "hoursLabel": "Mon–Thu 10AM–4PM · Fri 10AM–3PM",
+    "badgeLabel": "Local Service",
+    "cardCtaLabel": "View Service Area",
+    "cardTag": "Rigging · Inspection · Same-week Quotes"
+  },
+  "national": {
+    "eyebrow": "Nationwide Shipping",
+    "heading": "National Markets",
+    "body": "Bonded freight to all 50 states. Every piece photographed, documented, and documented before it leaves our yard. Rigging and installation at destination available. Lead times confirmed at purchase.",
+    "factsLabel": "Every Shipment Includes",
+    "facts": [
+      "Bonded freight coordination",
+      "Crated or pad-wrapped per equipment type",
+      "Pre-ship condition documentation",
+      "Single point of contact through delivery"
+    ],
+    "badgeLabel": "Nationwide Shipping",
+    "cardCtaLabel": "View Shipping Info"
+  },
+  "finalCta": {
+    "heading": "Not seeing your city?",
+    "body": "We ship to every state. Contact our trade desk with your location and equipment requirements.",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    }
+  },
+  "statisticsAriaLabel": "Service area statistics"
+}

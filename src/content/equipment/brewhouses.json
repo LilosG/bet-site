@@ -1,0 +1,172 @@
+{
+  "slug": "brewhouses",
+  "title": "Brewhouses",
+  "h1": "New and Used Brewhouses For Sale",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/brewhouses",
+  "metaTitle": "New and Used Brewhouses For Sale | Beverage Equipment Traders — San Marcos, CA",
+  "metaDescription": "Shop new and used brewhouses from 7BBL to 30BBL+. Photographed, documented, and ready to ship nationwide from San Marcos, CA. Rigging and installation available.",
+  "description": "Beverage Equipment Traders maintains one of the largest inventories of new and used brewhouses in the western United States. Every system is photographed and listed with condition documentation.",
+  "bodyContent": "Complete brewhouse systems from 7BBL to 30BBL and larger, sourced from working brewery liquidations, upgrades, and direct manufacturer relationships. Our catalog spans 2-vessel and 3-vessel configurations from manufacturers including Marks Design and Metalworks, Specific Mechanical Systems, Premier Stainless, and DME Brewing.\n\nWhat sets Beverage Equipment Traders apart is operator context. We started as a brewery. We have sized brewhouses, run the same equipment we sell, and troubleshot every failure point buyers encounter. When you call us, you are speaking with someone who has actually brewed on it.\n\nEvery brewhouse in our inventory is photographed inside and out. High-value systems include inspection documentation, manufacturer details, and condition notes beyond a single-word summary. For full brewhouse systems, we also provide rigging, de-installation, transportation, and installation nationwide.\n\nWhether you are scaling a production facility, outfitting a new build, or sourcing a specific vessel configuration, our inventory is updated regularly and our team is available to help match equipment to your capacity needs.",
+  "keywords": [
+    "used brewhouse for sale",
+    "15bbl brewhouse",
+    "30 barrel brewing system",
+    "used brewery equipment California",
+    "new brewhouse for sale",
+    "brewery expansion equipment",
+    "7bbl brewhouse",
+    "premier stainless brewhouse"
+  ],
+  "faqs": [
+    {
+      "q": "What brewhouse sizes do you carry?",
+      "a": "Our inventory includes systems from 7BBL pilot setups through 30BBL+ production brewhouses. Availability changes frequently — contact us for current stock."
+    },
+    {
+      "q": "Do you offer rigging and installation for brewhouses?",
+      "a": "Yes. Beverage Equipment Traders provides full-service rigging, de-installation, transportation, and installation for all brewhouse systems we sell. We ship and install nationwide."
+    },
+    {
+      "q": "Can I inspect a brewhouse before purchasing?",
+      "a": "Yes. Our facility in San Marcos, CA is open for in-person inspection by appointment. We strongly encourage buyers to inspect high-value systems prior to purchase."
+    },
+    {
+      "q": "What manufacturers do you typically carry?",
+      "a": "Our brewhouse inventory includes systems from Marks Design and Metalworks, Specific Mechanical Systems, Premier Stainless, DME Brewing, and others sourced from working brewery liquidations and upgrades."
+    },
+    {
+      "q": "Can you help me sell my current brewhouse when I upgrade?",
+      "a": "Yes. We handle consignment and direct purchase of outgoing brewhouses when you upgrade. Many buyers run both transactions through us — sourcing the new system and liquidating the old one in a single coordinated process."
+    }
+  ],
+  "priority": "P0",
+  "heroImage": "brewhouse-hero.webp",
+  "featuredItems": [
+    {
+      "name": "20 BBL 2-Vessel Steam Brewhouse",
+      "price": "$78,500",
+      "condition": "Used",
+      "category": "BREWHOUSE",
+      "image": "brewhouse-20bbl-steam.webp",
+      "imageAlt": "20 BBL 2-Vessel Steam Brewhouse — Used BREWHOUSE"
+    },
+    {
+      "name": "15 BBL 3-Vessel Direct Fire System",
+      "price": "$52,000",
+      "condition": "Used",
+      "category": "BREWHOUSE",
+      "image": "brewhouse-15bbl-direct.webp",
+      "imageAlt": "15 BBL 3-Vessel Direct Fire System — Used BREWHOUSE"
+    },
+    {
+      "name": "7 BBL Electric 2-Vessel Pilot System",
+      "price": "$24,500",
+      "condition": "Used",
+      "category": "BREWHOUSE",
+      "image": "brewhouse-7bbl-electric.webp",
+      "imageAlt": "7 BBL Electric 2-Vessel Pilot System — Used BREWHOUSE"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Define Your Capacity",
+      "description": "Start with your projected weekly batch volume and work backward to barrel size. Buying for current volume is the most common mistake — size for 18-month growth."
+    },
+    {
+      "step": 2,
+      "title": "Confirm Vessel Configuration",
+      "description": "2-vessel vs 3-vessel determines your brew day efficiency and lautering capability. Direct fire vs steam heating affects your utility infrastructure requirements."
+    },
+    {
+      "step": 3,
+      "title": "Review Condition Documentation",
+      "description": "Our listings include condition notes, manufacturer data, and photography. For systems over $30K, in-person inspection at our San Marcos facility is strongly recommended."
+    },
+    {
+      "step": 4,
+      "title": "Get a Rigging Quote",
+      "description": "Before committing, get a full rigging and installation quote. We provide a single price covering de-installation, freight, delivery, set, level, and commissioning."
+    },
+    {
+      "step": 5,
+      "title": "Close and Commission",
+      "description": "Our crew handles delivery and installation. We do not leave until the system runs. Every brewhouse installation includes a commissioning walkthrough with your team."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "New Brewery Build",
+      "description": "Starting from scratch and need a production-ready system at below-new cost? Used brewhouses from working facilities offer the best value per barrel of capacity.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Capacity Expansion",
+      "description": "Adding a second brewhouse to an existing facility? We can match systems to your utility infrastructure and existing cellar layout.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Brewery Upgrade",
+      "description": "Replacing a smaller system with a larger one? We handle consignment of your outgoing brewhouse and sourcing of the replacement — one transaction.",
+      "icon": "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+    },
+    {
+      "title": "Contract Brewing",
+      "description": "Building out contract brewing capacity and need a production-scale system quickly? Our inventory turns over regularly with production-proven systems ready to ship.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    }
+  ],
+  "order": 0,
+  "heroImageAlt": "Brewhouses",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "New and Used Brewhouses — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

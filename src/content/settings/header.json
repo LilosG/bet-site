@@ -1,0 +1,143 @@
+{
+  "logoAriaLabel": "Beverage Equipment Traders — Home",
+  "primaryNavigationAriaLabel": "Primary navigation",
+  "mobileNavigationAriaLabel": "Mobile navigation",
+  "mobileMenuOpenLabel": "Open navigation menu",
+  "navigation": [
+    {
+      "label": "Shop Equipment",
+      "href": "/equipment",
+      "children": [
+        {
+          "label": "Brewhouses",
+          "href": "/equipment/brewhouses"
+        },
+        {
+          "label": "Fermenters & Tanks",
+          "href": "/equipment/fermenters"
+        },
+        {
+          "label": "Canning & Packaging",
+          "href": "/equipment/canning"
+        },
+        {
+          "label": "Glycol Chillers",
+          "href": "/equipment/chillers"
+        },
+        {
+          "label": "Distilling Equipment",
+          "href": "/equipment/distilling"
+        },
+        {
+          "label": "Kegs & Casks",
+          "href": "/equipment/kegs"
+        },
+        {
+          "label": "Boilers",
+          "href": "/equipment/boilers"
+        },
+        {
+          "label": "Cold Rooms",
+          "href": "/equipment/cold-rooms"
+        },
+        {
+          "label": "View All Inventory",
+          "href": "https://beverageequipmenttraders.com/collections/all",
+          "external": true
+        }
+      ]
+    },
+    {
+      "label": "Services",
+      "href": "/services",
+      "children": [
+        {
+          "label": "Rigging & Installation",
+          "href": "/services/rigging"
+        },
+        {
+          "label": "Consignment",
+          "href": "/services/consignment"
+        },
+        {
+          "label": "Auctions",
+          "href": "/services/auctions"
+        },
+        {
+          "label": "Consulting",
+          "href": "/services/consulting"
+        },
+        {
+          "label": "New Equipment",
+          "href": "/services/new-equipment"
+        }
+      ]
+    },
+    {
+      "label": "Industries",
+      "href": "/industries",
+      "children": [
+        {
+          "label": "Craft Breweries",
+          "href": "/industries/craft-brewery",
+          "group": "Beverage & Spirits"
+        },
+        {
+          "label": "Craft Distilleries",
+          "href": "/industries/distillery",
+          "group": "Beverage & Spirits"
+        },
+        {
+          "label": "Cideries & Meaderies",
+          "href": "/industries/cidery",
+          "group": "Beverage & Spirits"
+        },
+        {
+          "label": "Hard Seltzer",
+          "href": "/industries/hard-seltzer",
+          "group": "Beverage & Spirits"
+        },
+        {
+          "label": "Beverage Producers",
+          "href": "/industries/beverage-production",
+          "group": "Beverage & Spirits"
+        },
+        {
+          "label": "Food Processing",
+          "href": "/industries/food-processing",
+          "group": "Industrial & Processing"
+        },
+        {
+          "label": "Dairy Processing",
+          "href": "/industries/dairy-processing",
+          "group": "Industrial & Processing"
+        },
+        {
+          "label": "Pharma & Biotech",
+          "href": "/industries/pharmaceutical",
+          "group": "Industrial & Processing"
+        }
+      ]
+    },
+    {
+      "label": "Auctions",
+      "href": "/services/auctions"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ],
+  "cta": {
+    "label": "Get a Rigging Quote",
+    "href": "/contact?type=rigging"
+  }
+}

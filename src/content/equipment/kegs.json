@@ -1,0 +1,167 @@
+{
+  "slug": "kegs",
+  "title": "Kegs & Casks",
+  "h1": "Used Kegs and Cask Kegs For Sale",
+  "shopifyCollectionUrl": "https://beverageequipmenttraders.com/collections/casks",
+  "metaTitle": "Used Kegs & Cask Kegs For Sale | Beverage Equipment Traders",
+  "metaDescription": "Half barrel kegs, 1/6 BBL kegs, cask kegs, and more. In stock at our San Marcos, CA facility. Ships nationwide.",
+  "description": "Half barrel kegs, sixth barrel kegs, cask kegs, and real ales containers. Multiple sizes in stock with nationwide shipping available.",
+  "bodyContent": "Kegs and cask containers for production breweries, taprooms, and specialty producers. Our inventory covers the full range of standard and specialty keg formats: half barrel (1/2 BBL), quarter barrel (1/4 BBL), sixth barrel (1/6 BBL), and cask kegs in both pin and firkin sizes.\n\nCask kegs serve the real ale and cask-conditioned market, as well as producers selling to on-premise accounts that have installed cask tap systems. We currently rank in the top results for cask keg searches, reflecting genuine inventory depth in this niche.\n\nUsed kegs from our inventory are sourced from production breweries and arrive with legitimate brewing history. New kegs from select manufacturers are also available. Contact us for volume pricing on bulk keg purchases.",
+  "keywords": [
+    "cask kegs for sale",
+    "used kegs brewery",
+    "half barrel kegs",
+    "1/6 bbl keg",
+    "firkin kegs",
+    "pin cask kegs",
+    "brewery kegs for sale"
+  ],
+  "faqs": [
+    {
+      "q": "Do you sell cask kegs for real ale production?",
+      "a": "Yes. Pin casks and firkins are available for real ale and cask-conditioned production. Contact us for current inventory."
+    },
+    {
+      "q": "Do you offer volume pricing on bulk keg purchases?",
+      "a": "Yes. Pallet and full-truckload quantities are available with volume pricing. Contact us with your required quantity and format for a bulk quote."
+    },
+    {
+      "q": "Are your used kegs pressure-tested before sale?",
+      "a": "Used kegs in our inventory are sourced from production breweries with documented maintenance history. We recommend buyers pressure-test and valve-inspect all used kegs before putting them into service."
+    },
+    {
+      "q": "What keg valve types do you typically carry?",
+      "a": "Sanke D is the US standard and the most common format in our inventory. European Sanke A, S, and G valves appear occasionally. Valve type is noted in listings — confirm compatibility with your accounts before purchasing."
+    }
+  ],
+  "priority": "P1",
+  "heroImage": "kegs-pallet-stack.webp",
+  "featuredItems": [
+    {
+      "name": "Half Barrel Stainless Kegs",
+      "price": "$85 each",
+      "condition": "Used",
+      "category": "HALF BARREL",
+      "image": "kegs-half-barrel.webp",
+      "imageAlt": "Half Barrel Stainless Kegs — Used HALF BARREL"
+    },
+    {
+      "name": "Stainless Keg Stack — Mixed Lot",
+      "price": "Call",
+      "condition": "Used",
+      "category": "MIXED LOT",
+      "image": "kegs-stainless-stack.webp",
+      "imageAlt": "Stainless Keg Stack — Mixed Lot — Used MIXED LOT"
+    },
+    {
+      "name": "Pallet Lot — Half Barrel Kegs",
+      "price": "Call",
+      "condition": "Used",
+      "category": "PALLET LOT",
+      "image": "kegs-pallet-stack.webp",
+      "imageAlt": "Pallet Lot — Half Barrel Kegs — Used PALLET LOT"
+    }
+  ],
+  "buyerGuide": [
+    {
+      "step": 1,
+      "title": "Determine Keg Format",
+      "description": "Half barrel (15.5 gal) for standard draft accounts. Sixth barrel for specialty and rotating taps. Cask kegs (pin and firkin) for real ale programs."
+    },
+    {
+      "step": 2,
+      "title": "Calculate Volume Needed",
+      "description": "Match keg inventory to your weekly packaging volume and average account cycle time. Most production breweries maintain 3-4x weekly production volume in keg inventory."
+    },
+    {
+      "step": 3,
+      "title": "Inspect Condition",
+      "description": "Used kegs should be pressure-tested and valve-inspected. Our used keg inventory is sourced from production breweries with known maintenance history."
+    },
+    {
+      "step": 4,
+      "title": "Confirm Valve Type",
+      "description": "Sanke D is the US standard. European Sanke A, S, and G valves require different couplers. Confirm valve compatibility with your accounts before purchasing."
+    },
+    {
+      "step": 5,
+      "title": "Arrange Delivery",
+      "description": "Kegs ship efficiently by pallet. Contact us for volume pricing and freight quotes on bulk orders."
+    }
+  ],
+  "bestFitBuyers": [
+    {
+      "title": "New Draft Program",
+      "description": "Launching draft distribution and need an initial keg inventory? We source matched sets of used half barrels and sixth barrels for startup programs.",
+      "icon": "M12 4v16m8-8H4"
+    },
+    {
+      "title": "Expanding Distribution",
+      "description": "Adding accounts and need to increase keg inventory? Bulk used keg purchases at competitive pricing.",
+      "icon": "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+    },
+    {
+      "title": "Real Ale Program",
+      "description": "Launching cask-conditioned ales? Pin casks and firkins for real ale programs serving on-premise accounts with cask tap installations.",
+      "icon": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0"
+    },
+    {
+      "title": "Taproom Only",
+      "description": "Taproom-focused operation needing sixth barrel kegs for rotating tap handles? Small quantities available alongside bulk orders.",
+      "icon": "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+    }
+  ],
+  "order": 5,
+  "heroImageAlt": "Kegs & Casks",
+  "labels": {
+    "heroEyebrow": "Equipment Category",
+    "catalogLabel": "Browse Full {title} Catalog",
+    "riggingLabel": "Get a Rigging Quote",
+    "riggingHref": "/contact?type=rigging",
+    "trustChips": [
+      "Ships Nationwide",
+      "Rigging Available",
+      "Prior Brewery Owners",
+      "San Marcos, CA"
+    ],
+    "bodyHeading": "Used Kegs and Cask Kegs — Operator Perspective",
+    "sidebarHeading": "Quick Contact",
+    "sidebarBody": "Our trade desk responds within one business day.",
+    "sidebarCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "relatedLabel": "Related Categories",
+    "allEquipmentLabel": "All Equipment",
+    "buyerGuideEyebrow": "Buyer Guide",
+    "buyerGuideHeading": "How to Buy {title}",
+    "bestFitEyebrow": "Best Fit",
+    "bestFitHeading": "Who Should Buy {title}",
+    "bestFitCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "inventoryEyebrow": "Currently In Stock",
+    "inventoryHeading": "Featured {title}",
+    "viewAllLabel": "View All {title}",
+    "completeCatalogLabel": "View Complete {title} Catalog",
+    "riggingCtaHeading": "Need it moved, installed, and commissioned?",
+    "riggingCtaBody": "We handle rigging and installation nationwide — one crew, one quote, from your loading dock to operational.",
+    "riggingPrimary": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    },
+    "riggingSecondary": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "locationsEyebrow": "Shop by Location",
+    "locationsHeading": "{title} Available Near You",
+    "locationsBody": "We ship {titleLower} to all 50 states. Select your area for local pricing, freight timing, and rigging availability.",
+    "localGroupLabel": "Local — Southern California",
+    "nationalGroupLabel": "National Markets",
+    "faqHeading": "{title} — Frequently Asked Questions",
+    "heroImageAlt": "{title}",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  }
+}

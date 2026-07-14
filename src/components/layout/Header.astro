@@ -5,7 +5,13 @@
  * When children have a `group` field, the dropdown renders
  * a section label before the first child in each group.
  */
+import { Image } from 'astro:assets';
 import { NAV, NAP, SITE } from '../../data/site';
+import { cms } from '../../lib/cms';
+import { requireCmsImage } from '../../lib/images';
+
+const content = cms.header;
+const logo = requireCmsImage(SITE.logo);
 
 const currentPath = Astro.url.pathname;
 function isActive(href: string) {
@@ -18,10 +24,10 @@ function isActive(href: string) {
   <div class="header-inner container">
 
     <!-- Logo -->
-    <a href="/" class="header-logo" aria-label={`${SITE.name} — Home`}>
-      <img
-        src="/images/logo.avif"
-        alt="Beverage Equipment Traders"
+    <a href="/" class="header-logo" aria-label={content.logoAriaLabel}>
+      <Image
+        src={logo}
+        alt={SITE.logoAlt}
         class="header-logo-img"
         width="148"
         height="44"
@@ -31,7 +37,7 @@ function isActive(href: string) {
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="header-nav" aria-label="Primary navigation">
+    <nav class="header-nav" aria-label={content.primaryNavigationAriaLabel}>
       <ul class="nav-list" role="list">
         {NAV.primary.map((item) => (
           <li class={`nav-item${item.children ? ' has-dropdown' : ''}`}>
@@ -104,7 +110,7 @@ function isActive(href: string) {
     <button
       class="mobile-toggle"
       id="mobile-toggle"
-      aria-label="Open navigation menu"
+      aria-label={content.mobileMenuOpenLabel}
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
@@ -115,7 +121,7 @@ function isActive(href: string) {
   </div>
 
   <!-- Mobile Nav Drawer -->
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+  <nav class="mobile-nav" id="mobile-nav" aria-label={content.mobileNavigationAriaLabel} aria-hidden="true">
     <ul class="mobile-nav-list" role="list">
       {NAV.primary.map((item) => (
         <li class="mobile-nav-item">
@@ -253,7 +259,7 @@ function isActive(href: string) {
     font-family: var(--font-ui);
     font-size: 0.9375rem;
     font-weight: 500;
-    color: var(--color-text-muted);
+    color: rgba(255,255,255,0.78);
     letter-spacing: 0.01em;
     border-radius: var(--radius-sm);
     transition: color var(--transition-base), background var(--transition-base);
@@ -263,7 +269,7 @@ function isActive(href: string) {
   .nav-link:hover,
   .nav-link.is-active {
     color: var(--color-white);
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.08);
   }
 
   .nav-link.is-active { color: var(--color-gold); background: transparent; }
@@ -274,7 +280,7 @@ function isActive(href: string) {
     top: calc(100% + 8px);
     left: 0;
     min-width: 220px;
-    background: var(--color-bg-2);
+    background: rgba(10, 9, 8, 0.97);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     box-shadow: 0 16px 48px rgba(0,0,0,0.6);
@@ -326,7 +332,7 @@ function isActive(href: string) {
     font-family: var(--font-ui);
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--color-text-muted);
+    color: rgba(255,255,255,0.72);
     border-radius: 3px;
     transition: color var(--transition-base), background var(--transition-base);
     white-space: nowrap;
@@ -334,7 +340,7 @@ function isActive(href: string) {
 
   .dropdown-link:hover {
     color: var(--color-white);
-    background: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.08);
   }
 
   /* ─── Header Actions ───────────────────── */
@@ -352,7 +358,7 @@ function isActive(href: string) {
     font-family: var(--font-ui);
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-text-muted);
+    color: rgba(255,255,255,0.78);
     transition: color var(--transition-base);
     white-space: nowrap;
   }
@@ -380,7 +386,7 @@ function isActive(href: string) {
     display: block;
     width: 100%;
     height: 1.5px;
-    background: var(--color-text-muted);
+    background: rgba(255,255,255,0.80);
     border-radius: 2px;
     transition: transform 200ms ease, opacity 200ms ease;
     transform-origin: center;
@@ -427,7 +433,7 @@ function isActive(href: string) {
     font-family: var(--font-display);
     font-size: 1.375rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-heading);
     letter-spacing: -0.01em;
   }
 

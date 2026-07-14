@@ -1,0 +1,116 @@
+{
+  "slug": "craft-brewery",
+  "heroImage": "hero-brewhouse.webp",
+  "name": "Craft Breweries",
+  "shortName": "Breweries",
+  "h1": "Brewery Equipment for Craft Breweries",
+  "metaTitle": "Brewery Equipment for Craft Breweries | Beverage Equipment Traders",
+  "metaDescription": "New and used brewery equipment for craft breweries. Brewhouses, fermenters, canning lines, glycol chillers, and rigging. Serving breweries nationwide from San Marcos, CA.",
+  "intro": "From 7 BBL taproom systems through 30 BBL+ production brewhouses — equipment, services, and operator experience built for craft production.",
+  "bodyContent": "Craft breweries represent the core of the Beverage Equipment Traders business. We have worked with production breweries ranging from startup taproom operations through established regional distribution brands, and our equipment inventory reflects the real capital needs of a working craft brewery.\n\nWhat sets us apart from a listing site or general equipment broker is operating context. Beverage Equipment Traders was founded by brewery operators. We have run the equipment we sell — sized glycol systems, configured fermentation programs, and troubleshot brewhouse failures at 2 a.m. That experience means we advise on what a craft brewery actually needs, not just what we have available.\n\nOur inventory covers the full range of craft brewery capital equipment: complete brewhouses from 7 BBL to 30 BBL+, fermentation vessels and brite tanks, canning lines from taproom crowler volume through full automated production, glycol chilling systems, kegs and casks, and supporting systems including boilers and cold storage. All equipment is photographed and listed with condition documentation.\n\nWe also provide full-service rigging and installation for equipment moves, new builds, and expansion projects. For breweries selling or upgrading equipment, our consignment and auction programs provide structured liquidation options.",
+  "relevantEquipment": [
+    "brewhouses",
+    "fermenters",
+    "canning",
+    "chillers",
+    "kegs",
+    "boilers",
+    "cold-rooms"
+  ],
+  "relevantServices": [
+    "rigging",
+    "consignment",
+    "auctions",
+    "consulting",
+    "new-equipment"
+  ],
+  "buyerNeeds": [
+    {
+      "title": "Starting a New Brewery",
+      "description": "First equipment purchase for a new production operation. We help spec the right system for your projected volume and capital structure."
+    },
+    {
+      "title": "Expanding Production Capacity",
+      "description": "Adding fermenters, upgrading to a larger brewhouse, or adding a canning line to match distribution growth."
+    },
+    {
+      "title": "Upgrading Core Systems",
+      "description": "Replacing aging or undersized equipment — brewhouse, glycol, or packaging — with production-ready systems."
+    },
+    {
+      "title": "Selling or Liquidating Equipment",
+      "description": "Consigning surplus equipment, liquidating after a closure, or selling assets from a brewery you are upgrading out of."
+    }
+  ],
+  "featuredEquipmentTypes": [
+    "Brewhouses",
+    "Fermenters & Tanks",
+    "Canning Lines",
+    "Glycol Chillers"
+  ],
+  "faqs": [
+    {
+      "q": "Do you work with taproom-scale breweries as well as production breweries?",
+      "a": "Yes. Our inventory includes both taproom-scale systems (7–10 BBL) and full production brewhouses (15–30 BBL+). We advise on what system size makes sense for your projected volume before you commit."
+    },
+    {
+      "q": "Can you source a complete brewery equipment package?",
+      "a": "Yes. For new brewery builds, we can help spec and source a complete equipment package — brewhouse, fermenters, glycol, and packaging — from a combination of new and used inventory."
+    },
+    {
+      "q": "Do you buy brewery equipment outright or only on consignment?",
+      "a": "Both. Direct purchase, consignment, and auction are all available depending on your timeline and recovery goals. Contact us to discuss which approach fits your situation."
+    },
+    {
+      "q": "How far in advance should I contact you before a new brewery build?",
+      "a": "As early as possible. Equipment sourcing, rigging coordination, and installation scheduling all benefit from lead time. For full brewery builds we recommend engaging us 3 to 6 months before your target open date."
+    }
+  ],
+  "keywords": [
+    "brewery equipment for sale",
+    "craft brewery equipment",
+    "used brewery equipment",
+    "new brewery equipment",
+    "brewery equipment dealer California",
+    "brewery startup equipment",
+    "production brewery equipment"
+  ],
+  "order": 0,
+  "heroImageAlt": "Craft Breweries",
+  "labels": {
+    "heroEyebrow": "Industry",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Browse Equipment",
+      "href": "/equipment"
+    },
+    "bodyHeading": "{name} — Equipment Overview",
+    "sidebarHeading": "Talk to Our Team",
+    "sidebarBody": "Our trade desk responds within one business day. Describe your equipment requirements and we will advise on current inventory.",
+    "sidebarCtaLabel": "Contact Trade Desk",
+    "equipmentTypesLabel": "Common Equipment Types",
+    "buyerNeedsEyebrow": "Common Needs",
+    "buyerNeedsHeading": "What {shortName} Operations Typically Source",
+    "equipmentEyebrow": "Equipment Available",
+    "equipmentHeading": "Browse Equipment by Category",
+    "equipmentCtaPrefix": "Browse",
+    "servicesEyebrow": "Services",
+    "servicesHeading": "Services Available for {shortName} Operations",
+    "servicesCtaLabel": "Learn More",
+    "faqHeading": "{name} — Frequently Asked Questions",
+    "finalCtaHeading": "Ready to source equipment for your {shortName} operation?",
+    "finalCtaBody": "Our trade desk responds within one business day.",
+    "finalPrimaryCta": {
+      "label": "Contact Trade Desk",
+      "href": "/contact"
+    },
+    "finalSecondaryCta": {
+      "label": "Browse All Equipment",
+      "href": "/equipment"
+    },
+    "heroImageAlt": "{name}"
+  }
+}

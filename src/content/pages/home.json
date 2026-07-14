@@ -1,0 +1,171 @@
+{
+  "seo": {
+    "title": "New and Used Brewery Equipment For Sale | Beverage Equipment Traders",
+    "description": "San Marcos, CA brewery and beverage equipment dealer. New and used brewhouses, fermenters, canning lines, kegs, and more. Rigging, consignment, and auction services. Shipping nationwide."
+  },
+  "hero": {
+    "image": "hero-brewhouse.webp",
+    "imageAlt": "Brewery equipment at Beverage Equipment Traders",
+    "ariaLabel": "Hero",
+    "badgeLabels": [
+      "Live Inventory",
+      "San Marcos, CA",
+      "Updated Daily"
+    ],
+    "heading": "New and Used Brewery\nEquipment For Sale.",
+    "body": "Operating from a 40,000 sq ft consolidation facility in San Marcos, California. Every asset is photographed and listed with full condition documentation. Nationwide rigging, freight, and installation on every transaction.",
+    "primaryCta": {
+      "label": "Browse Live Inventory",
+      "href": "https://beverageequipmenttraders.com/collections/all"
+    },
+    "secondaryCta": {
+      "label": "Schedule a Technical Call",
+      "href": "/contact?type=rigging"
+    },
+    "statistics": [
+      {
+        "value": "40K",
+        "label": "Sq Ft Facility"
+      },
+      {
+        "value": "50",
+        "label": "States Served"
+      },
+      {
+        "value": "600+",
+        "label": "Placements"
+      }
+    ]
+  },
+  "featured": {
+    "eyebrow": "01 · Featured Inventory",
+    "heading": "High-ticket procurement,\nproduction-sourced.",
+    "link": {
+      "label": "View Full Catalog",
+      "href": "https://beverageequipmenttraders.com/collections/all"
+    },
+    "categoryAriaLabel": "Browse by equipment category",
+    "items": [
+      {
+        "name": "30 BBL 4-Vessel Marks Brewhouse",
+        "price": "$78,500",
+        "condition": "Used",
+        "category": "BREWHOUSE",
+        "image": "brewhouse-30bbl-marks.webp",
+        "imageAlt": "30 BBL 4-Vessel Marks Brewhouse — Used BREWHOUSE",
+        "href": "https://beverageequipmenttraders.com/collections/brewhouses"
+      },
+      {
+        "name": "60 BBL Jacketed Unitank",
+        "price": "$24,900",
+        "condition": "Used",
+        "category": "FERMENTER",
+        "image": "fermenters-60bbl-pano.webp",
+        "imageAlt": "60 BBL Jacketed Unitank — Used FERMENTER",
+        "href": "https://beverageequipmenttraders.com/collections/fermenters-manual"
+      },
+      {
+        "name": "15 BBL Brewhouse with HLT",
+        "price": "$52,000",
+        "condition": "Used",
+        "category": "BREWHOUSE",
+        "image": "brewhouse-15bbl-hlt.webp",
+        "imageAlt": "15 BBL Brewhouse with HLT — Used BREWHOUSE",
+        "href": "https://beverageequipmenttraders.com/collections/brewhouses"
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "02 · One Partner",
+    "heading": "From sourcing to start-up.",
+    "link": {
+      "label": "All Services",
+      "href": "/services"
+    }
+  },
+  "why": {
+    "image": "hero-brewhouse.webp",
+    "imageAlt": "BET brewhouse facility — San Marcos, CA",
+    "badgeTop": "EST. 2009",
+    "badgeBottom": "San Marcos, California",
+    "eyebrow": "03 · The Operator",
+    "heading": "Built by Operators,",
+    "headingAccent": "For Operators.",
+    "paragraphs": [
+      "Beverage Equipment Traders was founded by former brewery owners who spent fifteen years on the production floor. We know the difference a half percent of efficiency makes on your line — and we know what failure on install day costs.",
+      "Before we brokered a single tank, we ran our own brewhouse — troubleshooting glycol loops at 2 a.m., welding back together packaging lines that vendors said were dead. Every piece in our yard has been pressure-tested by people who've actually used it in production."
+    ],
+    "primaryCta": {
+      "label": "Our Story",
+      "href": "/about"
+    },
+    "secondaryCta": {
+      "label": "Start a Conversation",
+      "href": "/contact"
+    }
+  },
+  "rigging": {
+    "eyebrow": "04 · Nationwide Rigging",
+    "heading": "One crew, coast to coast.",
+    "link": {
+      "label": "Learn About Rigging",
+      "href": "/services/rigging"
+    },
+    "images": [
+      {
+        "image": "rigging-loaded-truck.webp",
+        "alt": "Brewery tanks loaded on flatbed truck for transport"
+      },
+      {
+        "image": "rigging-fermenters-transport.webp",
+        "alt": "Fermentation vessels being transported"
+      },
+      {
+        "image": "rigging-forklift-install.webp",
+        "alt": "Forklift rigging a fermenter during installation"
+      }
+    ],
+    "proof": [
+      {
+        "value": "All 50 States",
+        "detail": "Bonded freight nationwide"
+      },
+      {
+        "value": "One Quote",
+        "detail": "Equipment + freight + install"
+      },
+      {
+        "value": "1–2 Week",
+        "detail": "Local SoCal turnaround"
+      },
+      {
+        "value": "Operator Crews",
+        "detail": "Prior brewery experience"
+      }
+    ]
+  },
+  "national": {
+    "eyebrow": "Shipping Nationwide",
+    "heading": "Your buyer in Chicago is as real as\nthe one in San Diego.",
+    "body": "BET ships to all 50 states. The majority of high-intent equipment searches carry no geographic modifier. Our content, pricing, and logistics infrastructure serve the national buyer as directly as the local one.",
+    "cities": [
+      "Denver",
+      "Portland",
+      "Chicago",
+      "Austin",
+      "Seattle",
+      "Nashville"
+    ],
+    "statisticValue": "50",
+    "statisticLabel": "States"
+  },
+  "finalCta": {
+    "eyebrow": "Ready to Move Fast",
+    "heading": "Get a verified quote in 24 hours.",
+    "body": "Operator inspection, rigging, and freight quoted in a single thread.\nOur trade desk responds within one business day.",
+    "primaryCta": {
+      "label": "Request Asset Quote",
+      "href": "/contact?type=rigging"
+    }
+  }
+}

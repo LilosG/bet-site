@@ -13,20 +13,19 @@ import CoverageMap from '../../components/ui/CoverageMap.astro';
 import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../data/locations';
 import { NAP } from '../../data/site';
 import { breadcrumbSchema, localBusinessSchema } from '../../lib/schema';
+import { cms, interpolate } from '../../lib/cms';
+import { resolveCmsImage } from '../../lib/images';
 
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../assets/images/*.webp',
-  { eager: true }
-);
+const content = cms.pages.locations;
 
-const heroAsset = allImages['../../assets/images/hero-locations.webp']?.default;
+const heroAsset = resolveCmsImage(content.hero.image);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const crumbs = [
-  { name: 'Home',          url: '/' },
-  { name: 'Service Areas', url: '/locations' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: content.breadcrumbLabel, url: '/locations' },
 ];
 
 const schemas = [
@@ -34,17 +33,12 @@ const schemas = [
   breadcrumbSchema(crumbs),
 ];
 
-const shippingFacts = [
-  { value: '50',    label: 'States Served' },
-  { value: '1–2',   label: 'Week Local Rigging Turnaround' },
-  { value: '40K',   label: 'Sq Ft Facility' },
-  { value: '600+',  label: 'Equipment Placements' },
-];
+const shippingFacts = content.statistics;
 ---
 
 <Layout
-  title="Brewery Equipment Service Areas — Local & National | Beverage Equipment Traders"
-  description="Beverage Equipment Traders ships brewery and beverage production equipment to all 50 states. Local service and rigging throughout Southern California from our San Marcos, CA facility."
+  title={content.seo.title}
+  description={content.seo.description}
   schemas={schemas}
 >
   <Breadcrumb crumbs={crumbs} />
@@ -58,25 +52,20 @@ const shippingFacts = [
       ></div>
     )}
     <div class="container hub-hero-inner">
-      <span class="eyebrow">Service Areas</span>
-      <h1>San Marcos, CA<br />to All 50 States.</h1>
-      <p class="hub-intro">
-        Local buyers get in-person inspection at our 40,000 sq ft facility and
-        rigging crews that turn around in 1–2 weeks. National buyers get the same
-        photographed, documented inventory with bonded freight to any destination.
-        One team, one phone number, coast to coast.
-      </p>
+      <span class="eyebrow">{content.hero.eyebrow}</span>
+      <h1>{content.hero.heading.split('\n').map((line, index) => <>{index > 0 && <br />}{line}</>)}</h1>
+      <p class="hub-intro">{content.hero.body}</p>
       <div class="hub-hero-ctas">
-        <a href="/contact" class="btn btn-primary btn-lg">
-          Contact the Trade Desk
+        <a href={content.hero.primaryCta.href} class="btn btn-primary btn-lg">
+          {content.hero.primaryCta.label}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="/equipment" class="btn btn-outline btn-lg">Browse Equipment</a>
+        <a href={content.hero.secondaryCta.href} class="btn btn-outline btn-lg">{content.hero.secondaryCta.label}</a>
       </div>
     </div>
   </section>
 
-  <section class="hub-stats-band" aria-label="Service area statistics">
+  <section class="hub-stats-band" aria-label={content.statisticsAriaLabel}>
     <div class="container hub-stats-inner">
       {shippingFacts.map((fact) => (
         <div class="hub-stat">
@@ -91,20 +80,16 @@ const shippingFacts = [
     <div class="container">
       <div class="loc-section-header">
         <div>
-          <span class="eyebrow">Southern California</span>
-          <h2 id="local-heading">Local Service Areas</h2>
-          <p class="loc-section-desc">
-            In-person inspection available at our {NAP.street} facility in {NAP.city}.
-            Local rigging and installation typically turns around in 1–2 weeks.
-            30 minutes from downtown San Diego.
-          </p>
+          <span class="eyebrow">{content.local.eyebrow}</span>
+          <h2 id="local-heading">{content.local.heading}</h2>
+          <p class="loc-section-desc">{interpolate(content.local.body, { street: NAP.street, city: NAP.city })}</p>
         </div>
         <div class="loc-facility-note">
           <div class="facility-note-inner">
-            <p class="facility-note-label">Our Facility</p>
+            <p class="facility-note-label">{content.local.facilityLabel}</p>
             <p class="facility-note-address">{NAP.street}<br />{NAP.city}, {NAP.state} {NAP.zip}</p>
-            <a href="tel:+19498882739" class="facility-note-phone">{NAP.phone}</a>
-            <p class="facility-note-hours">Mon–Thu 10AM–4PM · Fri 10AM–3PM</p>
+            <a href={`tel:${NAP.phonePlain}`} class="facility-note-phone">{NAP.phone}</a>
+            <p class="facility-note-hours">{content.local.hoursLabel}</p>
           </div>
         </div>
       </div>
@@ -113,17 +98,17 @@ const shippingFacts = [
           <a href={`/locations/local/${loc.slug}`} class="loc-card">
             <div class="loc-card-inner">
               <div class="loc-card-top">
-                <span class="loc-card-badge loc-badge-local">Local Service</span>
+                <span class="loc-card-badge loc-badge-local">{content.local.badgeLabel}</span>
               </div>
               <h3 class="loc-card-city">{loc.city}</h3>
               <p class="loc-card-state">{loc.state}</p>
               <p class="loc-card-intro">{loc.intro}</p>
               <div class="loc-card-footer">
                 <span class="loc-card-cta">
-                  View Service Area
+                  {content.local.cardCtaLabel}
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </span>
-                <span class="loc-card-tag">Rigging · Inspection · Same-week Quotes</span>
+                <span class="loc-card-tag">{content.local.cardTag}</span>
               </div>
             </div>
           </a>
@@ -136,21 +121,14 @@ const shippingFacts = [
     <div class="container">
       <div class="loc-section-header">
         <div>
-          <span class="eyebrow">Nationwide Shipping</span>
-          <h2 id="national-heading">National Markets</h2>
-          <p class="loc-section-desc">
-            Bonded freight to all 50 states. Every piece photographed, documented,
-            and documented before it leaves our yard. Rigging and installation at
-            destination available. Lead times confirmed at purchase.
-          </p>
+          <span class="eyebrow">{content.national.eyebrow}</span>
+          <h2 id="national-heading">{content.national.heading}</h2>
+          <p class="loc-section-desc">{content.national.body}</p>
         </div>
         <div class="shipping-facts-box">
-          <p class="shipping-facts-label">Every Shipment Includes</p>
+          <p class="shipping-facts-label">{content.national.factsLabel}</p>
           <ul class="shipping-facts-list">
-            <li>Bonded freight coordination</li>
-            <li>Crated or pad-wrapped per equipment type</li>
-            <li>Pre-ship condition documentation</li>
-            <li>Single point of contact through delivery</li>
+            {content.national.facts.map(fact => <li>{fact}</li>)}
           </ul>
         </div>
       </div>
@@ -159,13 +137,13 @@ const shippingFacts = [
           <a href={`/locations/national/${loc.slug}`} class="nat-card">
             <div class="nat-card-inner">
               <div class="nat-card-top">
-                <span class="loc-card-badge loc-badge-national">Nationwide Shipping</span>
+                <span class="loc-card-badge loc-badge-national">{content.national.badgeLabel}</span>
               </div>
               <h3 class="nat-card-city">{loc.city}</h3>
               <p class="nat-card-state">{loc.state}</p>
               <p class="nat-card-intro">{loc.intro}</p>
               <span class="nat-card-cta">
-                View Shipping Info
+                {content.national.cardCtaLabel}
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </span>
             </div>
@@ -180,12 +158,12 @@ const shippingFacts = [
   <CoverageMap />
 
   <CtaStrip
-    heading="Not seeing your city?"
-    subtext="We ship to every state. Contact our trade desk with your location and equipment requirements."
-    primaryLabel="Contact the Trade Desk"
-    primaryHref="/contact"
-    secondaryLabel="Browse Equipment"
-    secondaryHref="/equipment"
+    heading={content.finalCta.heading}
+    subtext={content.finalCta.body}
+    primaryLabel={content.finalCta.primaryCta.label}
+    primaryHref={content.finalCta.primaryCta.href}
+    secondaryLabel={content.finalCta.secondaryCta.label}
+    secondaryHref={content.finalCta.secondaryCta.href}
   />
 </Layout>
 

@@ -1,0 +1,38 @@
+{
+  "seo": {
+    "title": "New and Used Brewery Equipment For Sale | Shop by Category",
+    "description": "Browse new and used brewery and beverage production equipment by category. Brewhouses, fermenters, canning lines, chillers, distilling equipment, and more. Nationwide shipping from San Marcos, CA."
+  },
+  "breadcrumbLabel": "Equipment",
+  "hero": {
+    "image": "hero-equipment.webp",
+    "imageAlt": "New and used brewery equipment inventory",
+    "eyebrow": "Shop Equipment",
+    "heading": "New and Used Brewery Equipment For Sale",
+    "body": "225+ items in stock across 8 equipment categories. Every piece photographed, documented, and priced. Ships nationwide from our 40,000 sq ft facility in San Marcos, CA.",
+    "cta": {
+      "label": "View Full Inventory",
+      "href": "https://beverageequipmenttraders.com/collections/all"
+    }
+  },
+  "labels": {
+    "categoriesHeading": "Equipment Categories",
+    "highAvailability": "High Availability",
+    "inStock": "In Stock",
+    "browseCategory": "Browse Category",
+    "liveInventory": "Live Inventory ↗",
+    "serviceHighlightsAriaLabel": "Service highlights"
+  },
+  "finalCta": {
+    "heading": "Ready to source equipment?",
+    "body": "Our trade desk responds within one business day. Provide the equipment you need and we'll match you to current inventory or source it.",
+    "primaryCta": {
+      "label": "Contact the Trade Desk",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Get a Rigging Quote",
+      "href": "/contact?type=rigging"
+    }
+  }
+}

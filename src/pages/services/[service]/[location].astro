@@ -17,43 +17,35 @@ import { SERVICES } from '../../../data/services';
 import { LOCAL_LOCATIONS, NATIONAL_LOCATIONS } from '../../../data/locations';
 import { NAP } from '../../../data/site';
 import { breadcrumbSchema, faqSchema, serviceSchema, localBusinessSchema } from '../../../lib/schema';
-
-const allImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../../../assets/images/*.webp',
-  { eager: true }
-);
-
-function getAsset(filename: string | undefined): ImageMetadata | undefined {
-  if (!filename) return undefined;
-  return allImages[`../../../assets/images/${filename}`]?.default;
-}
+import { cms, serviceLocations } from '../../../lib/cms';
+import { resolveCmsImage } from '../../../lib/images';
 
 export async function getStaticPaths() {
   const allLocations = [...LOCAL_LOCATIONS, ...NATIONAL_LOCATIONS];
-  return SERVICES.flatMap((service) =>
-    allLocations.map((loc) => ({
-      params: { service: service.slug, location: loc.slug },
-      props: { service, loc },
-    }))
-  );
+  return serviceLocations.map((page) => {
+    const service = SERVICES.find(record => record.slug === page.serviceSlug);
+    const loc = allLocations.find(record => record.slug === page.locationSlug);
+    if (!service || !loc) throw new Error(`Invalid service-location CMS references: ${page.slug}`);
+    return { params: { service: service.slug, location: loc.slug }, props: { service, loc, page } };
+  });
 }
 
-const { service, loc } = Astro.props;
+const { service, loc, page } = Astro.props;
 
-const heroAsset = getAsset(service.heroImage);
+const heroAsset = resolveCmsImage(page.heroImage);
 const optimizedHero = heroAsset
   ? await getImage({ src: heroAsset, width: 1600, height: 900, format: 'webp', quality: 80 })
   : null;
 
 const isLocal = loc.type === 'local';
 
-const pageH1 = `${service.title} — ${loc.city}, ${loc.stateAbbr}`;
-const metaTitle = `${service.title} ${loc.city}, ${loc.stateAbbr} | Beverage Equipment Traders`;
-const metaDescription = `${service.intro} Serving ${loc.city}, ${loc.state} and nationwide from San Marcos, CA. One quote covers full scope.`;
+const pageH1 = page.h1;
+const metaTitle = page.metaTitle;
+const metaDescription = page.metaDescription;
 
 const crumbs = [
-  { name: 'Home',        url: '/' },
-  { name: 'Services',    url: '/services' },
+  { name: cms.globalCtas.breadcrumbHomeLabel, url: '/' },
+  { name: cms.pages.services.breadcrumbLabel, url: '/services' },
   { name: service.title, url: `/services/${service.slug}` },
   { name: loc.city,      url: `/services/${service.slug}/${loc.slug}` },
 ];
@@ -89,20 +81,20 @@ const schemas = [
       ></div>
     )}
     <div class="container svc-loc-hero-inner">
-      <span class="eyebrow">{service.shortTitle} · {loc.city}, {loc.stateAbbr}</span>
+      <span class="eyebrow">{page.heroEyebrow}</span>
       <h1>{pageH1}</h1>
-      <p class="svc-loc-hero-intro">{service.intro} Available in {loc.city} and nationwide.</p>
+      <p class="svc-loc-hero-intro">{page.heroBody}</p>
       <div class="svc-loc-hero-ctas">
         <a href={service.cta.href} class="btn btn-primary btn-lg">
           {service.cta.label}
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href={`tel:${NAP.phonePlain}`} class="btn btn-outline btn-lg">
-          Call {NAP.phone}
+          {service.labels.callPrefix} {NAP.phone}
         </a>
       </div>
       <div class="svc-loc-trust-chips">
-        {['All 50 States', 'One Quote — Full Scope', 'Prior Brewery Operators', 'San Marcos, CA'].map((chip) => (
+        {page.trustChips.map((chip) => (
           <span class="trust-chip">{chip}</span>
         ))}
       </div>
@@ -115,24 +107,17 @@ const schemas = [
   <section class="svc-loc-body section-y" aria-labelledby="svc-loc-heading">
     <div class="container svc-loc-content-inner">
       <div class="prose">
-        <h2 id="svc-loc-heading">{service.title} in {loc.city} — What to Know</h2>
+        <h2 id="svc-loc-heading">{page.bodyHeading}</h2>
         {service.bodyContent.split('\n\n').filter(Boolean).map((para) => (
           <p>{para}</p>
         ))}
-        <p>
-          {isLocal
-            ? `For ${loc.city} area clients, ${service.shortTitle.toLowerCase()} jobs typically turn around within 1 to 2 weeks. Our San Marcos facility is a short drive — equipment can be inspected in person before any commitment.`
-            : `We handle ${service.shortTitle.toLowerCase()} in ${loc.city} and across all 50 states. Contact us with your project scope and we will return a complete quote covering all phases.`
-          }
-        </p>
-        <p>
-          Beverage Equipment Traders serves buyers and sellers throughout North America. The {loc.city} market is one of many active markets we work in — contact us regardless of your location and we will advise on scope and timeline.
-        </p>
+        <p>{page.locationParagraph}</p>
+        <p>{page.marketParagraph}</p>
       </div>
       <aside class="svc-loc-sidebar">
         <div class="svc-loc-sidebar-card">
           <h3>{service.cta.label}</h3>
-          <p>Our trade desk responds within one business day. Describe your project and we will return a complete scope and price for {loc.city}.</p>
+          <p>{page.sidebarBody}</p>
           <a href={service.cta.href} class="btn btn-primary" style="width:100%;justify-content:center;">
             {service.cta.label}
           </a>
@@ -142,7 +127,7 @@ const schemas = [
           </a>
         </div>
         <div class="svc-loc-related">
-          <p class="svc-loc-related-label">Related Services in {loc.city}</p>
+          <p class="svc-loc-related-label">{page.relatedServicesLabel}</p>
           <ul>
             {SERVICES.filter((s) => s.slug !== service.slug).map((s) => (
               <li>
@@ -162,8 +147,8 @@ const schemas = [
   {service.processSteps.length > 0 && (
     <ProcessSteps
       steps={service.processSteps}
-      heading={`How ${service.shortTitle} Works in ${loc.city}`}
-      eyebrow="The Process"
+      heading={page.processHeading}
+      eyebrow={page.processEyebrow}
     />
   )}
 
@@ -172,16 +157,16 @@ const schemas = [
   <!-- ═══ FAQ ════════════════════════════════════ -->
   <FAQ
     items={service.faqs}
-    heading={`${service.title} ${loc.city} — Frequently Asked Questions`}
+    heading={page.faqHeading}
   />
 
   <CtaStrip
-    heading={`Ready to get started in ${loc.city}?`}
-    subtext="One call, one quote. Our trade desk handles everything from scope to scheduling."
+    heading={page.finalCtaHeading}
+    subtext={page.finalCtaBody}
     primaryLabel={service.cta.label}
     primaryHref={service.cta.href}
-    secondaryLabel="Browse Equipment"
-    secondaryHref="/equipment"
+    secondaryLabel={page.secondaryCta.label}
+    secondaryHref={page.secondaryCta.href}
   />
 </Layout>
 
