@@ -587,7 +587,7 @@ const recordCollection = (
 
 export default config({
   storage: { kind: "cloud" },
-  cloud: { project: "gph-websites/bet-site" },
+  cloud: { project: "bet-site/bet-site" },
   ui: {
     brand: { name: "BET Website CMS" },
     navigation: {
