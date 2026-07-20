@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { cms } from '../../lib/cms';
-import { requireCmsImage } from '../../lib/images';
+import { resolveCmsImage } from '../../lib/images';
 
 export interface Props {
   heading?: string;
@@ -9,10 +9,11 @@ export interface Props {
 }
 
 const { heading = cms.trustProof.heading, light = false } = Astro.props;
-const clients = cms.trustProof.clients.map(client => ({
-  ...client,
-  imageAsset: requireCmsImage(client.image),
-}));
+const clients = (Array.isArray(cms.trustProof.clients) ? cms.trustProof.clients : [])
+  .flatMap(client => {
+    const imageAsset = resolveCmsImage(client.image);
+    return imageAsset ? [{ ...client, imageAsset }] : [];
+  });
 ---
 
 <div class={`trust-bar${light ? ' trust-bar-light' : ''}`} aria-label={heading}>

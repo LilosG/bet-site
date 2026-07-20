@@ -8,11 +8,11 @@ import { SITE, NAP, SOCIAL, HOURS } from '../../data/site';
 import { EQUIPMENT_CATEGORIES } from '../../data/equipment';
 import { SERVICES } from '../../data/services';
 import { cms } from '../../lib/cms';
-import { requireCmsImage } from '../../lib/images';
+import { resolveCmsImage } from '../../lib/images';
 
 const currentYear = new Date().getFullYear();
 const content = cms.footer;
-const logo = requireCmsImage(SITE.logo);
+const logo = resolveCmsImage(SITE.logo);
 
 const equipmentLinks = EQUIPMENT_CATEGORIES.slice(0, 6).map((c) => ({
   label: c.title,
@@ -24,7 +24,12 @@ const serviceLinks = SERVICES.map((s) => ({
   href:  `/services/${s.slug}`,
 }));
 
-const companyLinks = content.companyLinks;
+const companyLinks = Array.isArray(content.companyLinks) ? content.companyLinks : [];
+const legalLinks = Array.isArray(content.legalLinks) ? content.legalLinks : [];
+const hours = Array.isArray(HOURS) ? HOURS : [];
+const weekdayHours = hours.slice(0, 5);
+const saturday = hours[5];
+const sunday = hours[6];
 ---
 
 <footer class="site-footer" itemscope itemtype="https://schema.org/LocalBusiness">
@@ -37,15 +42,19 @@ const companyLinks = content.companyLinks;
     <div class="container footer-top-inner">
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label={`${SITE.name} — Home`}>
-          <Image
-            src={logo}
-            alt={SITE.logoAlt}
-            class="footer-logo-img"
-            width="140"
-            height="42"
-            loading="lazy"
-            decoding="async"
-          />
+          {logo ? (
+            <Image
+              src={logo}
+              alt={SITE.logoAlt}
+              class="footer-logo-img"
+              width="140"
+              height="42"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <span class="footer-logo-text">{SITE.shortName || SITE.name}</span>
+          )}
         </a>
         <p class="footer-tagline">
           {content.tagline}
@@ -146,20 +155,24 @@ const companyLinks = content.companyLinks;
 
         <div class="footer-hours">
           <p class="footer-hours-label">{content.hoursHeading}</p>
-          {HOURS.slice(0, 5).map((h) => (
+          {weekdayHours.map((h) => (
             <div class="footer-hours-row">
               <span class="footer-hours-day">{h.day.slice(0,3)}</span>
               <span class="footer-hours-time">{h.label}</span>
             </div>
           ))}
-          <div class="footer-hours-row">
-            <span class="footer-hours-day">{HOURS[5].day.slice(0,3)}</span>
-            <span class="footer-hours-time">{content.saturdayShortLabel}</span>
-          </div>
-          <div class="footer-hours-row">
-            <span class="footer-hours-day">{HOURS[6].day.slice(0,3)}</span>
-            <span class="footer-hours-time">{HOURS[6].label}</span>
-          </div>
+          {saturday && (
+            <div class="footer-hours-row">
+              <span class="footer-hours-day">{saturday.day.slice(0,3)}</span>
+              <span class="footer-hours-time">{content.saturdayShortLabel}</span>
+            </div>
+          )}
+          {sunday && (
+            <div class="footer-hours-row">
+              <span class="footer-hours-day">{sunday.day.slice(0,3)}</span>
+              <span class="footer-hours-time">{sunday.label}</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -173,7 +186,7 @@ const companyLinks = content.companyLinks;
       </p>
       <nav aria-label={content.legalNavigationAriaLabel}>
         <ul class="footer-legal-links" role="list">
-          {content.legalLinks.map(link => (
+          {legalLinks.map(link => (
             <li><a href={link.href} class="footer-legal-link">{link.label}</a></li>
           ))}
         </ul>
@@ -214,6 +227,13 @@ const companyLinks = content.companyLinks;
     height: 40px;
     width: auto;
     display: block;
+  }
+
+  .footer-logo-text {
+    color: var(--color-heading);
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 800;
   }
 
   .footer-tagline {

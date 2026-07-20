@@ -8,10 +8,17 @@
 import { Image } from 'astro:assets';
 import { NAV, NAP, SITE } from '../../data/site';
 import { cms } from '../../lib/cms';
-import { requireCmsImage } from '../../lib/images';
+import { resolveCmsImage } from '../../lib/images';
 
 const content = cms.header;
-const logo = requireCmsImage(SITE.logo);
+const logo = resolveCmsImage(SITE.logo);
+const navigation = (Array.isArray(NAV.primary) ? NAV.primary : []).map((item) => ({
+  ...item,
+  children:
+    Array.isArray(item.children) && item.children.length > 0
+      ? item.children
+      : undefined,
+}));
 
 const currentPath = Astro.url.pathname;
 function isActive(href: string) {
@@ -25,21 +32,25 @@ function isActive(href: string) {
 
     <!-- Logo -->
     <a href="/" class="header-logo" aria-label={content.logoAriaLabel}>
-      <Image
-        src={logo}
-        alt={SITE.logoAlt}
-        class="header-logo-img"
-        width="148"
-        height="44"
-        loading="eager"
-        decoding="async"
-      />
+      {logo ? (
+        <Image
+          src={logo}
+          alt={SITE.logoAlt}
+          class="header-logo-img"
+          width="148"
+          height="44"
+          loading="eager"
+          decoding="async"
+        />
+      ) : (
+        <span class="header-logo-text">{SITE.shortName || SITE.name}</span>
+      )}
     </a>
 
     <!-- Desktop Nav -->
     <nav class="header-nav" aria-label={content.primaryNavigationAriaLabel}>
       <ul class="nav-list" role="list">
-        {NAV.primary.map((item) => (
+        {navigation.map((item) => (
           <li class={`nav-item${item.children ? ' has-dropdown' : ''}`}>
             <a
               href={item.href}
@@ -123,7 +134,7 @@ function isActive(href: string) {
   <!-- Mobile Nav Drawer -->
   <nav class="mobile-nav" id="mobile-nav" aria-label={content.mobileNavigationAriaLabel} aria-hidden="true">
     <ul class="mobile-nav-list" role="list">
-      {NAV.primary.map((item) => (
+      {navigation.map((item) => (
         <li class="mobile-nav-item">
           <a
             href={item.href}
@@ -235,6 +246,13 @@ function isActive(href: string) {
     height: 38px;
     width: auto;
     display: block;
+  }
+
+  .header-logo-text {
+    color: var(--color-heading);
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 800;
   }
 
   /* ─── Desktop Nav ──────────────────────── */

@@ -30,7 +30,10 @@ const {
 
 const pageTitle    = buildTitle(title);
 const pageCanonical = buildCanonical(canonical ?? Astro.url.pathname);
-const ogImageFull  = ogImage.startsWith('http') ? ogImage : `${SITE.url}${ogImage}`;
+const resolvedOgImage = typeof ogImage === 'string' ? ogImage : '';
+const ogImageFull = resolvedOgImage.startsWith('http')
+  ? resolvedOgImage
+  : `${SITE.url}${resolvedOgImage}`;
 
 // Always inject Organization schema
 const allSchemas = [organizationSchema(), ...schemas];
