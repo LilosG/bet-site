@@ -37,8 +37,58 @@ type EditorKind =
 
 type SchemaContext = {
   editor: EditorKind;
+  imageNamespace: string;
   path?: string[];
 };
+
+type NamespacedImageOptions = {
+  label: string;
+  description: string;
+};
+
+function namespacedImage(
+  namespace: string,
+  { label, description }: NamespacedImageOptions,
+) {
+  if (!namespace.trim()) {
+    throw new Error("Every Keystatic image field requires a namespace.");
+  }
+
+  const field = fields.image({
+    label,
+    description,
+    directory: `src/assets/images/${namespace}`,
+    publicPath: namespace,
+    validation: { isRequired: true },
+  });
+
+  const filename = field.filename;
+  const parse = field.parse;
+  const storedPrefix = (slug: string | undefined) =>
+    `${namespace}/${slug === undefined ? "" : `${slug}/`}`;
+
+  return {
+    ...field,
+    filename(
+      value: Parameters<typeof filename>[0],
+      args: Parameters<typeof filename>[1],
+    ) {
+      const prefix = storedPrefix(args.slug);
+      if (typeof value === "string" && !value.startsWith(prefix)) return value;
+      return filename(value, args);
+    },
+    parse(
+      value: Parameters<typeof parse>[0],
+      args: Parameters<typeof parse>[1],
+    ) {
+      const prefix = storedPrefix(args.slug);
+      if (typeof value === "string" && !value.startsWith(prefix)) {
+        return parse(`${prefix}${value}`, args);
+      }
+      return parse(value, args);
+    },
+  };
+}
 
 const imageKeys = new Set(["image", "heroImage", "logo"]);
 const multilineKeys = new Set([
@@ -479,7 +529,12 @@ function fieldForValue(
   }
 
   if (imageKeys.has(key)) {
-    return fields.image({ label, description, directory: "src/assets/images" });
+    const namespace = [
+      context.imageNamespace,
+      ...(context.path ?? []),
+      key,
+    ].join("/");
+    return namespacedImage(namespace, { label, description });
   }
 
   if (Array.isArray(value)) {
@@ -542,6 +597,7 @@ function fieldForValue(
 const pageSingleton = (
   label: string,
   path: string,
+  imageNamespace: string,
   sample: Record<string, unknown>,
   editor: EditorKind = "page",
 ) =>
@@ -549,12 +605,13 @@ const pageSingleton = (
     label,
     path,
     format: { data: "json" },
-    schema: schemaForObject(sample, { editor }),
+    schema: schemaForObject(sample, { editor, imageNamespace }),
   });
 
 const recordCollection = (
   label: string,
   path: `${string}/*`,
+  imageNamespace: string,
   sample: Record<string, unknown>,
   previewUrl: string,
   editor: EditorKind,
@@ -569,7 +626,7 @@ const recordCollection = (
     previewUrl,
     columns: columns as any,
     schema: {
-      ...schemaForObject(rest, { editor }),
+      ...schemaForObject(rest, { editor, imageNamespace }),
       slug: fields.slug({
         name: {
           label: "Page URL",
@@ -624,6 +681,7 @@ export default config({
     company: pageSingleton(
       "Company Information",
       "src/content/settings/company",
+      "company",
       {
         name: "Beverage Equipment Traders",
         shortName: "BET",
@@ -654,6 +712,7 @@ export default config({
     header: pageSingleton(
       "Header & Navigation",
       "src/content/settings/header",
+      "header",
       {
         logoAriaLabel: "",
         primaryNavigationAriaLabel: "",
@@ -673,6 +732,7 @@ export default config({
     footer: pageSingleton(
       "Footer",
       "src/content/settings/footer",
+      "footer",
       {
         tagline: "",
         equipmentHeading: "",
@@ -693,6 +753,7 @@ export default config({
     globalCtas: pageSingleton(
       "Global Buttons & Labels",
       "src/content/settings/global-ctas",
+      "globalCtas",
       {
         cardLearnMoreLabel: "",
         cardViewDetailsLabel: "",
@@ -714,6 +775,7 @@ export default config({
     trustProof: pageSingleton(
       "Trust, Logos & Statistics",
       "src/content/settings/trust",
+      "trustProof",
       {
         heading: "",
         rosterAriaLabel: "",
@@ -725,6 +787,7 @@ export default config({
     coverageMap: pageSingleton(
       "Coverage Map",
       "src/content/settings/coverage-map",
+      "coverageMap",
       {
         eyebrow: "",
         heading: "",
@@ -736,39 +799,65 @@ export default config({
       },
       "settings",
     ),
-    home: pageSingleton("Home", "src/content/pages/home", homePage),
-    about: pageSingleton("About", "src/content/pages/about", aboutPage),
+    home: pageSingleton("Home", "src/content/pages/home", "home", homePage),
+    about: pageSingleton(
+      "About",
+      "src/content/pages/about",
+      "about",
+      aboutPage,
+    ),
     servicesPage: pageSingleton(
       "Services Overview",
       "src/content/pages/services",
+      "servicesPage",
       servicesPage,
     ),
     equipmentPage: pageSingleton(
       "Equipment Overview",
       "src/content/pages/equipment",
+      "equipmentPage",
       equipmentPage,
     ),
     industriesPage: pageSingleton(
       "Industries Overview",
       "src/content/pages/industries",
+      "industriesPage",
       industriesPage,
     ),
     locations: pageSingleton(
       "Locations Overview",
       "src/content/pages/locations",
+      "locations",
       locationsPage,
     ),
-    blog: pageSingleton("Blog Overview", "src/content/pages/blog", blogPage),
-    contact: pageSingleton("Contact", "src/content/pages/contact", contactPage),
+    blog: pageSingleton(
+      "Blog Overview",
+      "src/content/pages/blog",
+      "blog",
+      blogPage,
+    ),
+    contact: pageSingleton(
+      "Contact",
+      "src/content/pages/contact",
+      "contact",
+      contactPage,
+    ),
     privacy: pageSingleton(
       "Privacy Policy",
       "src/content/pages/privacy",
+      "privacy",
       privacyPage,
     ),
-    terms: pageSingleton("Terms", "src/content/pages/terms", termsPage),
+    terms: pageSingleton(
+      "Terms",
+      "src/content/pages/terms",
+      "terms",
+      termsPage,
+    ),
     thankYou: pageSingleton(
       "Thank You Page",
       "src/content/pages/thank-you",
+      "thankYou",
       thankYouPage,
     ),
   },
@@ -776,6 +865,7 @@ export default config({
     services: recordCollection(
       "Individual Services",
       "src/content/services/*",
+      "services",
       serviceSample,
       "/services/{slug}",
       "service",
@@ -784,6 +874,7 @@ export default config({
     equipmentCategories: recordCollection(
       "Equipment Categories",
       "src/content/equipment/*",
+      "equipmentCategories",
       equipmentSample,
       "/equipment/{slug}",
       "equipment",
@@ -792,6 +883,7 @@ export default config({
     industries: recordCollection(
       "Individual Industries",
       "src/content/industries/*",
+      "industries",
       industrySample,
       "/industries/{slug}",
       "industry",
@@ -800,6 +892,7 @@ export default config({
     localLocations: recordCollection(
       "Local Markets",
       "src/content/locations/local/*",
+      "localLocations",
       localLocationSample,
       "/locations/local/{slug}",
       "localMarket",
@@ -808,6 +901,7 @@ export default config({
     nationalLocations: recordCollection(
       "National Markets",
       "src/content/locations/national/*",
+      "nationalLocations",
       nationalLocationSample,
       "/locations/national/{slug}",
       "nationalMarket",
@@ -816,6 +910,7 @@ export default config({
     serviceLocations: recordCollection(
       "Service Areas",
       "src/content/service-locations/*",
+      "serviceLocations",
       serviceLocationSample,
       "/services/{slug}",
       "serviceMarket",
@@ -824,6 +919,7 @@ export default config({
     equipmentLocations: recordCollection(
       "Equipment Markets",
       "src/content/equipment-locations/*",
+      "equipmentLocations",
       equipmentLocationSample,
       "/equipment/{slug}",
       "equipmentMarket",
@@ -894,11 +990,10 @@ export default config({
             itemLabel: (props) => props.value,
           },
         ),
-        heroImage: fields.image({
+        heroImage: namespacedImage("blogPosts/heroImage", {
           label: "Main Post Image",
           description:
             "Large image shown near the top of the article. Use a clear landscape image.",
-          directory: "src/assets/images",
         }),
         heroImageAlt: fields.text({
           label: "Image Description for Accessibility",

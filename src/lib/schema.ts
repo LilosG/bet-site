@@ -4,9 +4,10 @@
 // ─────────────────────────────────────────────
 
 import { SITE, NAP, HOURS, SAME_AS, GEO } from '../data/site';
-import { requireCmsImage } from './images';
+import { resolveCmsImage } from './images';
 
-const logo = requireCmsImage(SITE.logo);
+const logo = resolveCmsImage(SITE.logo);
+const hours = Array.isArray(HOURS) ? HOURS : [];
 
 // ─── LocalBusiness (homepage and contact) ────
 export function localBusinessSchema() {
@@ -32,7 +33,7 @@ export function localBusinessSchema() {
       latitude: GEO.lat,
       longitude: GEO.lng,
     },
-    openingHoursSpecification: HOURS.map((h) => ({
+    openingHoursSpecification: hours.map((h) => ({
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: `https://schema.org/${h.day}`,
       ...(h.open ? { opens: h.open, closes: h.close } : {}),
@@ -56,7 +57,7 @@ export function organizationSchema() {
     '@id': `${SITE.url}/#organization`,
     name: SITE.name,
     url: SITE.url,
-    logo: `${SITE.url}${logo.src}`,
+    ...(logo ? { logo: `${SITE.url}${logo.src}` } : {}),
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: NAP.phonePlain,
